@@ -1,12 +1,8 @@
 preBuildCommand: npm install
 buildCommand: npm run build
-startCommand: npm run start
+startCommand: npx next start -p 3000 -H 0.0.0.0
 envVars:
   - key: NODE_VERSION
     value: "18"
   - key: NEXT_TELEMETRY_DISABLED
     value: "1"
-  - key: HOST
-    value: "0.0.0.0"
-  - key: PORT
-    value: "3000"

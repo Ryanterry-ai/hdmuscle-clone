@@ -40,10 +40,10 @@ export const products: Product[] = [
     description: "Elevated focus and endurance for intense training sessions.",
     price: 45.99,
     compareAtPrice: null,
-    image: "https://hdmuscle.com/cdn/shop/files/Ultra_PeachRings_WhiteLid_1.png?v=1758833383&width=1280",
+    image: "/images/downloaded/product-prehd-ultra.png",
     images: [
-      "https://hdmuscle.com/cdn/shop/files/Ultra_PeachRings_WhiteLid_1.png?v=1758833383&width=1280",
-      "https://hdmuscle.com/cdn/shop/files/Ultra_PeachRings.jpg?v=1758833383&width=1280"
+      "/images/downloaded/product-prehd-ultra.png",
+      "/images/downloaded/product-prehd-ultra-facts.png"
     ],
     category: "Pre-workouts",
     status: "active",
@@ -58,10 +58,10 @@ export const products: Product[] = [
     description: "Stim-free pre-workout for maximum pump and endurance without caffeine.",
     price: 45.99,
     compareAtPrice: null,
-    image: "https://hdmuscle.com/cdn/shop/files/Non-Stim-ELITE-PL.png?v=1755483444&width=1280",
+    image: "/images/downloaded/product-prehd-elite.png",
     images: [
-      "https://hdmuscle.com/cdn/shop/files/Non-Stim-ELITE-PL.png?v=1755483444&width=1280",
-      "https://hdmuscle.com/cdn/shop/files/Elite_PinkLemon.jpg?v=1762384547&width=1280"
+      "/images/downloaded/product-prehd-elite.png",
+      "/images/downloaded/product-prehd-elite-facts.png"
     ],
     category: "Pre-workouts",
     status: "active",
