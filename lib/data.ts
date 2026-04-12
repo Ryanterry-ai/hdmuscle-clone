@@ -76,7 +76,7 @@ export const products: Product[] = [
     description: "Harder-hitting, high-stim formula for maximum intensity.",
     price: 38.99,
     compareAtPrice: null,
-    image: "https://hdmuscle.com/cdn/shop/files/SourGrape.png?v=1750958309&width=1280",
+    image: "/images/downloaded/product-prehd-black.png",
     images: [
       "https://hdmuscle.com/cdn/shop/files/SourGrape.png?v=1750958309&width=1280",
       "https://hdmuscle.com/cdn/shop/files/Black_SourGrape.jpg?v=1762384476&width=1280"
@@ -94,7 +94,7 @@ export const products: Product[] = [
     description: "Maximum pump, performance, and focus — with zero caffeine. Perfect for late-night training.",
     price: 59.99,
     compareAtPrice: null,
-    image: "https://hdmuscle.com/cdn/shop/files/PumpHD-Rainbow-Strips.png?v=1757610060&width=1280",
+    image: "/images/downloaded/product-pumphd-black.png",
     images: [
       "https://hdmuscle.com/cdn/shop/files/PumpHD-Rainbow-Strips.png?v=1757610060&width=1280",
       "https://hdmuscle.com/cdn/shop/files/PumpHD-Supp-Facts-Rainbow-Strips.png?v=1764211420&width=1280"
@@ -112,7 +112,7 @@ export const products: Product[] = [
     description: "The caffeine add-on. Control your caffeine. Add to any stim-free pre-workout.",
     price: 16.49,
     compareAtPrice: null,
-    image: "https://hdmuscle.com/cdn/shop/files/StimHD_9d7400de-4473-4af8-bd68-902c6689781d.png?v=1759273225&width=1280",
+    image: "/images/downloaded/product-stimhd.png",
     images: [
       "https://hdmuscle.com/cdn/shop/files/StimHD_9d7400de-4473-4af8-bd68-902c6689781d.png?v=1759273225&width=1280",
       "https://hdmuscle.com/cdn/shop/files/StimHD-Supp-Facts.png?v=1759273225&width=1280"
@@ -130,7 +130,7 @@ export const products: Product[] = [
     description: "Intra-workout fuel for sustained energy and hydration during training.",
     price: 42.99,
     compareAtPrice: null,
-    image: "https://hdmuscle.com/cdn/shop/files/IntraHD_Watermelon_f38c042d-708c-472a-a828-b329ac7baf6b.png?v=1742929990&width=1280",
+    image: "/images/downloaded/product-intrahd.png",
     images: [
       "https://hdmuscle.com/cdn/shop/files/IntraHD_Watermelon_f38c042d-708c-472a-a828-b329ac7baf6b.png?v=1742929990&width=1280",
       "https://hdmuscle.com/cdn/shop/files/Intra_Watermelon.jpg?v=1758833409&width=1280"
@@ -148,7 +148,7 @@ export const products: Product[] = [
     description: "Essential Amino Acids for muscle recovery and hydration.",
     price: 38.99,
     compareAtPrice: null,
-    image: "https://hdmuscle.com/cdn/shop/files/EaaHD_FRONT_Peach-Black-Lid.png?v=1751895371&width=1280",
+    image: "/images/downloaded/product-eaahd.png",
     images: [
       "https://hdmuscle.com/cdn/shop/files/EaaHD_FRONT_Peach-Black-Lid.png?v=1751895371&width=1280",
       "https://hdmuscle.com/cdn/shop/files/EAA_Peach.jpg?v=1764211420&width=1280"
@@ -166,7 +166,7 @@ export const products: Product[] = [
     description: "Ultra-pure creatine monohydrate from Creapure® for strength and power.",
     price: 42.99,
     compareAtPrice: null,
-    image: "https://hdmuscle.com/cdn/shop/files/CreaHD_Transparent.png?v=1772313991&width=1280",
+    image: "/images/downloaded/product-creahd.png",
     images: [
       "https://hdmuscle.com/cdn/shop/files/CreaHD_Transparent.png?v=1772313991&width=1280",
       "https://hdmuscle.com/cdn/shop/files/CreaHD.jpg?v=1772313991&width=1280"
@@ -184,7 +184,7 @@ export const products: Product[] = [
     description: "Advanced carb complex for energy and glycogen replenishment.",
     price: 49.99,
     compareAtPrice: null,
-    image: "https://hdmuscle.com/cdn/shop/files/CarbHD_StrawKiwi-2024.png?v=1744342576&width=1280",
+    image: "/images/downloaded/product-carbhd.png",
     images: [
       "https://hdmuscle.com/cdn/shop/files/CarbHD_StrawKiwi-2024.png?v=1744342576&width=1280",
       "https://hdmuscle.com/cdn/shop/files/Carb_StrawKiwi.jpg?v=1762382894&width=1280"
@@ -202,7 +202,7 @@ export const products: Product[] = [
     description: "Electrolyte hydration formula for optimal performance.",
     price: 29.99,
     compareAtPrice: null,
-    image: "https://hdmuscle.com/cdn/shop/files/HydraHD-Tangerine-US.png?v=1771000697&width=1280",
+    image: "/images/downloaded/product-hydrahd.png",
     images: [
       "https://hdmuscle.com/cdn/shop/files/HydraHD-Tangerine-US.png?v=1771000697&width=1280",
       "https://hdmuscle.com/cdn/shop/files/HydraHD-Supp-Facts-Tangerine.png?v=1771000697&width=1280"
@@ -220,7 +220,7 @@ export const products: Product[] = [
     description: "Glutamine complex for recovery and immune support.",
     price: 22.99,
     compareAtPrice: null,
-    image: "https://hdmuscle.com/cdn/shop/files/GlutaHD-FRONT-Black-Lid.jpg?v=1755223771&width=1280",
+    image: "/images/downloaded/product-glutahd.jpg",
     images: [
       "https://hdmuscle.com/cdn/shop/files/GlutaHD-FRONT-Black-Lid.jpg?v=1755223771&width=1280",
       "https://hdmuscle.com/cdn/shop/products/Gluta_HD.jpg?v=1758833426&width=1280"
@@ -238,7 +238,7 @@ export const products: Product[] = [
     description: "Premium isolate protein for muscle building and recovery.",
     price: 54.22,
     compareAtPrice: 99.99,
-    image: "https://hdmuscle.com/cdn/shop/files/ProHD_Front_Transparent.png?v=1761919615&width=1280",
+    image: "/images/downloaded/multivitamin.png",
     images: [
       "https://hdmuscle.com/cdn/shop/files/ProHD_Front_Transparent.png?v=1761919615&width=1280"
     ],
@@ -272,7 +272,7 @@ export const products: Product[] = [
     description: "Triple strength fish oil for heart and brain health.",
     price: 24.99,
     compareAtPrice: null,
-    image: "https://hdmuscle.com/cdn/shop/files/Omega3_Front.png?v=1714392098&width=1280",
+    image: "/images/downloaded/omega3.png",
     images: [
       "https://hdmuscle.com/cdn/shop/files/Omega3_Front.png?v=1714392098&width=1280"
     ],
@@ -289,7 +289,7 @@ export const products: Product[] = [
     description: "Vitamin D3 for bone health and immune support.",
     price: 14.99,
     compareAtPrice: null,
-    image: "https://hdmuscle.com/cdn/shop/files/D3_Front.png?v=1714392098&width=1280",
+    image: "/images/downloaded/vitamin-d.png",
     images: [
       "https://hdmuscle.com/cdn/shop/files/D3_Front.png?v=1714392098&width=1280"
     ],
