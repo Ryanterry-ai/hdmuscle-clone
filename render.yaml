@@ -6,3 +6,7 @@ envVars:
     value: "18"
   - key: NEXT_TELEMETRY_DISABLED
     value: "1"
+  - key: HOST
+    value: "0.0.0.0"
+  - key: PORT
+    value: "3000"
