@@ -302,12 +302,12 @@ export const products: Product[] = [
 ];
 
 export const categories = [
-  { name: "Pre-workouts", slug: "pre-workouts", image: "https://hdmuscle.com/cdn/shop/collections/Preworkout_Collection.jpg" },
-  { name: "Intra-workouts", slug: "intra-workouts", image: "https://hdmuscle.com/cdn/shop/collections/Intra_Collection.jpg" },
-  { name: "Post-workout", slug: "post-workout", image: "https://hdmuscle.com/cdn/shop/collections/Recovery_Collection.jpg" },
-  { name: "Health + Wellness", slug: "health-wellness", image: "https://hdmuscle.com/cdn/shop/collections/Health_Collection.jpg" },
-  { name: "Proteins", slug: "proteins", image: "https://hdmuscle.com/cdn/shop/collections/Protein_Collection.jpg" },
-  { name: "Bundles", slug: "bundles", image: "https://hdmuscle.com/cdn/shop/collections/Bundles_Collection.jpg" },
+  { name: "Pre-workouts", slug: "pre-workouts", image: "/images/downloaded/category-preworkout.png" },
+  { name: "Intra-workouts", slug: "intra-workouts", image: "/images/downloaded/category-intraworkout.jpg" },
+  { name: "Post-workout", slug: "post-workout", image: "/images/downloaded/category-postworkout.png" },
+  { name: "Health + Wellness", slug: "health-wellness", image: "/images/downloaded/category-health.jpg" },
+  { name: "Proteins", slug: "proteins", image: "/images/downloaded/category-preworkout.png" },
+  { name: "Bundles", slug: "bundles", image: "/images/downloaded/category-preworkout.png" },
 ];
 
 export const navLinks = [
