@@ -1,0 +1,96 @@
+================================================================================
+                    HD MUSCLE CLONE - HOSTINGER DEPLOYMENT
+================================================================================
+
+PROJECT STATUS
+================================================================================
+- All links: https://hdmuscle.com (products, collections)
+- Images: hdmuscle.com CDN
+- Prices: INR (₹)
+- Currently working locally at: http://localhost:3000
+
+================================================================================
+HOSTINGER DEPLOYMENT STEPS
+================================================================================
+
+1. UPLOAD FILES
+   - Upload hdmuscle-clone.zip to Hostinger File Manager
+   - Extract to public_html or your domain folder
+
+2. INSTALL DEPENDENCIES
+   - Go to Hostinger > Advanced > PHP Manager > Node.js
+   - Set Node.js version to 20 LTS
+   - Open Terminal in Hostinger
+   - Run: npm install
+
+3. BUILD PROJECT  
+   - Run: npm run build
+   - Wait for build to complete
+
+4. CONFIGURE DOMAIN
+   - Go to Hosting > Domain > Point domain to public_html
+   - Or add subdomain in Hostinger panel
+
+5. START SERVER
+   - In Hostinger Node.js manager, set:
+     Startup file: npm run start
+     Or use: node .next/standalone/server.js
+     
+   - Set PORT: 3000
+
+================================================================================
+IF BUILD FAILS - MANUAL STEPS
+================================================================================
+
+In Hostinger Terminal:
+
+npm install -g npm@latest
+npm cache clean --force
+npm install
+npm run build
+
+If still fails, check package.jsonengines.node version
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+Q: Images not loading?
+A: Check next.config.ts has hdmuscle.com in remotePatterns
+
+Q: 500 Error?
+A: Run npm run build again, check Node.js version is 20+
+
+Q: Site looks different?
+A: Clear browser cache or use incognito mode
+
+Q: Links not working?
+A: All links point to hdmuscle.com - site must be live there
+
+================================================================================
+FILES INCLUDED
+================================================================================
+
+- src/ (all source code)
+- public/ (static assets)
+- package.json
+- next.config.ts
+- tailwind.config.ts
+- tsconfig.json
+- POSTINSTALL
+- .env (if needed)
+
+================================================================================
+CHANGING LINKS AFTER DEPLOYMENT
+================================================================================
+
+Current links: https://hdmuscle.com
+
+To change to your domain after deployment:
+1. Replace all "hdmuscle.com" with "your-domain.com" in:
+   - src/lib/data.ts
+   - src/components/*.tsx
+   - src/app/**/*.tsx
+2. Rebuild: npm run build
+
+================================================================================

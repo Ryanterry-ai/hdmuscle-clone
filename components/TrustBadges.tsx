@@ -4,27 +4,27 @@ import Image from "next/image";
 
 const badges = [
   { 
-    src: "https://hdmuscle.com/cdn/shop/files/HeavyMetals.jpg?v=1685721934&width=500", 
+    src: "/images/downloaded/badge-heavy-metals.jpg", 
     alt: "Heavy Metals Tested" 
   },
   { 
-    src: "https://hdmuscle.com/cdn/shop/files/formulas_95b0297a-d75a-411b-aa37-3f79d3f7c711.jpg?v=1683863231&width=500", 
+    src: "/images/downloaded/badge-formulas.jpg", 
     alt: "Clinical Formulas" 
   },
   { 
-    src: "https://hdmuscle.com/cdn/shop/files/NoDyes.jpg?v=1683863250&width=500", 
+    src: "/images/downloaded/badge-no-dyes.jpg", 
     alt: "No Artificial Dyes" 
   },
   { 
-    src: "https://hdmuscle.com/cdn/shop/files/3rdParty.jpg?v=1683863268&width=500", 
+    src: "/images/downloaded/badge-3rdparty.jpg", 
     alt: "Third Party Tested" 
   },
   { 
-    src: "https://hdmuscle.com/cdn/shop/files/Properlydosed.jpg?v=1683863217&width=500", 
+    src: "/images/downloaded/badge-dosed.jpg", 
     alt: "Properly Dosed" 
   },
   { 
-    src: "https://hdmuscle.com/cdn/shop/files/Registered.jpg?v=1684256512&width=500", 
+    src: "/images/downloaded/badge-registered.jpg", 
     alt: "Registered & Certified" 
   },
 ];

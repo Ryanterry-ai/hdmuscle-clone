@@ -7,7 +7,7 @@ export default function AboutSection() {
     <section className="relative w-full py-16 md:py-24">
       <div className="absolute inset-0">
         <Image 
-          src="https://hdmuscle.com/cdn/shop/files/000031460020.jpg?v=1764729480&width=2750"
+          src="/images/downloaded/about-hero.jpg"
           alt="About HD Muscle"
           fill
           className="object-cover"

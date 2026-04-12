@@ -6,22 +6,22 @@ import Link from "next/link";
 const categories = [
   {
     title: "Health + Wellness",
-    image: "https://hdmuscle.com/cdn/shop/collections/IMG_4801.jpg?v=1763695297&width=1280",
+    image: "/images/downloaded/category-health.jpg",
     href: "https://hdmuscle.com/collections/health-wellness"
   },
   {
     title: "Pre-workout",
-    image: "https://hdmuscle.com/cdn/shop/collections/Untitled_design_32.png?v=1763695066&width=1280",
+    image: "/images/downloaded/category-preworkout.png",
     href: "https://hdmuscle.com/collections/pre-workouts"
   },
   {
     title: "Intra-workout",
-    image: "https://hdmuscle.com/cdn/shop/collections/MAX09367.jpg?v=1763695274&width=1280",
+    image: "/images/downloaded/category-intraworkout.jpg",
     href: "https://hdmuscle.com/collections/intra-workouts"
   },
   {
     title: "Post-workout",
-    image: "https://hdmuscle.com/cdn/shop/collections/Untitled_design_28.png?v=1763694249&width=1280",
+    image: "/images/downloaded/category-postworkout.png",
     href: "https://hdmuscle.com/collections/post-workout"
   },
 ];

@@ -4,17 +4,17 @@ import Image from "next/image";
 
 const testimonials = [
   {
-    image: "https://hdmuscle.com/cdn/shop/files/SleepHD_Web1.png?v=1695445093&width=400",
+    image: "/images/downloaded/testimonial-whitney.png",
     name: "Whitney L.",
     text: "THIS ONE WORKS! Almost works too good! I have never had a sports supplement work so well on my ability to not only fall asleep but literally sleep like a complete rock. So many struggle with proper sleep, I will be recommending Sleep HD to all my clients. Thank you!",
   },
   {
-    image: "https://hdmuscle.com/cdn/shop/files/Screen_Shot_2023-09-12_at_11.28.44_PM.jpg?v=1695445115&width=400",
+    image: "/images/downloaded/testimonial-greg.jpg",
     name: "Greg D.",
     text: "PreHD Ultra is my new gym bag essential, amazing pump, clean/non jittery energy, awesome taste, and properly dosed ingredients!",
   },
   {
-    image: "https://hdmuscle.com/cdn/shop/files/Elite_Web2.png?v=1695445141&width=400",
+    image: "/images/downloaded/testimonial-christina.png",
     name: "Christina D.",
     text: "All the products are top quality, everything tastes AMAZING! Your health is an investment, and if you invest in quality products your body will thank you! Customer service has been 10/10",
   },

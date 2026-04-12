@@ -22,10 +22,10 @@ export const products: Product[] = [
     description: "Essential pre-workout for daily energy and focus. Balanced formula for consistent performance.",
     price: 29.99,
     compareAtPrice: null,
-    image: "https://hdmuscle.com/cdn/shop/files/PreHD-Essential-Blue-Rasberry.png?v=1761919637&width=1280",
+    image: "/images/downloaded/product-prehd-essential.png",
     images: [
-      "https://hdmuscle.com/cdn/shop/files/PreHD-Essential-Blue-Rasberry.png?v=1761919637&width=1280",
-      "https://hdmuscle.com/cdn/shop/files/PreHD-Essential-SuppFacts-BLUE-RASPBERRY_US.png?v=1761919644&width=1280"
+      "/images/downloaded/product-prehd-essential.png",
+      "/images/downloaded/product-prehd-essential-facts.png"
     ],
     category: "Pre-workouts",
     status: "active",

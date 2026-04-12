@@ -9,7 +9,7 @@ export default function Hero() {
       {/* Hero Image */}
       <div className="absolute inset-0">
         <Image 
-          src="https://hdmuscle.com/cdn/shop/files/DSC06090_copy.jpg?v=1763690188&width=2750"
+          src="/images/downloaded/hero.jpg"
           alt="HD Muscle Supplements"
           fill
           className="object-cover"
