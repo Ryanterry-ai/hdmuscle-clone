@@ -7,8 +7,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Website Clone",
-  description: "Pixel-perfect website clone",
+  title: "HD Muscle - Premium Supplements",
+  description: "Premium sports supplements for peak performance",
 };
 
 export default function RootLayout({
