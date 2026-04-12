@@ -255,9 +255,9 @@ export const products: Product[] = [
     description: "Advanced sleep support for recovery and rest.",
     price: 34.99,
     compareAtPrice: null,
-    image: "https://hdmuscle.com/cdn/shop/files/SleepHD_Web1.png?v=1695445093&width=1280",
+    image: "/images/downloaded/product-sleephd.png",
     images: [
-      "https://hdmuscle.com/cdn/shop/files/SleepHD_Web1.png?v=1695445093&width=1280"
+      "/images/downloaded/product-sleephd.png"
     ],
     category: "Health + Wellness",
     status: "active",
