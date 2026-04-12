@@ -311,12 +311,12 @@ export const categories = [
 ];
 
 export const navLinks = [
-  { label: "Pre-workouts", href: "https://hdmuscle.in/collections/pre-workouts" },
-  { label: "Intra-workouts", href: "https://hdmuscle.in/collections/intra-workouts" },
-  { label: "Post-workout", href: "https://hdmuscle.in/collections/post-workout" },
-  { label: "Proteins", href: "https://hdmuscle.in/collections/proteins" },
-  { label: "Health + Wellness", href: "https://hdmuscle.in/collections/health-wellness" },
-  { label: "Bundles", href: "https://hdmuscle.in/collections/bundles" },
+  { label: "Pre-workouts", href: "https://hdmuscle.com/collections/pre-workouts" },
+  { label: "Intra-workouts", href: "https://hdmuscle.com/collections/intra-workouts" },
+  { label: "Post-workout", href: "https://hdmuscle.com/collections/post-workout" },
+  { label: "Proteins", href: "https://hdmuscle.com/products/prohd-isolate" },
+  { label: "Health + Wellness", href: "https://hdmuscle.com/collections/health-wellness" },
+  { label: "Bundles", href: "https://hdmuscle.com/collections/bundles" },
 ];
 
 export const megaMenuCategories = [
@@ -361,24 +361,24 @@ export const megaMenuCategories = [
 
 export const footerLinks = {
   shop: [
-    { label: "All Products", href: "/collections/all" },
-    { label: "Pre-workouts", href: "/collections/pre-workouts" },
-    { label: "Intra-workouts", href: "/collections/intra-workouts" },
-    { label: "Post-workout", href: "/collections/post-workout" },
-    { label: "Proteins", href: "/collections/proteins" },
-    { label: "Health + Wellness", href: "/collections/health-wellness" },
-    { label: "Bundles", href: "/collections/bundles" },
+    { label: "All Products", href: "https://hdmuscle.com/collections/all" },
+    { label: "Pre-workouts", href: "https://hdmuscle.com/collections/pre-workouts" },
+    { label: "Intra-workouts", href: "https://hdmuscle.com/collections/intra-workouts" },
+    { label: "Post-workout", href: "https://hdmuscle.com/collections/post-workout" },
+    { label: "Proteins", href: "https://hdmuscle.com/products/prohd-isolate" },
+    { label: "Health + Wellness", href: "https://hdmuscle.com/collections/health-wellness" },
+    { label: "Bundles", href: "https://hdmuscle.com/collections/bundles" },
   ],
   company: [
-    { label: "About Us", href: "/pages/our-story" },
-    { label: "Join HD Collective", href: "/pages/join" },
-    { label: "FAQ", href: "/pages/faq" },
-    { label: "Contact", href: "/pages/contact" },
+    { label: "About Us", href: "https://hdmuscle.com/pages/our-story" },
+    { label: "Join HD Collective", href: "https://hdmuscle.com/pages/join" },
+    { label: "FAQ", href: "https://hdmuscle.com/pages/faq" },
+    { label: "Contact", href: "https://hdmuscle.com/pages/contact" },
   ],
   legal: [
-    { label: "Shipping Policy", href: "/policies/shipping-policy" },
-    { label: "Return Policy", href: "/policies/refund-policy" },
-    { label: "Privacy Policy", href: "/policies/privacy-policy" },
-    { label: "Terms of Service", href: "/policies/terms-of-service" },
+    { label: "Shipping Policy", href: "https://hdmuscle.com/policies/shipping-policy" },
+    { label: "Return Policy", href: "https://hdmuscle.com/policies/refund-policy" },
+    { label: "Privacy Policy", href: "https://hdmuscle.com/policies/privacy-policy" },
+    { label: "Terms of Service", href: "https://hdmuscle.com/policies/terms-of-service" },
   ],
 };
