@@ -22,7 +22,7 @@ export default function Hero() {
       {/* Content - left side only */}
       <div className="absolute top-1/2 left-4 md:left-8 -translate-y-1/2">
         <Link 
-          href="https://hdmuscle.com/collections/pre-workouts"
+          href="https://hdmuscle.in/collections/pre-workouts"
           className="inline-block bg-[#1d1d1d] text-white px-8 py-3 font-oswald text-lg md:text-xl font-bold uppercase tracking-wider"
         >
           FIND YOUR FORMULA

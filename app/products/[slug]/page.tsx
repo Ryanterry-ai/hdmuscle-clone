@@ -98,7 +98,7 @@ export default async function ProductPage({
           </p>
         </div>
 
-        {/* Related Products */}
+{/* Related Products */}
         <div className="mt-12 py-8 border-t border-[#e5e5e5]">
           <h2 className="font-oswald text-2xl font-bold mb-6">You May Also Like</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -108,23 +108,11 @@ export default async function ProductPage({
               .map((relatedProduct) => (
                 <a
                   key={relatedProduct.id}
-                  href={`https://hdmuscle.com/products/${relatedProduct.handle}`}
+                  href={`https://hdmuscle.in/products/${relatedProduct.handle}`}
                   className="group block"
                 >
-                  <div className="relative aspect-square bg-[#fafafa] rounded-lg overflow-hidden mb-2">
-                    <img
-                      src={relatedProduct.image}
-                      alt={relatedProduct.name}
-                      className="object-contain w-full h-full p-4"
-                    />
-                  </div>
-                  <h3 className="font-oswald text-sm font-medium group-hover:text-[#ffcc00] transition-colors">
-                    {relatedProduct.name}
-                  </h3>
-                  <p className="text-sm font-bold mt-1">
-                    {formatPrice(relatedProduct.price * 92.5)}
-                  </p>
-                </a>
+        Add to Cart
+      </a>
               ))}
           </div>
         </div>

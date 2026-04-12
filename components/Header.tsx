@@ -91,16 +91,16 @@ export default function Header() {
               </svg>
             </button>
 
-            {/* User/Account */}
-            <Link href="https://hdmuscle.com/customer_authentication/redirect?locale=en" className="p-2" aria-label="Account">
+            {/* Account - points to hdmuscle.in */}
+            <Link href="https://hdmuscle.in/customer_authentication/redirect?locale=en" className="p-2" aria-label="Account">
               <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                 <circle cx={12} cy={7} r={4} />
               </svg>
             </Link>
 
-            {/* Cart - points to hdmuscle.com */}
-            <Link href="https://hdmuscle.com/cart" className="p-2 relative" aria-label="Cart">
+            {/* Cart - points to hdmuscle.in */}
+            <Link href="https://hdmuscle.in/cart" className="p-2 relative" aria-label="Cart">
               <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <circle cx={8} cy={21} r={1} />
                 <circle cx={19} cy={21} r={1} />
