@@ -13,7 +13,7 @@ export default function BestSellers() {
           products={bestSellersProducts}
           title="SHOP OUR BEST SELLERS"
           showViewAll={true}
-          viewAllLink="https://hdmuscle.in/collections/best-selling-collection"
+          viewAllLink="https://hdmuscle.com/collections/best-selling-collection"
         />
       </div>
     </section>

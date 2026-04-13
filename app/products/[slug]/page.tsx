@@ -105,14 +105,26 @@ export default async function ProductPage({
             {products
               .filter((p) => p.category === product.category && p.id !== product.id)
               .slice(0, 4)
-              .map((relatedProduct) => (
+              .map((rp) => (
                 <a
-                  key={relatedProduct.id}
-                  href={`https://hdmuscle.in/products/${relatedProduct.handle}`}
+                  key={rp.id}
+                  href={`https://hdmuscle.com/products/${rp.handle}`}
                   className="group block"
                 >
-        Add to Cart
-      </a>
+                  <div className="relative aspect-square bg-[#fafafa] rounded-lg overflow-hidden mb-2">
+                    <img
+                      src={rp.image}
+                      alt={rp.name}
+                      className="object-contain w-full h-full p-4"
+                    />
+                  </div>
+                  <h3 className="font-oswald text-sm font-medium group-hover:text-[#ffcc00] transition-colors">
+                    {rp.name}
+                  </h3>
+                  <p className="text-sm font-bold mt-1">
+                    {formatPrice(rp.price * 92.5)}
+                  </p>
+                </a>
               ))}
           </div>
         </div>

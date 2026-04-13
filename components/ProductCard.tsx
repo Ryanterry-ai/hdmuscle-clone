@@ -14,7 +14,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <a 
-      href={`https://hdmuscle.in/products/${product.handle}`} 
+      href={`https://hdmuscle.com/products/${product.handle}`} 
       className="group block w-full"
     >
       <div className="relative bg-[#fafafa] overflow-hidden mb-2 transition-all duration-300 group-hover:shadow-xl group-hover:ring-1 group-hover:ring-[#e5e5e5]">
