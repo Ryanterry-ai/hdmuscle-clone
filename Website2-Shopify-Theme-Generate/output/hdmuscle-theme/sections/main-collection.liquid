@@ -1,0 +1,89 @@
+{% comment %}
+  Main Collection Section - Morphogen Nutrition Style
+{% endcomment %}
+
+<style>
+  .collection-header {
+    text-align: center;
+    padding: 60px 20px;
+    background: #f5f5f5;
+  }
+  .collection-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .collection-description {
+    max-width: 600px;
+    margin: 0 auto;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .collection-products {
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .collection__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+  @media (max-width: 1024px) {
+    .collection__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .collection__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  }
+</style>
+
+<div class="collection">
+  <div class="collection-header">
+    <h1 class="collection-title">{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}
+      <div class="collection-description">{{ collection.description }}</div>
+    {%- endif -%}
+  </div>
+  
+  <div class="collection-products">
+    <div class="collection__grid">
+      {%- for product in collection.products -%}
+        <div class="product-card">
+          <a href="{{ product.url }}" class="product-card__link">
+            <div class="product-card__media">
+              {%- if product.featured_media -%}
+                {{ product.featured_media | image_url: width: 400 | image_tag: loading: 'lazy', class: 'product-card__image' }}
+              {%- else -%}
+                <div class="product-card__placeholder"></div>
+              {%- endif -%}
+              <div class="product-card__quickview">
+                <button class="product-card__quickview-btn">Quick view</button>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__title">{{ product.title }}</h3>
+              <div class="product-card__price">
+                <span class="price">{{ product.price | money }}</span>
+                {%- if product.compare_at_price > product.price -%}
+                  <span class="price price--compare">{{ product.compare_at_price | money }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          </a>
+        </div>
+      {%- else -%}
+        <p>No products found.</p>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": []
+}
+{% endschema %}

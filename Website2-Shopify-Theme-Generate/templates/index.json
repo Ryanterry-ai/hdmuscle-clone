@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "show_hero": true,
+        "show_collections": true
+      }
+    },
+    "featured_collection": {
+      "type": "featured-products",
+      "settings": {
+        "title": "New Products",
+        "collection": "new",
+        "products_limit": 8,
+        "view_all_link": "/collections/new"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "show_badges": true,
+        "show_newsletter": true
+      }
+    }
+  },
+  "order": ["hero", "featured_collection", "footer"]
+}

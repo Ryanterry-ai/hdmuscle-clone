@@ -1,0 +1,26 @@
+{% comment %}
+  Rating Snippet - Display product ratings
+{% endcomment %}
+
+{%- unless rating == nil or rating == 0 -%}
+  <div class="rating" role="img" aria-label="{{ 'accessibility.star_reviews_info' | t: rating: rating }}">
+    <span aria-hidden="true" class="rating__stars">
+      {%- assign rating_fraction = rating | round: 1 -%}
+      {%- assign full_stars = rating_fraction | floor -%}
+      {%- assign half_star = rating_fraction | modulo: 1 -%}
+      {%- assign empty_stars = 5 | minus: full_stars | minus: half_star -%}
+      
+      {%- for i in (1..full_stars) -%}
+        <span class="rating__star">★</span>
+      {%- endfor -%}
+      
+      {%- if half_star >= 0.5 -%}
+        <span class="rating__star rating__star--half">★</span>
+      {%- endif -%}
+      
+      {%- for i in (1..empty_stars) -%}
+        <span class="rating__star rating__star--empty">☆</span>
+      {%- endfor -%}
+    </span>
+  </div>
+{%- endunless -%}

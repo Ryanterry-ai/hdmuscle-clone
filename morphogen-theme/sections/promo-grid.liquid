@@ -1,0 +1,336 @@
+{% comment %}
+  Morphogen Nutrition Hero/Promo Grid Section
+  Converted from cloned website - 6 category grid
+{% endcomment %}
+
+<div class="promo-grid-section section-{{ section.id }}">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <div class="title-wrapper title-wrapper--no-top-margin title-wrapper--self-padded-mobile title-wrapper--self-padded">
+        <h2 class="title">{{ section.settings.title }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="promo-grid grid grid--1-col grid--2-col-tablet grid--3-col-desktop">
+      {%- for i in (1..6) -%}
+        {%- assign image_key = 'image_' | append: i -%}
+        {%- assign heading_key = 'heading_' | append: i -%}
+        {%- assign subtext_key = 'subtext_' | append: i -%}
+        {%- assign link_key = 'link_' | append: i -%}
+
+        {%- if section.settings[heading_key] != blank -%}
+          <div class="promo-grid__item grid__item">
+            <a href="{{ section.settings[link_key] }}" class="promo-card">
+              {%- if section.settings[image_key] != blank -%}
+                <div class="promo-card__media">
+                  {{ section.settings[image_key] | image_url: width: 600 | image_tag: loading: 'lazy' }}
+                </div>
+              {%- else -%}
+                <div class="promo-card__media promo-card__media--placeholder">
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              {%- endif -%}
+              <div class="promo-card__content">
+                <div class="promo-card__info">
+                  <h3 class="promo-card__title">{{ section.settings[heading_key] }}</h3>
+                  {%- if section.settings[subtext_key] != blank -%}
+                    <p class="promo-card__subtitle">{{ section.settings[subtext_key] }}</p>
+                  {%- endif -%}
+                  <span class="promo-card__button button button--secondary">{{ 'View All' }}</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{%- style -%}
+  .promo-grid-section {
+    padding-top: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .promo-grid-section {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .promo-grid {
+    gap: {{ section.settings.gap }}px;
+  }
+
+  .promo-card {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    height: 100%;
+  }
+
+  .promo-card__media {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .promo-card__media img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .promo-card:hover .promo-card__media img {
+    transform: scale(1.05);
+  }
+
+  .promo-card__media--placeholder {
+    background-color: #f0f0f0;
+    aspect-ratio: 4/3;
+  }
+
+  .promo-card__content {
+    padding: 15px 0;
+  }
+
+  .promo-card__info {
+    text-align: center;
+  }
+
+  .promo-card__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1c1d1d;
+    margin: 0 0 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .promo-card__subtitle {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 10px;
+  }
+
+  .promo-card__button {
+    background-color: #c20000;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-size: 12px;
+  }
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Promo Grid",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Shop by Category",
+      "label": "Section Title"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "default": 20,
+      "label": "Gap between items"
+    },
+    {
+      "type": "header",
+      "content": "Category 1 - All Products"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading_1",
+      "default": "ALL PRODUCTS",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subtext_1",
+      "default": "Premium Supplements",
+      "label": "Subtext"
+    },
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 2 - Health"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading_2",
+      "default": "HEALTH",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subtext_2",
+      "default": "Total Body Support",
+      "label": "Subtext"
+    },
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 3 - Max Performance"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading_3",
+      "default": "MAX PERFORMANCE",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subtext_3",
+      "default": "Fully Loaded Performance",
+      "label": "Subtext"
+    },
+    {
+      "type": "url",
+      "id": "link_3",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 4 - Sport"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading_4",
+      "default": "SPORT PERFORMANCE",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subtext_4",
+      "default": "Recovery & Endurance",
+      "label": "Subtext"
+    },
+    {
+      "type": "url",
+      "id": "link_4",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 5 - Wellness"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading_5",
+      "default": "WELLNESS",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subtext_5",
+      "default": "Daily Use Staples",
+      "label": "Subtext"
+    },
+    {
+      "type": "url",
+      "id": "link_5",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 6 - Apparel"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading_6",
+      "default": "APPAREL",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subtext_6",
+      "default": "Print-to-order Garments",
+      "label": "Subtext"
+    },
+    {
+      "type": "url",
+      "id": "link_6",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.header_content"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 36,
+      "unit": "t:sections.all.padding.unit",
+      "label": "t:sections.all.padding.padding_top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 36,
+      "unit": "t:sections.all.padding.unit",
+      "label": "t:sections.all.padding.padding_bottom"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo Grid"
+    }
+  ]
+}
+{% endschema %}

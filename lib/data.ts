@@ -14,371 +14,197 @@ export interface Product {
   servings: string;
 }
 
-export const products: Product[] = [
+export const products: Product[] = [];
+
+export const WHATSAPP_NUMBER = '919557513017';
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
+
+export const CONTACT_INFO = {
+  name: 'Bijendra',
+  email: 'bijendra0509@gmail.com',
+  phone: '+91 95575 13017',
+  address: 'A-7, Anand Kunj, Birjapur, Mathura, Uttar Pradesh - 281001',
+};
+
+export const services = [
   {
-    id: 1,
-    name: "PreHD Essential",
-    handle: "prehd-essential",
-    description: "Essential pre-workout for daily energy and focus. Balanced formula for consistent performance.",
-    price: 29.99,
-    compareAtPrice: null,
-    image: "/images/downloaded/product-prehd-essential.png",
-    images: [
-      "/images/downloaded/product-prehd-essential.png",
-      "/images/downloaded/product-prehd-essential-facts.png"
-    ],
-    category: "Pre-workouts",
-    status: "active",
-    flavors: ["Blue Raspberry", "Watermelon", "Pineapple"],
-    weight: "30 servings",
-    servings: "30",
+    id: 'web-development',
+    title: 'Website Development',
+    description: 'Custom business websites, landing pages, and eCommerce solutions that convert visitors into customers.',
+    icon: 'Globe',
+    benefits: ['Responsive Design', 'SEO Optimized', 'Fast Loading', 'Easy to Manage'],
+    useCases: ['Business Websites', 'Landing Pages', 'E-commerce Stores', 'Portfolios'],
   },
   {
-    id: 2,
-    name: "PreHD Ultra",
-    handle: "pre-hd-ultra",
-    description: "Elevated focus and endurance for intense training sessions.",
-    price: 45.99,
-    compareAtPrice: null,
-    image: "/images/downloaded/product-prehd-ultra.png",
-    images: [
-      "/images/downloaded/product-prehd-ultra.png",
-      "/images/downloaded/product-prehd-ultra-facts.png"
-    ],
-    category: "Pre-workouts",
-    status: "active",
-    flavors: ["Sour Gummies", "Peach Rings"],
-    weight: "30 servings",
-    servings: "30",
+    id: 'mobile-app',
+    title: 'Mobile App Development',
+    description: 'Native and cross-platform apps for Android & iOS that deliver exceptional user experiences.',
+    icon: 'Smartphone',
+    benefits: ['iOS & Android', 'Native Performance', 'Offline Support', 'Push Notifications'],
+    useCases: ['E-commerce Apps', 'Business Apps', 'Booking Systems', 'Customer Apps'],
   },
   {
-    id: 3,
-    name: "PreHD Elite",
-    handle: "pre-hd-elite",
-    description: "Stim-free pre-workout for maximum pump and endurance without caffeine.",
-    price: 45.99,
-    compareAtPrice: null,
-    image: "/images/downloaded/product-prehd-elite.png",
-    images: [
-      "/images/downloaded/product-prehd-elite.png",
-      "/images/downloaded/product-prehd-elite-facts.png"
-    ],
-    category: "Pre-workouts",
-    status: "active",
-    flavors: ["Tangerine", "Pink Lemonade", "Berry Blast"],
-    weight: "30 servings",
-    servings: "30",
+    id: 'ui-ux',
+    title: 'UI/UX Design',
+    description: 'User-centered designs that enhance engagement, usability, and conversion rates.',
+    icon: 'Palette',
+    benefits: ['User Research', 'Wireframing', 'Prototyping', 'Design Systems'],
+    useCases: ['App Design', 'Website Redesign', 'Brand Identity', 'Design Audit'],
   },
   {
-    id: 4,
-    name: "PreHD Black",
-    handle: "pre-hd-black",
-    description: "Harder-hitting, high-stim formula for maximum intensity.",
-    price: 38.99,
-    compareAtPrice: null,
-    image: "/images/downloaded/product-prehd-black.png",
-    images: [
-      "https://hdmuscle.com/cdn/shop/files/SourGrape.png?v=1750958309&width=1280",
-      "https://hdmuscle.com/cdn/shop/files/Black_SourGrape.jpg?v=1762384476&width=1280"
-    ],
-    category: "Pre-workouts",
-    status: "sold-out",
-    flavors: ["Strawberry Mango", "Sour Grape", "Lychee"],
-    weight: "30 servings",
-    servings: "30",
+    id: 'seo',
+    title: 'SEO & Digital Marketing',
+    description: 'Data-driven strategies to improve your visibility and drive organic traffic.',
+    icon: 'TrendingUp',
+    benefits: ['Keyword Research', 'On-page SEO', 'Content Strategy', 'Analytics'],
+    useCases: ['Local SEO', 'Technical SEO', 'Content Marketing', 'PPC Campaigns'],
   },
   {
-    id: 5,
-    name: "PumpHD",
-    handle: "pumphd",
-    description: "Maximum pump, performance, and focus — with zero caffeine. Perfect for late-night training.",
-    price: 59.99,
-    compareAtPrice: null,
-    image: "/images/downloaded/product-pumphd-black.png",
-    images: [
-      "https://hdmuscle.com/cdn/shop/files/PumpHD-Rainbow-Strips.png?v=1757610060&width=1280",
-      "https://hdmuscle.com/cdn/shop/files/PumpHD-Supp-Facts-Rainbow-Strips.png?v=1764211420&width=1280"
-    ],
-    category: "Pre-workouts",
-    status: "sold-out",
-    flavors: ["Rainbow Strips"],
-    weight: "30 servings",
-    servings: "30",
-  },
-  {
-    id: 6,
-    name: "StimHD",
-    handle: "stimhd",
-    description: "The caffeine add-on. Control your caffeine. Add to any stim-free pre-workout.",
-    price: 16.49,
-    compareAtPrice: null,
-    image: "/images/downloaded/product-stimhd.png",
-    images: [
-      "https://hdmuscle.com/cdn/shop/files/StimHD_9d7400de-4473-4af8-bd68-902c6689781d.png?v=1759273225&width=1280",
-      "https://hdmuscle.com/cdn/shop/files/StimHD-Supp-Facts.png?v=1759273225&width=1280"
-    ],
-    category: "Pre-workouts",
-    status: "active",
-    flavors: ["Default Title"],
-    weight: "30 servings",
-    servings: "30",
-  },
-  {
-    id: 7,
-    name: "IntraHD",
-    handle: "intra-hd",
-    description: "Intra-workout fuel for sustained energy and hydration during training.",
-    price: 42.99,
-    compareAtPrice: null,
-    image: "/images/downloaded/product-intrahd.png",
-    images: [
-      "https://hdmuscle.com/cdn/shop/files/IntraHD_Watermelon_f38c042d-708c-472a-a828-b329ac7baf6b.png?v=1742929990&width=1280",
-      "https://hdmuscle.com/cdn/shop/files/Intra_Watermelon.jpg?v=1758833409&width=1280"
-    ],
-    category: "Intra-workouts",
-    status: "active",
-    flavors: ["Grapefruit", "Watermelon", "Raspberry Lemonade"],
-    weight: "30 servings",
-    servings: "30",
-  },
-  {
-    id: 8,
-    name: "EaaHD",
-    handle: "eaa-hd",
-    description: "Essential Amino Acids for muscle recovery and hydration.",
-    price: 38.99,
-    compareAtPrice: null,
-    image: "/images/downloaded/product-eaahd.png",
-    images: [
-      "https://hdmuscle.com/cdn/shop/files/EaaHD_FRONT_Peach-Black-Lid.png?v=1751895371&width=1280",
-      "https://hdmuscle.com/cdn/shop/files/EAA_Peach.jpg?v=1764211420&width=1280"
-    ],
-    category: "Intra-workouts",
-    status: "active",
-    flavors: ["Peach", "Unflavored"],
-    weight: "30 servings",
-    servings: "30",
-  },
-  {
-    id: 9,
-    name: "CreaHD (Creapure®)",
-    handle: "creahd-creapure",
-    description: "Ultra-pure creatine monohydrate from Creapure® for strength and power.",
-    price: 42.99,
-    compareAtPrice: null,
-    image: "/images/downloaded/product-creahd.png",
-    images: [
-      "https://hdmuscle.com/cdn/shop/files/CreaHD_Transparent.png?v=1772313991&width=1280",
-      "https://hdmuscle.com/cdn/shop/files/CreaHD.jpg?v=1772313991&width=1280"
-    ],
-    category: "Intra-workouts",
-    status: "sold-out",
-    flavors: ["Unflavored"],
-    weight: "300g",
-    servings: "60",
-  },
-  {
-    id: 10,
-    name: "CarbHD",
-    handle: "carbhd-new-formula",
-    description: "Advanced carb complex for energy and glycogen replenishment.",
-    price: 49.99,
-    compareAtPrice: null,
-    image: "/images/downloaded/product-carbhd.png",
-    images: [
-      "https://hdmuscle.com/cdn/shop/files/CarbHD_StrawKiwi-2024.png?v=1744342576&width=1280",
-      "https://hdmuscle.com/cdn/shop/files/Carb_StrawKiwi.jpg?v=1762382894&width=1280"
-    ],
-    category: "Intra-workouts",
-    status: "active",
-    flavors: ["Strawberry Kiwi", "Unflavored", "Pineapple Breeze"],
-    weight: "908g",
-    servings: "30",
-  },
-  {
-    id: 11,
-    name: "HydraHD",
-    handle: "hydrahd",
-    description: "Electrolyte hydration formula for optimal performance.",
-    price: 29.99,
-    compareAtPrice: null,
-    image: "/images/downloaded/product-hydrahd.png",
-    images: [
-      "https://hdmuscle.com/cdn/shop/files/HydraHD-Tangerine-US.png?v=1771000697&width=1280",
-      "https://hdmuscle.com/cdn/shop/files/HydraHD-Supp-Facts-Tangerine.png?v=1771000697&width=1280"
-    ],
-    category: "Intra-workouts",
-    status: "active",
-    flavors: ["Tangerine", "Citrus"],
-    weight: "30 servings",
-    servings: "30",
-  },
-  {
-    id: 12,
-    name: "GlutaHD",
-    handle: "gluta-hd",
-    description: "Glutamine complex for recovery and immune support.",
-    price: 22.99,
-    compareAtPrice: null,
-    image: "/images/downloaded/product-glutahd.jpg",
-    images: [
-      "https://hdmuscle.com/cdn/shop/files/GlutaHD-FRONT-Black-Lid.jpg?v=1755223771&width=1280",
-      "https://hdmuscle.com/cdn/shop/products/Gluta_HD.jpg?v=1758833426&width=1280"
-    ],
-    category: "Intra-workouts",
-    status: "active",
-    flavors: ["Default Title"],
-    weight: "30 servings",
-    servings: "30",
-  },
-  {
-    id: 13,
-    name: "ProHD Isolate",
-    handle: "prohd-isolate",
-    description: "Premium isolate protein for muscle building and recovery.",
-    price: 54.22,
-    compareAtPrice: 99.99,
-    image: "/images/downloaded/multivitamin.png",
-    images: [
-      "https://hdmuscle.com/cdn/shop/files/ProHD_Front_Transparent.png?v=1761919615&width=1280"
-    ],
-    category: "Proteins",
-    status: "active",
-    flavors: ["Chocolate", "Vanilla", "Maple Waffle", "Sweet Cream Cold Brew", "Chocolate Peanut Butter", "Caramel Brownie"],
-    weight: "4.4LB",
-    servings: "31",
-  },
-  {
-    id: 14,
-    name: "SleepHD",
-    handle: "sleephd",
-    description: "Advanced sleep support for recovery and rest.",
-    price: 34.99,
-    compareAtPrice: null,
-    image: "/images/downloaded/product-sleephd.png",
-    images: [
-      "/images/downloaded/product-sleephd.png"
-    ],
-    category: "Health + Wellness",
-    status: "active",
-    flavors: ["Default Title"],
-    weight: "60 capsules",
-    servings: "30",
-  },
-  {
-    id: 15,
-    name: "Omega3",
-    handle: "omega-3",
-    description: "Triple strength fish oil for heart and brain health.",
-    price: 24.99,
-    compareAtPrice: null,
-    image: "/images/downloaded/omega3.png",
-    images: [
-      "https://hdmuscle.com/cdn/shop/files/Omega3_Front.png?v=1714392098&width=1280"
-    ],
-    category: "Health + Wellness",
-    status: "active",
-    flavors: ["Default Title"],
-    weight: "90 softgels",
-    servings: "30",
-  },
-  {
-    id: 16,
-    name: "D3",
-    handle: "d3",
-    description: "Vitamin D3 for bone health and immune support.",
-    price: 14.99,
-    compareAtPrice: null,
-    image: "/images/downloaded/vitamin-d.png",
-    images: [
-      "https://hdmuscle.com/cdn/shop/files/D3_Front.png?v=1714392098&width=1280"
-    ],
-    category: "Health + Wellness",
-    status: "active",
-    flavors: ["Default Title"],
-    weight: "120 softgels",
-    servings: "120",
+    id: 'automation',
+    title: 'Business Automation',
+    description: 'Streamline your operations with WhatsApp automation, CRM systems, and lead management.',
+    icon: 'Zap',
+    benefits: ['WhatsApp Automation', 'CRM Integration', 'Lead Capture', 'Auto Follow-ups'],
+    useCases: ['Lead Generation', 'Customer Support', 'Sales Funnels', 'Reporting'],
   },
 ];
 
-export const categories = [
-  { name: "Pre-workouts", slug: "pre-workouts", image: "/images/downloaded/category-preworkout.png" },
-  { name: "Intra-workouts", slug: "intra-workouts", image: "/images/downloaded/category-intraworkout.jpg" },
-  { name: "Post-workout", slug: "post-workout", image: "/images/downloaded/category-postworkout.png" },
-  { name: "Health + Wellness", slug: "health-wellness", image: "/images/downloaded/category-health.jpg" },
-  { name: "Proteins", slug: "proteins", image: "/images/downloaded/category-preworkout.png" },
-  { name: "Bundles", slug: "bundles", image: "/images/downloaded/category-preworkout.png" },
+export const pricingPlans = [
+  {
+    name: 'Starter',
+    price: '5K',
+    priceEnd: '-10K',
+    description: 'Perfect for startups and small businesses needing an online presence.',
+    features: [
+      '5 Page Responsive Website',
+      'Mobile-First Design',
+      'Contact Form Integration',
+      'Basic SEO Setup',
+      'Social Media Links',
+      '1 Month Support',
+    ],
+    popular: false,
+  },
+  {
+    name: 'Growth',
+    price: '10K',
+    priceEnd: '-25K',
+    description: 'Complete business solution with SEO and marketing foundation.',
+    features: [
+      '10 Page Responsive Website',
+      'Advanced SEO Optimization',
+      'Lead Capture Forms',
+      'Google My Business Setup',
+      'Social Media Integration',
+      'WhatsApp Integration',
+      '3 Months Support',
+      'Monthly Analytics Report',
+    ],
+    popular: true,
+  },
+  {
+    name: 'Premium',
+    price: '25K',
+    priceEnd: '+',
+    description: 'Full digital solution with website, app, and automation.',
+    features: [
+      'Unlimited Pages Website',
+      'Android & iOS App',
+      'Business Automation',
+      'CRM Integration',
+      'WhatsApp Business API',
+      'Advanced Analytics Dashboard',
+      'Priority Support (12 Months)',
+      'Quarterly Strategy Reviews',
+      'Dedicated Account Manager',
+    ],
+    popular: false,
+  },
+];
+
+export const testimonials = [
+  {
+    name: 'Rajesh Sharma',
+    business: 'Sharma Electronics, Mumbai',
+    quote: 'Our online sales increased by 300% after they built our e-commerce website. Professional team, on-time delivery!',
+    rating: 5,
+  },
+  {
+    name: 'Priya Patel',
+    business: 'FitLife Gym, Ahmedabad',
+    quote: 'The mobile app they created for our gym has made member management so much easier. Great communication throughout.',
+    rating: 5,
+  },
+  {
+    name: 'Amit Kumar',
+    business: 'TechServ Solutions, Bangalore',
+    quote: 'Their SEO work put us on page 1 of Google. We now get 50+ qualified leads every month from organic search.',
+    rating: 5,
+  },
+];
+
+export const stats = [
+  { value: '200+', label: 'Projects Delivered' },
+  { value: '150+', label: 'Happy Clients' },
+  { value: '98%', label: 'Client Satisfaction' },
+  { value: '5+', label: 'Years Experience' },
+];
+
+export const portfolio = [
+  {
+    title: 'MumbaiRestaurants.com',
+    category: 'Web Development',
+    description: 'Restaurant discovery platform with online ordering',
+    results: ['500+ restaurants onboarded', '10K+ monthly visitors', '₹2L+ monthly orders'],
+  },
+  {
+    title: 'FitLife Gym App',
+    category: 'Mobile App',
+    description: 'Fitness tracking and member management app',
+    results: ['5K+ downloads', '4.8 app rating', '40% member retention'],
+  },
+  {
+    title: 'AutoParts E-commerce',
+    category: 'E-commerce',
+    description: 'Complete auto parts online store',
+    results: ['₹50L+ sales in first year', '500+ products', 'Same-day delivery'],
+  },
+  {
+    title: 'LocalBazaar SEO',
+    category: 'Digital Marketing',
+    description: 'Local business directory with SEO optimization',
+    results: ['Page 1 rankings', '20K+ organic traffic', '300% lead increase'],
+  },
+];
+
+export const whyChooseUs = [
+  {
+    title: 'Lightning Fast Delivery',
+    description: 'Get your website live in as little as 7 days. We value your time.',
+    icon: 'Zap',
+  },
+  {
+    title: 'Premium Quality',
+    description: 'Clean code, modern design, and pixel-perfect implementation every time.',
+    icon: 'Sparkles',
+  },
+  {
+    title: 'Affordable Pricing',
+    description: 'Enterprise-quality work at prices that fit your budget. No hidden costs.',
+    icon: 'Wallet',
+  },
+  {
+    title: 'Dedicated Support',
+    description: '24/7 support during development. We\'re always here when you need us.',
+    icon: 'Headphones',
+  },
 ];
 
 export const navLinks = [
-  { label: "Pre-workouts", href: "https://hdmuscle.com/collections/pre-workouts" },
-  { label: "Intra-workouts", href: "https://hdmuscle.com/collections/intra-workouts" },
-  { label: "Post-workout", href: "https://hdmuscle.com/collections/post-workout" },
-  { label: "Proteins", href: "https://hdmuscle.com/products/prohd-isolate" },
-  { label: "Health + Wellness", href: "https://hdmuscle.com/collections/health-wellness" },
-  { label: "Bundles", href: "https://hdmuscle.com/collections/bundles" },
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Portfolio', href: '/portfolio' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Contact', href: '/contact' },
 ];
-
-export const megaMenuCategories = [
-  {
-    name: "Pre-workout",
-    products: [
-      { name: "PreHD Essential", handle: "prehd-essential" },
-      { name: "PreHD Ultra", handle: "pre-hd-ultra" },
-      { name: "PreHD Elite", handle: "pre-hd-elite" },
-      { name: "PreHD Black", handle: "pre-hd-black" },
-      { name: "PumpHD", handle: "pumphd" },
-      { name: "StimHD", handle: "stimhd" },
-    ]
-  },
-  {
-    name: "Intra-workout + Recovery",
-    products: [
-      { name: "CarbHD", handle: "carbhd-new-formula" },
-      { name: "CreaHD", handle: "creahd-creapure" },
-      { name: "EaaHD", handle: "eaa-hd" },
-      { name: "GlutaHD", handle: "gluta-hd" },
-      { name: "HydraHD", handle: "hydrahd" },
-      { name: "IntraHD", handle: "intra-hd" },
-    ]
-  },
-  {
-    name: "Protein",
-    products: [
-      { name: "ProHD Isolate", handle: "prohd-isolate" },
-    ]
-  },
-  {
-    name: "Health + Wellness",
-    products: [
-      { name: "SleepHD", handle: "sleephd" },
-      { name: "Omega3", handle: "omega-3" },
-      { name: "D3", handle: "d3" },
-      { name: "MultiHD", handle: "multihd" },
-    ]
-  },
-];
-
-export const footerLinks = {
-  shop: [
-    { label: "All Products", href: "https://hdmuscle.com/collections/all" },
-    { label: "Pre-workouts", href: "https://hdmuscle.com/collections/pre-workouts" },
-    { label: "Intra-workouts", href: "https://hdmuscle.com/collections/intra-workouts" },
-    { label: "Post-workout", href: "https://hdmuscle.com/collections/post-workout" },
-    { label: "Proteins", href: "https://hdmuscle.com/products/prohd-isolate" },
-    { label: "Health + Wellness", href: "https://hdmuscle.com/collections/health-wellness" },
-    { label: "Bundles", href: "https://hdmuscle.com/collections/bundles" },
-  ],
-  company: [
-    { label: "About Us", href: "https://hdmuscle.com/pages/our-story" },
-    { label: "Join HD Collective", href: "https://hdmuscle.com/pages/join" },
-    { label: "FAQ", href: "https://hdmuscle.com/pages/faq" },
-    { label: "Contact", href: "https://hdmuscle.com/pages/contact" },
-  ],
-  legal: [
-    { label: "Shipping Policy", href: "https://hdmuscle.com/policies/shipping-policy" },
-    { label: "Return Policy", href: "https://hdmuscle.com/policies/refund-policy" },
-    { label: "Privacy Policy", href: "https://hdmuscle.com/policies/privacy-policy" },
-    { label: "Terms of Service", href: "https://hdmuscle.com/policies/terms-of-service" },
-  ],
-};

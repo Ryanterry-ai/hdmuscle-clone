@@ -1,0 +1,206 @@
+{% comment %}
+  Morphogen Nutrition Testimonials Section
+  Converted from cloned website
+{% endcomment %}
+
+<div class="testimonials-section">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="title-wrapper title-wrapper--no-top-margin">
+        <h2 class="title">{{ section.settings.heading }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="testimonials-grid grid grid--1-col grid--{{ section.settings.columns_desktop }}-col-desktop">
+      {%- for block in section.blocks -%}
+        <div class="testimonial-item grid__item" {{ block.shopify_attributes }}>
+          <div class="testimonial-card">
+            {%- if block.settings.star_rating > 0 -%}
+              <div class="testimonial-rating">
+                {%- for i in (1..block.settings.star_rating) -%}
+                  <span class="star">★</span>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+            
+            {%- if block.settings.text != blank -%}
+              <blockquote class="testimonial-text rte">
+                "{{ block.settings.text }}"
+              </blockquote>
+            {%- endif -%}
+            
+            {%- if block.settings.author != blank -%}
+              <cite class="testimonial-author">
+                <span class="author-name">{{ block.settings.author }}</span>
+                {%- if block.settings.title != blank -%}
+                  <span class="author-title">{{ block.settings.title }}</span>
+                {%- endif -%}
+              </cite>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{%- style -%}
+  .testimonials-section {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  .testimonial-card {
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .testimonial-rating {
+    margin-bottom: 1rem;
+    color: {{ section.settings.star_color }};
+  }
+
+  .testimonial-rating .star {
+    font-size: 1.25rem;
+  }
+
+  .testimonial-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    font-style: normal;
+  }
+
+  .author-name {
+    display: block;
+    font-weight: 600;
+    color: {{ section.settings.text_color }};
+  }
+
+  .author-title {
+    display: block;
+    font-size: 0.875rem;
+    color: {{ section.settings.text_color | append: '99' }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .testimonials-section {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "What Our Customers Say",
+      "label": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "default": "#ffffff",
+      "label": "Background color"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#1c1d1d",
+      "label": "Text color"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "default": "#000000",
+      "label": "Star rating color"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Columns on desktop"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.header_content"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40,
+      "label": "t:sections.all.padding.padding_top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40,
+      "label": "t:sections.all.padding.padding_bottom"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "range",
+          "id": "star_rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 5,
+          "label": "Star rating"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Add customer reviews and testimonials to showcase to store visitors.</p>",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "default": "Author name",
+          "label": "Author"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Verified Buyer",
+          "label": "Author title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        { "type": "testimonial" },
+        { "type": "testimonial" },
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
+{% endschema %}

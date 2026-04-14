@@ -1,0 +1,374 @@
+{% comment %}
+  Header Section - Morphogen Nutrition Style
+{% endcomment %}
+
+<style>
+  @font-face {
+    font-family: Roboto;
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url("https://www.morphogennutrition.com/cdn/fonts/roboto/roboto_n7.f38007a10afbbde8976c4056bfe890710d51dec2.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: Roboto;
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url("https://www.morphogennutrition.com/cdn/fonts/roboto/roboto_n4.2019d890f07b1852f56ce63ba45b2db45d852cba.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: Roboto;
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    src: url("https://www.morphogennutrition.com/cdn/fonts/roboto/roboto_n6.3d305d5382545b48404c304160aadee38c90ef9d.woff2") format("woff2");
+  }
+
+  :root {
+    --font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+
+  .announcement-bar {
+    background: #111;
+    color: #fff;
+    padding: 8px 20px;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: var(--font-family);
+  }
+
+  .header-wrapper {
+    position: relative;
+    z-index: 100;
+  }
+
+  .header {
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 0 40px;
+    font-family: var(--font-family);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .header__left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex: 1;
+  }
+
+  .header__logo-link {
+    display: block;
+  }
+
+  .header__logo-link img {
+    max-width: 180px;
+    height: auto;
+  }
+
+  .header__nav {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .header__link {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #111;
+    text-decoration: none;
+    padding: 28px 12px;
+    display: block;
+    position: relative;
+  }
+
+  .header__link:hover {
+    color: #666;
+  }
+
+  .header__link--has-dropdown {
+    position: relative;
+  }
+
+  .header__dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    min-width: 220px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 15px 0;
+    border: 1px solid #e5e5e5;
+  }
+
+  .header__link--has-dropdown:hover .header__dropdown {
+    display: block;
+  }
+
+  .header__dropdown-link {
+    display: block;
+    padding: 8px 20px;
+    color: #111;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .header__dropdown-link:hover {
+    background: #f5f5f5;
+    color: #111;
+  }
+
+  .header__right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .header__icon {
+    color: #111;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .header__icon:hover {
+    color: #666;
+  }
+
+  .header__icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .header__social {
+    display: none;
+  }
+
+  .header__mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .header__mobile-menu-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Mobile Menu */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    z-index: 1000;
+    overflow-y: auto;
+  }
+
+  .mobile-menu.open {
+    display: block;
+  }
+
+  .mobile-menu__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .mobile-menu__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .mobile-menu__close svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .mobile-menu__nav {
+    padding: 20px;
+  }
+
+  .mobile-menu__link {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #111;
+    text-decoration: none;
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .mobile-menu__link:hover {
+    color: #666;
+  }
+
+  .mobile-menu__sublink {
+    display: block;
+    font-size: 14px;
+    color: #444;
+    text-decoration: none;
+    padding: 10px 0 10px 20px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  @media (max-width: 1024px) {
+    .header {
+      padding: 0 20px;
+    }
+    .header__nav {
+      display: none;
+    }
+    .header__mobile-menu-btn {
+      display: block;
+    }
+    .header__social {
+      display: flex;
+      gap: 15px;
+      padding: 15px 20px;
+      border-top: 1px solid #e5e5e5;
+    }
+    .header__social svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header__inner {
+      height: 70px;
+    }
+    .header__logo-link img {
+      max-width: 140px;
+    }
+  }
+</style>
+
+<a href="#MainContent" class="skip-to-content-link">Skip to content</a>
+
+<div class="header-wrapper">
+  {% if section.settings.announcement_text != blank %}
+  <div class="announcement-bar">
+    {{ section.settings.announcement_text }}
+  </div>
+  {% endif %}
+  
+  <header class="header">
+    <div class="header__inner">
+      <div class="header__left">
+        <button class="header__mobile-menu-btn" onclick="toggleMobileMenu()">
+          {% render 'icon-hamburger' %}
+        </button>
+        
+        <a href="{{ routes.root_url }}" class="header__logo-link">
+          <img src="https://www.morphogennutrition.com/cdn/shop/files/MOPRHOGEN-Wordmark-black_400x.png?v=1751502703" alt="{{ shop.name }}" width="180">
+        </a>
+      
+        <nav class="header__nav">
+          {%- for link in section.settings.menu.links -%}
+            {% if link.links != blank %}
+              <a href="{{ link.url }}" class="header__link header__link--has-dropdown">{{ link.title }}
+                {% render 'icon-caret' %}
+              </a>
+              <div class="header__dropdown">
+                {%- for childlink in link.links -%}
+                  <a href="{{ childlink.url }}" class="header__dropdown-link">{{ childlink.title }}</a>
+                {%- endfor -%}
+              </div>
+            {% else %}
+              <a href="{{ link.url }}" class="header__link">{{ link.title }}</a>
+            {% endif %}
+          {%- endfor -%}
+        </nav>
+      </div>
+      
+      <div class="header__right">
+        <a href="{{ routes.search_url }}" class="header__icon">
+          {% render 'icon-search' %}
+        </a>
+        <a href="{{ routes.account_url }}" class="header__icon">
+          {% render 'icon-account' %}
+        </a>
+        <a href="{{ routes.cart_url }}" class="header__icon">
+          {% render 'icon-cart' %}
+        </a>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu__header">
+    <a href="{{ routes.root_url }}" class="header__logo-link">
+      <img src="https://cdn.shopify.com/s/files/1/0219/4666/files/MOPRHOGEN-Wordmark-black_400x.png?v=1751502703" alt="{{ shop.name }}" width="140">
+    </a>
+    <button class="mobile-menu__close" onclick="toggleMobileMenu()">
+      {% render 'icon-close' %}
+    </button>
+  </div>
+  <nav class="mobile-menu__nav">
+    {%- for link in section.settings.menu.links -%}
+      {% if link.links != blank %}
+        <a href="{{ link.url }}" class="mobile-menu__link">{{ link.title }}</a>
+        {%- for childlink in link.links -%}
+          <a href="{{ childlink.url }}" class="mobile-menu__sublink">{{ childlink.title }}</a>
+        {%- endfor -%}
+      {% else %}
+        <a href="{{ link.url }}" class="mobile-menu__link">{{ link.title }}</a>
+      {% endif %}
+    {%- endfor -%}
+  </nav>
+</div>
+
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "FREE S&H on domestic orders over $250"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Menu"
+    }
+  ]
+}
+{% endschema %}

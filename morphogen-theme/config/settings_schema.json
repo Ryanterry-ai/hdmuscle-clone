@@ -1,0 +1,68 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Morphogen Nutrition",
+    "theme_version": "1.0.0",
+    "theme_author": "Morphogen Nutrition",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://support.shopify.com/"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "colors_background",
+        "default": "#ffffff",
+        "label": "Background"
+      },
+      {
+        "type": "color",
+        "id": "colors_text",
+        "default": "#1a1a1a",
+        "label": "Text"
+      },
+      {
+        "type": "color",
+        "id": "colors_accent",
+        "default": "#1a1a1a",
+        "label": "Accent"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Typography"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "default": "roboto_n7",
+        "label": "Heading font"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_base_font",
+        "default": "roboto_n4",
+        "label": "Body font"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image"
+      }
+    ]
+  }
+]

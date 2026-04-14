@@ -1,172 +1,112 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { navLinks, megaMenuCategories } from "@/lib/data";
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { Icons } from '@/components/ui/Icons';
+import Button from '@/components/ui/Button';
+import { navLinks, WHATSAPP_URL, CONTACT_INFO } from '@/lib/data';
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const [scrolled, setScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-white'}`}>
-      {/* Top Bar - Free Shipping & WhatsApp */}
-      <div className="bg-[#1d1d1d] text-white text-center py-1 text-xs font-medium">
-        <span>
-          FREE SHIPPING OVER ₹999 | WhatsApp us to order directly on <a href="https://wa.me/919557513017" className="hover:underline font-bold">+91 955-751-3017</a>
-        </span>
-      </div>
-
-      {/* Main Header */}
-      <div className="max-w-[1100px] mx-auto px-4">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden p-2"
-            onClick={() => setMobileMenuOpen(true)}
-            aria-label="Open menu"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-              <line x1={4} x2={20} y1={12} y2={12} />
-              <line x1={4} x2={20} y1={6} y2={6} />
-              <line x1={4} x2={20} y1={18} y2={18} />
-            </svg>
-          </button>
-
-          {/* Logo - Larger and shifted left */}
-          <Link href="/" className="flex-shrink-0 -ml-2 md:-ml-4">
-            <div className="relative w-[120px] h-[35px] md:w-[150px] md:h-[45px]">
-              <Image 
-                src="/images/logo.png"
-                alt="HD MUSCLE"
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 120px, 150px"
-              />
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-white/95 backdrop-blur-md shadow-lg shadow-gray-200/50'
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="container-custom">
+        <nav className="flex items-center justify-between h-20">
+          <Link href="/" className="flex items-center space-x-2">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
+              <Icons.Lightning className="w-6 h-6 text-white" />
             </div>
+            <span className="text-xl font-bold font-heading text-dark-900">
+              Digi<span className="text-gradient">Agency</span>
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <div 
+              <Link
                 key={link.href}
-                className="relative"
-                onMouseEnter={() => setActiveMenu(link.label)}
-                onMouseLeave={() => setActiveMenu(null)}
+                href={link.href}
+                className={`text-sm font-medium transition-colors duration-200 hover:text-primary-600 ${
+                  isScrolled ? 'text-dark-700' : 'text-dark-600'
+                }`}
               >
-                <Link 
-                  href={link.href}
-                  className="font-oswald text-sm font-medium text-[#1d1d1d] uppercase tracking-wide hover:text-[#ffcc00] transition-colors relative group"
-                >
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#ffcc00] transition-all duration-300 group-hover:w-full" />
-                </Link>
-              </div>
+                {link.label}
+              </Link>
             ))}
-          </nav>
+          </div>
 
-          {/* Right Icons - All shifted right */}
-          <div className="flex items-center space-x-4 md:space-x-6 ml-auto">
-            {/* Search */}
-            <button 
-              className="p-2"
-              onClick={() => setSearchOpen(!searchOpen)}
-              aria-label="Search"
+          <div className="hidden lg:flex items-center space-x-4">
+            <a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`} className="flex items-center space-x-2 text-dark-700 hover:text-primary-600 transition-colors">
+              <Icons.Phone className="w-4 h-4" />
+              <span className="text-sm font-medium">{CONTACT_INFO.phone}</span>
+            </a>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+              <Button size="sm" className="bg-green-500 hover:bg-green-600 shadow-green-500/25">
+                <Icons.MessageCircle className="w-4 h-4 mr-2" />
+                WhatsApp Us
+              </Button>
+            </a>
+          </div>
+
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 text-dark-700 hover:text-primary-600 transition-colors"
+          >
+            {isMobileMenuOpen ? (
+              <Icons.X className="w-6 h-6" />
+            ) : (
+              <Icons.Menu className="w-6 h-6" />
+            )}
+          </button>
+        </nav>
+      </div>
+
+      <div
+        className={`lg:hidden transition-all duration-300 overflow-hidden ${
+          isMobileMenuOpen ? 'max-h-screen bg-white shadow-xl' : 'max-h-0'
+        }`}
+      >
+        <div className="container-custom py-4 space-y-4">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="block py-2 text-dark-700 font-medium hover:text-primary-600 transition-colors"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                <circle cx={11} cy={11} r={8} />
-                <path d="m21 21-4.3-4.3" />
-              </svg>
-            </button>
-
-            {/* Account - points to hdmuscle.com */}
-            <Link href="https://hdmuscle.com/customer_authentication/redirect?locale=en" className="p-2" aria-label="Account">
-              <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                <circle cx={12} cy={7} r={4} />
-              </svg>
+              {link.label}
             </Link>
-
-            {/* Cart - points to hdmuscle.com */}
-            <Link href="https://hdmuscle.com/cart" className="p-2 relative" aria-label="Cart">
-              <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                <circle cx={8} cy={21} r={1} />
-                <circle cx={19} cy={21} r={1} />
-                <path d="M2.05 2.05h2l2.66 12.73a2 2 0 0 0 2 1.94h9.94a2 2 0 0 0 2-1.94l1.66-7.94H5.12" />
-              </svg>
-            </Link>
+          ))}
+          <div className="pt-4 border-t border-gray-100 space-y-3">
+            <a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`} className="flex items-center space-x-2 text-dark-600">
+              <Icons.Phone className="w-4 h-4" />
+              <span>{CONTACT_INFO.phone}</span>
+            </a>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="block">
+              <Button className="w-full bg-green-500 hover:bg-green-600">
+                <Icons.MessageCircle className="w-4 h-4 mr-2" />
+                WhatsApp Us
+              </Button>
+            </a>
           </div>
         </div>
       </div>
-
-      {/* Search Overlay */}
-      {searchOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white shadow-lg p-4">
-          <div className="max-w-[1100px] mx-auto flex gap-2">
-            <input 
-              type="text" 
-              placeholder="Search" 
-              className="flex-1 border border-[#e5e5e5] rounded px-4 py-2 text-sm focus:outline-none focus:border-[#1d1d1d]"
-            />
-            <button className="text-[#737373] hover:text-[#1d1d1d]">
-              <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 6 6 18" />
-                <path d="m6 6 12 12" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Mobile Menu Overlay */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-white">
-          <div className="flex flex-col h-full">
-            <div className="flex items-center justify-between p-4 border-b border-[#e5e5e5]">
-              <Link href="/" onClick={() => setMobileMenuOpen(false)}>
-                <div className="relative w-[100px] h-[30px]">
-                  <Image 
-                    src="/images/logo.png"
-                    alt="HD MUSCLE"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-              </Link>
-              <button onClick={() => setMobileMenuOpen(false)} className="p-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 6 6 18" />
-                  <path d="m6 6 12 12" />
-                </svg>
-              </button>
-            </div>
-            <nav className="flex-1 overflow-y-auto p-4">
-              {navLinks.map((link) => (
-                <Link 
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block py-3 font-oswald text-sm uppercase text-[#1d1d1d] border-b border-[#e5e5e5]"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-        </div>
-      )}
     </header>
   );
 }

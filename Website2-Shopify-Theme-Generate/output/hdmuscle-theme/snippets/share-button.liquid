@@ -1,0 +1,41 @@
+{% comment %}
+  Share button snippet
+{% endcomment %}
+
+<div class="share-button">
+  <details-modal>
+    <summary>
+      <span class="share-button__icon">{% render 'icon-share' %}</span>
+      <span class="share-button__label">{{ 'general.share.share' | t }}</span>
+    </summary>
+    <div class="share-button__modal" id="ShareModal">
+      <div class="share-button__content">
+        <h3 class="share-button__heading">{{ 'general.share.title' | t }}</h3>
+        <div class="share-button__copy">
+          {%- if page.url -%}
+            <button class="share-button__copy-link" data-share-url="{{ request.origin }}{{ page.url }}">
+              {{ page.url }}
+            </button>
+          {%- endif -%}
+        </div>
+        <div class="share-button__buttons">
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.origin }}{{ page.url }}" class="share-button__button" target="_blank" rel="noopener">
+            {% render 'icon-facebook' %}
+            <span class="visually-hidden">Facebook</span>
+          </a>
+          <a href="https://twitter.com/intent/tweet?text={{ page.title | escape }}&url={{ request.origin }}{{ page.url }}" class="share-button__button" target="_blank" rel="noopener">
+            {% render 'icon-twitter' %}
+            <span class="visually-hidden">Twitter</span>
+          </a>
+          <a href="https://pinterest.com/pin/create/button/?url={{ request.origin }}{{ page.url }}&media={{ feature_image | image_url: width: 1024 }}" class="share-button__button" target="_blank" rel="noopener">
+            {% render 'icon-pinterest' %}
+            <span class="visually-hidden">Pinterest</span>
+          </a>
+        </div>
+      </div>
+      <button class="share-button__close" aria-label="Close">
+        {% render 'icon-close' %}
+      </button>
+    </div>
+  </details-modal>
+</div>

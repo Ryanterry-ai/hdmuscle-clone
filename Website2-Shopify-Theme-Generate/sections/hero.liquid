@@ -1,0 +1,325 @@
+{% comment %}
+  Hero / Slideshow Section - Morphogen Nutrition Style
+{% endcomment %}
+
+<style>
+  .slideshow {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slideshow__slide {
+    position: relative;
+    height: 650px;
+    display: none;
+  }
+
+  .slideshow__slide.active {
+    display: block;
+  }
+
+  .slideshow__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .slideshow__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    max-width: 800px;
+    padding: 20px;
+    z-index: 2;
+  }
+
+  .slideshow__title {
+    font-size: 52px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .slideshow__subtitle {
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 25px;
+    font-weight: 500;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .slideshow__button {
+    display: inline-block;
+    padding: 16px 45px;
+    background: #fff;
+    color: #111;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.3s;
+  }
+
+  .slideshow__button:hover {
+    background: #111;
+    color: #fff;
+  }
+
+  .slideshow__nav {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+  }
+
+  .slideshow__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s;
+  }
+
+  .slideshow__dot.active {
+    background: #fff;
+  }
+
+  .slideshow__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.9);
+    border: none;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+  }
+
+  .slideshow__arrow:hover {
+    background: #fff;
+  }
+
+  .slideshow__arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .slideshow__arrow--prev { left: 20px; }
+  .slideshow__arrow--next { right: 20px; }
+
+  /* Collection Cards */
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    padding: 30px 40px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  .collection-card {
+    position: relative;
+    overflow: hidden;
+    display: block;
+  }
+
+  .collection-card img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    transition: transform 0.6s;
+  }
+
+  .collection-card:hover img {
+    transform: scale(1.08);
+  }
+
+  .collection-card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 25px 15px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.75));
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .collection-card__title {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .collection-card__subtitle {
+    color: rgba(255,255,255,0.85);
+    font-size: 11px;
+    margin-top: 5px;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  @media (max-width: 1024px) {
+    .collection-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .slideshow__slide { height: 450px; }
+    .slideshow__title { font-size: 32px; letter-spacing: 2px; }
+    .slideshow__subtitle { font-size: 16px; }
+    .slideshow__button { padding: 12px 30px; font-size: 12px; }
+    .collection-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 20px; }
+    .collection-card img { height: 200px; }
+  }
+</style>
+
+<div class="slideshow">
+  <div class="slideshow__slides">
+    <div class="slideshow__slide active">
+      <img src="https://cdn.shopify.com/s/files/1/0219/4666/files/97168F90-9001-493C-9AF5-6520D2D7723C_1800x.jpg?v=1775444326" alt="All Products">
+      <div class="slideshow__content">
+        <h2 class="slideshow__title">ALL PRODUCTS</h2>
+        <p class="slideshow__subtitle">Premium Supplements</p>
+        <a href="/collections/premiumsupplements" class="slideshow__button">Shop All</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="slideshow__nav">
+    <button class="slideshow__dot active" onclick="currentSlide(1)"></button>
+    <button class="slideshow__dot" onclick="currentSlide(2)"></button>
+    <button class="slideshow__dot" onclick="currentSlide(3)"></button>
+  </div>
+
+  <button class="slideshow__arrow slideshow__arrow--prev" onclick="plusSlides(-1)">
+    {% render 'icon-arrow' %}
+  </button>
+  <button class="slideshow__arrow slideshow__arrow--next" onclick="plusSlides(1)">
+    {% render 'icon-arrow' %}
+  </button>
+</div>
+
+<div class="collection-grid">
+  <a href="/collections/health-series" class="collection-card">
+    <img src="https://cdn.shopify.com/s/files/1/0219/4666/files/A608335A-6F83-420A-BA8A-D53499725E19_1800x.jpg?v=1775444593" alt="Health">
+    <div class="collection-card__overlay">
+      <div class="collection-card__title">HEALTH</div>
+      <div class="collection-card__subtitle">Total Body Support</div>
+    </div>
+  </a>
+  <a href="/collections/max-series" class="collection-card">
+    <img src="https://cdn.shopify.com/s/files/1/0219/4666/files/B1633DCA-7675-4336-B0C8-92706F0C6E5F_1800x.jpg?v=1775444780" alt="Max Performance">
+    <div class="collection-card__overlay">
+      <div class="collection-card__title">MAX PERFORMANCE</div>
+      <div class="collection-card__subtitle">Fully Loaded Performance</div>
+    </div>
+  </a>
+  <a href="/collections/sport-series" class="collection-card">
+    <img src="https://cdn.shopify.com/s/files/1/0219/4666/files/1AA7102F-461E-4E0B-811E-CD8C9954E4D5_1800x.jpg?v=1775444972" alt="Sport">
+    <div class="collection-card__overlay">
+      <div class="collection-card__title">SPORT PERFORMANCE</div>
+      <div class="collection-card__subtitle">Recovery & Endurance</div>
+    </div>
+  </a>
+  <a href="/collections/wellness-series" class="collection-card">
+    <img src="https://cdn.shopify.com/s/files/1/0219/4666/files/EA76E934-9017-4D59-ACEC-058C88C5E683_1800x.jpg?v=1775443298" alt="Wellness">
+    <div class="collection-card__overlay">
+      <div class="collection-card__title">WELLNESS</div>
+      <div class="collection-card__subtitle">Daily Use Staples</div>
+    </div>
+  </a>
+  <a href="/collections/lifestyle" class="collection-card">
+    <img src="https://cdn.shopify.com/s/files/1/0219/4666/files/APPAREL_TEST_1800x.png?v=1774713043" alt="Apparel">
+    <div class="collection-card__overlay">
+      <div class="collection-card__title">APPAREL</div>
+      <div class="collection-card__subtitle">Print-to-order Garments</div>
+    </div>
+  </a>
+</div>
+
+<script>
+  var slideIndex = 1;
+  var slideInterval;
+
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("slideshow__slide");
+    var dots = document.getElementsByClassName("slideshow__dot");
+    
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+    
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+      slides[i].classList.remove("active");
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].classList.remove("active");
+    }
+    
+    slides[slideIndex-1].style.display = "block";
+    setTimeout(function() { slides[slideIndex-1].classList.add("active"); }, 10);
+    dots[slideIndex-1].classList.add("active");
+  }
+
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+    clearInterval(slideInterval);
+    slideInterval = setInterval(function() { plusSlides(1); }, 6000);
+  }
+
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+    clearInterval(slideInterval);
+    slideInterval = setInterval(function() { plusSlides(1); }, 6000);
+  }
+
+  showSlides(slideIndex);
+  slideInterval = setInterval(function() { plusSlides(1); }, 6000);
+</script>
+
+{% schema %}
+{
+  "name": "Slideshow",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_slideshow",
+      "default": true,
+      "label": "Show slideshow"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collections",
+      "default": true,
+      "label": "Show collection cards"
+    }
+  ]
+}
+{% endschema %}

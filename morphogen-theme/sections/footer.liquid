@@ -1,0 +1,230 @@
+{% comment %}
+  Footer Section - Morphogen Nutrition Style
+{% endcomment %}
+
+<style>
+  .footer {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 60px 40px 30px;
+  }
+  .footer__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .footer__badges {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 40px;
+  }
+  .footer__badge {
+    text-align: center;
+  }
+  .footer__badge-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  .footer__badge-text {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer__heading {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  .footer__text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ccc;
+  }
+  .footer__link {
+    display: block;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 5px 0;
+  }
+  .footer__link:hover {
+    color: #fff;
+  }
+  .footer__contact {
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.8;
+  }
+  .footer__newsletter {
+    margin-top: 20px;
+  }
+  .footer__newsletter-form {
+    display: flex;
+    gap: 10px;
+  }
+  .footer__newsletter-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #444;
+    background: #2a2a2a;
+    color: #fff;
+    font-size: 14px;
+  }
+  .footer__newsletter-input::placeholder {
+    color: #888;
+  }
+  .footer__newsletter-btn {
+    padding: 12px 20px;
+    background: #fff;
+    color: #1a1a1a;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .footer__newsletter-btn:hover {
+    background: #ccc;
+  }
+  .footer__bottom {
+    border-top: 1px solid #333;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .footer__copyright {
+    font-size: 12px;
+    color: #888;
+  }
+  .footer__payments {
+    display: flex;
+    gap: 15px;
+  }
+  .footer__payments img {
+    height: 24px;
+  }
+  .footer__disclaimer {
+    font-size: 11px;
+    color: #666;
+    margin-top: 20px;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 768px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+    }
+    .footer__badges {
+      flex-wrap: wrap;
+    }
+  }
+</style>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__badges">
+      <div class="footer__badge">
+        <div class="footer__badge-icon">✓</div>
+        <div class="footer__badge-text">GMP Certified</div>
+      </div>
+      <div class="footer__badge">
+        <div class="footer__badge-icon">🇺🇸</div>
+        <div class="footer__badge-text">Manufactured in the USA</div>
+      </div>
+      <div class="footer__badge">
+        <div class="footer__badge-icon">🔬</div>
+        <div class="footer__badge-text">3rd Party Tested</div>
+      </div>
+    </div>
+    
+    <div class="footer__grid">
+      <div class="footer__column">
+        <h4 class="footer__heading">Morphogen Nutrition</h4>
+        <p class="footer__text">Premium supplements crafted with the highest quality ingredients. Your health is our priority.</p>
+        <div class="footer__newsletter">
+          <h4 class="footer__heading">Sign up and save</h4>
+          <p class="footer__text">Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
+          <form class="footer__newsletter-form" action="/contact#footer-newsletter" method="post">
+            <input type="email" name="contact[email]" class="footer__newsletter-input" placeholder="Enter your email" required>
+            <button type="submit" class="footer__newsletter-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="footer__column">
+        <h4 class="footer__heading">Shop</h4>
+        <a href="/collections/all" class="footer__link">All Products</a>
+        <a href="/collections/new" class="footer__link">New Products</a>
+        <a href="/collections/stacks" class="footer__link">Bundles</a>
+        <a href="/collections/health-series" class="footer__link">Health Series</a>
+        <a href="/collections/max-series" class="footer__link">Max Series</a>
+      </div>
+      
+      <div class="footer__column">
+        <h4 class="footer__heading">Support</h4>
+        <a href="/pages/support" class="footer__link">Contact Us</a>
+        <a href="/pages/affiliate-program" class="footer__link">Affiliates</a>
+        <a href="/pages/wholesale-partnership" class="footer__link">Wholesale</a>
+        <a href="/pages/aboutus" class="footer__link">About Us</a>
+      </div>
+      
+      <div class="footer__column">
+        <h4 class="footer__heading">Contact</h4>
+        <div class="footer__contact">
+          Morphogen Nutrition<br>
+          PO Box 4240<br>
+          Dublin, OH 43016<br>
+          (740) 812-7747
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer__bottom">
+      <div class="footer__copyright">
+        © 2026 Morphogen Nutrition LLC, All Rights Reserved
+      </div>
+      <div class="footer__payments">
+        <img src="https://cdn.shopify.com/s/files/1/0219/4666/files/payment-icons.png" alt="Payments">
+      </div>
+    </div>
+    
+    <div class="footer__disclaimer">
+      <p><strong>Warnings:</strong> Not intended for use by persons under the age of 18. If you are pregnant or nursing or are taking any prescription medications, consult your health care professional before using this or any other dietary supplement product. Immediately discontinue use and consult your doctor if any adverse reactions occur. KEEP OUT OF REACH OF CHILDREN. STORE IN A COOL, DRY PLACE AND AVOID EXCESSIVE HEAT.</p>
+      <p style="margin-top: 10px;"><strong>ALLERGEN INFORMATION:</strong> This product is manufactured in a facility that processes other products which may contain soy, dairy, wheat, tree nuts, shellfish, fish, peanuts, and eggs.</p>
+      <p style="margin-top: 10px;">*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_badges",
+      "default": true,
+      "label": "Show certification badges"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "default": true,
+      "label": "Show newsletter signup"
+    }
+  ]
+}
+{% endschema %}
