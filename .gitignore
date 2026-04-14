@@ -19,3 +19,10 @@ next-env.d.ts
 # OS
 .DS_Store
 Thumbs.db
+
+# Excluded folders (contain sensitive data)
+Website2-Shopify-Theme-Generate/
+morphogen-theme/
+check-files.js
+create-zip.js
+create-zip.ps1
