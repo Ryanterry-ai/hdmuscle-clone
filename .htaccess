@@ -1,18 +1,31 @@
+# Disable directory listing
 Options -Indexes
+
+# Default file
 DirectoryIndex index.html
+
+# Enable rewrite engine
 RewriteEngine On
 
-# Redirect requests without trailing slash to the generated folder route.
+# ----------------------------------
+# Force clean URLs with trailing slash
+# ----------------------------------
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !\.[a-zA-Z0-9]{1,5}$
 RewriteCond %{REQUEST_URI} !/$
 RewriteRule ^(.+)$ /$1/ [R=301,L]
 
-# Serve generated folder indexes for route-style requests.
+# ----------------------------------
+# Route all requests to index.html
+# (for static site routing)
+# ----------------------------------
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}/index.html -f
 RewriteRule ^(.+)$ /$1/index.html [L]
 
+# ----------------------------------
+# 404 fallback
+# ----------------------------------
 ErrorDocument 404 /404.html
