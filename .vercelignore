@@ -1,39 +1,13 @@
-# -----------------------------
-# ❌ Exclude heavy media (main issue)
-# -----------------------------
 assets/media/
 *.mp4
 *.webm
 *.mov
 *.m4v
 *.avi
-
-# -----------------------------
-# ❌ Large raw downloads (safety)
-# -----------------------------
 *.zip
 *.rar
 *.tar
 *.gz
-
-# -----------------------------
-# ❌ System / dev files
-# -----------------------------
 .DS_Store
 Thumbs.db
-
-# -----------------------------
-# ❌ Logs / temp
-# -----------------------------
 *.log
-
-# -----------------------------
-# ❌ Optional: exclude very large images if needed (uncomment if deploy fails)
-# -----------------------------
-# assets/images/*.png
-# assets/images/*.jpg
-
-# -----------------------------
-# ✅ KEEP EVERYTHING ELSE
-# (CSS, JS, fonts, HTML, small images)
-# -----------------------------
