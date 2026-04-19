@@ -174,7 +174,12 @@ export function buildStorefrontCorsHeaders(origin?: string | null) {
   };
 }
 
-export function buildPublishedStorefrontPayload(settings: SettingRecord[], sections: SectionRecord[]) {
+export function buildPublishedStorefrontPayload(
+  settings: SettingRecord[], 
+  sections: SectionRecord[],
+  products: any[] = [],
+  collections: any[] = []
+) {
   const settingsMap = buildSettingsMap(settings);
   const parsedSections: ParsedSection[] = sections.map((section) => ({
     id: section.id,
@@ -230,5 +235,44 @@ export function buildPublishedStorefrontPayload(settings: SettingRecord[], secti
         : null,
     },
     publishedSections: parsedSections,
+    products: products.map((p: any) => ({
+      id: p.id,
+      handle: p.handle,
+      title: p.title,
+      description: p.description,
+      description_html: p.description_html,
+      price: p.price,
+      compare_at_price: p.compare_at_price,
+      cost_per_item: p.cost_per_item,
+      weight: p.weight,
+      weight_unit: p.weight_unit,
+      is_active: p.is_active,
+      is_featured: p.is_featured,
+      is_taxable: p.is_taxable,
+      tax_rate: p.tax_rate,
+      sku: p.sku,
+      barcode: p.barcode,
+      inventory: p.inventory,
+      track_inventory: p.track_inventory,
+      seo_title: p.seo_title,
+      seo_description: p.seo_description,
+      created_at: p.created_at,
+      updated_at: p.updated_at,
+      images: p.images,
+      collections: p.collections,
+    })),
+    collections: collections.map((c: any) => ({
+      id: c.id,
+      handle: c.handle,
+      title: c.title,
+      description: c.description,
+      image: c.image,
+      parent_id: c.parent_id,
+      sort_order: c.sort_order,
+      is_active: c.is_active,
+      created_at: c.created_at,
+      updated_at: c.updated_at,
+      products_count: c.products?.length || 0,
+    })),
   };
 }

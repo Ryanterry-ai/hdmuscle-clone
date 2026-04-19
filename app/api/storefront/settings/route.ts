@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 
 const CMS_API = process.env.CMS_API || 'https://cms.hdmuscle.in/api';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const res = await fetch(`${CMS_API}/settings/global`, {

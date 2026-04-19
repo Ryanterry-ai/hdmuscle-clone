@@ -17,15 +17,26 @@ export async function OPTIONS(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
-    const [settings, sections] = await Promise.all([
+    const [settings, sections, products, collections] = await Promise.all([
       prisma.setting.findMany(),
       prisma.section.findMany({
         where: { status: 'PUBLISHED' },
         orderBy: { position: 'asc' },
       }),
+      prisma.product.findMany({
+        where: { is_active: true },
+        include: { collections: { include: { collection: true } } },
+        orderBy: { created_at: 'desc' },
+        take: 50,
+      }),
+      prisma.collection.findMany({
+        where: { is_active: true },
+        orderBy: { sort_order: 'asc' },
+        take: 20,
+      }),
     ]);
 
-    const payload = buildPublishedStorefrontPayload(settings, sections);
+    const payload = buildPublishedStorefrontPayload(settings, sections, products, collections);
 
     return NextResponse.json(payload, {
       headers: buildStorefrontCorsHeaders(request.headers.get('origin')),

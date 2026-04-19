@@ -2,37 +2,31 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import Header from '../../header';
 import { useCart } from '../../cart-context';
-import { useStore, formatCurrency } from '../../store-context';
-
-interface Product {
-  id: string;
-  handle: string;
-  title: string;
-  description: string;
-  price: string;
-  images: { url: string }[];
-  inventory: number;
-}
+import { fetchStorefrontPayload, getSettings, getProducts, formatCurrency } from '../../lib/cms';
 
 export default function ProductPage() {
   const params = useParams();
-  const [product, setProduct] = useState<Product | null>(null);
+  const [payload, setPayload] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [added, setAdded] = useState(false);
   const { addItem } = useCart();
-  const { settings } = useStore();
 
   useEffect(() => {
-    fetch(`/api/products?handle=${params.handle}`)
+    fetch('/api/storefront/published')
       .then(res => res.json())
       .then(data => {
-        setProduct(data.products?.[0] || null);
+        setPayload(data);
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [params.handle]);
+  }, []);
+
+  const settings = getSettings(payload);
+  const products = getProducts(payload);
+  const product = products.find((p: any) => p.handle === params.handle);
 
   const handleAddToCart = () => {
     if (!product) return;
@@ -56,7 +50,7 @@ export default function ProductPage() {
     return <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">
         <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
-        <a href="/" className="text-red-600">Go Home</a>
+        <Link href="/" className="text-red-600">Go Home</Link>
       </div>
     </div>;
   }
@@ -77,7 +71,7 @@ export default function ProductPage() {
           <div>
             <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
             <p className="text-2xl text-red-600 font-bold mb-6">
-              {formatCurrency(Number(product.price), settings.currency, settings.locale, settings.symbol)}
+              {formatCurrency(Number(product.price), settings.currency, settings.locale)}
             </p>
             <p className="text-gray-600 mb-4">{product.description || 'Premium quality supplement from HD Muscle.'}</p>
             {product.inventory > 0 ? (

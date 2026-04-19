@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Header from './header';
 import { useCart } from './cart-context';
-import { useStore, formatCurrency } from './store-context';
+import { fetchStorefrontPayload, getSettings, getProducts, getCollections, getHeroSection, formatCurrency } from './lib/cms';
 
 interface Product {
   id: string;
@@ -11,46 +12,43 @@ interface Product {
   title: string;
   price: string;
   images: { url: string }[];
-}
-
-async function fetchProducts(): Promise<Product[]> {
-  try {
-    const res = await fetch(`/api/products?take=50&is_active=true`);
-    const data = await res.json();
-    return data.products || [];
-  } catch {
-    return [];
-  }
-}
-
-async function fetchCollections() {
-  try {
-    const res = await fetch('/api/collections');
-    const data = await res.json();
-    return data.collections || [];
-  } catch {
-    return [];
-  }
+  is_active: boolean;
 }
 
 export default function HomePage() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [collections, setCollections] = useState<any[]>([]);
+  const [payload, setPayload] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const { addItem } = useCart();
-  const { settings } = useStore();
 
   useEffect(() => {
-    Promise.all([fetchProducts(), fetchCollections()])
-      .then(([p, c]) => {
-        setProducts(p);
-        setCollections(c);
+    fetch('/api/storefront/published')
+      .then(res => {
+        console.log('Response status:', res.status);
+        return res.json();
+      })
+      .then(data => {
+        console.log('Got payload:', data?.products?.length, 'products');
+        setPayload(data);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
-    const timer = setTimeout(() => setLoading(false), 5000);
+      .catch((err) => {
+        console.error('Fetch error:', err);
+        setError(true);
+        setLoading(false);
+      });
+    
+    const timer = setTimeout(() => {
+      console.log('Timeout - forcing loading false');
+      setLoading(false);
+    }, 10000);
     return () => clearTimeout(timer);
   }, []);
+
+  const settings = getSettings(payload);
+  const products = getProducts(payload).filter((p: Product) => p.is_active !== false);
+  const collections = getCollections(payload);
+  const hero = getHeroSection(payload);
 
   const handleAddToCart = (product: Product) => {
     addItem({
@@ -73,22 +71,31 @@ export default function HomePage() {
     <div className="min-h-screen bg-gray-50">
       <Header />
 
+      {/* Hero Section - from CMS */}
       <section className="relative bg-gray-900 text-white py-24">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">FIND YOUR FORMULA</h1>
-          <p className="text-xl text-gray-300 mb-8">Premium Quality Supplements for Athletes</p>
-          <a href="/collections/best-selling-collection" className="inline-block px-8 py-3 bg-red-600 font-semibold rounded-lg hover:bg-red-700 transition">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            {hero?.heading || 'FIND YOUR FORMULA'}
+          </h1>
+          <p className="text-xl text-gray-300 mb-8">
+            {hero?.subheading || 'Premium Quality Supplements for Athletes'}
+          </p>
+          <Link 
+            href="/collections/best-selling-collection" 
+            className="inline-block px-8 py-3 bg-red-600 font-semibold rounded-lg hover:bg-red-700 transition"
+          >
             Shop All — Supplements
-          </a>
+          </Link>
         </div>
       </section>
 
+      {/* Collections */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Shop by Category</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {collections.slice(0, 8).map((col: any) => (
-              <a key={col.id} href={`/collections/${col.handle}`} className="group">
+              <Link key={col.id} href={`/collections/${col.handle}`} className="group">
                 <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden">
                   {col.image ? (
                     <img src={col.image} alt={col.title} className="w-full h-full object-cover group-hover:scale-105 transition" />
@@ -97,20 +104,21 @@ export default function HomePage() {
                   )}
                 </div>
                 <p className="mt-3 font-semibold text-center">{col.title}</p>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Products */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Featured Products</h2>
           {products.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {products.slice(0, 12).map((product) => (
+              {products.slice(0, 12).map((product: Product) => (
                 <div key={product.id} className="bg-white rounded-xl overflow-hidden hover:shadow-lg transition">
-                  <a href={`/products/${product.handle}`}>
+                  <Link href={`/products/${product.handle}`}>
                     <div className="aspect-square bg-gray-100">
                       {product.images?.[0]?.url ? (
                         <img src={product.images[0].url} alt={product.title} className="w-full h-full object-cover" />
@@ -121,10 +129,10 @@ export default function HomePage() {
                     <div className="p-4">
                       <h3 className="font-semibold mb-1">{product.title}</h3>
                       <p className="text-red-600 font-bold">
-                        {formatCurrency(Number(product.price), settings.currency, settings.locale, settings.symbol)}
+                        {formatCurrency(Number(product.price), settings.currency, settings.locale)}
                       </p>
                     </div>
-                  </a>
+                  </Link>
                   <div className="px-4 pb-4">
                     <button 
                       onClick={() => handleAddToCart(product)}
@@ -138,12 +146,13 @@ export default function HomePage() {
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-gray-500 mb-4">No products found</p>
+              <p className="text-gray-500 mb-4">No products available</p>
             </div>
           )}
         </div>
       </section>
 
+      {/* Newsletter */}
       <section className="py-16 bg-gray-900 text-white">
         <div className="max-w-2xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
@@ -155,41 +164,42 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Footer - from CMS */}
       <footer className="bg-black text-gray-400 py-12">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-white font-semibold mb-4">Shop</h3>
             <div className="space-y-2">
-              <a href="/collections/pre-workouts" className="block hover:text-white">Pre-Workout</a>
-              <a href="/collections/intra-workouts" className="block hover:text-white">Recovery</a>
-              <a href="/collections/bundles" className="block hover:text-white">Bundles</a>
+              <Link href="/collections/pre-workouts" className="block hover:text-white">Pre-Workout</Link>
+              <Link href="/collections/intra-workouts" className="block hover:text-white">Recovery</Link>
+              <Link href="/collections/bundles" className="block hover:text-white">Bundles</Link>
             </div>
           </div>
           <div>
             <h3 className="text-white font-semibold mb-4">Support</h3>
             <div className="space-y-2">
-              <a href="/pages/faq" className="block hover:text-white">FAQ</a>
-              <a href="/pages/contact" className="block hover:text-white">Contact</a>
-              <a href="/pages/shipping-policy" className="block hover:text-white">Shipping</a>
+              <Link href="/pages/faq" className="block hover:text-white">FAQ</Link>
+              <Link href="/pages/contact" className="block hover:text-white">Contact</Link>
+              <Link href="/pages/shipping-policy" className="block hover:text-white">Shipping</Link>
             </div>
           </div>
           <div>
             <h3 className="text-white font-semibold mb-4">Company</h3>
             <div className="space-y-2">
-              <a href="/pages/our-story" className="block hover:text-white">About Us</a>
-              <a href="/pages/join" className="block hover:text-white">Join HD Collective</a>
+              <Link href="/pages/our-story" className="block hover:text-white">About Us</Link>
+              <Link href="/pages/join" className="block hover:text-white">Join HD Collective</Link>
             </div>
           </div>
           <div>
             <h3 className="text-white font-semibold mb-4">Legal</h3>
             <div className="space-y-2">
-              <a href="/pages/privacy-policy" className="block hover:text-white">Privacy</a>
-              <a href="/pages/terms-of-service" className="block hover:text-white">Terms</a>
+              <Link href="/pages/privacy-policy" className="block hover:text-white">Privacy</Link>
+              <Link href="/pages/terms-of-service" className="block hover:text-white">Terms</Link>
             </div>
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-4 mt-8 pt-8 border-t border-gray-800 text-center">
-          <p>© 2024 HD Muscle. All rights reserved.</p>
+          <p>{settings.copyright_text || '© 2024 HD Muscle. All rights reserved.'}</p>
         </div>
       </footer>
     </div>

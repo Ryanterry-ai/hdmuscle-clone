@@ -2,38 +2,37 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import Header from '../../header';
 import { useCart } from '../../cart-context';
-import { useStore, formatCurrency } from '../../store-context';
-
-interface Product {
-  id: string;
-  handle: string;
-  title: string;
-  price: string;
-  images: { url: string }[];
-}
+import { getSettings, getProducts, getCollections, formatCurrency } from '../../lib/cms';
 
 export default function CollectionPage() {
   const params = useParams();
-  const [products, setProducts] = useState<Product[]>([]);
-  const [collection, setCollection] = useState<any>(null);
+  const [payload, setPayload] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const { addItem } = useCart();
-  const { settings } = useStore();
 
   useEffect(() => {
-    fetch(`/api/products?take=50&collection_handle=${params.handle}`)
-      .then(r => r.json())
+    fetch('/api/storefront/published')
+      .then(res => res.json())
       .then(data => {
-        setProducts(data.products || []);
-        setCollection({ title: params.handle });
+        setPayload(data);
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [params.handle]);
+  }, []);
 
-  const handleAddToCart = (product: Product) => {
+  const settings = getSettings(payload);
+  const collections = getCollections(payload);
+  const collection = collections.find((c: any) => c.handle === params.handle);
+  
+  const allProducts = getProducts(payload);
+  const products = allProducts.filter((p: any) => 
+    p.collections?.some((pc: any) => pc.collection?.handle === params.handle)
+  );
+
+  const handleAddToCart = (product: any) => {
     addItem({
       id: product.id,
       title: product.title,
@@ -57,9 +56,9 @@ export default function CollectionPage() {
         
         {products.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {products.map((product) => (
+            {products.map((product: any) => (
               <div key={product.id} className="bg-white rounded-xl overflow-hidden hover:shadow-lg transition">
-                <a href={`/products/${product.handle}`}>
+                <Link href={`/products/${product.handle}`}>
                   <div className="aspect-square bg-gray-100">
                     {product.images?.[0]?.url ? (
                       <img src={product.images[0].url} alt={product.title} className="w-full h-full object-cover" />
@@ -70,10 +69,10 @@ export default function CollectionPage() {
                   <div className="p-4">
                     <h3 className="font-semibold">{product.title}</h3>
                     <p className="text-red-600 font-bold">
-                      {formatCurrency(Number(product.price), settings.currency, settings.locale, settings.symbol)}
+                      {formatCurrency(Number(product.price), settings.currency, settings.locale)}
                     </p>
                   </div>
-                </a>
+                </Link>
                 <div className="px-4 pb-4">
                   <button 
                     onClick={() => handleAddToCart(product)}

@@ -3,15 +3,24 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useCart } from './cart-context';
+import { getSettings } from './lib/cms';
 
 export default function Header() {
   const { items } = useCart();
   const [scrolled, setScrolled] = useState(false);
+  const [settings, setSettings] = useState<any>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    fetch('/api/storefront/published')
+      .then(res => res.json())
+      .then(data => setSettings(getSettings(data)))
+      .catch(() => {});
   }, []);
 
   return (
