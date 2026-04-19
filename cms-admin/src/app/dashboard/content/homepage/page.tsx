@@ -16,7 +16,6 @@ export default function HomepageSectionPage() {
   const [saving, setSaving] = useState(false);
   const [uploadMethod, setUploadMethod] = useState<'url' | 'base64'>('url');
   
-  // Hero Section
   const [hero, setHero] = useState({
     heading: 'FIND YOUR FORMULA',
     subheading: 'Premium Quality Supplements for Athletes',
@@ -26,7 +25,6 @@ export default function HomepageSectionPage() {
     hero_image_base64: '',
   });
 
-  // Gallery Images
   const [gallery, setGallery] = useState({
     image_1: '', image_1_base64: '',
     image_2: '', image_2_base64: '',
@@ -35,7 +33,6 @@ export default function HomepageSectionPage() {
     image_5: '', image_5_base64: '',
   });
 
-  // About
   const [about, setAbout] = useState({
     heading: 'ABOUT US',
     content: 'HD Muscle is a family-built, performance-driven supplement brand founded in Canada.',
@@ -43,13 +40,9 @@ export default function HomepageSectionPage() {
     image_base64: '',
   });
 
-  // Best Sellers
   const [bestSellers, setBestSellers] = useState({ heading: 'SHOP OUR BEST SELLERS' });
-
-  // Reviews
   const [reviews, setReviews] = useState({ heading: 'REAL PEOPLE, REAL REVIEWS', enable: true });
 
-  // You're Covered
   const [covered, setCovered] = useState({
     heading: "YOU'RE COVERED",
     easy_returns: "If something isn't right, we'll make it right.",
@@ -67,12 +60,9 @@ export default function HomepageSectionPage() {
       return;
     }
 
-    // Base64 approach (for small images only, works temporarily)
     const reader = new FileReader();
     reader.onload = () => {
       const base64 = reader.result as string;
-      
-      // Limit to 500KB
       if (base64.length > 500000) {
         alert('Image too large! Use URL method or resize image below 500KB');
         return;
@@ -138,6 +128,26 @@ export default function HomepageSectionPage() {
     }
   };
 
+  const Input = ({ label, value, onChange, rows = 2 }: { label: string; value: string; onChange: (v: string) => void; rows?: number }) => (
+    <input 
+      type="text"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      style={{ color: '#111827' }}
+      className="w-full px-4 py-2.5 border border-slate-300 rounded-lg bg-white"
+    />
+  );
+
+  const Textarea = ({ label, value, onChange, rows = 2 }: { label: string; value: string; onChange: (v: string) => void; rows?: number }) => (
+    <textarea 
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      rows={rows}
+      style={{ color: '#111827' }}
+      className="w-full px-4 py-2.5 border border-slate-300 rounded-lg bg-white"
+    />
+  );
+
   const ImageField = ({ label, urlValue, base64Value, urlOnChange, section, field }: { 
     label: string, 
     urlValue: string, 
@@ -152,20 +162,32 @@ export default function HomepageSectionPage() {
         <input 
           type="text" 
           placeholder="https://example.com/image.jpg" 
-          className="flex-1 px-4 py-2.5 border border-slate-200 rounded-lg" 
+          style={{ color: '#111827' }}
+          className="flex-1 px-4 py-2.5 border border-slate-300 rounded-lg bg-white placeholder-gray-400" 
           value={urlValue} 
           onChange={(e) => urlOnChange(e.target.value)} 
         />
         {uploadMethod === 'base64' && (
-          <label className="px-4 py-2.5 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 flex items-center gap-2">
+          <label className="px-4 py-2.5 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 flex items-center gap-2 bg-white">
             <UploadIcon className="w-4 h-4" />
             Upload
             <input type="file" accept="image/*" className="hidden" onChange={(e) => handleFileSelect(e, section, field)} />
           </label>
         )}
       </div>
-      {urlValue && <img src={urlValue} alt="Preview" className="mt-2 w-24 h-24 object-cover rounded-lg border" />}
-      {base64Value && <img src={base64Value} alt="Preview" className="mt-2 w-24 h-24 object-cover rounded-lg border" />}
+      {urlValue && (
+        <div className="mt-2">
+          <img 
+            src={urlValue} 
+            alt="Preview" 
+            className="w-24 h-24 object-cover rounded-lg border"
+            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+          />
+        </div>
+      )}
+      {base64Value && (
+        <img src={base64Value} alt="Preview" className="mt-2 w-24 h-24 object-cover rounded-lg border" />
+      )}
     </div>
   );
 
@@ -177,10 +199,7 @@ export default function HomepageSectionPage() {
         <div>
           <h1 className="text-2xl font-bold text-slate-900">Homepage Content</h1>
           <p className="text-slate-500 mt-1">
-            {uploadMethod === 'url' 
-              ? 'Use Image URLs (permanent)' 
-              : 'Base64 Upload (temporary - resets on deploy)'
-            }
+            {uploadMethod === 'url' ? 'Use Image URLs (permanent)' : 'Base64 Upload (temporary - resets on deploy)'}
           </p>
         </div>
         <div className="flex gap-3 items-center">
@@ -206,19 +225,17 @@ export default function HomepageSectionPage() {
         </div>
       </div>
 
-      {/* Hero */}
       <div className="bg-white rounded-xl border border-slate-200">
         <div className="p-6 border-b border-slate-200"><h2 className="font-semibold text-slate-900 flex items-center gap-3"><PhotographIcon className="w-6 h-6 text-indigo-600" />Hero</h2></div>
         <div className="p-6 space-y-4">
           <div className="grid grid-cols-2 gap-4">
-            <div><label className="block text-sm font-medium text-slate-700 mb-1">Heading</label><input className="w-full px-4 py-2.5 border border-slate-200 rounded-lg" value={hero.heading} onChange={(e) => setHero({...hero, heading: e.target.value})} /></div>
-            <div><label className="block text-sm font-medium text-slate-700 mb-1">Subheading</label><input className="w-full px-4 py-2.5 border border-slate-200 rounded-lg" value={hero.subheading} onChange={(e) => setHero({...hero, subheading: e.target.value})} /></div>
+            <div><label className="block text-sm font-medium text-slate-700 mb-1">Heading</label><Input label="Heading" value={hero.heading} onChange={(v) => setHero({...hero, heading: v})} /></div>
+            <div><label className="block text-sm font-medium text-slate-700 mb-1">Subheading</label><Input label="Subheading" value={hero.subheading} onChange={(v) => setHero({...hero, subheading: v})} /></div>
           </div>
           <ImageField label="Hero Image" urlValue={hero.hero_image} base64Value={hero.hero_image_base64} urlOnChange={(v) => setHero({...hero, hero_image: v, hero_image_base64: ''})} section="hero" field="image" />
         </div>
       </div>
 
-      {/* Gallery */}
       <div className="bg-white rounded-xl border border-slate-200">
         <div className="p-6 border-b border-slate-200"><h2 className="font-semibold text-slate-900 flex items-center gap-3"><UploadIcon className="w-6 h-6 text-indigo-600" />Gallery Images</h2></div>
         <div className="p-6 space-y-4">
@@ -230,41 +247,37 @@ export default function HomepageSectionPage() {
         </div>
       </div>
 
-      {/* About */}
       <div className="bg-white rounded-xl border border-slate-200">
         <div className="p-6 border-b border-slate-200"><h2 className="font-semibold text-slate-900 flex items-center gap-3"><PhotographIcon className="w-6 h-6 text-indigo-600" />About</h2></div>
         <div className="p-6 space-y-4">
-          <div><label className="block text-sm font-medium text-slate-700 mb-1">Heading</label><input className="w-full px-4 py-2.5 border border-slate-200 rounded-lg" value={about.heading} onChange={(e) => setAbout({...about, heading: e.target.value})} /></div>
-          <div><label className="block text-sm font-medium text-slate-700 mb-1">Content</label><textarea className="w-full px-4 py-2.5 border border-slate-200 rounded-lg" rows={4} value={about.content} onChange={(e) => setAbout({...about, content: e.target.value})} /></div>
+          <div><label className="block text-sm font-medium text-slate-700 mb-1">Heading</label><Input label="Heading" value={about.heading} onChange={(v) => setAbout({...about, heading: v})} /></div>
+          <div><label className="block text-sm font-medium text-slate-700 mb-1">Content</label><Textarea label="Content" value={about.content} onChange={(v) => setAbout({...about, content: v})} rows={4} /></div>
           <ImageField label="About Image" urlValue={about.image} base64Value={about.image_base64} urlOnChange={(v) => setAbout({...about, image: v, image_base64: ''})} section="about" field="image" />
         </div>
       </div>
 
-      {/* Best Sellers */}
       <div className="bg-white rounded-xl border border-slate-200">
         <div className="p-6 border-b border-slate-200"><h2 className="font-semibold text-slate-900 flex items-center gap-3"><StarIcon className="w-6 h-6 text-amber-500" />Best Sellers</h2></div>
-        <div className="p-6"><input className="w-full px-4 py-2.5 border border-slate-200 rounded-lg" value={bestSellers.heading} onChange={(e) => setBestSellers({...bestSellers, heading: e.target.value})} /></div>
+        <div className="p-6"><Input label="Heading" value={bestSellers.heading} onChange={(v) => setBestSellers({...bestSellers, heading: v})} /></div>
       </div>
 
-      {/* Reviews */}
       <div className="bg-white rounded-xl border border-slate-200">
         <div className="p-6 border-b border-slate-200"><h2 className="font-semibold text-slate-900 flex items-center gap-3"><StarIcon className="w-6 h-6 text-yellow-500" />Reviews</h2></div>
         <div className="p-6">
-          <input className="w-full px-4 py-2.5 border border-slate-200 rounded-lg mb-3" value={reviews.heading} onChange={(e) => setReviews({...reviews, heading: e.target.value})} />
-          <label className="flex items-center gap-2"><input type="checkbox" checked={reviews.enable} onChange={(e) => setReviews({...reviews, enable: e.target.checked})} /><span className="text-sm font-medium">Enable</span></label>
+          <Input label="Heading" value={reviews.heading} onChange={(v) => setReviews({...reviews, heading: v})} />
+          <label className="flex items-center gap-2 mt-3"><input type="checkbox" checked={reviews.enable} onChange={(e) => setReviews({...reviews, enable: e.target.checked})} /><span className="text-sm font-medium text-slate-700">Enable</span></label>
         </div>
       </div>
 
-      {/* You're Covered */}
       <div className="bg-white rounded-xl border border-slate-200">
         <div className="p-6 border-b border-slate-200"><h2 className="font-semibold text-slate-900 flex items-center gap-3"><ShieldCheckIcon className="w-6 h-6 text-emerald-600" />You're Covered</h2></div>
         <div className="p-6 space-y-4">
-          <input className="w-full px-4 py-2.5 border border-slate-200 rounded-lg" value={covered.heading} onChange={(e) => setCovered({...covered, heading: e.target.value})} />
+          <Input label="Heading" value={covered.heading} onChange={(v) => setCovered({...covered, heading: v})} />
           <div className="grid grid-cols-2 gap-4">
-            <div><label className="block text-sm font-medium text-slate-700 mb-1">Easy Returns</label><textarea className="w-full px-4 py-2.5 border border-slate-200 rounded-lg" rows={2} value={covered.easy_returns} onChange={(e) => setCovered({...covered, easy_returns: e.target.value})} /></div>
-            <div><label className="block text-sm font-medium text-slate-700 mb-1">Fast Shipping</label><textarea className="w-full px-4 py-2.5 border border-slate-200 rounded-lg" rows={2} value={covered.fast_shipping} onChange={(e) => setCovered({...covered, fast_shipping: e.target.value})} /></div>
-            <div><label className="block text-sm font-medium text-slate-700 mb-1">Guarantee</label><textarea className="w-full px-4 py-2.5 border border-slate-200 rounded-lg" rows={2} value={covered.guarantee} onChange={(e) => setCovered({...covered, guarantee: e.target.value})} /></div>
-            <div><label className="block text-sm font-medium text-slate-700 mb-1">Secure Checkout</label><textarea className="w-full px-4 py-2.5 border border-slate-200 rounded-lg" rows={2} value={covered.secure_checkout} onChange={(e) => setCovered({...covered, secure_checkout: e.target.value})} /></div>
+            <div><label className="block text-sm font-medium text-slate-700 mb-1">Easy Returns</label><Textarea label="Easy Returns" value={covered.easy_returns} onChange={(v) => setCovered({...covered, easy_returns: v})} /></div>
+            <div><label className="block text-sm font-medium text-slate-700 mb-1">Fast Shipping</label><Textarea label="Fast Shipping" value={covered.fast_shipping} onChange={(v) => setCovered({...covered, fast_shipping: v})} /></div>
+            <div><label className="block text-sm font-medium text-slate-700 mb-1">Guarantee</label><Textarea label="Guarantee" value={covered.guarantee} onChange={(v) => setCovered({...covered, guarantee: v})} /></div>
+            <div><label className="block text-sm font-medium text-slate-700 mb-1">Secure Checkout</label><Textarea label="Secure Checkout" value={covered.secure_checkout} onChange={(v) => setCovered({...covered, secure_checkout: v})} /></div>
           </div>
         </div>
       </div>

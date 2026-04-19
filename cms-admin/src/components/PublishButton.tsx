@@ -1,32 +1,34 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { SparklesIcon } from '@heroicons/react/outline';
+import { SparklesIcon, GlobeIcon } from '@heroicons/react/outline';
 
 interface PublishButtonProps {
   onPublish?: () => void;
 }
 
 export default function PublishButton({ onPublish }: PublishButtonProps) {
-  const [hasChanges, setHasChanges] = useState(false);
   const [publishing, setPublishing] = useState(false);
   const [lastPublished, setLastPublished] = useState<string | null>(null);
+  const [message, setMessage] = useState<string>('');
 
   useEffect(() => {
-    checkChanges();
+    checkStatus();
   }, []);
 
-  const checkChanges = async () => {
+  const checkStatus = async () => {
     try {
       const res = await fetch('/api/publish');
       const data = await res.json();
-      setHasChanges(data.hasChanges || false);
-      setLastPublished(data.lastPublished);
+      if (data.published) {
+        setLastPublished(new Date(data.published).toLocaleString());
+      }
+      setMessage(data.message || '');
     } catch {}
   };
 
   const handlePublish = async () => {
-    if (!confirm('Publish changes to make them live on the website?')) return;
+    if (!confirm('Publish all changes to make them live on the website?')) return;
     
     setPublishing(true);
     try {
@@ -37,8 +39,8 @@ export default function PublishButton({ onPublish }: PublishButtonProps) {
       const data = await res.json();
       
       if (data.success) {
-        alert('Published successfully!');
-        setHasChanges(false);
+        alert('Published successfully! All changes are now live on the storefront.');
+        setLastPublished(new Date().toLocaleString());
         onPublish?.();
       } else {
         alert('Error: ' + data.error);
@@ -50,26 +52,15 @@ export default function PublishButton({ onPublish }: PublishButtonProps) {
     }
   };
 
-  if (!hasChanges) {
-    return (
-      <button
-        disabled
-        className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-700 font-medium rounded-xl cursor-not-allowed"
-      >
-        <SparklesIcon className="w-5 h-5" />
-        Live
-      </button>
-    );
-  }
-
   return (
     <button
       onClick={handlePublish}
       disabled={publishing}
-      className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-xl transition-colors"
+      className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-xl transition-colors"
+      title={lastPublished ? `Last published: ${lastPublished}` : 'Publish changes'}
     >
       <SparklesIcon className="w-5 h-5" />
-      {publishing ? 'Publishing...' : 'Publish Changes'}
+      {publishing ? 'Publishing...' : 'Publish Live'}
     </button>
   );
 }

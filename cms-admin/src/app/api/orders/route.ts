@@ -40,25 +40,19 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { items, customer, payment_id, subtotal, shipping, tax, total } = body;
 
-    // Create order
     const order = await prisma.order.create({
       data: {
         order_number: `HDM-${Date.now()}`,
-        customer_name: customer.name,
-        customer_email: customer.email,
-        customer_phone: customer.phone,
+        email: customer.email,
+        first_name: customer.name?.split(' ')[0] || '',
+        last_name: customer.name?.split(' ').slice(1).join(' ') || '',
+        phone: customer.phone,
         shipping_address: customer.address,
-        city: customer.city,
-        state: customer.state,
-        pincode: customer.pincode,
-        country: customer.country || 'India',
         subtotal: subtotal,
-        shipping_cost: shipping || 0,
+        shipping: shipping || 0,
         tax: tax || 0,
         total: total,
         status: payment_id ? 'PAID' : 'PENDING',
-        payment_id: payment_id,
-        payment_method: 'Razorpay',
         payment_status: payment_id ? 'COMPLETED' : 'PENDING',
       },
       include: {
@@ -66,15 +60,15 @@ export async function POST(request: NextRequest) {
       }
     });
 
-    // Create order items
     for (const item of items) {
       await prisma.orderItem.create({
         data: {
           order_id: order.id,
           product_id: item.product_id,
-          product_title: item.title,
-          product_price: item.price,
+          title: item.title,
+          price: item.price,
           quantity: item.quantity,
+          total: item.price * item.quantity,
         }
       });
     }

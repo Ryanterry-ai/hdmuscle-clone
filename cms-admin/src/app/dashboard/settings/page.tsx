@@ -1,6 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import DashboardLayout from '@/components/DashboardLayout';
+import Card from '@/components/ui/Card';
+import Button from '@/components/ui/Button';
+import Input from '@/components/ui/Input';
 import { SaveIcon } from '@heroicons/react/outline';
 
 interface GlobalSettings {
@@ -77,136 +81,123 @@ export default function GeneralSettingsPage() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="animate-pulse space-y-6">
-        <div className="h-8 bg-gray-200 rounded w-48"></div>
-        <div className="h-64 bg-gray-200 rounded-2xl"></div>
-      </div>
-    );
-  }
-
   return (
-    <div className="max-w-4xl space-y-8">
-      <div>
-        <h1 className="text-2xl font-bold text-stone-900">General Settings</h1>
-        <p className="text-stone-500 mt-1">Manage your store&apos;s basic information and branding.</p>
-      </div>
-
-      {/* Store Information */}
-      <div className="bg-white rounded-2xl border border-stone-200 p-6">
-        <h2 className="text-lg font-semibold text-stone-900 mb-6">Store Information</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="block text-sm font-medium text-stone-700 mb-2">Store Name</label>
-            <input
-              type="text"
-              value={settings.store_name}
-              onChange={(e) => setSettings({ ...settings, store_name: e.target.value })}
-              className="w-full px-4 py-3 border border-stone-200 rounded-xl text-stone-900 focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-              placeholder="My Store"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-stone-700 mb-2">Store Email</label>
-            <input
-              type="email"
-              value={settings.store_email}
-              onChange={(e) => setSettings({ ...settings, store_email: e.target.value })}
-              className="w-full px-4 py-3 border border-stone-200 rounded-xl text-stone-900 focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-              placeholder="contact@example.com"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-stone-700 mb-2">Store Phone</label>
-            <input
-              type="text"
-              value={settings.store_phone}
-              onChange={(e) => setSettings({ ...settings, store_phone: e.target.value })}
-              className="w-full px-4 py-3 border border-stone-200 rounded-xl text-stone-900 focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-              placeholder="+91 98765 43210"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-stone-700 mb-2">Currency</label>
-            <select
-              value={settings.currency}
-              onChange={(e) => setSettings({ ...settings, currency: e.target.value })}
-              className="w-full px-4 py-3 border border-stone-200 rounded-xl text-stone-900 focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-            >
-              <option value="INR">Indian Rupee (₹)</option>
-              <option value="USD">US Dollar ($)</option>
-              <option value="EUR">Euro (€)</option>
-              <option value="GBP">British Pound (£)</option>
-            </select>
-          </div>
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-stone-700 mb-2">Store Address</label>
-            <textarea
-              rows={3}
-              value={settings.store_address}
-              onChange={(e) => setSettings({ ...settings, store_address: e.target.value })}
-              className="w-full px-4 py-3 border border-stone-200 rounded-xl text-stone-900 focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-              placeholder="123 Main Street, City, State, PIN"
-            />
-          </div>
+    <DashboardLayout>
+      <div className="max-w-4xl space-y-8">
+        <div>
+          <h1 className="page-title text-white">General Settings</h1>
+          <p className="text-slate-400 mt-1">Manage your store's basic information and branding.</p>
         </div>
-      </div>
 
-      {/* Branding */}
-      <div className="bg-white rounded-2xl border border-stone-200 p-6">
-        <h2 className="text-lg font-semibold text-stone-900 mb-6">Branding</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="block text-sm font-medium text-stone-700 mb-2">Primary Color</label>
-            <div className="flex items-center gap-3">
-              <input
-                type="color"
-                value={settings.primary_color}
-                onChange={(e) => setSettings({ ...settings, primary_color: e.target.value })}
-                className="w-12 h-12 rounded-xl border border-stone-200 cursor-pointer"
+        <Card>
+          <div className="p-6 border-b border-white/5">
+            <h2 className="text-lg font-semibold text-white">Store Information</h2>
+          </div>
+          <div className="p-6 space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Input 
+                label="Store Name" 
+                value={settings.store_name} 
+                onChange={(e) => setSettings({ ...settings, store_name: e.target.value })} 
+                placeholder="My Store"
               />
-              <input
-                type="text"
-                value={settings.primary_color}
-                onChange={(e) => setSettings({ ...settings, primary_color: e.target.value })}
-                className="flex-1 px-4 py-3 border border-stone-200 rounded-xl text-stone-900 focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                placeholder="#f59e0b"
+              <Input 
+                label="Store Email" 
+                type="email"
+                value={settings.store_email} 
+                onChange={(e) => setSettings({ ...settings, store_email: e.target.value })} 
+                placeholder="contact@example.com"
               />
+              <Input 
+                label="Store Phone" 
+                value={settings.store_phone} 
+                onChange={(e) => setSettings({ ...settings, store_phone: e.target.value })} 
+                placeholder="+91 98765 43210"
+              />
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Currency</label>
+                <select
+                  value={settings.currency}
+                  onChange={(e) => setSettings({ ...settings, currency: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/5 text-white focus:outline-none focus:border-purple-500/50"
+                  style={{ boxShadow: 'inset 2px 2px 4px rgba(0,0,0,0.3)' }}
+                >
+                  <option value="INR" className="bg-slate-800">Indian Rupee (₹)</option>
+                  <option value="USD" className="bg-slate-800">US Dollar ($)</option>
+                  <option value="EUR" className="bg-slate-800">Euro (€)</option>
+                  <option value="GBP" className="bg-slate-800">British Pound (£)</option>
+                </select>
+              </div>
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-slate-300 mb-2">Store Address</label>
+                <textarea
+                  rows={3}
+                  value={settings.store_address}
+                  onChange={(e) => setSettings({ ...settings, store_address: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/5 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500/50"
+                  style={{ boxShadow: 'inset 2px 2px 4px rgba(0,0,0,0.3)' }}
+                  placeholder="123 Main Street, City, State, PIN"
+                />
+              </div>
             </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-stone-700 mb-2">Accent Color</label>
-            <div className="flex items-center gap-3">
-              <input
-                type="color"
-                value={settings.accent_color}
-                onChange={(e) => setSettings({ ...settings, accent_color: e.target.value })}
-                className="w-12 h-12 rounded-xl border border-stone-200 cursor-pointer"
-              />
-              <input
-                type="text"
-                value={settings.accent_color}
-                onChange={(e) => setSettings({ ...settings, accent_color: e.target.value })}
-                className="flex-1 px-4 py-3 border border-stone-200 rounded-xl text-stone-900 focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                placeholder="#ea580c"
-              />
+        </Card>
+
+        <Card>
+          <div className="p-6 border-b border-white/5">
+            <h2 className="text-lg font-semibold text-white">Branding</h2>
+          </div>
+          <div className="p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Primary Color</label>
+                <div className="flex items-center gap-3">
+                  <input
+                    type="color"
+                    value={settings.primary_color}
+                    onChange={(e) => setSettings({ ...settings, primary_color: e.target.value })}
+                    className="w-12 h-12 rounded-xl border-0 cursor-pointer"
+                  />
+                  <input
+                    type="text"
+                    value={settings.primary_color}
+                    onChange={(e) => setSettings({ ...settings, primary_color: e.target.value })}
+                    className="flex-1 px-4 py-3 rounded-xl bg-white/[0.02] border border-white/5 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500/50"
+                    style={{ boxShadow: 'inset 2px 2px 4px rgba(0,0,0,0.3)' }}
+                    placeholder="#f59e0b"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Accent Color</label>
+                <div className="flex items-center gap-3">
+                  <input
+                    type="color"
+                    value={settings.accent_color}
+                    onChange={(e) => setSettings({ ...settings, accent_color: e.target.value })}
+                    className="w-12 h-12 rounded-xl border-0 cursor-pointer"
+                  />
+                  <input
+                    type="text"
+                    value={settings.accent_color}
+                    onChange={(e) => setSettings({ ...settings, accent_color: e.target.value })}
+                    className="flex-1 px-4 py-3 rounded-xl bg-white/[0.02] border border-white/5 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500/50"
+                    style={{ boxShadow: 'inset 2px 2px 4px rgba(0,0,0,0.3)' }}
+                    placeholder="#ea580c"
+                  />
+                </div>
+              </div>
             </div>
           </div>
+        </Card>
+
+        <div className="flex items-center justify-end gap-4">
+          <Button onClick={handleSave} loading={saving}>
+            <SaveIcon className="w-5 h-5 mr-2" />
+            {saving ? 'Saving...' : saved ? '✓ Saved!' : 'Save Changes'}
+          </Button>
         </div>
       </div>
-
-      {/* Save Button */}
-      <div className="flex items-center justify-end gap-4">
-        <button
-          onClick={handleSave}
-          disabled={saving}
-          className="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 hover:bg-amber-600 text-stone-950 font-semibold rounded-xl transition-colors disabled:opacity-50"
-        >
-          <SaveIcon className="w-5 h-5" />
-          {saving ? 'Saving...' : saved ? '✓ Saved!' : 'Save Changes'}
-        </button>
-      </div>
-    </div>
+    </DashboardLayout>
   );
 }

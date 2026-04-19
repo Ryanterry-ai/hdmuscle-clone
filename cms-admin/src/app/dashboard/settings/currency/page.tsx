@@ -7,18 +7,18 @@ export default function CurrencyPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({
-    currency: 'USD',
-    timezone: 'America/New_York',
-    store_email: '',
+    currency: 'INR',
+    timezone: 'Asia/Kolkata',
+    store_email: 'info@hdmuscle.com',
     store_phone: '',
   });
 
   const currencies = [
+    { code: 'INR', name: 'Indian Rupee', symbol: '₹' },
     { code: 'USD', name: 'US Dollar', symbol: '$' },
     { code: 'CAD', name: 'Canadian Dollar', symbol: 'C$' },
     { code: 'GBP', name: 'British Pound', symbol: '£' },
     { code: 'EUR', name: 'Euro', symbol: '€' },
-    { code: 'INR', name: 'Indian Rupee', symbol: '₹' },
   ];
 
   const timezones = [
@@ -57,11 +57,22 @@ export default function CurrencyPage() {
     e.preventDefault();
     setSaving(true);
     try {
-      await fetch('/api/settings/global', {
+      const response = await fetch('/api/settings/global', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
+      
+      // Check if the response is OK before parsing JSON
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Save failed:', response.status, errorText);
+        alert(`Failed to save: ${response.status}`);
+        return;
+      }
+      
+      const data = await response.json();
+      console.log('Saved:', data);
     } catch (error) {
       console.error('Failed to save:', error);
     } finally {

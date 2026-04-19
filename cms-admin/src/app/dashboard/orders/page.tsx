@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { SearchIcon, EyeIcon, TruckIcon, CheckCircleIcon, XCircleIcon } from '@heroicons/react/outline';
+import DashboardLayout from '@/components/DashboardLayout';
+import Card from '@/components/ui/Card';
+import { SearchIcon, EyeIcon } from '@heroicons/react/outline';
 
 interface OrderItem {
   id: string;
@@ -60,19 +61,18 @@ export default function OrdersPage() {
     }).format(amount);
   };
 
-  const getStatusBadge = (status: string, type: 'order' | 'payment' | 'fulfillment') => {
+  const getStatusBadge = (status: string) => {
     const colors: Record<string, string> = {
-      PENDING: 'bg-yellow-100 text-yellow-700',
-      PROCESSING: 'bg-blue-100 text-blue-700',
-      SHIPPED: 'bg-purple-100 text-purple-700',
-      DELIVERED: 'bg-green-100 text-green-700',
-      CANCELLED: 'bg-red-100 text-red-700',
-      PAID: 'bg-green-100 text-green-700',
-      FAILED: 'bg-red-100 text-red-700',
-      NONE: 'bg-gray-100 text-gray-700',
-      FULFILLED: 'bg-green-100 text-green-700',
+      PENDING: 'bg-yellow-500/20 text-yellow-400',
+      PROCESSING: 'bg-blue-500/20 text-blue-400',
+      SHIPPED: 'bg-purple-500/20 text-purple-400',
+      DELIVERED: 'bg-emerald-500/20 text-emerald-400',
+      CANCELLED: 'bg-red-500/20 text-red-400',
+      PAID: 'bg-emerald-500/20 text-emerald-400',
+      FAILED: 'bg-red-500/20 text-red-400',
+      FULFILLED: 'bg-emerald-500/20 text-emerald-400',
     };
-    return colors[status] || 'bg-gray-100 text-gray-700';
+    return colors[status] || 'bg-slate-700 text-slate-400';
   };
 
   const filteredOrders = orders.filter(o => 
@@ -80,107 +80,105 @@ export default function OrdersPage() {
     o.email.toLowerCase().includes(search.toLowerCase())
   );
 
-  if (loading) {
-    return (
-      <div className="animate-pulse space-y-6">
-        <div className="h-8 bg-gray-200 rounded w-48"></div>
-        <div className="h-64 bg-gray-200 rounded-2xl"></div>
-      </div>
-    );
-  }
-
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">Orders</h1>
-          <p className="text-slate-500 mt-1">{orders.length} total orders</p>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-xl border border-slate-200">
-        <div className="p-4 border-b border-slate-200 flex flex-wrap gap-4">
-          <div className="relative flex-1 min-w-[200px]">
-            <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
-            <input
-              type="text"
-              placeholder="Search orders..."
-              className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+    <DashboardLayout>
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="page-title text-white">Orders</h1>
+            <p className="text-slate-400 mt-1">{orders.length} total orders</p>
           </div>
-          <select
-            className="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm"
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-          >
-            <option value="">All Status</option>
-            <option value="PENDING">Pending</option>
-            <option value="PROCESSING">Processing</option>
-            <option value="SHIPPED">Shipped</option>
-            <option value="DELIVERED">Delivered</option>
-            <option value="CANCELLED">Cancelled</option>
-          </select>
         </div>
 
-        {filteredOrders.length > 0 ? (
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-slate-50">
-                <tr>
-                  <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase">Order</th>
-                  <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase">Customer</th>
-                  <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase">Status</th>
-                  <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase">Payment</th>
-                  <th className="text-right px-6 py-3 text-xs font-semibold text-slate-500 uppercase">Total</th>
-                  <th className="text-right px-6 py-3 text-xs font-semibold text-slate-500 uppercase">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {filteredOrders.map((order) => (
-                  <tr key={order.id} className="hover:bg-slate-50">
-                    <td className="px-6 py-4">
-                      <p className="font-medium text-slate-900">{order.order_number}</p>
-                      <p className="text-xs text-slate-500">
-                        {new Date(order.created_at).toLocaleDateString('en-IN')}
-                      </p>
-                    </td>
-                    <td className="px-6 py-4">
-                      <p className="text-slate-900">
-                        {[order.first_name, order.last_name].filter(Boolean).join(' ') || 'N/A'}
-                      </p>
-                      <p className="text-xs text-slate-500">{order.email}</p>
-                    </td>
-                    <td className="px-6 py-4">
-                      <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${getStatusBadge(order.status, 'order')}`}>
-                        {order.status}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4">
-                      <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${getStatusBadge(order.payment_status, 'payment')}`}>
-                        {order.payment_status}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-right font-semibold text-slate-900">
-                      {formatCurrency(order.total)}
-                    </td>
-                    <td className="px-6 py-4 text-right">
-                      <button className="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg">
-                        <EyeIcon className="w-4 h-4" />
-                      </button>
-                    </td>
+        <Card>
+          <div className="p-4 border-b border-white/5 flex flex-wrap gap-4">
+            <div className="relative flex-1 min-w-[200px]">
+              <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+              <input
+                type="text"
+                placeholder="Search orders..."
+                className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/[0.02] border border-white/5 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500/50"
+                style={{ boxShadow: 'inset 2px 2px 4px rgba(0,0,0,0.3)' }}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+            <select
+              className="px-4 py-3 rounded-xl bg-white/[0.02] border border-white/5 text-white focus:outline-none focus:border-purple-500/50"
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+            >
+              <option value="">All Status</option>
+              <option value="PENDING">Pending</option>
+              <option value="PROCESSING">Processing</option>
+              <option value="SHIPPED">Shipped</option>
+              <option value="DELIVERED">Delivered</option>
+              <option value="CANCELLED">Cancelled</option>
+            </select>
+          </div>
+
+          {loading ? (
+            <div className="p-12 text-center">
+              <div className="w-8 h-8 border-2 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto" />
+            </div>
+          ) : filteredOrders.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-white/[0.02]">
+                  <tr>
+                    <th className="text-left px-6 py-3 text-xs font-semibold text-slate-400 uppercase">Order</th>
+                    <th className="text-left px-6 py-3 text-xs font-semibold text-slate-400 uppercase">Customer</th>
+                    <th className="text-left px-6 py-3 text-xs font-semibold text-slate-400 uppercase">Status</th>
+                    <th className="text-left px-6 py-3 text-xs font-semibold text-slate-400 uppercase">Payment</th>
+                    <th className="text-right px-6 py-3 text-xs font-semibold text-slate-400 uppercase">Total</th>
+                    <th className="text-right px-6 py-3 text-xs font-semibold text-slate-400 uppercase">Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <div className="p-12 text-center">
-            <p className="text-slate-500">No orders found</p>
-          </div>
-        )}
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {filteredOrders.map((order) => (
+                    <tr key={order.id} className="hover:bg-white/[0.02]">
+                      <td className="px-6 py-4">
+                        <p className="font-medium text-white">{order.order_number}</p>
+                        <p className="text-xs text-slate-500">
+                          {new Date(order.created_at).toLocaleDateString('en-IN')}
+                        </p>
+                      </td>
+                      <td className="px-6 py-4">
+                        <p className="text-white">
+                          {[order.first_name, order.last_name].filter(Boolean).join(' ') || 'N/A'}
+                        </p>
+                        <p className="text-xs text-slate-500">{order.email}</p>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${getStatusBadge(order.status)}`}>
+                          {order.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${getStatusBadge(order.payment_status)}`}>
+                          {order.payment_status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-right font-semibold text-white">
+                        {formatCurrency(order.total)}
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <button className="p-2.5 rounded-xl bg-white/[0.02] hover:bg-white/5 text-slate-400 hover:text-white transition-all">
+                          <EyeIcon className="w-4 h-4" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="p-12 text-center text-slate-500">
+              <p>No orders found</p>
+            </div>
+          )}
+        </Card>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }

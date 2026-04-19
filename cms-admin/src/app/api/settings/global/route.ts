@@ -33,35 +33,35 @@ export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
     
+    // Extract only valid fields for GlobalSettings
+    const validFields = {
+      store_name: typeof body.store_name === 'string' ? body.store_name : 'My Store',
+      store_email: typeof body.store_email === 'string' ? body.store_email : '',
+      store_phone: typeof body.store_phone === 'string' ? body.store_phone : '',
+      store_address: typeof body.store_address === 'string' ? body.store_address : '',
+      currency: typeof body.currency === 'string' ? body.currency : 'INR',
+      timezone: typeof body.timezone === 'string' ? body.timezone : 'Asia/Kolkata',
+      primary_color: typeof body.primary_color === 'string' ? body.primary_color : '#f59e0b',
+      accent_color: typeof body.accent_color === 'string' ? body.accent_color : '#ea580c',
+    };
+    
     // Upsert global settings
     await prisma.globalSettings.upsert({
       where: { id: 'default' },
       create: {
         id: 'default',
-        store_name: body.store_name || 'My Store',
-        store_email: body.store_email,
-        store_phone: body.store_phone,
-        store_address: body.store_address,
-        currency: body.currency || 'INR',
-        timezone: body.timezone || 'Asia/Kolkata',
-        primary_color: body.primary_color || '#f59e0b',
-        accent_color: body.accent_color || '#ea580c',
+        ...validFields,
       },
-      update: {
-        store_name: body.store_name || 'My Store',
-        store_email: body.store_email,
-        store_phone: body.store_phone,
-        store_address: body.store_address,
-        currency: body.currency || 'INR',
-        timezone: body.timezone || 'Asia/Kolkata',
-        primary_color: body.primary_color || '#f59e0b',
-        accent_color: body.accent_color || '#ea580c',
-      },
+      update: validFields,
     });
     
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, currency: validFields.currency });
   } catch (error) {
     console.error('Update settings error:', error);
-    return NextResponse.json({ error: 'Failed to update settings' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to update settings', details: String(error) }, { status: 500 });
   }
+}
+
+export async function PATCH(request: NextRequest) {
+  return PUT(request);
 }
