@@ -13,11 +13,9 @@ interface Product {
   images: { url: string }[];
 }
 
-const CMS_API = process.env.CMS_API || 'https://cms.hdmuscle.in/api';
-
 async function fetchProducts(): Promise<Product[]> {
   try {
-    const res = await fetch(`${CMS_API}/products?take=50&is_active=true`);
+    const res = await fetch(`/api/products?take=50&is_active=true`);
     const data = await res.json();
     return data.products || [];
   } catch {
@@ -27,7 +25,7 @@ async function fetchProducts(): Promise<Product[]> {
 
 async function fetchCollections() {
   try {
-    const res = await fetch(`${CMS_API}/collections`);
+    const res = await fetch('/api/collections');
     const data = await res.json();
     return data.collections || [];
   } catch {

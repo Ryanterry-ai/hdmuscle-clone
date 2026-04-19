@@ -16,8 +16,6 @@ interface Product {
   inventory: number;
 }
 
-const CMS_API = process.env.CMS_API || 'https://cms.hdmuscle.in/api';
-
 export default function ProductPage() {
   const params = useParams();
   const [product, setProduct] = useState<Product | null>(null);
@@ -27,7 +25,7 @@ export default function ProductPage() {
   const { settings } = useStore();
 
   useEffect(() => {
-    fetch(`${CMS_API}/products?handle=${params.handle}`)
+    fetch(`/api/products?handle=${params.handle}`)
       .then(res => res.json())
       .then(data => {
         setProduct(data.products?.[0] || null);

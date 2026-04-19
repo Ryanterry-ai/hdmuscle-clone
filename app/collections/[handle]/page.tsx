@@ -14,8 +14,6 @@ interface Product {
   images: { url: string }[];
 }
 
-const CMS_API = process.env.CMS_API || 'https://cms.hdmuscle.in/api';
-
 export default function CollectionPage() {
   const params = useParams();
   const [products, setProducts] = useState<Product[]>([]);
@@ -25,7 +23,7 @@ export default function CollectionPage() {
   const { settings } = useStore();
 
   useEffect(() => {
-    fetch(`${CMS_API}/products?take=50&collection_handle=${params.handle}`)
+    fetch(`/api/products?take=50&collection_handle=${params.handle}`)
       .then(r => r.json())
       .then(data => {
         setProducts(data.products || []);

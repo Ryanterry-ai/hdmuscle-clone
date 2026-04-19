@@ -3,19 +3,26 @@ import { SESSION_COOKIE_NAME, verifySessionToken } from '@/lib/auth';
 
 const protectedApiPrefixes = [
   '/api/dashboard',
-  '/api/products',
-  '/api/collections',
   '/api/orders',
   '/api/customers',
   '/api/content',
   '/api/media',
-  '/api/settings',
   '/api/discounts',
   '/api/shopify',
 ];
 
+const publicApiPrefixes = [
+  '/api/products',
+  '/api/collections',
+  '/api/settings',
+];
+
 function isProtectedApi(pathname: string) {
   return protectedApiPrefixes.some((prefix) => pathname.startsWith(prefix));
+}
+
+function isPublicApi(pathname: string) {
+  return publicApiPrefixes.some((prefix) => pathname.startsWith(prefix));
 }
 
 export async function middleware(request: NextRequest) {
@@ -39,6 +46,10 @@ export async function middleware(request: NextRequest) {
 
   if (isProtectedApi(pathname) && !session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  if (isPublicApi(pathname)) {
+    return NextResponse.next();
   }
 
   return NextResponse.next();
