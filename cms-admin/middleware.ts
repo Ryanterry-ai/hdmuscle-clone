@@ -15,6 +15,11 @@ const publicApiPrefixes = [
   '/api/products',
   '/api/collections',
   '/api/settings',
+  '/api/pages',
+  '/api/navigation',
+  '/api/forms',
+  '/api/campaigns',
+  '/api/affiliates',
 ];
 
 function isProtectedApi(pathname: string) {
@@ -69,5 +74,10 @@ export const config = {
     '/api/settings/:path*',
     '/api/discounts/:path*',
     '/api/shopify/:path*',
+    '/api/pages/:path*',
+    '/api/navigation/:path*',
+    '/api/forms/:path*',
+    '/api/campaigns/:path*',
+    '/api/affiliates/:path*',
   ],
 };
