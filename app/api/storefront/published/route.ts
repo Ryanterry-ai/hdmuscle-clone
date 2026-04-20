@@ -2,24 +2,83 @@ import { NextResponse } from 'next/server';
 
 const CMS_API = process.env.CMS_API || 'https://cms.hdmuscle.in/api';
 
+const IMAGE_MAP: Record<string, string[]> = {
+  'prohd-isolate': ['/prohd_chocolate_front-1cca5974cf27.png', '/prohd_vanilla_front.png'],
+  'prehd-essential': ['/prehd-essential-blue-rasberry-eb39ae9ce7f5.png'],
+  'pumphd': ['/pumphd-rainbow-strips-ead9f7c7e482.png'],
+  'hydrahd': ['/hydrahd-tangerine-us-16303cf76229.png'],
+  'stimhd': ['/stimhd_9d7400de-4473-4af8-bd68-902c6689781d-fdd59a2755d1.png'],
+  'intra-hd': ['/intrahd_watermelon_f38c042d-708c-472a-a828-b329ac7baf6b-ca4066edb12c.png'],
+  'gluta-hd': ['/glutahd-front-black-lid-0e6436cfe231.jpg'],
+  'creahd-creapure': ['/creahd-53c587c6f495.jpg'],
+  'sleephd': ['/sleephd_web1-d6d6eabbf104.png'],
+  'greenshd': ['/greenshd-citrus-us-b1d785092f3e.jpg'],
+  'burn-hd': ['/burnhd_front-b81b8d88cde6.png'],
+  'multihd': ['/multi-hd-us-web-11980b086482.jpg'],
+  'collagenhd': ['/collagenhd_front_unflavored-us-6c934157a97a.jpg'],
+  'vita-hd': ['/vita-hd.png'],
+  'd3': ['/d3.png'],
+  'omega-3': ['/omega-3.png'],
+  'zinc': ['/zinc.png'],
+  'magnesium': ['/magnesium.png'],
+  'fish-oil': ['/fish-oil.png'],
+  'b-complex': ['/b-complex.png'],
+  'turmeric': ['/turmeric.png'],
+  'ashwagandha': ['/ashwagandha.png'],
+  'curcumin': ['/curcumin.png'],
+  'citrus-bergamot': ['/citrusbergamot.png'],
+  'betaine-hcl': ['/betainehcl.png'],
+  'glyco-hd': ['/glycohd_front.png'],
+  'liverhd': ['/liverhd.png'],
+  'kidneyhd': ['/kidneyhd.png'],
+  'electrolytes': ['/electrolytes.png'],
+  'eaas': ['/eaas.png'],
+  'bcaa': ['/bcaa.png'],
+  'carbhd-new-formula': ['/carbhd_strawkiwi-2024-4d9de7e58660.png'],
+  'eaa-hd': ['/eaahd_front_unflavored-black-lid-b9e66b2a11b7.png'],
+  'euphoria': ['/euphoria.png'],
+  'bucked-up': ['/bucked-up.png'],
+  'c4-extreme': ['/c4-extreme.png'],
+  'prehd-black': ['/prehd-black.png'],
+  'whey-hd': ['/whey-hd.png'],
+  'casein': ['/casein.png'],
+  'protein-pancakes': ['/protein-pancakes.png'],
+  'build-bundle': ['/bundle-build.png'],
+  'performance-bundle': ['/bundle-performance.png'],
+  'value-bundle': ['/bundle-value.png'],
+  'family-bundle': ['/bundle-family.png'],
+  'hoodie': ['/hd-heritage-hoodie-black-front-d19ea4b2ddab.jpg'],
+  'hd-tee': ['/hd-gothic-black-front-2b467fb27e06.png'],
+  'cap': ['/hd-archive-hat-2026-black-199357851230.png'],
+  'shorts': ['/shorts.png'],
+  'tank-top': ['/tank-top.png'],
+  'jacket': ['/jacket.png'],
+};
+
 function transformToInternalFormat(settingsData: any, productsData: any) {
   const ext = settingsData;
-  const products = (productsData?.products || []).map((p: any) => ({
-    id: p.id?.toString() || '1',
-    handle: p.handle || '',
-    title: p.title || '',
-    price: p.price?.toString() || '0',
-    compare_at_price: p.compare_at_price?.toString() || null,
-    description: p.description || '',
-    short_description: p.short_description || '',
-    images: p.images || [],
-    badge: p.is_featured ? 'Best Seller' : null,
-    is_active: p.is_active ?? true,
-    inventory: p.inventory ?? 100,
-    category: p.collections?.[0]?.collection?.handle || 'supplements',
-    tags: [],
-    is_apparel: (p.collections?.[0]?.collection?.handle || '').includes('apparel')
-  }));
+  const products = (productsData?.products || []).map((p: any) => {
+    const handle = p.handle || '';
+    const cmsImages = p.images && p.images.length > 0 ? p.images : [];
+    const fallbackImages = IMAGE_MAP[handle] || [];
+    
+    return {
+      id: p.id?.toString() || '1',
+      handle,
+      title: p.title || '',
+      price: p.price?.toString() || '0',
+      compare_at_price: p.compare_at_price?.toString() || null,
+      description: p.description || '',
+      short_description: p.short_description || '',
+      images: cmsImages.length > 0 ? cmsImages : fallbackImages.map(url => ({ url })),
+      badge: p.is_featured ? 'Best Seller' : null,
+      is_active: p.is_active ?? true,
+      inventory: p.inventory ?? 100,
+      category: p.collections?.[0]?.collection?.handle || 'supplements',
+      tags: [],
+      is_apparel: (p.collections?.[0]?.collection?.handle || '').includes('apparel')
+    };
+  });
 
   return {
     settings: {
