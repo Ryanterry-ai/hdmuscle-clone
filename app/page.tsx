@@ -363,7 +363,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       <AnnouncementBar 
-        text={settings?.announcement_bar?.text?.replace('₹9999', '₹9,999')} 
+        text={settings?.announcement_bar?.text?.replace('₹9999', '₹9,999')?.replace('$99', '₹9,999')?.replace('$149', '₹9,999')} 
         link={settings?.announcement_bar?.link}
         linkText={settings?.announcement_bar?.link_text}
       />
