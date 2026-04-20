@@ -6,11 +6,13 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   try {
     const primaryDomain = await prisma.setting.findUnique({ where: { key: 'primary_domain' } });
+    const publicSiteUrl = await prisma.setting.findUnique({ where: { key: 'public_site_url' } });
     const domainStatus = await prisma.setting.findUnique({ where: { key: 'domain_status' } });
     const sslEnabled = await prisma.setting.findUnique({ where: { key: 'ssl_enabled' } });
 
     return NextResponse.json({
       primary_domain: primaryDomain?.value || '',
+      public_site_url: publicSiteUrl?.value || '',
       domain_status: domainStatus?.value || 'pending',
       ssl_enabled: sslEnabled?.value === 'true',
     });
@@ -25,6 +27,7 @@ export async function PUT(request: NextRequest) {
     const body = await request.json();
     const settings = [
       { key: 'primary_domain', value: body.primary_domain },
+      { key: 'public_site_url', value: body.public_site_url },
       { key: 'domain_status', value: body.domain_status || 'pending' },
       { key: 'ssl_enabled', value: body.ssl_enabled ? 'true' : 'false' },
     ];

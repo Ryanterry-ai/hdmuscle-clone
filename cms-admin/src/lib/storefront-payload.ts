@@ -207,7 +207,7 @@ export function buildPublishedStorefrontPayload(
       name: settingsMap.store_name || 'HD MUSCLE',
       seoTitle: settingsMap.seo_title || null,
       seoDescription: settingsMap.seo_description || null,
-      publicSiteUrl: settingsMap.public_site_url || 'https://hdmuscle.in',
+      publicSiteUrl: settingsMap.public_site_url || 'https://store.hdmuscle.in',
       announcementText: settingsMap.announcement_text || null,
       announcementLink: settingsMap.announcement_link || null,
       instagramUrl: settingsMap.instagram_url || 'https://www.instagram.com/hd.muscle/',

@@ -8,6 +8,7 @@ export default function DomainsPage() {
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({
     primary_domain: '',
+    public_site_url: '',
     domain_status: 'pending',
     ssl_enabled: true,
   });
@@ -22,6 +23,7 @@ export default function DomainsPage() {
       const data = await res.json();
       setFormData({
         primary_domain: data.primary_domain || '',
+        public_site_url: data.public_site_url || '',
         domain_status: data.domain_status || 'pending',
         ssl_enabled: data.ssl_enabled || false,
       });
@@ -126,6 +128,18 @@ export default function DomainsPage() {
               placeholder="hdmuscle.in"
             />
             <p className="text-xs text-slate-400 mt-1">Your primary store domain</p>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Public Site URL</label>
+            <input
+              type="text"
+              className="w-full max-w-md px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+              value={formData.public_site_url}
+              onChange={(e) => setFormData({ ...formData, public_site_url: e.target.value })}
+              placeholder="https://store.hdmuscle.in"
+            />
+            <p className="text-xs text-slate-400 mt-1">The public storefront URL (e.g., https://store.hdmuscle.in)</p>
           </div>
 
           <div>
