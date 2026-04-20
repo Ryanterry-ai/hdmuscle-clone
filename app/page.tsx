@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
 import Header from './header';
 import { useCart } from './cart-context';
-import { getSettings, getProducts, getCollections, formatCurrency } from './lib/cms';
+import { formatCurrency } from './lib/cms';
 
 interface Product {
   id: string;
@@ -272,59 +272,18 @@ const defaultSettings = {
 };
 
 export default function HomePage() {
-  const [payload, setPayload] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
   const { addItem } = useCart();
 
-  useEffect(() => {
-    let mounted = true;
-    const timer = setTimeout(() => { 
-      if (mounted && loading) { 
-        setError(true); 
-        setLoading(false); 
-      } 
-    }, 5000);
-    
-    fetch('https://cms.hdmuscle.in/api/storefront/published')
-      .then(res => res.json())
-      .then(data => {
-        if (mounted) { setPayload(data); setLoading(false); }
-      })
-      .catch(() => { 
-        if (mounted) { setError(true); setLoading(false); } 
-      });
-    
-    return () => { mounted = false; clearTimeout(timer); };
-  }, []);
-
-  const settings = error ? defaultSettings : getSettings(payload);
-  let products = error ? fallbackProducts : getProducts(payload).filter((p: Product) => p.is_active !== false);
-  if (products.length === 0) products = fallbackProducts;
-  
-  const collections = error ? [] : getCollections(payload);
+  const settings = defaultSettings;
+  let products = fallbackProducts;
+  const collections: any[] = [];
 
   const handleAddToCart = (product: Product) => {
     addItem({ id: product.id, title: product.title, price: Number(product.price), image: product.images?.[0]?.url });
   };
 
-  let bestSellers = products.slice(0, 8);
-  let newProducts = products.slice(8, 16);
-  if (newProducts.length === 0) {
-    newProducts = products.slice(4, 12);
-  }
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-white">
-        <AnnouncementBar />
-        <div className="py-24 text-center">
-          <div className="w-10 h-10 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-500">Loading HD Muscle...</p>
-        </div>
-      </div>
-    );
-  }
+  const bestSellers = products.slice(0, 8);
+  const newProducts = products.slice(8, 12);
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
