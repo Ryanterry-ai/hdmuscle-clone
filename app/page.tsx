@@ -248,35 +248,71 @@ function Footer() {
   );
 }
 
+const fallbackProducts: Product[] = [
+  { id: '1', handle: 'prohd-whey', title: 'ProHD Whey Protein Isolate', price: '79.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/Chocolate.png' }], is_active: true },
+  { id: '2', handle: 'prehd-essential', title: 'PreHD Essential', price: '39.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/PreHD-Essential-Blue-Rasberry.png' }], is_active: true },
+  { id: '3', handle: 'pumphd', title: 'PumpHD', price: '49.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/PumpHD-Rainbow-Strips.png' }], is_active: true },
+  { id: '4', handle: 'hydrahd', title: 'HydraHD', price: '44.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/HydraHD-Tangerine-US.png' }], is_active: true },
+  { id: '5', handle: 'stimhd', title: 'StimHD', price: '54.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/StimHD.png' }], is_active: true },
+  { id: '6', handle: 'intrahd', title: 'IntraHD', price: '39.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/intra_watermelon.png' }], is_active: true },
+  { id: '7', handle: 'sleephd', title: 'SleepHD', price: '49.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/sleephd_web1.png' }], is_active: true },
+  { id: '8', handle: 'greenshd', title: 'GreensHD', price: '59.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/greenshd-citrus-us.png' }], is_active: true },
+  { id: '9', handle: 'burnhd', title: 'BurnHD', price: '49.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/burnhd_front.png' }], is_active: true },
+  { id: '10', handle: 'creahd', title: 'CreaHD', price: '34.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/creahd.png' }], is_active: true },
+  { id: '11', handle: 'multihd', title: 'MultiHD', price: '54.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/multi-hd-us-web.png' }], is_active: true },
+  { id: '12', handle: 'glutahd', title: 'GlutaHD', price: '44.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/glutahd.png' }], is_active: true },
+];
+
+const defaultSettings = {
+  currency: 'USD',
+  locale: 'en-US',
+  symbol: '$',
+  store_name: 'HD MUSCLE',
+  copyright_text: '© 2024 HD MUSCLE. All rights reserved. Integrity is everything.'
+};
+
 export default function HomePage() {
   const [payload, setPayload] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const { addItem } = useCart();
 
   useEffect(() => {
     let mounted = true;
-    const timer = setTimeout(() => { if (mounted) setLoading(false); }, 10000);
+    const timer = setTimeout(() => { 
+      if (mounted && loading) { 
+        setError(true); 
+        setLoading(false); 
+      } 
+    }, 5000);
     
     fetch('https://cms.hdmuscle.in/api/storefront/published')
       .then(res => res.json())
       .then(data => {
         if (mounted) { setPayload(data); setLoading(false); }
       })
-      .catch(() => { if (mounted) setLoading(false); });
+      .catch(() => { 
+        if (mounted) { setError(true); setLoading(false); } 
+      });
     
     return () => { mounted = false; clearTimeout(timer); };
   }, []);
 
-  const settings = getSettings(payload);
-  const products = getProducts(payload).filter((p: Product) => p.is_active !== false);
-  const collections = getCollections(payload);
+  const settings = error ? defaultSettings : getSettings(payload);
+  let products = error ? fallbackProducts : getProducts(payload).filter((p: Product) => p.is_active !== false);
+  if (products.length === 0) products = fallbackProducts;
+  
+  const collections = error ? [] : getCollections(payload);
 
   const handleAddToCart = (product: Product) => {
     addItem({ id: product.id, title: product.title, price: Number(product.price), image: product.images?.[0]?.url });
   };
 
-  const bestSellers = products.slice(0, 8);
-  const newProducts = products.slice(8, 16);
+  let bestSellers = products.slice(0, 8);
+  let newProducts = products.slice(8, 16);
+  if (newProducts.length === 0) {
+    newProducts = products.slice(4, 12);
+  }
 
   if (loading) {
     return (
