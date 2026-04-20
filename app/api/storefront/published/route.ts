@@ -323,7 +323,6 @@ export async function GET() {
     return NextResponse.json({ error: 'Failed to fetch CMS' }, { status: 502 });
   }
 }
-    logo_text: "HD MUSCLE",
     announcement_bar: {
       enabled: true,
       text: "FREE SHIPPING ON ORDERS OVER ₹9999 • 30-DAY MONEY BACK GUARANTEE •",
@@ -536,8 +535,4 @@ export async function GET() {
   ]
 };
 
-export const dynamic = 'force-dynamic';
 
-export async function GET() {
-  return NextResponse.json(cmsData);
-}
