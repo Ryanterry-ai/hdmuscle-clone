@@ -45,6 +45,8 @@ function ProductCarousel({ title, products, settings, onAddToCart, viewAllLink }
     }
   };
 
+  if (!products || products.length === 0) return null;
+
   return (
     <section className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4">
@@ -94,15 +96,14 @@ function ProductCarousel({ title, products, settings, onAddToCart, viewAllLink }
 
 function ProductCard({ product, settings, onAddToCart }: { product: Product; settings: any; onAddToCart: (p: Product) => void }) {
   const [isHovered, setIsHovered] = useState(false);
-  const [hoveredImage, setHoveredImage] = useState(0);
 
   const hasMultipleImages = product.images && product.images.length > 1;
 
   return (
     <div 
       className="flex-shrink-0 w-[280px] group"
-      onMouseEnter={() => { setIsHovered(true); setHoveredImage(1); }}
-      onMouseLeave={() => { setIsHovered(false); setHoveredImage(0); }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <Link href={`/products/${product.handle}`}>
         <div className="relative aspect-square bg-gray-100 overflow-hidden mb-3">
@@ -160,6 +161,7 @@ export default function HomePage() {
 
   const bestSellers = products.slice(0, 8);
   const newProducts = products.slice(8, 16);
+  const apparelProducts = products.slice(16, 24);
 
   if (loading) {
     return (
@@ -184,6 +186,19 @@ export default function HomePage() {
           <Link href="/collections/best-selling-collection" className="inline-block px-8 py-3 bg-red-600 font-semibold rounded-lg hover:bg-red-700">
             Shop All — Supplements
           </Link>
+        </div>
+      </section>
+
+      <section className="py-8 bg-black text-white">
+        <div className="max-w-7xl mx-auto px-4 flex items-center justify-center gap-8 overflow-x-auto">
+          {['GMP Certified', 'Free Shipping $50+', '30-Day Returns', 'Expert Support'].map((text, i) => (
+            <div key={i} className="flex items-center gap-2 whitespace-nowrap">
+              <svg className="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              <span className="text-sm font-medium">{text}</span>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -219,6 +234,31 @@ export default function HomePage() {
         viewAllLink="/collections/new-featured"
       />
 
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
+          <div className="order-2 md:order-1">
+            <h2 className="text-3xl font-bold mb-4">HD Muscle is a family-built company.</h2>
+            <p className="text-gray-600 mb-4">
+              Founded by fitness enthusiasts who demanded more from their supplements, HD Muscle creates products that actually work. 
+              Every formula is rigorously tested and backed by science to help you reach your fitness goals.
+            </p>
+            <p className="text-gray-600 mb-6">
+              We're not just another supplement brand. We're a community of athletes, lifters, and fitness warriors committed to excellence.
+            </p>
+            <Link href="/pages/our-story" className="text-red-600 font-medium hover:underline">
+              Learn More About Us →
+            </Link>
+          </div>
+          <div className="order-1 md:order-2 bg-gray-200 rounded-xl overflow-hidden aspect-video">
+            <img 
+              src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800" 
+              alt="HD Muscle Story" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">REAL PEOPLE, REAL REVIEWS</h2>
@@ -238,6 +278,57 @@ export default function HomePage() {
               <p className="text-gray-600 mb-4">"The best value for money. Real results I've seen."</p>
               <p className="font-semibold">- Sarah K.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative bg-gray-900 text-white py-32 overflow-hidden">
+        <video 
+          className="absolute inset-0 w-full h-full object-cover opacity-50"
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+        >
+          <source src="https://videos.pexels.com/video-files/4761437/4761437-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+        </video>
+        <div className="relative max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">TRAIN LIKE A PRO</h2>
+          <p className="text-xl text-gray-300 mb-8">Join thousands of athletes who trust HD Muscle</p>
+          <Link href="/collections/best-selling-collection" className="inline-block px-8 py-3 bg-red-600 font-semibold rounded-lg hover:bg-red-700">
+            Shop Now
+          </Link>
+        </div>
+      </section>
+
+      <ProductCarousel 
+        title="NEW ARRIVALS — APPAREL + ACCESSORIES" 
+        products={apparelProducts} 
+        settings={settings} 
+        onAddToCart={handleAddToCart}
+        viewAllLink="/collections/new-25"
+      />
+
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8">FREQUENTLY ASKED QUESTIONS</h2>
+          <div className="max-w-2xl mx-auto space-y-4">
+            {[
+              { q: "How long does shipping take?", a: "Free shipping on orders over $50. Standard shipping takes 3-5 business days." },
+              { q: "What's your return policy?", a: "We offer a 30-day money-back guarantee on all products." },
+              { q: "Are your products GMP certified?", a: "Yes, all our products are manufactured in GMP certified facilities." },
+              { q: "Do you ship internationally?", a: "Yes, we ship to over 50 countries worldwide." }
+            ].map((faq, i) => (
+              <details key={i} className="group bg-gray-50 rounded-lg">
+                <summary className="flex items-center justify-between p-4 cursor-pointer font-medium">
+                  {faq.q}
+                  <svg className="w-5 h-5 transition group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <p className="px-4 pb-4 text-gray-600">{faq.a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
