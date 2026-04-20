@@ -97,7 +97,7 @@ function CategoryTiles({ categories }: { categories?: { title: string; image: st
   );
 }
 
-function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: (p: Product) => void }) {
+function ProductCard({ product, onAddToCart, currencySymbol = '₹' }: { product: Product; onAddToCart: (p: Product) => void; currencySymbol?: string }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -128,7 +128,7 @@ function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: 
         </div>
         <div className="p-4">
           <h3 className="font-semibold text-sm uppercase tracking-wide mb-2 line-clamp-2">{product.title}</h3>
-          <p className="text-base font-bold">${Number(product.price).toFixed(2)}</p>
+          <p className="text-base font-bold">{currencySymbol}{Number(product.price).toLocaleString('en-IN')}</p>
         </div>
       </Link>
       <div className="px-4 pb-4">
@@ -143,7 +143,7 @@ function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: 
   );
 }
 
-function ProductSection({ title, products, onAddToCart, viewAllLink }: { title: string; products: Product[]; onAddToCart: (p: Product) => void; viewAllLink: string }) {
+function ProductSection({ title, products, onAddToCart, viewAllLink, currencySymbol = '₹' }: { title: string; products: Product[]; onAddToCart: (p: Product) => void; viewAllLink: string; currencySymbol?: string }) {
   if (!products || products.length === 0) return null;
 
   return (
@@ -157,7 +157,7 @@ function ProductSection({ title, products, onAddToCart, viewAllLink }: { title: 
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-1">
           {products.slice(0, 10).map((product) => (
-            <ProductCard key={product.id} product={product} onAddToCart={onAddToCart} />
+            <ProductCard key={product.id} product={product} onAddToCart={onAddToCart} currencySymbol={currencySymbol} />
           ))}
         </div>
       </div>
@@ -276,6 +276,12 @@ function Footer({ settings, navigation }: { settings?: any; navigation?: any }) 
               TT
             </a>
           </div>
+          <div className="mt-6">
+            <h4 className="text-xs font-bold uppercase tracking-[2px] mb-3">Country</h4>
+            <select className="bg-black text-gray-400 text-sm px-3 py-2 border border-gray-700 w-full">
+              <option>{settings?.footer?.default_country || 'India'}</option>
+            </select>
+          </div>
         </div>
         {(navigation?.footer_main || []).map((section: any, idx: number) => (
           <div key={idx}>
@@ -352,11 +358,12 @@ export default function HomePage() {
   const faq = homepage?.faq || {};
   const guarantee = homepage?.guarantee || {};
   const newsletter = homepage?.newsletter || {};
+  const currencySymbol = settings?.symbol || '₹';
 
   return (
     <div className="min-h-screen bg-white">
       <AnnouncementBar 
-        text={settings?.announcement_bar?.text} 
+        text={settings?.announcement_bar?.text?.replace('₹9999', '₹9,999')} 
         link={settings?.announcement_bar?.link}
         linkText={settings?.announcement_bar?.link_text}
       />
@@ -398,6 +405,7 @@ export default function HomePage() {
           products={bestSellers} 
           onAddToCart={handleAddToCart}
           viewAllLink={homepage?.best_sellers?.link || '/collections/best-selling-collection'}
+          currencySymbol={currencySymbol}
         />
       </div>
 
@@ -406,6 +414,7 @@ export default function HomePage() {
         products={newProducts} 
         onAddToCart={handleAddToCart}
         viewAllLink={homepage?.new_products?.link || '/collections/new-featured'}
+        currencySymbol={currencySymbol}
       />
 
       <div id="about">
@@ -423,6 +432,7 @@ export default function HomePage() {
         products={apparelProducts} 
         onAddToCart={handleAddToCart}
         viewAllLink={homepage?.apparel?.link || '/collections/apparel'}
+        currencySymbol={currencySymbol}
       />
 
       <FAQSection title={faq.title} questions={faq.questions} />

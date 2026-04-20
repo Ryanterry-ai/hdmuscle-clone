@@ -4,13 +4,13 @@ const cmsData = {
   settings: {
     store_name: "HD MUSCLE",
     brand_name: "HD Muscle",
-    currency: "USD",
-    locale: "en-US",
-    symbol: "$",
+    currency: "INR",
+    locale: "en-IN",
+    symbol: "₹",
     logo_text: "HD MUSCLE",
     announcement_bar: {
       enabled: true,
-      text: "FREE SHIPPING ON ORDERS OVER $99 • 30-DAY MONEY BACK GUARANTEE •",
+      text: "FREE SHIPPING ON ORDERS OVER ₹9999 • 30-DAY MONEY BACK GUARANTEE •",
       link: "/collections/best-selling-collection",
       link_text: "SHOP NOW"
     },
@@ -22,7 +22,8 @@ const cmsData = {
     },
     footer: {
       copyright_text: "© 2024 HD MUSCLE. All rights reserved. Integrity is everything.",
-      country_options: ["United States", "Canada", "United Kingdom", "Australia", "India"]
+      country_options: ["India"],
+      default_country: "India"
     },
     contact: {
       email: "support@hdmuscle.com",
@@ -172,7 +173,7 @@ const cmsData = {
   products: [
     { 
       id: "1", handle: "prohd-whey", title: "ProHD Whey Protein Isolate", 
-      price: "79.99", compare_at_price: null,
+      price: "6639", compare_at_price: null,
       description: "Premium whey protein isolate for muscle building. 25g protein per serving.",
       short_description: "25g Protein per serving",
       images: [{ url: "/prohd_chocolate_front-1cca5974cf27.png" }],
@@ -181,7 +182,7 @@ const cmsData = {
     },
     { 
       id: "2", handle: "prehd-essential", title: "PreHD Essential", 
-      price: "39.99", compare_at_price: null,
+      price: "3319", compare_at_price: null,
       description: "Essential pre-workout for energy and focus.",
       short_description: "Energy & Focus",
       images: [{ url: "/prehd-essential-blue-rasberry-eb39ae9ce7f5.png" }],
@@ -190,7 +191,7 @@ const cmsData = {
     },
     { 
       id: "3", handle: "pumphd", title: "PumpHD", 
-      price: "49.99", compare_at_price: null,
+      price: "4149", compare_at_price: null,
       description: "Maximum pump and vascularity.",
       short_description: "Maximum Pump",
       images: [{ url: "/pumphd-rainbow-strips-ead9f7c7e482.png" }],
@@ -199,7 +200,7 @@ const cmsData = {
     },
     { 
       id: "4", handle: "hydrahd", title: "HydraHD", 
-      price: "44.99", compare_at_price: null,
+      price: "3739", compare_at_price: null,
       description: "Advanced hydration formula.",
       short_description: "Advanced Hydration",
       images: [{ url: "/hydrahd-tangerine-us-16303cf76229.png" }],
@@ -208,7 +209,7 @@ const cmsData = {
     },
     { 
       id: "5", handle: "stimhd", title: "StimHD", 
-      price: "54.99", compare_at_price: null,
+      price: "4569", compare_at_price: null,
       description: "Maximum stimulant pre-workout.",
       short_description: "Maximum Stimulant",
       images: [{ url: "/stimhd_9d7400de-4473-4af8-bd68-902c6689781d-fdd59a2755d1.png" }],
@@ -217,7 +218,7 @@ const cmsData = {
     },
     { 
       id: "6", handle: "intrahd", title: "IntraHD", 
-      price: "39.99", compare_at_price: null,
+      price: "3319", compare_at_price: null,
       description: "Intra-workout energy and endurance.",
       short_description: "Energy & Endurance",
       images: [{ url: "/intrahd_watermelon_f38c042d-708c-472a-a828-b329ac7baf6b-ca4066edb12c.png" }],
@@ -226,7 +227,7 @@ const cmsData = {
     },
     { 
       id: "7", handle: "sleephd", title: "SleepHD", 
-      price: "49.99", compare_at_price: null,
+      price: "4149", compare_at_price: null,
       description: "Deep sleep recovery formula.",
       short_description: "Deep Sleep Recovery",
       images: [{ url: "/sleephd_web1-d6d6eabbf104.png" }],
@@ -235,7 +236,7 @@ const cmsData = {
     },
     { 
       id: "8", handle: "greenshd", title: "GreensHD", 
-      price: "59.99", compare_at_price: null,
+      price: "4979", compare_at_price: null,
       description: "Daily greens and superfoods.",
       short_description: "Daily Greens",
       images: [{ url: "/greenshd-citrus-us-b1d785092f3e.jpg" }],
@@ -244,7 +245,7 @@ const cmsData = {
     },
     { 
       id: "9", handle: "burnhd", title: "BurnHD", 
-      price: "49.99", compare_at_price: null,
+      price: "4149", compare_at_price: null,
       description: "Thermogenic fat burner.",
       short_description: "Fat Burner",
       images: [{ url: "/burnhd_front-b81b8d88cde6.png" }],
@@ -253,7 +254,7 @@ const cmsData = {
     },
     { 
       id: "10", handle: "creahd", title: "CreaHD", 
-      price: "34.99", compare_at_price: null,
+      price: "2904", compare_at_price: null,
       description: "Creatine monohydrate for strength.",
       short_description: "Creatine Monohydrate",
       images: [{ url: "/creahd-53c587c6f495.jpg" }],
@@ -262,7 +263,7 @@ const cmsData = {
     },
     { 
       id: "11", handle: "multihd", title: "MultiHD", 
-      price: "54.99", compare_at_price: null,
+      price: "4569", compare_at_price: null,
       description: "Daily multivitamin.",
       short_description: "Daily Multivitamin",
       images: [{ url: "/multi-hd-us-web-11980b086482.jpg" }],
@@ -271,7 +272,7 @@ const cmsData = {
     },
     { 
       id: "12", handle: "glutahd", title: "GlutaHD", 
-      price: "44.99", compare_at_price: null,
+      price: "3739", compare_at_price: null,
       description: "Glutamine for recovery.",
       short_description: "Glutamine Recovery",
       images: [{ url: "/glutahd-front-black-lid-0e6436cfe231.jpg" }],
@@ -280,7 +281,7 @@ const cmsData = {
     },
     { 
       id: "13", handle: "prehd-elite", title: "PreHD Elite", 
-      price: "64.99", compare_at_price: null,
+      price: "5394", compare_at_price: null,
       description: "Elite pre-workout formula.",
       short_description: "Elite Formula",
       images: [{ url: "/prehd-elite_tangerine-can-v2-15e1790f303a.jpg" }],
@@ -289,7 +290,7 @@ const cmsData = {
     },
     { 
       id: "14", handle: "eaahd", title: "EAAHD", 
-      price: "44.99", compare_at_price: null,
+      price: "3739", compare_at_price: null,
       description: "Essential amino acids.",
       short_description: "Essential Amino Acids",
       images: [{ url: "/eaahd_front_unflavored-black-lid-b9e66b2a11b7.png" }],
@@ -298,7 +299,7 @@ const cmsData = {
     },
     { 
       id: "15", handle: "collagenhd", title: "CollagenHD", 
-      price: "49.99", compare_at_price: null,
+      price: "4149", compare_at_price: null,
       description: "Collagen peptides for joints.",
       short_description: "Joint Support",
       images: [{ url: "/collagenhd_front_unflavored-us-6c934157a97a.jpg" }],
@@ -307,7 +308,7 @@ const cmsData = {
     },
     { 
       id: "16", handle: "hd-heritage-hoodie", title: "HD Heritage Hoodie", 
-      price: "69.99", compare_at_price: null,
+      price: "5809", compare_at_price: null,
       description: "Heavyweight oversized hoodie.",
       short_description: "Heavyweight Oversized",
       images: [{ url: "/hd-heritage-hoodie-black-front-d19ea4b2ddab.jpg" }],
@@ -316,7 +317,7 @@ const cmsData = {
     },
     { 
       id: "17", handle: "hd-archive-hat", title: "HD Archive Hat", 
-      price: "34.99", compare_at_price: null,
+      price: "2904", compare_at_price: null,
       description: "Classic dad cap.",
       short_description: "Classic Dad Cap",
       images: [{ url: "/hd-archive-hat-2026-black-199357851230.png" }],
@@ -325,7 +326,7 @@ const cmsData = {
     },
     { 
       id: "18", handle: "hd-jersey", title: "HD Jersey", 
-      price: "54.99", compare_at_price: null,
+      price: "4564", compare_at_price: null,
       description: "Performance jersey.",
       short_description: "Performance Jersey",
       images: [{ url: "/hd-jersey-black-front-15e6447e1daf.jpg" }],
@@ -334,7 +335,7 @@ const cmsData = {
     },
     { 
       id: "19", handle: "hd-gothic-tee", title: "HD Gothic Tee", 
-      price: "39.99", compare_at_price: null,
+      price: "3319", compare_at_price: null,
       description: "Premium cotton tee.",
       short_description: "Premium Cotton",
       images: [{ url: "/hd-gothic-black-front-2b467fb27e06.png" }],
@@ -343,7 +344,7 @@ const cmsData = {
     },
     { 
       id: "20", handle: "hd-performa-shaker", title: "HD Performa Shaker", 
-      price: "14.99", compare_at_price: null,
+      price: "1244", compare_at_price: null,
       description: "BPA-free shaker bottle.",
       short_description: "BPA-Free",
       images: [{ url: "/1800x1800-hd-performa-shaker-black-354aba4223e2.png" }],
