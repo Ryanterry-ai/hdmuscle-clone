@@ -248,10 +248,12 @@ export async function GET() {
   try {
     const [settingsRes, productsRes] = await Promise.all([
       fetch(`${CMS_API}/storefront/published`, {
-        headers: { 'Content-Type': 'application/json', 'Cookie': 'md_session=public' }
+        headers: { 'Content-Type': 'application/json', 'Cookie': 'md_session=public' },
+        cache: 'no-store'
       }),
       fetch(`${CMS_API}/products`, {
-        headers: { 'Content-Type': 'application/json', 'Cookie': 'md_session=public' }
+        headers: { 'Content-Type': 'application/json', 'Cookie': 'md_session=public' },
+        cache: 'no-store'
       })
     ]);
     
@@ -260,7 +262,11 @@ export async function GET() {
     const settingsData = await settingsRes.json();
     const productsData = await productsRes.json();
     
-    return NextResponse.json(transformToInternalFormat(settingsData, productsData));
+    const response = NextResponse.json(transformToInternalFormat(settingsData, productsData));
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    response.headers.set('Pragma', 'no-cache');
+    response.headers.set('Expires', '0');
+    return response;
   } catch {
     return NextResponse.json({ error: 'Failed to fetch CMS' }, { status: 502 });
   }
