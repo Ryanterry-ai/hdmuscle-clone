@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Header from '../../header';
@@ -51,12 +51,20 @@ export default function ProductPage() {
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-white">
+        <div className="bg-black text-white py-2.5">
+          <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-center">
+            <p className="text-[10px] md:text-xs font-semibold uppercase tracking-[1px] md:tracking-[2px] text-center whitespace-nowrap">
+              FREE SHIPPING ON ORDERS OVER $99 • 30-DAY MONEY BACK GUARANTEE •{' '}
+              <Link href="/collections/best-selling-collection" className="underline hover:text-gray-300">SHOP NOW</Link>
+            </p>
+          </div>
+        </div>
         <Header />
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
-            <Link href="/" className="text-purple-600 hover:underline">← Go Home</Link>
+            <h1 className="text-2xl font-bold mb-4 uppercase tracking-wider">Product Not Found</h1>
+            <Link href="/" className="text-black hover:underline">← Go Home</Link>
           </div>
         </div>
       </div>
@@ -64,11 +72,19 @@ export default function ProductPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
+      <div className="bg-black text-white py-2.5">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-center">
+          <p className="text-[10px] md:text-xs font-semibold uppercase tracking-[1px] md:tracking-[2px] text-center whitespace-nowrap">
+            FREE SHIPPING ON ORDERS OVER $99 • 30-DAY MONEY BACK GUARANTEE •{' '}
+            <Link href="/collections/best-selling-collection" className="underline hover:text-gray-300">SHOP NOW</Link>
+          </p>
+        </div>
+      </div>
       <Header />
-      <main className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="aspect-square bg-gray-200">
+      <main className="max-w-[1200px] mx-auto px-4 md:px-8 py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+          <div className="aspect-square bg-gray-100 border border-black">
             {product.images?.[0]?.url ? (
               <img src={product.images[0].url} alt={product.title} className="w-full h-full object-cover" />
             ) : (
@@ -77,13 +93,13 @@ export default function ProductPage() {
           </div>
           <div>
             {product.badge && (
-              <span className="inline-block bg-pink-500 text-white text-xs font-bold px-2 py-1 uppercase mb-4">
+              <span className="inline-block bg-black text-white text-xs font-bold px-2 py-1 uppercase tracking-wider mb-4">
                 {product.badge}
               </span>
             )}
-            <h1 className="text-3xl font-bold uppercase tracking-[2px] mb-4">{product.title}</h1>
-            <p className="text-2xl text-purple-600 font-bold mb-6">${Number(product.price).toFixed(2)}</p>
-            <p className="text-gray-600 mb-6">{product.description}</p>
+            <h1 className="text-2xl md:text-3xl font-bold uppercase tracking-[2px] mb-4">{product.title}</h1>
+            <p className="text-2xl font-bold mb-6">${Number(product.price).toFixed(2)}</p>
+            <p className="text-gray-600 mb-8 leading-relaxed">{product.description}</p>
             {product.inventory > 0 ? (
               <p className="text-sm text-green-600 mb-8">✓ In Stock</p>
             ) : (
@@ -97,7 +113,7 @@ export default function ProductPage() {
                   ? 'bg-green-600' 
                   : product.inventory <= 0 
                     ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-black hover:bg-purple-600'
+                    : 'bg-black hover:bg-gray-800'
               }`}
             >
               {added ? '✓ Added to Cart!' : product.inventory <= 0 ? 'Out of Stock' : 'Add to Cart'}
@@ -105,6 +121,11 @@ export default function ProductPage() {
           </div>
         </div>
       </main>
+      <footer className="bg-black text-white py-12 md:py-16">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8 text-center">
+          <p className="text-gray-500 text-sm">© 2024 HD MUSCLE. All rights reserved. Integrity is everything.</p>
+        </div>
+      </footer>
     </div>
   );
 }

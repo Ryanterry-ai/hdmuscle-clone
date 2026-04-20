@@ -1,10 +1,16 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Header from './header';
 import { useCart } from './cart-context';
-import { formatCurrency } from './lib/cms';
+
+interface CMSData {
+  settings: any;
+  homepage: any;
+  products: any[];
+  navigation: any;
+}
 
 interface Product {
   id: string;
@@ -16,23 +22,28 @@ interface Product {
   is_active: boolean;
 }
 
-function AnnouncementBar() {
+function AnnouncementBar({ text, link, linkText }: { text?: string; link?: string; linkText?: string }) {
   return (
-    <div className="bg-black text-white py-2.5">
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-center">
-        <p className="text-[10px] md:text-xs font-semibold uppercase tracking-[1px] md:tracking-[2px] text-center whitespace-nowrap">
-          FREE SHIPPING ON ORDERS OVER $99 • 30-DAY MONEY BACK GUARANTEE •{' '}
-          <Link href="/collections/best-selling-collection" className="underline hover:text-gray-300">
-            SHOP NOW
-          </Link>
+    <div className="announcement-bar">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8">
+        <p className="text-[10px] md:text-xs font-semibold uppercase tracking-[1px] md:tracking-[2px] text-center">
+          {text || 'FREE SHIPPING ON ORDERS OVER $99 • 30-DAY MONEY BACK GUARANTEE •'}
+          {link && linkText && (
+            <>
+              {' '}
+              <Link href={link} className="underline hover:text-gray-300">
+                {linkText}
+              </Link>
+            </>
+          )}
         </p>
       </div>
     </div>
   );
 }
 
-function QualityBadges() {
-  const badges = [
+function QualityBadges({ badges }: { badges?: { icon: string; text: string }[] }) {
+  const defaultBadges = [
     { icon: '🧪', text: 'Heavy Metals Tested' },
     { icon: '🎨', text: 'No Artificial Dyes' },
     { icon: '✅', text: '3rd Party Tested' },
@@ -41,10 +52,10 @@ function QualityBadges() {
   ];
 
   return (
-    <section className="py-6 md:py-8 bg-gray-50 border-b">
+    <section className="py-6 md:py-8 bg-gray-50 border-b border-gray-200">
       <div className="max-w-[1400px] mx-auto px-4 md:px-8">
-        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8">
-          {badges.map((badge, i) => (
+        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+          {(badges || defaultBadges).map((badge, i) => (
             <div key={i} className="flex items-center gap-2 text-xs md:text-sm text-gray-600 whitespace-nowrap">
               <span className="text-base md:text-lg">{badge.icon}</span>
               <span className="font-medium">{badge.text}</span>
@@ -56,27 +67,27 @@ function QualityBadges() {
   );
 }
 
-function CategoryTiles() {
-  const categories = [
-    { title: 'Health + Wellness', image: '/greenshd-citrus-us-b1d785092f3e.jpg' },
-    { title: 'Pre-Workout', image: '/pumphd-rainbow-strips-ead9f7c7e482.png' },
-    { title: 'Intra-Workout', image: '/intrahd_watermelon_f38c042d-708c-472a-a828-b329ac7baf6b-ca4066edb12c.png' },
-    { title: 'Post-Workout', image: '/creahd-53c587c6f495.jpg' },
+function CategoryTiles({ categories }: { categories?: { title: string; image: string; link: string }[] }) {
+  const defaultCategories = [
+    { title: 'Health + Wellness', image: '/greenshd-citrus-us-b1d785092f3e.jpg', link: '/collections/health-wellness' },
+    { title: 'Pre-Workout', image: '/pumphd-rainbow-strips-ead9f7c7e482.png', link: '/collections/pre-workouts' },
+    { title: 'Intra-Workout', image: '/intrahd_watermelon_f38c042d-708c-472a-a828-b329ac7baf6b-ca4066edb12c.png', link: '/collections/intra-workouts' },
+    { title: 'Post-Workout', image: '/creahd-53c587c6f495.jpg', link: '/collections/post-workout' },
   ];
 
   return (
     <section className="py-12 md:py-16 bg-white">
       <div className="max-w-[1400px] mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
-          {categories.map((cat, i) => (
-            <Link key={i} href={`/collections/${cat.title.toLowerCase().replace(/[^a-z]/g, '-')}`} className="group relative aspect-square overflow-hidden">
+        <div className="grid grid-cols-4 gap-1">
+          {(categories || defaultCategories).map((cat, i) => (
+            <Link key={i} href={cat.link} className="group relative aspect-square overflow-hidden">
               <img 
                 src={cat.image} 
                 alt={cat.title} 
                 className="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <h3 className="text-white font-bold text-xs md:text-lg uppercase tracking-[2px] md:tracking-[3px]">{cat.title}</h3>
+                <h3 className="text-white font-bold text-xs md:text-sm uppercase tracking-[2px] md:tracking-[3px]">{cat.title}</h3>
               </div>
             </Link>
           ))}
@@ -86,12 +97,12 @@ function CategoryTiles() {
   );
 }
 
-function ProductCard({ product, settings, onAddToCart }: { product: Product; settings: any; onAddToCart: (p: Product) => void }) {
+function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: (p: Product) => void }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div 
-      className="bg-white border border-gray-200 hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
+      className="bg-white border border-gray-200 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -110,22 +121,20 @@ function ProductCard({ product, settings, onAddToCart }: { product: Product; set
             />
           )}
           {product.badge && (
-            <span className="absolute top-3 left-3 bg-pink-500 text-white text-xs font-bold px-2 py-1 uppercase">
+            <span className="absolute top-3 left-3 bg-black text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider">
               {product.badge}
             </span>
           )}
         </div>
         <div className="p-4">
-          <h3 className="font-semibold mb-1 line-clamp-2">{product.title}</h3>
-          <p className="text-xl font-bold text-purple-600">
-            ${Number(product.price).toFixed(2)}
-          </p>
+          <h3 className="font-semibold text-sm uppercase tracking-wide mb-2 line-clamp-2">{product.title}</h3>
+          <p className="text-base font-bold">${Number(product.price).toFixed(2)}</p>
         </div>
       </Link>
       <div className="px-4 pb-4">
         <button 
           onClick={() => onAddToCart(product)}
-          className="w-full py-3 bg-black text-white text-xs font-bold uppercase tracking-[1.5px] hover:bg-purple-600 transition"
+          className="w-full py-3 bg-black text-white text-xs font-bold uppercase tracking-[1.5px] hover:bg-gray-800 transition"
         >
           Add to Cart
         </button>
@@ -134,21 +143,21 @@ function ProductCard({ product, settings, onAddToCart }: { product: Product; set
   );
 }
 
-function ProductSection({ title, products, settings, onAddToCart, viewAllLink }: { title: string; products: Product[]; settings: any; onAddToCart: (p: Product) => void; viewAllLink: string }) {
+function ProductSection({ title, products, onAddToCart, viewAllLink }: { title: string; products: Product[]; onAddToCart: (p: Product) => void; viewAllLink: string }) {
   if (!products || products.length === 0) return null;
 
   return (
     <section className="py-12 md:py-16 bg-gray-50">
       <div className="max-w-[1400px] mx-auto px-4 md:px-8">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6 md:mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[2px] md:tracking-[3px]">{title}</h2>
-          <Link href={viewAllLink} className="text-sm font-semibold uppercase tracking-[1px] text-gray-500 flex items-center gap-2 hover:text-black">
-            View All <i className="fas fa-arrow-right text-xs"></i>
+        <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
+          <h2 className="text-xl md:text-2xl font-bold uppercase tracking-[2px] md:tracking-[3px]">{title}</h2>
+          <Link href={viewAllLink} className="text-xs font-bold uppercase tracking-[1px] text-gray-500 flex items-center gap-2 hover:text-black">
+            View All <span>→</span>
           </Link>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-1">
           {products.slice(0, 10).map((product) => (
-            <ProductCard key={product.id} product={product} settings={settings} onAddToCart={onAddToCart} />
+            <ProductCard key={product.id} product={product} onAddToCart={onAddToCart} />
           ))}
         </div>
       </div>
@@ -156,51 +165,44 @@ function ProductSection({ title, products, settings, onAddToCart, viewAllLink }:
   );
 }
 
-function BrandStory() {
+function BrandStory({ data }: { data?: { label?: string; heading?: string; content?: string; quote?: string; image?: string } }) {
   return (
     <section className="grid md:grid-cols-2 min-h-[400px] md:min-h-[500px]">
       <div className="bg-gray-900 relative overflow-hidden min-h-[250px] md:min-h-full">
         <img 
-          src="/hdmusclebrand2-1775078638960-180ba2bc3e7b.webp" 
+          src={data?.image || "/hdmusclebrand2-1775078638960-180ba2bc3e7b.webp"} 
           alt="HD Muscle Story" 
           className="absolute inset-0 w-full h-full object-cover"
         />
       </div>
       <div className="bg-black text-white flex flex-col justify-center px-8 md:px-12 py-12 md:py-16">
-        <span className="text-purple-500 text-xs font-bold uppercase tracking-[3px] mb-4">Our Mission</span>
-        <h2 className="text-2xl md:text-4xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-4 md:mb-6">Built By Athletes, For Athletes</h2>
+        <span className="text-white text-xs font-bold uppercase tracking-[3px] mb-4">{data?.label || 'Our Mission'}</span>
+        <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-4 md:mb-6">{data?.heading || 'Built By Athletes, For Athletes'}</h2>
         <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-4">
-          At HD Muscle, we believe in the power of integrity. Every product we create is designed with one goal in mind: to help you reach your full potential.
+          {data?.content || 'At HD Muscle, we believe in the power of integrity. Every product we create is designed with one goal in mind: to help you reach your full potential.'}
         </p>
-        <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-6 md:mb-8">Integrity is everything.</p>
-        <span className="text-gray-500 text-lg md:text-2xl italic">— The HD Muscle Team</span>
+        <span className="text-gray-500 text-lg md:text-2xl italic">{data?.quote || '— The HD Muscle Team'}</span>
       </div>
     </section>
   );
 }
 
-function Reviews() {
-  const reviews = [
-    { text: "THIS ONE WORKS! Almost works too good! I have never had a sports supplement work so well on my ability to not only fall asleep but literally sleep like a complete rock.", author: "Whitney L.", stars: 5 },
-    { text: "PreHD Ultra is my new gym bag essential, amazing pump, clean/non jittery energy, awesome taste, and properly dosed ingredients!", author: "Greg D.", stars: 5 },
-    { text: "All the products are top quality, everything tastes AMAZING! Your health is an investment, and if you invest in quality products your body will thank you!", author: "Christina D.", stars: 5 },
-  ];
-
+function Reviews({ title, subtitle, reviews }: { title?: string; subtitle?: string; reviews?: { text: string; author: string; stars: number }[] }) {
   return (
     <section className="py-12 md:py-16 bg-white">
       <div className="max-w-[1400px] mx-auto px-4 md:px-8">
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-2 md:mb-3">Real People, Real Reviews</h2>
-          <p className="text-gray-500 text-sm md:text-base">See what our customers are saying</p>
+          <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-2 md:mb-3">{title || 'Real People, Real Reviews'}</h2>
+          <p className="text-gray-500 text-sm md:text-base">{subtitle || 'See what our customers are saying'}</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-          {reviews.map((review, i) => (
-            <div key={i} className="bg-gray-50 p-6 md:p-8">
-              <div className="text-yellow-400 text-sm md:text-lg mb-3 md:4">
-                {[...Array(review.stars)].map((_, j) => <i key={j} className="fas fa-star mr-0.5"></i>)}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
+          {(reviews || []).map((review, i) => (
+            <div key={i} className="bg-gray-50 p-6 md:p-8 border border-gray-200">
+              <div className="text-black text-sm md:text-base mb-3 md:4">
+                {[...Array(review.stars)].map((_, j) => <span key={j} className="mr-0.5">★</span>)}
               </div>
-              <p className="text-gray-700 text-sm md:text-base leading-relaxed mb-4 md:mb-5">"{review.text}"</p>
-              <p className="font-bold text-sm">— {review.author}</p>
+              <p className="text-gray-800 text-sm md:text-base leading-relaxed mb-4 md:mb-5">"{review.text}"</p>
+              <p className="font-bold text-sm uppercase tracking-wide">— {review.author}</p>
             </div>
           ))}
         </div>
@@ -209,26 +211,19 @@ function Reviews() {
   );
 }
 
-function FAQSection() {
-  const faqs = [
-    { q: "How long does shipping take?", a: "Free shipping on orders over $99. Standard shipping takes 3-5 business days." },
-    { q: "What's your return policy?", a: "We offer a 30-day money-back guarantee on all products." },
-    { q: "Are your products GMP certified?", a: "Yes, all our products are manufactured in FDA-registered GMP certified facilities." },
-    { q: "Do you ship internationally?", a: "Yes, we ship to over 50 countries worldwide." },
-  ];
-
+function FAQSection({ title, questions }: { title?: string; questions?: { question: string; answer: string }[] }) {
   return (
     <section className="py-12 md:py-16 bg-gray-50">
       <div className="max-w-[800px] mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-10 uppercase tracking-[2px] md:tracking-[3px]">Frequently Asked Questions</h2>
-        <div className="space-y-3">
-          {faqs.map((faq, i) => (
-            <details key={i} className="group bg-white border border-gray-200">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-10 uppercase tracking-[2px] md:tracking-[3px]">{title || 'Frequently Asked Questions'}</h2>
+        <div className="space-y-0">
+          {(questions || []).map((faq, i) => (
+            <details key={i} className="group bg-white border border-black">
               <summary className="flex items-center justify-between p-4 cursor-pointer font-semibold list-none text-sm md:text-base">
-                {faq.q}
-                <i className="fas fa-chevron-down text-xs transition group-open:rotate-180"></i>
+                {faq.question}
+                <span className="text-lg transition group-open:rotate-45">+</span>
               </summary>
-              <p className="px-4 pb-4 text-gray-600 text-sm md:text-base">{faq.a}</p>
+              <p className="px-4 pb-4 text-gray-600 text-sm md:text-base">{faq.answer}</p>
             </details>
           ))}
         </div>
@@ -237,20 +232,20 @@ function FAQSection() {
   );
 }
 
-function Newsletter() {
+function Newsletter({ heading, text, placeholder, button }: { heading?: string; text?: string; placeholder?: string; button?: string }) {
   return (
     <section className="py-12 md:py-16 bg-black text-white">
       <div className="max-w-[600px] mx-auto px-4 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-3 md:mb-4">Stay Updated</h2>
-        <p className="text-gray-400 mb-5 md:mb-6 text-sm md:text-base">Subscribe for exclusive offers and new product launches</p>
-        <form className="flex flex-col sm:flex-row gap-3">
+        <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-3 md:mb-4">{heading || 'Stay Updated'}</h2>
+        <p className="text-gray-400 mb-5 md:mb-6 text-sm md:text-base">{text || 'Subscribe for exclusive offers and new product launches'}</p>
+        <form className="flex">
           <input 
             type="email" 
-            placeholder="Enter your email" 
-            className="flex-1 px-4 py-3 bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-purple-500"
+            placeholder={placeholder || 'Enter your email'} 
+            className="flex-1 px-4 py-3 bg-black text-white border border-gray-700 focus:outline-none focus:border-white"
           />
-          <button className="px-6 md:px-8 py-3 bg-purple-600 font-bold uppercase tracking-[1px] hover:bg-purple-700 transition">
-            Subscribe
+          <button className="px-6 md:px-8 py-3 bg-white text-black text-xs font-bold uppercase tracking-[1px] hover:bg-gray-200 transition">
+            {button || 'Subscribe'}
           </button>
         </form>
       </div>
@@ -258,205 +253,197 @@ function Newsletter() {
   );
 }
 
-function Footer() {
+function Footer({ settings, navigation }: { settings?: any; navigation?: any }) {
   return (
     <footer className="bg-black text-white py-12 md:py-16">
       <div className="max-w-[1400px] mx-auto px-4 md:px-8 grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8">
         <div className="col-span-2 md:col-span-1">
-          <h3 className="text-xl md:text-2xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-4 md:mb-5">HD MUSCLE</h3>
+          <h3 className="text-lg md:text-xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-4 md:mb-5">{settings?.store_name || 'HD MUSCLE'}</h3>
           <p className="text-gray-400 text-sm leading-relaxed mb-5 md:mb-6">
             Premium sports nutrition supplements designed for athletes who demand more.
           </p>
           <div className="flex gap-3">
-            <a href="https://instagram.com/hd.muscle" className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:bg-purple-600 hover:border-purple-600 transition">
-              <i className="fab fa-instagram"></i>
+            <a href={settings?.social_links?.instagram || '#'} className="w-9 h-9 border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition text-sm">
+              IG
             </a>
-            <a href="https://facebook.com/hdmuscle" className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:bg-purple-600 hover:border-purple-600 transition">
-              <i className="fab fa-facebook"></i>
+            <a href={settings?.social_links?.facebook || '#'} className="w-9 h-9 border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition text-sm">
+              FB
             </a>
-            <a href="https://youtube.com/hdmuscle" className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:bg-purple-600 hover:border-purple-600 transition">
-              <i className="fab fa-youtube"></i>
+            <a href={settings?.social_links?.youtube || '#'} className="w-9 h-9 border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition text-sm">
+              YT
             </a>
-            <a href="https://tiktok.com/@hdmuscle" className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:bg-purple-600 hover:border-purple-600 transition">
-              <i className="fab fa-tiktok"></i>
+            <a href={settings?.social_links?.tiktok || '#'} className="w-9 h-9 border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition text-sm">
+              TT
             </a>
           </div>
         </div>
-        <div>
-          <h4 className="text-xs font-bold uppercase tracking-[2px] mb-4 md:mb-5">Shop</h4>
-          <ul className="space-y-2 md:space-y-3">
-            <li><Link href="/collections/all" className="text-gray-400 text-sm hover:text-white transition">All Products</Link></li>
-            <li><Link href="/collections/pre-workouts" className="text-gray-400 text-sm hover:text-white transition">Pre-Workout</Link></li>
-            <li><Link href="/collections/proteins" className="text-gray-400 text-sm hover:text-white transition">Protein</Link></li>
-            <li><Link href="/collections/bundles" className="text-gray-400 text-sm hover:text-white transition">Bundles</Link></li>
-            <li><Link href="/collections/apparel" className="text-gray-400 text-sm hover:text-white transition">Apparel</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-xs font-bold uppercase tracking-[2px] mb-4 md:mb-5">Support</h4>
-          <ul className="space-y-2 md:space-y-3">
-            <li><Link href="/pages/faq" className="text-gray-400 text-sm hover:text-white transition">FAQ</Link></li>
-            <li><Link href="/pages/shipping-policy" className="text-gray-400 text-sm hover:text-white transition">Shipping Policy</Link></li>
-            <li><Link href="/pages/refund-policy" className="text-gray-400 text-sm hover:text-white transition">Refund Policy</Link></li>
-            <li><Link href="/pages/privacy-policy" className="text-gray-400 text-sm hover:text-white transition">Privacy Policy</Link></li>
-            <li><Link href="/pages/contact" className="text-gray-400 text-sm hover:text-white transition">Contact Us</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-xs font-bold uppercase tracking-[2px] mb-4 md:mb-5">Company</h4>
-          <ul className="space-y-2 md:space-y-3">
-            <li><Link href="/pages/our-story" className="text-gray-400 text-sm hover:text-white transition">Our Story</Link></li>
-            <li><Link href="/pages/wholesale" className="text-gray-400 text-sm hover:text-white transition">Wholesale</Link></li>
-            <li><Link href="/pages/careers" className="text-gray-400 text-sm hover:text-white transition">Careers</Link></li>
-            <li><Link href="/pages/press" className="text-gray-400 text-sm hover:text-white transition">Press</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-xs font-bold uppercase tracking-[2px] mb-4 md:mb-5">Country</h4>
-          <select className="bg-gray-800 text-gray-400 text-sm px-3 py-2 border border-gray-700 w-full">
-            <option>United States</option>
-            <option>Canada</option>
-            <option>United Kingdom</option>
-            <option>Australia</option>
-            <option>India</option>
-          </select>
-        </div>
+        {(navigation?.footer_main || []).map((section: any, idx: number) => (
+          <div key={idx}>
+            <h4 className="text-xs font-bold uppercase tracking-[2px] mb-4 md:mb-5">{section.title}</h4>
+            <ul className="space-y-2 md:space-y-3">
+              {section.links?.map((link: any, linkIdx: number) => (
+                <li key={linkIdx}><Link href={link.link} className="text-gray-400 text-sm hover:text-white transition">{link.title}</Link></li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
       <div className="max-w-[1400px] mx-auto px-4 md:px-8 mt-10 md:mt-12 pt-8 border-t border-gray-900 text-center">
-        <p className="text-gray-600 text-sm">© 2024 HD MUSCLE. All rights reserved. Integrity is everything.</p>
+        <p className="text-gray-500 text-sm">{settings?.footer?.copyright_text || '© 2024 HD MUSCLE. All rights reserved. Integrity is everything.'}</p>
       </div>
     </footer>
   );
 }
 
-const fallbackProducts: Product[] = [
-  { id: '1', handle: 'prohd-whey', title: 'ProHD Whey Protein Isolate', price: '79.99', images: [{ url: '/prohd_chocolate_front-1cca5974cf27.png' }], badge: 'Best Seller', is_active: true },
-  { id: '2', handle: 'prehd-essential', title: 'PreHD Essential', price: '39.99', images: [{ url: '/prehd-essential-blue-rasberry-eb39ae9ce7f5.png' }], is_active: true },
-  { id: '3', handle: 'pumphd', title: 'PumpHD', price: '49.99', images: [{ url: '/pumphd-rainbow-strips-ead9f7c7e482.png' }], badge: 'New', is_active: true },
-  { id: '4', handle: 'hydrahd', title: 'HydraHD', price: '44.99', images: [{ url: '/hydrahd-tangerine-us-16303cf76229.png' }], is_active: true },
-  { id: '5', handle: 'stimhd', title: 'StimHD', price: '54.99', images: [{ url: '/stimhd_9d7400de-4473-4af8-bd68-902c6689781d-fdd59a2755d1.png' }], is_active: true },
-  { id: '6', handle: 'intrahd', title: 'IntraHD', price: '39.99', images: [{ url: '/intrahd_watermelon_f38c042d-708c-472a-a828-b329ac7baf6b-ca4066edb12c.png' }], is_active: true },
-  { id: '7', handle: 'sleephd', title: 'SleepHD', price: '49.99', images: [{ url: '/sleephd_web1-d6d6eabbf104.png' }], is_active: true },
-  { id: '8', handle: 'greenshd', title: 'GreensHD', price: '59.99', images: [{ url: '/greenshd-citrus-us-b1d785092f3e.jpg' }], is_active: true },
-  { id: '9', handle: 'burnhd', title: 'BurnHD', price: '49.99', images: [{ url: '/burnhd_front-b81b8d88cde6.png' }], is_active: true },
-  { id: '10', handle: 'creahd', title: 'CreaHD', price: '34.99', images: [{ url: '/creahd-53c587c6f495.jpg' }], is_active: true },
-  { id: '11', handle: 'multihd', title: 'MultiHD', price: '54.99', images: [{ url: '/multi-hd-us-web-11980b086482.jpg' }], is_active: true },
-  { id: '12', handle: 'glutahd', title: 'GlutaHD', price: '44.99', images: [{ url: '/glutahd-front-black-lid-0e6436cfe231.jpg' }], is_active: true },
-  { id: '13', handle: 'prehd-elite', title: 'PreHD Elite', price: '64.99', images: [{ url: '/prehd-elite_tangerine-can-v2-15e1790f303a.jpg' }], badge: 'New', is_active: true },
-  { id: '14', handle: 'eaahd', title: 'EAAHD', price: '44.99', images: [{ url: '/eaahd_front_unflavored-black-lid-b9e66b2a11b7.png' }], is_active: true },
-  { id: '15', handle: 'collagenhd', title: 'CollagenHD', price: '49.99', images: [{ url: '/collagenhd_front_unflavored-us-6c934157a97a.jpg' }], is_active: true },
-];
-
-const apparelProducts: Product[] = [
-  { id: '16', handle: 'hd-heritage-hoodie', title: 'HD Heritage Hoodie', price: '69.99', images: [{ url: '/hd-heritage-hoodie-black-front-d19ea4b2ddab.jpg' }], badge: 'New', is_active: true },
-  { id: '17', handle: 'hd-archive-hat', title: 'HD Archive Hat', price: '34.99', images: [{ url: '/hd-archive-hat-2026-black-199357851230.png' }], is_active: true },
-  { id: '18', handle: 'hd-jersey', title: 'HD Jersey', price: '54.99', images: [{ url: '/hd-jersey-black-front-15e6447e1daf.jpg' }], is_active: true },
-  { id: '19', handle: 'hd-gothic-tee', title: 'HD Gothic Tee', price: '39.99', images: [{ url: '/hd-gothic-black-front-2b467fb27e06.png' }], is_active: true },
-  { id: '20', handle: 'hd-performa-shaker', title: 'HD Performa Shaker', price: '14.99', images: [{ url: '/1800x1800-hd-performa-shaker-black-354aba4223e2.png' }], is_active: true },
-];
-
-const defaultSettings = {
-  currency: 'USD',
-  locale: 'en-US',
-  symbol: '$',
-  store_name: 'HD MUSCLE',
-  copyright_text: '© 2024 HD MUSCLE. All rights reserved. Integrity is everything.'
-};
+function getProductsByHandles(products: any[], handles: string[]): Product[] {
+  return handles
+    .map(handle => products.find(p => p.handle === handle))
+    .filter((p): p is Product => p !== undefined && p.is_active)
+    .map(p => ({
+      id: p.id,
+      handle: p.handle,
+      title: p.title,
+      price: p.price,
+      images: p.images,
+      badge: p.badge,
+      is_active: p.is_active
+    }));
+}
 
 export default function HomePage() {
   const { addItem } = useCart();
-  const settings = defaultSettings;
-  const products = fallbackProducts;
-  const collections: any[] = [];
+  const [cmsData, setCmsData] = useState<CMSData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/storefront/published')
+      .then(res => res.json())
+      .then(data => {
+        setCmsData(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  }, []);
 
   const handleAddToCart = (product: Product) => {
     addItem({ id: product.id, title: product.title, price: Number(product.price), image: product.images?.[0]?.url });
   };
 
-  const bestSellers = products.slice(0, 10);
-  const newProducts = products.slice(3, 10);
+  if (loading) {
+    return <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-xl">Loading...</div></div>;
+  }
+
+  const homepage = cmsData?.homepage;
+  const settings = cmsData?.settings;
+  const products = cmsData?.products || [];
+  const navigation = cmsData?.navigation;
+
+  const bestSellers = getProductsByHandles(products, homepage?.best_sellers?.product_handles || []);
+  const newProducts = getProductsByHandles(products, homepage?.new_products?.product_handles || []);
+  const apparelProducts = getProductsByHandles(products, homepage?.apparel?.product_handles || []);
+
+  const hero = homepage?.hero || {};
+  const qualityBadges = homepage?.quality_badges || {};
+  const categoryTiles = homepage?.category_tiles || {};
+  const brandStory = homepage?.brand_story || {};
+  const testimonials = homepage?.testimonials || {};
+  const faq = homepage?.faq || {};
+  const guarantee = homepage?.guarantee || {};
+  const newsletter = homepage?.newsletter || {};
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
-      <AnnouncementBar />
+    <div className="min-h-screen bg-white">
+      <AnnouncementBar 
+        text={settings?.announcement_bar?.text} 
+        link={settings?.announcement_bar?.link}
+        linkText={settings?.announcement_bar?.link_text}
+      />
       <Header />
 
       <section className="relative h-[70vh] md:h-[600px] bg-gray-900 overflow-hidden">
         <img 
-          src="/hdmuscle72-1775078686011-5c8049f904ea.webp" 
+          src={hero.background_image || '/hdmuscle72-1775078686011-5c8049f904ea.webp'} 
           alt="Hero" 
           className="absolute inset-0 w-full h-full object-cover opacity-60"
         />
         <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
           <div className="max-w-[800px]">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-[4px] md:tracking-[6px] mb-4 md:mb-6">
-              Find Your Formula
+              {hero.heading || 'Find Your Formula'}
             </h1>
             <p className="text-base md:text-lg text-gray-200 mb-6 md:mb-10 max-w-[450px] md:max-w-[500px] mx-auto">
-              Premium supplements designed for athletes who demand more. Scientifically formulated to help you reach your peak performance.
+              {hero.subheading || 'Premium supplements designed for athletes who demand more. Scientifically formulated to help you reach your peak performance.'}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
-              <Link href="#products" className="px-8 md:px-10 py-3 md:py-4 bg-white text-black text-sm font-bold uppercase tracking-[2px] hover:bg-purple-600 hover:text-white transition">
-                Shop Now
+              <Link href={hero.cta_primary?.link || '#products'} className="px-8 md:px-10 py-3 md:py-4 bg-white text-black text-xs md:text-sm font-bold uppercase tracking-[2px] hover:bg-gray-200 transition">
+                {hero.cta_primary?.text || 'Shop Now'}
               </Link>
-              <Link href="#about" className="px-8 md:px-10 py-3 md:py-4 border-2 border-white text-white text-sm font-bold uppercase tracking-[2px] hover:bg-white hover:text-black transition">
-                Learn More
+              <Link href={hero.cta_secondary?.link || '#about'} className="px-8 md:px-10 py-3 md:py-4 border-2 border-white text-white text-xs md:text-sm font-bold uppercase tracking-[2px] hover:bg-white hover:text-black transition">
+                {hero.cta_secondary?.text || 'Learn More'}
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      <QualityBadges />
+      <QualityBadges badges={qualityBadges.badges} />
 
-      <CategoryTiles />
+      <CategoryTiles categories={categoryTiles.categories} />
 
       <div id="products">
         <ProductSection 
-          title="Shop Our Best Sellers" 
+          title={homepage?.best_sellers?.title || "Shop Our Best Sellers"} 
           products={bestSellers} 
-          settings={settings} 
           onAddToCart={handleAddToCart}
-          viewAllLink="/collections/best-selling-collection"
+          viewAllLink={homepage?.best_sellers?.link || '/collections/best-selling-collection'}
         />
       </div>
 
       <ProductSection 
-        title="New + Noteworthy" 
+        title={homepage?.new_products?.title || "New + Noteworthy"} 
         products={newProducts} 
-        settings={settings} 
         onAddToCart={handleAddToCart}
-        viewAllLink="/collections/new-featured"
+        viewAllLink={homepage?.new_products?.link || '/collections/new-featured'}
       />
 
       <div id="about">
-        <BrandStory />
+        <BrandStory data={brandStory} />
       </div>
 
-      <Reviews />
-
-      <ProductSection 
-        title="New Arrivals — Apparel + Accessories" 
-        products={apparelProducts} 
-        settings={settings} 
-        onAddToCart={handleAddToCart}
-        viewAllLink="/collections/apparel"
+      <Reviews 
+        title={testimonials.title} 
+        subtitle={testimonials.subtitle} 
+        reviews={testimonials.reviews} 
       />
 
-      <FAQSection />
+      <ProductSection 
+        title={homepage?.apparel?.title || "New Arrivals — Apparel + Accessories"} 
+        products={apparelProducts} 
+        onAddToCart={handleAddToCart}
+        viewAllLink={homepage?.apparel?.link || '/collections/apparel'}
+      />
 
-      <section className="py-16 bg-gray-900 text-white text-center">
+      <FAQSection title={faq.title} questions={faq.questions} />
+
+      <section className="py-14 md:py-16 bg-black text-white text-center">
         <div className="max-w-2xl mx-auto px-4">
-          <h2 className="text-3xl font-bold uppercase tracking-[3px] mb-4">You're Covered</h2>
-          <p className="text-gray-300 mb-8">30-Day Money Back Guarantee on all orders</p>
-          <Link href="/pages/shipping-policy" className="text-purple-500 font-semibold hover:underline">
+          <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-4">{guarantee.heading || "You're Covered"}</h2>
+          <p className="text-gray-300 mb-6 md:mb-8">{guarantee.text || '30-Day Money Back Guarantee on all orders'}</p>
+          <Link href={guarantee.link || '/pages/shipping-policy'} className="text-white font-semibold hover:underline">
             Learn More →
           </Link>
         </div>
       </section>
 
-      <Newsletter />
-      <Footer />
+      <Newsletter 
+        heading={newsletter.heading}
+        text={newsletter.text}
+        placeholder={newsletter.placeholder}
+        button={newsletter.button}
+      />
+      <Footer settings={settings} navigation={navigation} />
     </div>
   );
 }

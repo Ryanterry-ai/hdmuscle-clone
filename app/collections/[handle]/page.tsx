@@ -73,7 +73,7 @@ export default function CollectionPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <div className="bg-black text-white py-2.5">
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-center">
           <p className="text-[10px] md:text-xs font-semibold uppercase tracking-[1px] md:tracking-[2px] text-center whitespace-nowrap">
@@ -84,24 +84,24 @@ export default function CollectionPage() {
       </div>
       <Header />
       
-      <main className="max-w-[1400px] mx-auto px-4 md:px-8 py-12">
-        <h1 className="text-3xl md:text-4xl font-bold uppercase tracking-[3px] mb-8">{collection.title}</h1>
+      <main className="max-w-[1400px] mx-auto px-4 md:px-8 py-12 md:py-16">
+        <h1 className="text-2xl md:text-3xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-8 pb-4 border-b border-gray-200">{collection.title}</h1>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-1">
           {products.map((product) => (
-            <div key={product.id} className="bg-white border border-gray-200 hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+            <div key={product.id} className="bg-white border border-gray-200 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
               <Link href={`/products/${product.handle}`}>
                 <div className="relative aspect-square bg-gray-100 overflow-hidden">
                   <img src={product.images[0].url} alt={product.title} className="w-full h-full object-cover" />
                   {product.badge && (
-                    <span className="absolute top-3 left-3 bg-pink-500 text-white text-xs font-bold px-2 py-1 uppercase">
+                    <span className="absolute top-3 left-3 bg-black text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider">
                       {product.badge}
                     </span>
                   )}
                 </div>
                 <div className="p-4">
-                  <h3 className="font-semibold mb-1 line-clamp-2">{product.title}</h3>
-                  <p className="text-xl font-bold text-purple-600">${Number(product.price).toFixed(2)}</p>
+                  <h3 className="font-semibold text-sm uppercase tracking-wide mb-2 line-clamp-2">{product.title}</h3>
+                  <p className="text-base font-bold">${Number(product.price).toFixed(2)}</p>
                 </div>
               </Link>
               <div className="px-4 pb-4">
@@ -110,7 +110,7 @@ export default function CollectionPage() {
                   className={`w-full py-3 text-xs font-bold uppercase tracking-[1.5px] transition ${
                     addedProducts.has(product.id) 
                       ? 'bg-green-600 text-white' 
-                      : 'bg-black text-white hover:bg-purple-600'
+                      : 'bg-black text-white hover:bg-gray-800'
                   }`}
                 >
                   {addedProducts.has(product.id) ? '✓ Added' : 'Add to Cart'}
@@ -124,12 +124,12 @@ export default function CollectionPage() {
       <footer className="bg-black text-white py-12 md:py-16">
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8">
           <div className="col-span-2 md:col-span-1">
-            <h3 className="text-xl md:text-2xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-4 md:mb-5">HD MUSCLE</h3>
+            <h3 className="text-lg md:text-xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-4 md:mb-5">HD MUSCLE</h3>
             <p className="text-gray-400 text-sm leading-relaxed mb-5 md:mb-6">Premium sports nutrition supplements designed for athletes who demand more.</p>
           </div>
           <div><h4 className="text-xs font-bold uppercase tracking-[2px] mb-4 md:mb-5">Shop</h4><ul className="space-y-2 md:space-y-3"><li><Link href="/collections/all" className="text-gray-400 text-sm hover:text-white transition">All Products</Link></li><li><Link href="/collections/pre-workouts" className="text-gray-400 text-sm hover:text-white transition">Pre-Workout</Link></li><li><Link href="/collections/proteins" className="text-gray-400 text-sm hover:text-white transition">Protein</Link></li><li><Link href="/collections/bundles" className="text-gray-400 text-sm hover:text-white transition">Bundles</Link></li></ul></div>
           <div><h4 className="text-xs font-bold uppercase tracking-[2px] mb-4 md:mb-5">Support</h4><ul className="space-y-2 md:space-y-3"><li><Link href="/pages/faq" className="text-gray-400 text-sm hover:text-white transition">FAQ</Link></li><li><Link href="/pages/shipping-policy" className="text-gray-400 text-sm hover:text-white transition">Shipping Policy</Link></li><li><Link href="/pages/privacy-policy" className="text-gray-400 text-sm hover:text-white transition">Privacy Policy</Link></li></ul></div>
-          <div><h4 className="text-xs font-bold uppercase tracking-[2px] mb-4 md:mb-5">Country</h4><select className="bg-gray-800 text-gray-400 text-sm px-3 py-2 border border-gray-700 w-full"><option>United States</option><option>Canada</option><option>United Kingdom</option><option>Australia</option></select></div>
+          <div><h4 className="text-xs font-bold uppercase tracking-[2px] mb-4 md:mb-5">Country</h4><select className="bg-black text-gray-400 text-sm px-3 py-2 border border-gray-700 w-full"><option>United States</option><option>Canada</option><option>United Kingdom</option><option>Australia</option></select></div>
         </div>
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 mt-10 md:mt-12 pt-8 border-t border-gray-900 text-center">
           <p className="text-gray-600 text-sm">© 2024 HD MUSCLE. All rights reserved. Integrity is everything.</p>
