@@ -6,12 +6,19 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    const res = await fetch(`${CMS_API}/storefront/published`, {
-      headers: { 'Content-Type': 'application/json' },
-      cache: 'no-store'
-    });
+    const [publishedRes, productsRes] = await Promise.all([
+      fetch(`${CMS_API}/storefront/published`, {
+        headers: { 'Content-Type': 'application/json' },
+        cache: 'no-store'
+      }),
+      fetch(`${CMS_API}/products`, {
+        headers: { 'Content-Type': 'application/json' },
+        cache: 'no-store'
+      })
+    ]);
 
-    const data = await res.json();
+    const data = await publishedRes.json();
+    const productsData = await productsRes.json();
 
     const transformed = {
       settings: {
@@ -124,13 +131,13 @@ export async function GET() {
           enabled: true,
           title: "Shop Our Best Sellers",
           link: "/collections/best-selling-collection",
-          product_handles: ["prohd-whey", "prehd-essential", "pumphd", "hydrahd", "stimhd", "intrahd", "sleephd", "greenshd", "burnhd", "creahd"]
+          product_handles: productsData.products?.slice(0, 10).map((p: any) => p.handle) || []
         },
         new_products: {
           enabled: true,
           title: "New + Noteworthy",
           link: "/collections/new-featured",
-          product_handles: ["prehd-elite", "eaahd", "collagenhd", "multihd", "glutahd"]
+          product_handles: productsData.products?.slice(10, 20).map((p: any) => p.handle) || []
         },
         brand_story: {
           enabled: true,
@@ -180,8 +187,31 @@ export async function GET() {
           button: "Subscribe"
         }
       },
-      products: [],
-      collections: [],
+      products: productsData.products?.map((p: any) => ({
+        id: p.id,
+        handle: p.handle,
+        title: p.title,
+        price: p.price,
+        compare_at_price: p.compare_at_price,
+        description: p.description || "",
+        short_description: p.description?.substring(0, 50) || "",
+        images: p.images?.length > 0 ? p.images : [],
+        badge: p.is_featured ? "New" : null,
+        is_active: p.is_active,
+        inventory: p.inventory,
+        category: p.collections?.[0]?.collection?.handle || "supplements",
+        tags: []
+      })) || [],
+      collections: productsData.products?.flatMap((p: any) => 
+        p.collections?.map((c: any) => c.collection)?.filter(Boolean) || []
+      ).filter((c: any, i: number, arr: any[]) => 
+        arr.findIndex((x: any) => x.id === c.id) === i
+      ).map((c: any) => ({
+        id: c.id,
+        handle: c.handle,
+        title: c.title,
+        description: c.description
+      })) || [],
       pages: []
     };
 
