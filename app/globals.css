@@ -1,6 +1,19 @@
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@600,500,400&f[]=satoshi@400,500,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --core-bg: #050509;
+  --panel-bg: #0d0d1a;
+  --card-bg: #121225;
+  --primary: #7c3aed;
+  --secondary: #db2777;
+  --text-muted: #94a3b8;
+  --success: #10b981;
+  --toggle-bg: #2d2d4a;
+}
 
 * {
   box-sizing: border-box;
@@ -8,8 +21,28 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: 'Satoshi', sans-serif;
+  background-color: var(--core-bg);
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'General Sans', sans-serif;
+}
+
+.font-headline {
+  font-family: 'General Sans', sans-serif;
+}
+
+.font-body {
+  font-family: 'Satoshi', sans-serif;
 }
 
 a {
@@ -20,4 +53,107 @@ a {
 img {
   max-width: 100%;
   height: auto;
+}
+
+input, textarea, button {
+  font-family: inherit;
+}
+
+.spring-transition {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.fast-transition {
+  transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.norm-transition {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.primary-gradient {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.nm-flat {
+  background: var(--card-bg);
+  box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.45), -4px -4px 10px rgba(255, 255, 255, 0.02);
+}
+
+.nm-inset {
+  box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.5), inset -2px -2px 6px rgba(255, 255, 255, 0.02);
+}
+
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.accordion-content.expanded {
+  grid-template-rows: 1fr;
+}
+
+.accordion-content > .accordion-inner {
+  overflow: hidden;
+}
+
+.accordion-content.expanded > .accordion-inner {
+  overflow: visible;
+}
+
+.stagger-1 { animation-delay: 100ms; }
+.stagger-2 { animation-delay: 200ms; }
+.stagger-3 { animation-delay: 300ms; }
+.stagger-4 { animation-delay: 400ms; }
+.stagger-5 { animation-delay: 500ms; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-enter {
+  animation: fadeInUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--panel-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--card-bg);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
 }

@@ -8,23 +8,20 @@ export async function GET() {
   try {
     const res = await fetch(`${CMS_API}/storefront/published`, {
       headers: { 
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache, no-store, must-revalidate'
-      }
+        'Content-Type': 'application/json'
+      },
+      next: { revalidate: 0 }
     });
     
     if (!res.ok) {
+      console.error('CMS fetch failed:', res.status, res.statusText);
       return NextResponse.json({ error: 'Failed to fetch' }, { status: 502 });
     }
     
     const data = await res.json();
-    return NextResponse.json(data, {
-      headers: {
-        'Cache-Control': 'no-store, max-age=0',
-        'Pragma': 'no-cache'
-      }
-    });
+    return NextResponse.json(data);
   } catch (error) {
+    console.error('CMS fetch error:', error);
     return NextResponse.json({ error: 'Failed to fetch' }, { status: 500 });
   }
 }
