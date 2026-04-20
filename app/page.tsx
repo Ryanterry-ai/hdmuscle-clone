@@ -18,9 +18,9 @@ interface Product {
 
 function AnnouncementBar() {
   return (
-    <div className="bg-black text-white py-2.5 sticky top-0 z-40">
-      <div className="max-w-[1400px] mx-auto px-4 flex items-center justify-center">
-        <p className="text-xs font-semibold uppercase tracking-[2px] text-center">
+    <div className="bg-black text-white py-2.5">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-center">
+        <p className="text-[10px] md:text-xs font-semibold uppercase tracking-[1px] md:tracking-[2px] text-center whitespace-nowrap">
           FREE SHIPPING ON ORDERS OVER $99 • 30-DAY MONEY BACK GUARANTEE •{' '}
           <Link href="/collections/best-selling-collection" className="underline hover:text-gray-300">
             SHOP NOW
@@ -41,12 +41,12 @@ function QualityBadges() {
   ];
 
   return (
-    <section className="py-8 bg-gray-50 border-b">
-      <div className="max-w-[1400px] mx-auto px-4">
-        <div className="flex flex-wrap justify-center gap-8">
+    <section className="py-6 md:py-8 bg-gray-50 border-b">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8">
+        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8">
           {badges.map((badge, i) => (
-            <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
-              <span className="text-lg">{badge.icon}</span>
+            <div key={i} className="flex items-center gap-2 text-xs md:text-sm text-gray-600 whitespace-nowrap">
+              <span className="text-base md:text-lg">{badge.icon}</span>
               <span className="font-medium">{badge.text}</span>
             </div>
           ))}
@@ -65,9 +65,9 @@ function CategoryTiles() {
   ];
 
   return (
-    <section className="py-16 bg-white">
-      <div className="max-w-[1400px] mx-auto px-4">
-        <div className="grid grid-cols-4 gap-5">
+    <section className="py-12 md:py-16 bg-white">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
           {categories.map((cat, i) => (
             <Link key={i} href={`/collections/${cat.title.toLowerCase().replace(/[^a-z]/g, '-')}`} className="group relative aspect-square overflow-hidden">
               <img 
@@ -76,7 +76,7 @@ function CategoryTiles() {
                 className="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <h3 className="text-white font-bold text-lg uppercase tracking-[3px]">{cat.title}</h3>
+                <h3 className="text-white font-bold text-xs md:text-lg uppercase tracking-[2px] md:tracking-[3px]">{cat.title}</h3>
               </div>
             </Link>
           ))}
@@ -138,15 +138,15 @@ function ProductSection({ title, products, settings, onAddToCart, viewAllLink }:
   if (!products || products.length === 0) return null;
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-[1400px] mx-auto px-4">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl font-bold uppercase tracking-[3px]">{title}</h2>
+    <section className="py-12 md:py-16 bg-gray-50">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6 md:mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[2px] md:tracking-[3px]">{title}</h2>
           <Link href={viewAllLink} className="text-sm font-semibold uppercase tracking-[1px] text-gray-500 flex items-center gap-2 hover:text-black">
             View All <i className="fas fa-arrow-right text-xs"></i>
           </Link>
         </div>
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
           {products.slice(0, 10).map((product) => (
             <ProductCard key={product.id} product={product} settings={settings} onAddToCart={onAddToCart} />
           ))}
@@ -158,22 +158,22 @@ function ProductSection({ title, products, settings, onAddToCart, viewAllLink }:
 
 function BrandStory() {
   return (
-    <section className="grid md:grid-cols-2 min-h-[500px]">
-      <div className="bg-gray-900 relative overflow-hidden">
+    <section className="grid md:grid-cols-2 min-h-[400px] md:min-h-[500px]">
+      <div className="bg-gray-900 relative overflow-hidden min-h-[250px] md:min-h-full">
         <img 
           src="/hdmusclebrand2-1775078638960-180ba2bc3e7b.webp" 
           alt="HD Muscle Story" 
           className="absolute inset-0 w-full h-full object-cover"
         />
       </div>
-      <div className="bg-black text-white flex flex-col justify-center px-12 py-16">
+      <div className="bg-black text-white flex flex-col justify-center px-8 md:px-12 py-12 md:py-16">
         <span className="text-purple-500 text-xs font-bold uppercase tracking-[3px] mb-4">Our Mission</span>
-        <h2 className="text-4xl font-bold uppercase tracking-[3px] mb-6">Built By Athletes, For Athletes</h2>
-        <p className="text-gray-300 text-base leading-relaxed mb-4">
+        <h2 className="text-2xl md:text-4xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-4 md:mb-6">Built By Athletes, For Athletes</h2>
+        <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-4">
           At HD Muscle, we believe in the power of integrity. Every product we create is designed with one goal in mind: to help you reach your full potential.
         </p>
-        <p className="text-gray-300 text-base leading-relaxed mb-8">Integrity is everything.</p>
-        <span className="text-gray-500 text-2xl italic">— The HD Muscle Team</span>
+        <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-6 md:mb-8">Integrity is everything.</p>
+        <span className="text-gray-500 text-lg md:text-2xl italic">— The HD Muscle Team</span>
       </div>
     </section>
   );
@@ -187,19 +187,19 @@ function Reviews() {
   ];
 
   return (
-    <section className="py-16 bg-white">
-      <div className="max-w-[1400px] mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold uppercase tracking-[3px] mb-3">Real People, Real Reviews</h2>
-          <p className="text-gray-500">See what our customers are saying</p>
+    <section className="py-12 md:py-16 bg-white">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-2 md:mb-3">Real People, Real Reviews</h2>
+          <p className="text-gray-500 text-sm md:text-base">See what our customers are saying</p>
         </div>
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {reviews.map((review, i) => (
-            <div key={i} className="bg-gray-50 p-8">
-              <div className="text-yellow-400 text-lg mb-4">
-                {[...Array(review.stars)].map((_, j) => <i key={j} className="fas fa-star"></i>)}
+            <div key={i} className="bg-gray-50 p-6 md:p-8">
+              <div className="text-yellow-400 text-sm md:text-lg mb-3 md:4">
+                {[...Array(review.stars)].map((_, j) => <i key={j} className="fas fa-star mr-0.5"></i>)}
               </div>
-              <p className="text-gray-700 text-base leading-relaxed mb-5">"{review.text}"</p>
+              <p className="text-gray-700 text-sm md:text-base leading-relaxed mb-4 md:mb-5">"{review.text}"</p>
               <p className="font-bold text-sm">— {review.author}</p>
             </div>
           ))}
@@ -218,17 +218,17 @@ function FAQSection() {
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-12 md:py-16 bg-gray-50">
       <div className="max-w-[800px] mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-10 uppercase tracking-[3px]">Frequently Asked Questions</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-10 uppercase tracking-[2px] md:tracking-[3px]">Frequently Asked Questions</h2>
         <div className="space-y-3">
           {faqs.map((faq, i) => (
             <details key={i} className="group bg-white border border-gray-200">
-              <summary className="flex items-center justify-between p-4 cursor-pointer font-semibold list-none">
+              <summary className="flex items-center justify-between p-4 cursor-pointer font-semibold list-none text-sm md:text-base">
                 {faq.q}
                 <i className="fas fa-chevron-down text-xs transition group-open:rotate-180"></i>
               </summary>
-              <p className="px-4 pb-4 text-gray-600">{faq.a}</p>
+              <p className="px-4 pb-4 text-gray-600 text-sm md:text-base">{faq.a}</p>
             </details>
           ))}
         </div>
@@ -239,17 +239,17 @@ function FAQSection() {
 
 function Newsletter() {
   return (
-    <section className="py-16 bg-black text-white">
+    <section className="py-12 md:py-16 bg-black text-white">
       <div className="max-w-[600px] mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold uppercase tracking-[3px] mb-4">Stay Updated</h2>
-        <p className="text-gray-400 mb-6">Subscribe for exclusive offers and new product launches</p>
-        <form className="flex gap-3">
+        <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-3 md:mb-4">Stay Updated</h2>
+        <p className="text-gray-400 mb-5 md:mb-6 text-sm md:text-base">Subscribe for exclusive offers and new product launches</p>
+        <form className="flex flex-col sm:flex-row gap-3">
           <input 
             type="email" 
             placeholder="Enter your email" 
-            className="flex-1 px-4 py-3 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none focus:border-purple-500"
+            className="flex-1 px-4 py-3 bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-purple-500"
           />
-          <button className="px-8 py-3 bg-purple-600 font-bold uppercase tracking-[1px] hover:bg-purple-700 transition">
+          <button className="px-6 md:px-8 py-3 bg-purple-600 font-bold uppercase tracking-[1px] hover:bg-purple-700 transition">
             Subscribe
           </button>
         </form>
@@ -260,11 +260,11 @@ function Newsletter() {
 
 function Footer() {
   return (
-    <footer className="bg-black text-white py-16">
-      <div className="max-w-[1400px] mx-auto px-4 grid grid-cols-5 gap-8">
-        <div className="col-span-1">
-          <h3 className="text-2xl font-bold uppercase tracking-[3px] mb-5">HD MUSCLE</h3>
-          <p className="text-gray-400 text-sm leading-relaxed mb-6">
+    <footer className="bg-black text-white py-12 md:py-16">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8 grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8">
+        <div className="col-span-2 md:col-span-1">
+          <h3 className="text-xl md:text-2xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-4 md:mb-5">HD MUSCLE</h3>
+          <p className="text-gray-400 text-sm leading-relaxed mb-5 md:mb-6">
             Premium sports nutrition supplements designed for athletes who demand more.
           </p>
           <div className="flex gap-3">
@@ -283,8 +283,8 @@ function Footer() {
           </div>
         </div>
         <div>
-          <h4 className="text-xs font-bold uppercase tracking-[2px] mb-5">Shop</h4>
-          <ul className="space-y-3">
+          <h4 className="text-xs font-bold uppercase tracking-[2px] mb-4 md:mb-5">Shop</h4>
+          <ul className="space-y-2 md:space-y-3">
             <li><Link href="/collections/all" className="text-gray-400 text-sm hover:text-white transition">All Products</Link></li>
             <li><Link href="/collections/pre-workouts" className="text-gray-400 text-sm hover:text-white transition">Pre-Workout</Link></li>
             <li><Link href="/collections/proteins" className="text-gray-400 text-sm hover:text-white transition">Protein</Link></li>
@@ -293,8 +293,8 @@ function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="text-xs font-bold uppercase tracking-[2px] mb-5">Support</h4>
-          <ul className="space-y-3">
+          <h4 className="text-xs font-bold uppercase tracking-[2px] mb-4 md:mb-5">Support</h4>
+          <ul className="space-y-2 md:space-y-3">
             <li><Link href="/pages/faq" className="text-gray-400 text-sm hover:text-white transition">FAQ</Link></li>
             <li><Link href="/pages/shipping-policy" className="text-gray-400 text-sm hover:text-white transition">Shipping Policy</Link></li>
             <li><Link href="/pages/refund-policy" className="text-gray-400 text-sm hover:text-white transition">Refund Policy</Link></li>
@@ -303,8 +303,8 @@ function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="text-xs font-bold uppercase tracking-[2px] mb-5">Company</h4>
-          <ul className="space-y-3">
+          <h4 className="text-xs font-bold uppercase tracking-[2px] mb-4 md:mb-5">Company</h4>
+          <ul className="space-y-2 md:space-y-3">
             <li><Link href="/pages/our-story" className="text-gray-400 text-sm hover:text-white transition">Our Story</Link></li>
             <li><Link href="/pages/wholesale" className="text-gray-400 text-sm hover:text-white transition">Wholesale</Link></li>
             <li><Link href="/pages/careers" className="text-gray-400 text-sm hover:text-white transition">Careers</Link></li>
@@ -312,8 +312,8 @@ function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="text-xs font-bold uppercase tracking-[2px] mb-5">Country</h4>
-          <select className="bg-gray-800 text-gray-400 text-sm px-3 py-2 border border-gray-700 rounded">
+          <h4 className="text-xs font-bold uppercase tracking-[2px] mb-4 md:mb-5">Country</h4>
+          <select className="bg-gray-800 text-gray-400 text-sm px-3 py-2 border border-gray-700 w-full">
             <option>United States</option>
             <option>Canada</option>
             <option>United Kingdom</option>
@@ -322,7 +322,7 @@ function Footer() {
           </select>
         </div>
       </div>
-      <div className="max-w-[1400px] mx-auto px-4 mt-12 pt-8 border-t border-gray-900 text-center">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8 mt-10 md:mt-12 pt-8 border-t border-gray-900 text-center">
         <p className="text-gray-600 text-sm">© 2024 HD MUSCLE. All rights reserved. Integrity is everything.</p>
       </div>
     </footer>
@@ -381,7 +381,7 @@ export default function HomePage() {
       <AnnouncementBar />
       <Header />
 
-      <section className="relative h-[600px] bg-gray-900 overflow-hidden">
+      <section className="relative h-[70vh] md:h-[600px] bg-gray-900 overflow-hidden">
         <img 
           src="/hdmuscle72-1775078686011-5c8049f904ea.webp" 
           alt="Hero" 
@@ -389,17 +389,17 @@ export default function HomePage() {
         />
         <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
           <div className="max-w-[800px]">
-            <h1 className="text-6xl md:text-7xl font-bold uppercase tracking-[6px] mb-6">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-[4px] md:tracking-[6px] mb-4 md:mb-6">
               Find Your Formula
             </h1>
-            <p className="text-lg text-gray-200 mb-10 max-w-[500px] mx-auto">
+            <p className="text-base md:text-lg text-gray-200 mb-6 md:mb-10 max-w-[450px] md:max-w-[500px] mx-auto">
               Premium supplements designed for athletes who demand more. Scientifically formulated to help you reach your peak performance.
             </p>
-            <div className="flex gap-4 justify-center">
-              <Link href="#products" className="px-10 py-4 bg-white text-black text-sm font-bold uppercase tracking-[2px] hover:bg-purple-600 hover:text-white transition">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+              <Link href="#products" className="px-8 md:px-10 py-3 md:py-4 bg-white text-black text-sm font-bold uppercase tracking-[2px] hover:bg-purple-600 hover:text-white transition">
                 Shop Now
               </Link>
-              <Link href="#about" className="px-10 py-4 border-2 border-white text-white text-sm font-bold uppercase tracking-[2px] hover:bg-white hover:text-black transition">
+              <Link href="#about" className="px-8 md:px-10 py-3 md:py-4 border-2 border-white text-white text-sm font-bold uppercase tracking-[2px] hover:bg-white hover:text-black transition">
                 Learn More
               </Link>
             </div>
