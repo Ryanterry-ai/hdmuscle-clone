@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Header from './header';
 import { useCart } from './cart-context';
-import { fetchStorefrontPayload, getSettings, getProducts, getCollections, getHeroSection, formatCurrency } from './lib/cms';
+import { getSettings, getProducts, getCollections, getHeroSection, formatCurrency } from './lib/cms';
 
 interface Product {
   id: string;
@@ -13,6 +13,121 @@ interface Product {
   price: string;
   images: { url: string }[];
   is_active: boolean;
+}
+
+function ProductCarousel({ title, products, settings, onAddToCart, viewAllLink }: { title: string; products: Product[]; settings: any; onAddToCart: (p: Product) => void; viewAllLink: string }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const checkScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
+
+  useEffect(() => {
+    checkScroll();
+    window.addEventListener('resize', checkScroll);
+    return () => window.removeEventListener('resize', checkScroll);
+  }, []);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = scrollRef.current.clientWidth * 0.8;
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+      setTimeout(checkScroll, 100);
+    }
+  };
+
+  return (
+    <section className="py-12 bg-white">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold">{title}</h2>
+          <div className="flex items-center gap-4">
+            <Link href={viewAllLink} className="text-sm font-medium text-red-600 hover:underline">
+              View all products →
+            </Link>
+            <div className="flex gap-2">
+              <button 
+                onClick={() => scroll('left')}
+                disabled={!canScrollLeft}
+                className={`w-10 h-10 border rounded-full flex items-center justify-center transition ${canScrollLeft ? 'hover:bg-gray-100' : 'opacity-30 cursor-not-allowed'}`}
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button 
+                onClick={() => scroll('right')}
+                disabled={!canScrollRight}
+                className={`w-10 h-10 border rounded-full flex items-center justify-center transition ${canScrollRight ? 'hover:bg-gray-100' : 'opacity-30 cursor-not-allowed'}`}
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div 
+          ref={scrollRef}
+          className="flex gap-4 overflow-x-auto scrollbar-hide pb-4"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          onScroll={checkScroll}
+        >
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} settings={settings} onAddToCart={onAddToCart} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProductCard({ product, settings, onAddToCart }: { product: Product; settings: any; onAddToCart: (p: Product) => void }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const [hoveredImage, setHoveredImage] = useState(0);
+
+  const hasMultipleImages = product.images && product.images.length > 1;
+
+  return (
+    <div 
+      className="flex-shrink-0 w-[280px] group"
+      onMouseEnter={() => { setIsHovered(true); setHoveredImage(1); }}
+      onMouseLeave={() => { setIsHovered(false); setHoveredImage(0); }}
+    >
+      <Link href={`/products/${product.handle}`}>
+        <div className="relative aspect-square bg-gray-100 overflow-hidden mb-3">
+          {product.images?.[0]?.url ? (
+            <img 
+              src={hasMultipleImages && isHovered && product.images[1]?.url ? product.images[1].url : product.images[0].url} 
+              alt={product.title} 
+              className="w-full h-full object-cover transition duration-300"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-4xl">💪</div>
+          )}
+          <div className={`absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300 ${isHovered ? 'opacity-100' : ''}`} />
+        </div>
+        <h3 className="font-semibold mb-1 group-hover:text-red-600 transition">{product.title}</h3>
+        <p className="text-red-600 font-bold">{formatCurrency(Number(product.price), settings.currency, settings.locale)}</p>
+      </Link>
+      <button 
+        onClick={() => onAddToCart(product)}
+        className="w-full mt-3 py-3 bg-black text-white font-medium rounded hover:bg-red-600 transition"
+      >
+        Add to Cart
+      </button>
+    </div>
+  );
 }
 
 export default function HomePage() {
@@ -42,6 +157,9 @@ export default function HomePage() {
   const handleAddToCart = (product: Product) => {
     addItem({ id: product.id, title: product.title, price: Number(product.price), image: product.images?.[0]?.url });
   };
+
+  const bestSellers = products.slice(0, 8);
+  const newProducts = products.slice(8, 16);
 
   if (loading) {
     return (
@@ -85,34 +203,59 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50">
+      <ProductCarousel 
+        title="SHOP OUR BEST SELLERS" 
+        products={bestSellers} 
+        settings={settings} 
+        onAddToCart={handleAddToCart}
+        viewAllLink="/collections/best-selling-collection"
+      />
+
+      <ProductCarousel 
+        title="NEW AND NOTEWORTHY ↓" 
+        products={newProducts} 
+        settings={settings} 
+        onAddToCart={handleAddToCart}
+        viewAllLink="/collections/new-featured"
+      />
+
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Featured Products</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {products.slice(0, 12).map((product: Product) => (
-              <div key={product.id} className="bg-white rounded-xl overflow-hidden hover:shadow-lg transition">
-                <Link href={`/products/${product.handle}`}>
-                  <div className="aspect-square bg-gray-100">
-                    {product.images?.[0]?.url ? <img src={product.images[0].url} alt={product.title} className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center text-4xl">💪</div>}
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold mb-1">{product.title}</h3>
-                    <p className="text-red-600 font-bold">{formatCurrency(Number(product.price), settings.currency, settings.locale)}</p>
-                  </div>
-                </Link>
-                <div className="px-4 pb-4">
-                  <button onClick={() => handleAddToCart(product)} className="w-full py-2 bg-gray-900 text-white rounded-lg hover:bg-red-600 text-sm font-medium">Add to Cart</button>
-                </div>
-              </div>
-            ))}
+          <h2 className="text-3xl font-bold text-center mb-8">REAL PEOPLE, REAL REVIEWS</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="p-6 bg-gray-50 rounded-xl">
+              <div className="flex text-yellow-400 mb-3">★★★★★</div>
+              <p className="text-gray-600 mb-4">"Best pre-workout I've ever used. The energy is clean and focused."</p>
+              <p className="font-semibold">- John D.</p>
+            </div>
+            <div className="p-6 bg-gray-50 rounded-xl">
+              <div className="flex text-yellow-400 mb-3">★★★★★</div>
+              <p className="text-gray-600 mb-4">"Amazing quality supplements. Been using HD Muscle for years!"</p>
+              <p className="font-semibold">- Mike R.</p>
+            </div>
+            <div className="p-6 bg-gray-50 rounded-xl">
+              <div className="flex text-yellow-400 mb-3">★★★★★</div>
+              <p className="text-gray-600 mb-4">"The best value for money. Real results I've seen."</p>
+              <p className="font-semibold">- Sarah K.</p>
+            </div>
           </div>
         </div>
       </section>
 
       <section className="py-16 bg-gray-900 text-white">
         <div className="max-w-2xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">YOU'RE COVERED</h2>
+          <p className="text-gray-300 mb-8">30-Day Money Back Guarantee on all orders</p>
+          <Link href="/pages/shipping-policy" className="text-red-600 font-medium hover:underline">
+            Learn More →
+          </Link>
+        </div>
+      </section>
+
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-          <p className="text-gray-300 mb-8">Subscribe for exclusive offers</p>
+          <p className="text-gray-600 mb-8">Subscribe for exclusive offers</p>
           <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input type="email" placeholder="Enter your email" className="flex-1 px-4 py-3 rounded-lg text-gray-900" />
             <button className="px-6 py-3 bg-red-600 font-semibold rounded-lg hover:bg-red-700">Subscribe</button>
