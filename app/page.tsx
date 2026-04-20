@@ -32,10 +32,10 @@ function AnnouncementBar() {
 
 function CategoryTiles({ collections }: { collections: any[] }) {
   const categories = [
-    { title: 'Health + Wellness', image: 'https://hdmuscle.com/cdn/shop/files/img_4801.jpg' },
-    { title: 'Pre-Workout', image: 'https://hdmuscle.com/cdn/shop/files/untitled_design_32.png' },
-    { title: 'Intra-Workout', image: 'https://hdmuscle.com/cdn/shop/files/max09367.jpg' },
-    { title: 'Post-Workout', image: 'https://hdmuscle.com/cdn/shop/files/untitled_design_28.png' },
+    { title: 'Health + Wellness', image: '/greenshd-citrus-us-b1d785092f3e.jpg' },
+    { title: 'Pre-Workout', image: '/pumphd-rainbow-strips-ead9f7c7e482.png' },
+    { title: 'Intra-Workout', image: '/intrahd_watermelon_f38c042d-708c-472a-a828-b329ac7baf6b-ca4066edb12c.png' },
+    { title: 'Post-Workout', image: '/creahd-53c587c6f495.jpg' },
   ];
 
   return (
@@ -133,7 +133,7 @@ function BrandStory() {
     <section className="grid md:grid-cols-2 min-h-[600px]">
       <div className="bg-gray-900 relative overflow-hidden">
         <img 
-          src="https://hdmuscle.com/cdn/shop/files/dsc06090_copy.jpg" 
+          src="/hdmusclebrand2-1775078638960-180ba2bc3e7b.webp" 
           alt="HD Muscle Story" 
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -249,18 +249,18 @@ function Footer() {
 }
 
 const fallbackProducts: Product[] = [
-  { id: '1', handle: 'prohd-whey', title: 'ProHD Whey Protein Isolate', price: '79.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/Chocolate.png' }], is_active: true },
-  { id: '2', handle: 'prehd-essential', title: 'PreHD Essential', price: '39.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/PreHD-Essential-Blue-Rasberry.png' }], is_active: true },
-  { id: '3', handle: 'pumphd', title: 'PumpHD', price: '49.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/PumpHD-Rainbow-Strips.png' }], is_active: true },
-  { id: '4', handle: 'hydrahd', title: 'HydraHD', price: '44.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/HydraHD-Tangerine-US.png' }], is_active: true },
-  { id: '5', handle: 'stimhd', title: 'StimHD', price: '54.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/StimHD.png' }], is_active: true },
-  { id: '6', handle: 'intrahd', title: 'IntraHD', price: '39.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/intra_watermelon.png' }], is_active: true },
-  { id: '7', handle: 'sleephd', title: 'SleepHD', price: '49.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/sleephd_web1.png' }], is_active: true },
-  { id: '8', handle: 'greenshd', title: 'GreensHD', price: '59.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/greenshd-citrus-us.png' }], is_active: true },
-  { id: '9', handle: 'burnhd', title: 'BurnHD', price: '49.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/burnhd_front.png' }], is_active: true },
-  { id: '10', handle: 'creahd', title: 'CreaHD', price: '34.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/creahd.png' }], is_active: true },
-  { id: '11', handle: 'multihd', title: 'MultiHD', price: '54.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/multi-hd-us-web.png' }], is_active: true },
-  { id: '12', handle: 'glutahd', title: 'GlutaHD', price: '44.99', images: [{ url: 'https://hdmuscle.com/cdn/shop/files/glutahd.png' }], is_active: true },
+  { id: '1', handle: 'prohd-whey', title: 'ProHD Whey Protein Isolate', price: '79.99', images: [{ url: '/prohd_chocolate_front-1cca5974cf27.png' }], is_active: true },
+  { id: '2', handle: 'prehd-essential', title: 'PreHD Essential', price: '39.99', images: [{ url: '/prehd-essential-blue-rasberry-eb39ae9ce7f5.png' }], is_active: true },
+  { id: '3', handle: 'pumphd', title: 'PumpHD', price: '49.99', images: [{ url: '/pumphd-rainbow-strips-ead9f7c7e482.png' }], is_active: true },
+  { id: '4', handle: 'hydrahd', title: 'HydraHD', price: '44.99', images: [{ url: '/hydrahd-tangerine-us-16303cf76229.png' }], is_active: true },
+  { id: '5', handle: 'stimhd', title: 'StimHD', price: '54.99', images: [{ url: '/stimhd_9d7400de-4473-4af8-bd68-902c6689781d-fdd59a2755d1.png' }], is_active: true },
+  { id: '6', handle: 'intrahd', title: 'IntraHD', price: '39.99', images: [{ url: '/intrahd_watermelon_f38c042d-708c-472a-a828-b329ac7baf6b-ca4066edb12c.png' }], is_active: true },
+  { id: '7', handle: 'sleephd', title: 'SleepHD', price: '49.99', images: [{ url: '/sleephd_web1-d6d6eabbf104.png' }], is_active: true },
+  { id: '8', handle: 'greenshd', title: 'GreensHD', price: '59.99', images: [{ url: '/greenshd-citrus-us-b1d785092f3e.jpg' }], is_active: true },
+  { id: '9', handle: 'burnhd', title: 'BurnHD', price: '49.99', images: [{ url: '/burnhd_front-b81b8d88cde6.png' }], is_active: true },
+  { id: '10', handle: 'creahd', title: 'CreaHD', price: '34.99', images: [{ url: '/creahd-53c587c6f495.jpg' }], is_active: true },
+  { id: '11', handle: 'multihd', title: 'MultiHD', price: '54.99', images: [{ url: '/multi-hd-us-web-11980b086482.jpg' }], is_active: true },
+  { id: '12', handle: 'glutahd', title: 'GlutaHD', price: '44.99', images: [{ url: '/glutahd-front-black-lid-0e6436cfe231.jpg' }], is_active: true },
 ];
 
 const defaultSettings = {
