@@ -322,7 +322,7 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/storefront/published')
+    fetch('https://cms.hdmuscle.in/api/storefront/published')
       .then(res => res.json())
       .then(data => {
         setCmsData(data);
