@@ -1,24 +1,30 @@
-@import url('https://api.fontshare.com/v2/css?f[]=general-sans@600,500,400&f[]=satoshi@400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --core-bg: #050509;
-  --panel-bg: #0d0d1a;
-  --card-bg: #121225;
-  --primary: #7c3aed;
-  --secondary: #db2777;
-  --text-muted: #94a3b8;
+  --primary: #000000;
+  --secondary: #7c3aed;
+  --accent: #db2777;
+  --bg: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-dark: #1a1a1a;
+  --text: #1a1a1a;
+  --text-muted: #666666;
+  --text-light: #888888;
+  --border: #e5e5e5;
+  --border-dark: #333333;
   --success: #10b981;
-  --toggle-bg: #2d2d4a;
+  --error: #ef4444;
 }
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -26,23 +32,10 @@ html {
 }
 
 body {
-  font-family: 'Satoshi', sans-serif;
-  background-color: var(--core-bg);
-  color: #e2e8f0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'General Sans', sans-serif;
-}
-
-.font-headline {
-  font-family: 'General Sans', sans-serif;
-}
-
-.font-body {
-  font-family: 'Satoshi', sans-serif;
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
 }
 
 a {
@@ -55,89 +48,13 @@ img {
   height: auto;
 }
 
-input, textarea, button {
+button {
   font-family: inherit;
+  cursor: pointer;
 }
 
-.spring-transition {
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.fast-transition {
-  transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.norm-transition {
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.primary-gradient {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-}
-
-.gradient-border {
-  position: relative;
-}
-
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-}
-
-.nm-flat {
-  background: var(--card-bg);
-  box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.45), -4px -4px 10px rgba(255, 255, 255, 0.02);
-}
-
-.nm-inset {
-  box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.5), inset -2px -2px 6px rgba(255, 255, 255, 0.02);
-}
-
-.accordion-content {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.accordion-content.expanded {
-  grid-template-rows: 1fr;
-}
-
-.accordion-content > .accordion-inner {
-  overflow: hidden;
-}
-
-.accordion-content.expanded > .accordion-inner {
-  overflow: visible;
-}
-
-.stagger-1 { animation-delay: 100ms; }
-.stagger-2 { animation-delay: 200ms; }
-.stagger-3 { animation-delay: 300ms; }
-.stagger-4 { animation-delay: 400ms; }
-.stagger-5 { animation-delay: 500ms; }
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-enter {
-  animation: fadeInUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  opacity: 0;
+ul, ol {
+  list-style: none;
 }
 
 ::-webkit-scrollbar {
@@ -146,14 +63,14 @@ input, textarea, button {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--panel-bg);
+  background: var(--bg-secondary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--card-bg);
+  background: var(--border);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
+  background: var(--text-muted);
 }

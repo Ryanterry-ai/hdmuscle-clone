@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Header from './header';
 import { useCart } from './cart-context';
-import { getSettings, getProducts, getCollections, getHeroSection, formatCurrency } from './lib/cms';
+import { getSettings, getProducts, getCollections, formatCurrency } from './lib/cms';
 
 interface Product {
   id: string;
@@ -15,77 +15,77 @@ interface Product {
   is_active: boolean;
 }
 
-function ProductCarousel({ title, products, settings, onAddToCart, viewAllLink }: { title: string; products: Product[]; settings: any; onAddToCart: (p: Product) => void; viewAllLink: string }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+function AnnouncementBar() {
+  return (
+    <div className="bg-black text-white py-2.5 overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-4 flex items-center justify-center">
+        <p className="text-xs font-semibold uppercase tracking-[2px] text-center">
+          FREE SHIPPING ON ORDERS OVER $99 • 30-DAY MONEY BACK GUARANTEE •{' '}
+          <Link href="/collections/best-selling-collection" className="underline hover:text-gray-300">
+            SHOP NOW
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
+}
 
-  const checkScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  };
+function CategoryTiles({ collections }: { collections: any[] }) {
+  const categories = [
+    { title: 'Health + Wellness', image: 'https://hdmuscle.com/cdn/shop/files/img_4801.jpg' },
+    { title: 'Pre-Workout', image: 'https://hdmuscle.com/cdn/shop/files/untitled_design_32.png' },
+    { title: 'Intra-Workout', image: 'https://hdmuscle.com/cdn/shop/files/max09367.jpg' },
+    { title: 'Post-Workout', image: 'https://hdmuscle.com/cdn/shop/files/untitled_design_28.png' },
+  ];
 
-  useEffect(() => {
-    checkScroll();
-    window.addEventListener('resize', checkScroll);
-    return () => window.removeEventListener('resize', checkScroll);
-  }, []);
+  return (
+    <section className="py-20 bg-white">
+      <div className="max-w-[1400px] mx-auto px-4">
+        <div className="grid grid-cols-4 gap-5">
+          {categories.map((cat, i) => (
+            <Link key={i} href={`/collections/${collections[i]?.handle || 'all'}`} className="group relative aspect-square overflow-hidden">
+              <img 
+                src={cat.image} 
+                alt={cat.title} 
+                className="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                <h3 className="text-white font-bold text-lg uppercase tracking-[3px]">{cat.title}</h3>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const scrollAmount = scrollRef.current.clientWidth * 0.8;
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-      setTimeout(checkScroll, 100);
-    }
-  };
-
+function ProductSection({ 
+  title, 
+  products, 
+  settings, 
+  onAddToCart, 
+  viewAllLink 
+}: { 
+  title: string; 
+  products: Product[]; 
+  settings: any; 
+  onAddToCart: (p: Product) => void; 
+  viewAllLink: string;
+}) {
   if (!products || products.length === 0) return null;
 
   return (
-    <section className="py-12 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold">{title}</h2>
-          <div className="flex items-center gap-4">
-            <Link href={viewAllLink} className="text-sm font-medium text-red-600 hover:underline">
-              View all products →
-            </Link>
-            <div className="flex gap-2">
-              <button 
-                onClick={() => scroll('left')}
-                disabled={!canScrollLeft}
-                className={`w-10 h-10 border rounded-full flex items-center justify-center transition ${canScrollLeft ? 'hover:bg-gray-100' : 'opacity-30 cursor-not-allowed'}`}
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button 
-                onClick={() => scroll('right')}
-                disabled={!canScrollRight}
-                className={`w-10 h-10 border rounded-full flex items-center justify-center transition ${canScrollRight ? 'hover:bg-gray-100' : 'opacity-30 cursor-not-allowed'}`}
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
+    <section className="py-24 bg-gray-50">
+      <div className="max-w-[1400px] mx-auto px-4">
+        <div className="flex items-center justify-between mb-12">
+          <h2 className="text-3xl font-bold uppercase tracking-[3px]">{title}</h2>
+          <Link href={viewAllLink} className="text-sm font-semibold uppercase tracking-[1px] text-gray-500 flex items-center gap-2 hover:text-black">
+            View All <i className="fas fa-arrow-right text-xs"></i>
+          </Link>
         </div>
-        
-        <div 
-          ref={scrollRef}
-          className="flex gap-4 overflow-x-auto scrollbar-hide pb-4"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          onScroll={checkScroll}
-        >
-          {products.map((product) => (
+        <div className="grid grid-cols-4 gap-6">
+          {products.slice(0, 8).map((product) => (
             <ProductCard key={product.id} product={product} settings={settings} onAddToCart={onAddToCart} />
           ))}
         </div>
@@ -95,39 +95,156 @@ function ProductCarousel({ title, products, settings, onAddToCart, viewAllLink }
 }
 
 function ProductCard({ product, settings, onAddToCart }: { product: Product; settings: any; onAddToCart: (p: Product) => void }) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const hasMultipleImages = product.images && product.images.length > 1;
-
   return (
-    <div 
-      className="flex-shrink-0 w-[280px] group"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className="bg-white border border-gray-200 hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
       <Link href={`/products/${product.handle}`}>
-        <div className="relative aspect-square bg-gray-100 overflow-hidden mb-3">
+        <div className="relative aspect-square bg-gray-100 overflow-hidden">
           {product.images?.[0]?.url ? (
             <img 
-              src={hasMultipleImages && isHovered && product.images[1]?.url ? product.images[1].url : product.images[0].url} 
+              src={product.images[0].url} 
               alt={product.title} 
-              className="w-full h-full object-cover transition duration-300"
+              className="w-full h-full object-cover"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-4xl">💪</div>
           )}
-          <div className={`absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300 ${isHovered ? 'opacity-100' : ''}`} />
         </div>
-        <h3 className="font-semibold mb-1 group-hover:text-red-600 transition">{product.title}</h3>
-        <p className="text-red-600 font-bold">{formatCurrency(Number(product.price), settings.currency, settings.locale)}</p>
+        <div className="p-5">
+          <h3 className="font-semibold mb-2 line-clamp-2">{product.title}</h3>
+          <p className="text-xl font-bold text-purple-600">
+            ${Number(product.price).toFixed(2)}
+          </p>
+        </div>
       </Link>
-      <button 
-        onClick={() => onAddToCart(product)}
-        className="w-full mt-3 py-3 bg-black text-white font-medium rounded hover:bg-red-600 transition"
-      >
-        Add to Cart
-      </button>
+      <div className="px-5 pb-5">
+        <button 
+          onClick={() => onAddToCart(product)}
+          className="w-full py-3.5 bg-black text-white text-xs font-bold uppercase tracking-[1.5px] hover:bg-purple-600 transition"
+        >
+          Add to Cart
+        </button>
+      </div>
     </div>
+  );
+}
+
+function BrandStory() {
+  return (
+    <section className="grid md:grid-cols-2 min-h-[600px]">
+      <div className="bg-gray-900 relative overflow-hidden">
+        <img 
+          src="https://hdmuscle.com/cdn/shop/files/dsc06090_copy.jpg" 
+          alt="HD Muscle Story" 
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </div>
+      <div className="bg-black text-white flex flex-col justify-center px-16 py-20">
+        <span className="text-purple-500 text-xs font-bold uppercase tracking-[3px] mb-5">Our Mission</span>
+        <h2 className="text-5xl font-bold uppercase tracking-[3px] mb-8">Built By Athletes, For Athletes</h2>
+        <p className="text-gray-300 text-base leading-relaxed mb-6">
+          At HD Muscle, we believe in the power of integrity. Every product we create is designed with one goal in mind: 
+          to help you reach your full potential. We never compromise on quality, and we always disclose every ingredient. 
+          Our supplements are manufactured in FDA-registered facilities using the highest quality ingredients.
+        </p>
+        <p className="text-gray-300 text-base leading-relaxed mb-10">Integrity is everything.</p>
+        <span className="text-gray-500 text-2xl italic">— The HD Muscle Team</span>
+      </div>
+    </section>
+  );
+}
+
+function Reviews() {
+  const reviews = [
+    { text: "THIS ONE WORKS! Almost works too good! I have never had a sports supplement work so well on my ability to not only fall asleep but literally sleep like a complete rock.", author: "Whitney L." },
+    { text: "PreHD Ultra is my new gym bag essential, amazing pump, clean/non jittery energy, awesome taste, and properly dosed ingredients!", author: "Greg D." },
+    { text: "All the products are top quality, everything tastes AMAZING! Your health is an investment, and if you invest in quality products your body will thank you!", author: "Christina D." },
+  ];
+
+  return (
+    <section className="py-24 bg-white">
+      <div className="max-w-[1400px] mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold uppercase tracking-[3px] mb-4">Real People, Real Reviews</h2>
+          <p className="text-gray-500">See what our customers are saying</p>
+        </div>
+        <div className="grid grid-cols-3 gap-8">
+          {reviews.map((review, i) => (
+            <div key={i} className="bg-gray-50 p-10">
+              <div className="text-yellow-400 text-lg mb-5">
+                <i className="fas fa-star"></i>
+                <i className="fas fa-star"></i>
+                <i className="fas fa-star"></i>
+                <i className="fas fa-star"></i>
+                <i className="fas fa-star"></i>
+              </div>
+              <p className="text-gray-700 text-base leading-relaxed mb-6">"{review.text}"</p>
+              <p className="font-bold text-sm">— {review.author}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="bg-black text-white py-20">
+      <div className="max-w-[1400px] mx-auto px-4 grid grid-cols-4 gap-16">
+        <div>
+          <h3 className="text-2xl font-bold uppercase tracking-[3px] mb-5">HD MUSCLE</h3>
+          <p className="text-gray-400 text-sm leading-relaxed mb-6">
+            Premium sports nutrition supplements designed for athletes who demand more. Engineered for peak performance.
+          </p>
+          <div className="flex gap-4">
+            <a href="#" className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:bg-purple-600 hover:border-purple-600 transition">
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a href="#" className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:bg-purple-600 hover:border-purple-600 transition">
+              <i className="fab fa-facebook"></i>
+            </a>
+            <a href="#" className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:bg-purple-600 hover:border-purple-600 transition">
+              <i className="fab fa-youtube"></i>
+            </a>
+            <a href="#" className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:bg-purple-600 hover:border-purple-600 transition">
+              <i className="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 className="text-xs font-bold uppercase tracking-[2px] mb-6">Shop</h4>
+          <ul className="space-y-3">
+            <li><Link href="/collections/shop-all" className="text-gray-400 text-sm hover:text-white transition">All Products</Link></li>
+            <li><Link href="/collections/pre-workouts" className="text-gray-400 text-sm hover:text-white transition">Pre-Workout</Link></li>
+            <li><Link href="/collections/proteins" className="text-gray-400 text-sm hover:text-white transition">Protein</Link></li>
+            <li><Link href="/collections/bundles" className="text-gray-400 text-sm hover:text-white transition">Bundles</Link></li>
+            <li><Link href="/collections/apparel" className="text-gray-400 text-sm hover:text-white transition">Apparel</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="text-xs font-bold uppercase tracking-[2px] mb-6">Support</h4>
+          <ul className="space-y-3">
+            <li><Link href="/pages/faq" className="text-gray-400 text-sm hover:text-white transition">FAQ</Link></li>
+            <li><Link href="/pages/shipping-policy" className="text-gray-400 text-sm hover:text-white transition">Shipping Policy</Link></li>
+            <li><Link href="/pages/refund-policy" className="text-gray-400 text-sm hover:text-white transition">Refund Policy</Link></li>
+            <li><Link href="/pages/privacy-policy" className="text-gray-400 text-sm hover:text-white transition">Privacy Policy</Link></li>
+            <li><Link href="/pages/contact" className="text-gray-400 text-sm hover:text-white transition">Contact Us</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="text-xs font-bold uppercase tracking-[2px] mb-6">Company</h4>
+          <ul className="space-y-3">
+            <li><Link href="/pages/our-story" className="text-gray-400 text-sm hover:text-white transition">Our Story</Link></li>
+            <li><Link href="/pages/wholesale" className="text-gray-400 text-sm hover:text-white transition">Wholesale</Link></li>
+            <li><Link href="/pages/careers" className="text-gray-400 text-sm hover:text-white transition">Careers</Link></li>
+            <li><Link href="/pages/press" className="text-gray-400 text-sm hover:text-white transition">Press</Link></li>
+          </ul>
+        </div>
+      </div>
+      <div className="max-w-[1400px] mx-auto px-4 mt-16 pt-8 border-t border-gray-900 text-center">
+        <p className="text-gray-600 text-sm">© 2024 HD MUSCLE. All rights reserved. Integrity is everything.</p>
+      </div>
+    </footer>
   );
 }
 
@@ -153,7 +270,6 @@ export default function HomePage() {
   const settings = getSettings(payload);
   const products = getProducts(payload).filter((p: Product) => p.is_active !== false);
   const collections = getCollections(payload);
-  const hero = getHeroSection(payload);
 
   const handleAddToCart = (product: Product) => {
     addItem({ id: product.id, title: product.title, price: Number(product.price), image: product.images?.[0]?.url });
@@ -161,14 +277,13 @@ export default function HomePage() {
 
   const bestSellers = products.slice(0, 8);
   const newProducts = products.slice(8, 16);
-  const apparelProducts = products.slice(16, 24);
 
   if (loading) {
     return (
       <div className="min-h-screen bg-white">
-        <Header />
+        <AnnouncementBar />
         <div className="py-24 text-center">
-          <div className="w-10 h-10 border-4 border-red-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-10 h-10 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-500">Loading HD Muscle...</p>
         </div>
       </div>
@@ -176,195 +291,81 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 font-sans">
+      <AnnouncementBar />
       <Header />
 
-      <section className="relative bg-gray-900 text-white py-24">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">{hero?.heading || 'FIND YOUR FORMULA'}</h1>
-          <p className="text-xl text-gray-300 mb-8">{hero?.subheading || 'Premium Quality Supplements for Athletes'}</p>
-          <Link href="/collections/best-selling-collection" className="inline-block px-8 py-3 bg-red-600 font-semibold rounded-lg hover:bg-red-700">
-            Shop All — Supplements
-          </Link>
+      <section className="relative h-[700px] bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
+        <div className="absolute inset-0 opacity-30">
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="100" height="100" fill="url(#grid)" />
+          </svg>
         </div>
-      </section>
-
-      <section className="py-8 bg-black text-white">
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-center gap-8 overflow-x-auto">
-          {['GMP Certified', 'Free Shipping $50+', '30-Day Returns', 'Expert Support'].map((text, i) => (
-            <div key={i} className="flex items-center gap-2 whitespace-nowrap">
-              <svg className="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-              </svg>
-              <span className="text-sm font-medium">{text}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Shop by Category</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {collections.slice(0, 8).map((col: any) => (
-              <Link key={col.id} href={`/collections/${col.handle}`} className="group">
-                <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden">
-                  {col.image ? <img src={col.image} alt={col.title} className="w-full h-full object-cover group-hover:scale-105 transition" /> : <div className="w-full h-full flex items-center justify-center text-4xl">📦</div>}
-                </div>
-                <p className="mt-3 font-semibold text-center">{col.title}</p>
+        <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
+          <div className="max-w-[900px]">
+            <h1 className="text-7xl md:text-8xl font-bold uppercase tracking-[8px] leading-tight mb-6">
+              <span className="block bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                Unleash
+              </span>
+              Your Potential
+            </h1>
+            <p className="text-lg text-gray-300 mb-10 max-w-[600px] mx-auto">
+              Premium supplements designed for athletes who demand more. Scientifically formulated to help you reach your peak performance.
+            </p>
+            <div className="flex gap-5 justify-center">
+              <Link href="#products" className="px-10 py-4 bg-white text-black text-sm font-bold uppercase tracking-[2px] hover:bg-purple-600 hover:text-white transition">
+                Shop Now
               </Link>
-            ))}
+              <Link href="#about" className="px-10 py-4 border-2 border-white text-white text-sm font-bold uppercase tracking-[2px] hover:bg-white hover:text-black transition">
+                Learn More
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      <ProductCarousel 
-        title="SHOP OUR BEST SELLERS" 
-        products={bestSellers} 
-        settings={settings} 
-        onAddToCart={handleAddToCart}
-        viewAllLink="/collections/best-selling-collection"
-      />
+      <CategoryTiles collections={collections} />
 
-      <ProductCarousel 
-        title="NEW AND NOTEWORTHY ↓" 
+      <div id="products">
+        <ProductSection 
+          title="Shop Our Best Sellers" 
+          products={bestSellers} 
+          settings={settings} 
+          onAddToCart={handleAddToCart}
+          viewAllLink="/collections/best-selling-collection"
+        />
+      </div>
+
+      <ProductSection 
+        title="New + Noteworthy" 
         products={newProducts} 
         settings={settings} 
         onAddToCart={handleAddToCart}
         viewAllLink="/collections/new-featured"
       />
 
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
-          <div className="order-2 md:order-1">
-            <h2 className="text-3xl font-bold mb-4">HD Muscle is a family-built company.</h2>
-            <p className="text-gray-600 mb-4">
-              Founded by fitness enthusiasts who demanded more from their supplements, HD Muscle creates products that actually work. 
-              Every formula is rigorously tested and backed by science to help you reach your fitness goals.
-            </p>
-            <p className="text-gray-600 mb-6">
-              We're not just another supplement brand. We're a community of athletes, lifters, and fitness warriors committed to excellence.
-            </p>
-            <Link href="/pages/our-story" className="text-red-600 font-medium hover:underline">
-              Learn More About Us →
-            </Link>
-          </div>
-          <div className="order-1 md:order-2 bg-gray-200 rounded-xl overflow-hidden aspect-video">
-            <img 
-              src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800" 
-              alt="HD Muscle Story" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-      </section>
+      <div id="about">
+        <BrandStory />
+      </div>
 
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">REAL PEOPLE, REAL REVIEWS</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 bg-gray-50 rounded-xl">
-              <div className="flex text-yellow-400 mb-3">★★★★★</div>
-              <p className="text-gray-600 mb-4">"Best pre-workout I've ever used. The energy is clean and focused."</p>
-              <p className="font-semibold">- John D.</p>
-            </div>
-            <div className="p-6 bg-gray-50 rounded-xl">
-              <div className="flex text-yellow-400 mb-3">★★★★★</div>
-              <p className="text-gray-600 mb-4">"Amazing quality supplements. Been using HD Muscle for years!"</p>
-              <p className="font-semibold">- Mike R.</p>
-            </div>
-            <div className="p-6 bg-gray-50 rounded-xl">
-              <div className="flex text-yellow-400 mb-3">★★★★★</div>
-              <p className="text-gray-600 mb-4">"The best value for money. Real results I've seen."</p>
-              <p className="font-semibold">- Sarah K.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Reviews />
 
-      <section className="relative bg-gray-900 text-white py-32 overflow-hidden">
-        <video 
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-        >
-          <source src="https://videos.pexels.com/video-files/4761437/4761437-uhd_2560_1440_25fps.mp4" type="video/mp4" />
-        </video>
-        <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">TRAIN LIKE A PRO</h2>
-          <p className="text-xl text-gray-300 mb-8">Join thousands of athletes who trust HD Muscle</p>
-          <Link href="/collections/best-selling-collection" className="inline-block px-8 py-3 bg-red-600 font-semibold rounded-lg hover:bg-red-700">
-            Shop Now
-          </Link>
-        </div>
-      </section>
-
-      <ProductCarousel 
-        title="NEW ARRIVALS — APPAREL + ACCESSORIES" 
-        products={apparelProducts} 
-        settings={settings} 
-        onAddToCart={handleAddToCart}
-        viewAllLink="/collections/new-25"
-      />
-
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">FREQUENTLY ASKED QUESTIONS</h2>
-          <div className="max-w-2xl mx-auto space-y-4">
-            {[
-              { q: "How long does shipping take?", a: "Free shipping on orders over $50. Standard shipping takes 3-5 business days." },
-              { q: "What's your return policy?", a: "We offer a 30-day money-back guarantee on all products." },
-              { q: "Are your products GMP certified?", a: "Yes, all our products are manufactured in GMP certified facilities." },
-              { q: "Do you ship internationally?", a: "Yes, we ship to over 50 countries worldwide." }
-            ].map((faq, i) => (
-              <details key={i} className="group bg-gray-50 rounded-lg">
-                <summary className="flex items-center justify-between p-4 cursor-pointer font-medium">
-                  {faq.q}
-                  <svg className="w-5 h-5 transition group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </summary>
-                <p className="px-4 pb-4 text-gray-600">{faq.a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-gray-900 text-white">
-        <div className="max-w-2xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">YOU'RE COVERED</h2>
+      <section className="py-24 bg-gray-900 text-white text-center">
+        <div className="max-w-2xl mx-auto px-4">
+          <h2 className="text-3xl font-bold uppercase tracking-[3px] mb-4">You're Covered</h2>
           <p className="text-gray-300 mb-8">30-Day Money Back Guarantee on all orders</p>
-          <Link href="/pages/shipping-policy" className="text-red-600 font-medium hover:underline">
+          <Link href="/pages/shipping-policy" className="text-purple-500 font-semibold hover:underline">
             Learn More →
           </Link>
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-          <p className="text-gray-600 mb-8">Subscribe for exclusive offers</p>
-          <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input type="email" placeholder="Enter your email" className="flex-1 px-4 py-3 rounded-lg text-gray-900" />
-            <button className="px-6 py-3 bg-red-600 font-semibold rounded-lg hover:bg-red-700">Subscribe</button>
-          </form>
-        </div>
-      </section>
-
-      <footer className="bg-black text-gray-400 py-12">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div><h3 className="text-white font-semibold mb-4">Shop</h3><div className="space-y-2"><Link href="/collections/pre-workouts" className="block hover:text-white">Pre-Workout</Link><Link href="/collections/intra-workouts" className="block hover:text-white">Recovery</Link><Link href="/collections/bundles" className="block hover:text-white">Bundles</Link></div></div>
-          <div><h3 className="text-white font-semibold mb-4">Support</h3><div className="space-y-2"><Link href="/pages/faq" className="block hover:text-white">FAQ</Link><Link href="/pages/contact" className="block hover:text-white">Contact</Link><Link href="/pages/shipping-policy" className="block hover:text-white">Shipping</Link></div></div>
-          <div><h3 className="text-white font-semibold mb-4">Company</h3><div className="space-y-2"><Link href="/pages/our-story" className="block hover:text-white">About Us</Link><Link href="/pages/join" className="block hover:text-white">Join HD Collective</Link></div></div>
-          <div><h3 className="text-white font-semibold mb-4">Legal</h3><div className="space-y-2"><Link href="/pages/privacy-policy" className="block hover:text-white">Privacy</Link><Link href="/pages/terms-of-service" className="block hover:text-white">Terms</Link></div></div>
-        </div>
-        <div className="max-w-7xl mx-auto px-4 mt-8 pt-8 border-t border-gray-800 text-center">
-          <p>{settings.copyright_text || '© 2024 HD Muscle. All rights reserved.'}</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
