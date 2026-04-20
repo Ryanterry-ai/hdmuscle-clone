@@ -2,6 +2,32 @@ import { NextResponse } from 'next/server';
 
 const CMS_API = process.env.CMS_API || 'https://cms.hdmuscle.in/api';
 
+const STORE_DOMAIN = 'https://store.hdmuscle.in';
+
+function rewriteImageUrl(url: string): string {
+  if (!url) return url;
+  if (url.startsWith('http')) return url;
+  if (url.startsWith('//')) return 'https:' + url;
+  if (url.startsWith('/')) return url;
+  return url;
+}
+
+function rewriteUrls(obj: any): any {
+  if (Array.isArray(obj)) return obj.map(rewriteUrls);
+  if (obj && typeof obj === 'object') {
+    const result: any = {};
+    for (const key in obj) {
+      if (key === 'url' && typeof obj[key] === 'string') {
+        result[key] = rewriteImageUrl(obj[key]);
+      } else {
+        result[key] = rewriteUrls(obj[key]);
+      }
+    }
+    return result;
+  }
+  return obj;
+}
+
 const IMAGE_MAP: Record<string, string[]> = {
   'prohd-isolate': ['/prohd_chocolate_front-1cca5974cf27.png', '/prohd_vanilla_front.png'],
   'prehd-essential': ['/prehd-essential-blue-rasberry-eb39ae9ce7f5.png'],
@@ -84,6 +110,7 @@ function transformToInternalFormat(settingsData: any, productsData: any) {
     settings: {
       store_name: ext.site?.name || "HD MUSCLE",
       brand_name: ext.site?.name || "HD Muscle",
+      public_site_url: STORE_DOMAIN,
       currency: "INR",
       locale: "en-IN",
       symbol: "₹",
