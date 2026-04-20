@@ -30,8 +30,8 @@ export default function Header() {
     <header ref={menuRef} className={`sticky top-0 z-50 bg-white border-b border-black ${scrolled ? 'shadow-md' : ''}`}>
       <div className="flex items-center justify-between px-6 md:px-10 py-4 gap-8">
         <div className="flex items-center gap-8 md:gap-12">
-          <Link href="/" className="text-2xl md:text-3xl font-bold uppercase tracking-[3px]">
-            HD<span className="font-normal">MUSCLE</span>
+          <Link href="/" className="text-2xl md:text-3xl font-black uppercase tracking-[4px]">
+            HD<span className="font-extrabold">MUSCLE</span>
           </Link>
           
           <nav className="hidden md:flex items-center gap-8">

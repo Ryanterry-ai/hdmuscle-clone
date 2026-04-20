@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 @tailwind base;
@@ -16,7 +16,8 @@
   --radius: 0px;
   --radius-sm: 4px;
   
-  --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-heading: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   
   --shadow-sm: 0 0 15px rgba(0, 0, 0, 0.25);
   --shadow-xs: 0 -1px 0px 0px rgba(0, 0, 0, 0.1);
@@ -113,19 +114,19 @@ input, textarea, select {
   display: inline-block;
   background: #000000;
   color: #ffffff;
-  padding: 14px;
-  font-size: 12px;
-  font-weight: 600;
+  padding: 14px 24px;
+  font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.2em;
   border: 1px solid #000000;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .btn-primary:hover {
-  background: #ffffff;
-  color: #000000;
+  background: #222222;
+  color: #ffffff;
 }
 
 .btn-outline {
@@ -317,12 +318,12 @@ details[open] > summary {
 .announcement-bar {
   background: #000000;
   color: #ffffff;
-  padding: 10px 0;
+  padding: 8px 0;
   text-align: center;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.2em;
 }
 
 .announcement-bar a {
@@ -360,13 +361,15 @@ details[open] > summary {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #5f6368;
-  font-size: 13px;
-  font-weight: 500;
+  color: #1a1a1a;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .quality-badge-icon {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .divider {
@@ -450,7 +453,7 @@ details[open] > summary {
 .brand-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 500px;
+  min-height: 550px;
 }
 
 @media (max-width: 768px) {
@@ -475,7 +478,7 @@ details[open] > summary {
 .brand-content {
   background: #000000;
   color: #ffffff;
-  padding: 48px;
+  padding: 60px 48px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -629,13 +632,19 @@ details[open] > summary {
 .grid-products {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
+  gap: 0;
   background: #000000;
   border: 1px solid #000000;
 }
 
 .grid-products > * {
   background: #ffffff;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+}
+
+.grid-products > *:nth-child(4n) {
+  border-right: none;
 }
 
 @media (max-width: 1024px) {
@@ -741,11 +750,12 @@ details[open] > summary {
 .product-card {
   background: #ffffff;
   border: 1px solid #000000;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .product-image {
@@ -780,20 +790,20 @@ details[open] > summary {
 
 .add-to-cart-btn {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   background: #000000;
   color: #ffffff;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.15em;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .add-to-cart-btn:hover {
-  background: #333333;
+  background: #1a1a1a;
 }
 
 .section-header {
@@ -806,10 +816,10 @@ details[open] > summary {
 }
 
 .section-heading {
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
 }
 
 .view-all-link {
@@ -826,10 +836,11 @@ details[open] > summary {
 
 .footer-links h4 {
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   margin-bottom: 16px;
+  color: #ffffff;
 }
 
 .footer-links ul li {
@@ -838,11 +849,12 @@ details[open] > summary {
 
 .footer-links ul li a {
   font-size: 13px;
-  color: #5f6368;
+  color: #888888;
+  transition: color 0.2s ease;
 }
 
 .footer-links ul li a:hover {
-  color: #000000;
+  color: #ffffff;
 }
 
 .country-select {
