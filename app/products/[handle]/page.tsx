@@ -26,6 +26,31 @@ type RenderProduct = {
   review_count: number
 }
 
+function normalizeHandleKey(value: string) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '')
+}
+
+function isAllowedMediaUrl(url: string) {
+  if (!url) return false
+  if (url.startsWith('/')) return true
+  if (/^https?:\/\//i.test(url)) {
+    return /https?:\/\/([^/]*\.)?(hdmuscle\.in|cms\.hdmuscle\.in|vercel\.app)\b/i.test(url)
+  }
+  return false
+}
+
+function normalizeImagePath(raw: string) {
+  const value = String(raw || '').trim()
+  if (!value) return ''
+  if (value.startsWith('//')) return ''
+  if (value.startsWith('/')) return value
+  if (/^https?:\/\//i.test(value)) return value
+  if (/^[a-z0-9]/i.test(value)) return `/${value}`
+  return ''
+}
+
 function parseOptions(value: unknown) {
   if (!value) return [] as string[]
   if (Array.isArray(value)) return value.map((option) => String(option).trim()).filter(Boolean)
@@ -37,11 +62,17 @@ function parseOptions(value: unknown) {
 
 function parseImageValue(value: unknown) {
   if (!value) return ''
-  if (typeof value === 'string') return value.trim()
+  if (typeof value === 'string') {
+    const normalized = normalizeImagePath(value)
+    return isAllowedMediaUrl(normalized) ? normalized : ''
+  }
   if (typeof value === 'object') {
     const source = value as Record<string, unknown>
     const candidate = source.url || source.src || source.path || source.value
-    return typeof candidate === 'string' ? candidate.trim() : ''
+    if (typeof candidate === 'string') {
+      const normalized = normalizeImagePath(candidate)
+      return isAllowedMediaUrl(normalized) ? normalized : ''
+    }
   }
   return ''
 }
@@ -59,7 +90,10 @@ export default function ProductPage() {
 
   const cmsProduct = useMemo(() => {
     const products = Array.isArray(storefront?.products) ? storefront.products : []
-    return products.find((product: any) => String(product?.handle || '') === handle) || null
+    const normalizedHandle = normalizeHandleKey(handle)
+    return (
+      products.find((product: any) => normalizeHandleKey(String(product?.handle || '')) === normalizedHandle) || null
+    )
   }, [storefront, handle])
 
   const fallbackProduct = getProduct(handle)
@@ -113,11 +147,14 @@ export default function ProductPage() {
 
   const [selectedFlavor, setSelectedFlavor] = useState('Default')
   const [selectedSize, setSelectedSize] = useState('')
+  const [mainImageSrc, setMainImageSrc] = useState('')
+  const fallbackMainImage = fallbackProduct?.image || '/assets/hero-bg.jpg'
 
   useEffect(() => {
     if (!product) return
     setSelectedFlavor(product.flavor_options[0] || 'Default')
     setSelectedSize(product.size_options[0] || '')
+    setMainImageSrc(product.image || fallbackMainImage)
   }, [product?.id, product?.flavor_options?.join('|'), product?.size_options?.join('|')])
 
   if (!product) {
@@ -173,7 +210,18 @@ export default function ProductPage() {
 
         <section className="product-page">
           <div className="product-page__gallery">
-            <img src={product.image} alt={product.title} className="product-page__main-image" />
+            <img
+              src={mainImageSrc || fallbackMainImage}
+              alt={product.title}
+              className="product-page__main-image"
+              onError={() => {
+                if (mainImageSrc !== fallbackMainImage) {
+                  setMainImageSrc(fallbackMainImage)
+                } else if (mainImageSrc !== '/assets/hero-bg.jpg') {
+                  setMainImageSrc('/assets/hero-bg.jpg')
+                }
+              }}
+            />
           </div>
 
           <div className="product-page__content">
@@ -265,7 +313,7 @@ export default function ProductPage() {
                   id: product.id,
                   title: `${product.title}${flavorValue ? ` - ${flavorValue}` : ''}${sizeValue ? ` / ${sizeValue}` : ''}`,
                   price: product.price,
-                  image: product.image,
+                  image: mainImageSrc || product.image || fallbackMainImage,
                 })
               }
             >

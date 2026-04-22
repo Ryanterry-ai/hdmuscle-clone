@@ -311,12 +311,30 @@ export function formatINR(amount: number): string {
   }).format(amount)
 }
 
+function normalizeHandle(value: string): string {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '')
+}
+
 export function getProduct(handle: string) {
-  return products.find((product) => product.handle === handle)
+  const directMatch = products.find((product) => product.handle === handle)
+  if (directMatch) return directMatch
+
+  const normalizedHandle = normalizeHandle(handle)
+  if (!normalizedHandle) return undefined
+
+  return products.find((product) => normalizeHandle(product.handle) === normalizedHandle)
 }
 
 export function getCollection(handle: string) {
-  return collections.find((collection) => collection.handle === handle)
+  const directMatch = collections.find((collection) => collection.handle === handle)
+  if (directMatch) return directMatch
+
+  const normalizedHandle = normalizeHandle(handle)
+  if (!normalizedHandle) return undefined
+
+  return collections.find((collection) => normalizeHandle(collection.handle) === normalizedHandle)
 }
 
 export function getProductsByHandles(handles: string[]) {
@@ -325,5 +343,6 @@ export function getProductsByHandles(handles: string[]) {
 
 export function getProductsByCollection(handle: string) {
   if (handle === 'all') return products
-  return products.filter((product) => product.collection === handle)
+  const normalizedHandle = normalizeHandle(handle)
+  return products.filter((product) => normalizeHandle(product.collection) === normalizedHandle)
 }

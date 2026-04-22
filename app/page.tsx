@@ -10,6 +10,7 @@ import {
   bestSellerHandles,
   formatINR,
   getCollection,
+  getProduct,
   getProductsByHandles,
   heroCategoryTiles,
   newNoteworthyHandles,
@@ -90,11 +91,18 @@ function parseOptions(value: unknown) {
 
 function parseImageValue(value: unknown) {
   if (!value) return ''
-  if (typeof value === 'string') return value.trim()
+  if (typeof value === 'string') {
+    const raw = value.trim()
+    if (!raw) return ''
+    if (raw.startsWith('/')) return raw
+    if (/^https?:\/\/([^/]*\.)?(hdmuscle\.in|cms\.hdmuscle\.in|vercel\.app)\b/i.test(raw)) return raw
+    if (/^[a-z0-9]/i.test(raw)) return `/${raw}`
+    return ''
+  }
   if (typeof value === 'object') {
     const source = value as Record<string, unknown>
     const candidate = source.url || source.src || source.path || source.value
-    return typeof candidate === 'string' ? candidate.trim() : ''
+    if (typeof candidate === 'string') return parseImageValue(candidate)
   }
   return ''
 }
@@ -107,12 +115,10 @@ function parseImageArray(value: unknown) {
 function normalizeProducts(raw: any[]): DisplayProduct[] {
   if (!Array.isArray(raw)) return []
 
-  const fallbackByHandle = new Map(fallbackProducts.map((product) => [product.handle, product]))
-
   return raw
     .map((product: any) => {
       const handle = String(product?.handle || '')
-      const fallback = fallbackByHandle.get(handle)
+      const fallback = getProduct(handle)
       const images = [...parseImageArray(product?.images), ...parseImageArray(product?.gallery_images)]
       const featuredImage =
         parseImageValue(product?.featured_image) ||
@@ -121,9 +127,9 @@ function normalizeProducts(raw: any[]): DisplayProduct[] {
         parseImageValue(product?.image) ||
         parseImageValue(product?.featuredImageUrl) ||
         fallback?.image ||
-        ''
+        '/assets/hero-bg.jpg'
 
-      if (!featuredImage || !product?.handle || !(product?.title || fallback?.title)) {
+      if (!product?.handle || !(product?.title || fallback?.title)) {
         return null
       }
 
@@ -152,7 +158,7 @@ function normalizeProducts(raw: any[]): DisplayProduct[] {
         sizeOptions: sizeOptions.length > 0 ? sizeOptions : fallback?.sizeOptions || [],
         reviewCount: Number(product.review_count || fallback?.reviewCount || 0) || undefined,
         isFeatured: Boolean(product.is_featured),
-        category: product.category || fallback?.category || null,
+        category: product.category || fallback?.collection || null,
       } as DisplayProduct
     })
     .filter(Boolean) as DisplayProduct[]
@@ -174,13 +180,31 @@ function ProductCard({
   item: DisplayProduct
   onAdd: () => void
 }) {
+  const [primarySrc, setPrimarySrc] = useState(item.image || '/assets/hero-bg.jpg')
+  const [secondarySrc, setSecondarySrc] = useState(item.secondaryImage || '')
+
+  useEffect(() => {
+    setPrimarySrc(item.image || '/assets/hero-bg.jpg')
+    setSecondarySrc(item.secondaryImage || '')
+  }, [item.image, item.secondaryImage])
+
   return (
     <article className="catalog-card">
       <Link href={`/products/${item.handle}`} className="catalog-card__image-link">
         <div className="catalog-card__media">
-          <img src={item.image} alt={item.title} className="catalog-card__primary" />
-          {item.secondaryImage ? (
-            <img src={item.secondaryImage} alt={item.title} className="catalog-card__secondary" />
+          <img
+            src={primarySrc}
+            alt={item.title}
+            className="catalog-card__primary"
+            onError={() => setPrimarySrc('/assets/hero-bg.jpg')}
+          />
+          {secondarySrc ? (
+            <img
+              src={secondarySrc}
+              alt={item.title}
+              className="catalog-card__secondary"
+              onError={() => setSecondarySrc('')}
+            />
           ) : null}
         </div>
 

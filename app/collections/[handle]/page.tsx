@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import Header from '../../header'
 import Footer from '../../components/Footer'
 import { formatINR, getCollection, getProduct, getProductsByCollection } from '../../lib/catalog'
@@ -30,11 +31,18 @@ function parseOptions(value: unknown) {
 
 function parseImageValue(value: unknown) {
   if (!value) return ''
-  if (typeof value === 'string') return value.trim()
+  if (typeof value === 'string') {
+    const raw = value.trim()
+    if (!raw) return ''
+    if (raw.startsWith('/')) return raw
+    if (/^https?:\/\/([^/]*\.)?(hdmuscle\.in|cms\.hdmuscle\.in|vercel\.app)\b/i.test(raw)) return raw
+    if (/^[a-z0-9]/i.test(raw)) return `/${raw}`
+    return ''
+  }
   if (typeof value === 'object') {
     const source = value as Record<string, unknown>
     const candidate = source.url || source.src || source.path || source.value
-    return typeof candidate === 'string' ? candidate.trim() : ''
+    if (typeof candidate === 'string') return parseImageValue(candidate)
   }
   return ''
 }
@@ -51,13 +59,31 @@ function CollectionProductCard({
   item: CollectionItem
   onAdd: () => void
 }) {
+  const [primarySrc, setPrimarySrc] = useState(item.image || '/assets/hero-bg.jpg')
+  const [secondarySrc, setSecondarySrc] = useState(item.secondaryImage || '')
+
+  useEffect(() => {
+    setPrimarySrc(item.image || '/assets/hero-bg.jpg')
+    setSecondarySrc(item.secondaryImage || '')
+  }, [item.image, item.secondaryImage])
+
   return (
     <article className="catalog-card" key={item.id}>
       <Link href={`/products/${item.handle}`} className="catalog-card__image-link">
         <div className="catalog-card__media">
-          <img src={item.image} alt={item.title} className="catalog-card__primary" />
-          {item.secondaryImage ? (
-            <img src={item.secondaryImage} alt={item.title} className="catalog-card__secondary" />
+          <img
+            src={primarySrc}
+            alt={item.title}
+            className="catalog-card__primary"
+            onError={() => setPrimarySrc('/assets/hero-bg.jpg')}
+          />
+          {secondarySrc ? (
+            <img
+              src={secondarySrc}
+              alt={item.title}
+              className="catalog-card__secondary"
+              onError={() => setSecondarySrc('')}
+            />
           ) : null}
         </div>
 
@@ -146,12 +172,16 @@ export default function CollectionPage() {
           const fallback = getProduct(String(product?.handle || ''))
           const images = [...parseImageArray(product?.images), ...parseImageArray(product?.gallery_images)]
           const primaryImage =
-            parseImageValue(product?.featured_image) || parseImageValue(product?.image) || images[0] || fallback?.image || ''
+            parseImageValue(product?.featured_image) ||
+            parseImageValue(product?.image) ||
+            images[0] ||
+            fallback?.image ||
+            '/assets/hero-bg.jpg'
           const secondaryImage = images.find((image) => image !== primaryImage) || fallback?.secondaryImage || null
           const flavorOptions = parseOptions(product?.flavor_options || product?.flavorOptions)
           const fallbackOptions = fallback?.variantOptions || (fallback?.variantLabel ? [fallback.variantLabel] : [])
 
-          if (!primaryImage || !product?.handle || !product?.title) return null
+          if (!product?.handle || !(product?.title || fallback?.title)) return null
 
           return {
             id: String(product?.id || product?.handle),
