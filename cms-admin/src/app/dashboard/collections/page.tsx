@@ -11,6 +11,7 @@ import {
   XIcon,
   SearchIcon,
 } from '@heroicons/react/outline';
+import MediaPickerField from '@/components/MediaPickerField';
 
 type Product = {
   id: string;
@@ -322,15 +323,17 @@ export default function CollectionsPage() {
                 />
               </label>
 
-              <label className="space-y-1 md:col-span-2">
-                <span className="text-sm text-slate-300">Cover Image URL</span>
-                <input
-                  list="collection-media-options"
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-white"
+              <div className="md:col-span-2">
+                <MediaPickerField
+                  theme="dark"
+                  label="Cover Media"
                   value={formData.image}
-                  onChange={(event) => setFormData((prev) => ({ ...prev, image: event.target.value }))}
+                  onChange={(mediaUrl) => setFormData((prev) => ({ ...prev, image: mediaUrl }))}
+                  mediaUrls={mediaUrls}
+                  datalistId="collection-media-options"
+                  helperText="Attach and upload file, or import URL. Save + Publish to push live."
                 />
-              </label>
+              </div>
 
               <label className="space-y-1">
                 <span className="text-sm text-slate-300">SEO Title</span>
@@ -388,12 +391,6 @@ export default function CollectionsPage() {
                 Published
               </label>
             </div>
-
-            <datalist id="collection-media-options">
-              {mediaUrls.map((url) => (
-                <option key={url} value={url} />
-              ))}
-            </datalist>
 
             <div className="mt-7 flex gap-3">
               <Button variant="secondary" onClick={() => setShowModal(false)} className="flex-1">

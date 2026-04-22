@@ -188,7 +188,7 @@ export default function ProductPage() {
             <p className="product-page__shipping">Shipping calculated at checkout.</p>
             <p className="product-page__installment">
               or 4 interest-free payments of <strong>{formatINR(installmentAmount)}</strong> with{' '}
-              <span className="product-page__afterpay">afterpay</span> <span aria-hidden>(i)</span>
+              <span className="product-page__snapmint-pill">snapmint</span> <span aria-hidden>(i)</span>
             </p>
 
             <div className="product-page__reviews" aria-label="Product reviews">
@@ -272,24 +272,14 @@ export default function ProductPage() {
               ADD TO CART
             </button>
 
-            <button type="button" className="product-page__shop-btn">
-              Buy with shop
+            <button type="button" className="product-page__snapmint-btn">
+              Buy with Snapmint
             </button>
-            <button type="button" className="product-page__more-payments">
-              More payment options
-            </button>
+            <p className="product-page__payment-note">Secure checkout via Razorpay or choose Snapmint EMI.</p>
 
             <div className="product-page__section-title">Description</div>
             <div className="product-page__section-body">
               <p>{product.description || product.short_description || 'No product description available yet.'}</p>
-            </div>
-
-            <div className="product-page__pickup">
-              <p className="product-page__pickup-title">
-                <span aria-hidden>*</span> Pick up available
-              </p>
-              <p className="product-page__pickup-time">Usually ready in 24 hours</p>
-              <button type="button">View store info</button>
             </div>
 
             <div className="product-page__links">

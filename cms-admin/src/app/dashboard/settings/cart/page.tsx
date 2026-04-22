@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { SaveIcon } from '@heroicons/react/outline';
+import MediaPickerField from '@/components/MediaPickerField';
 
 interface CartDrawerSettings {
   promo_headline: string;
@@ -22,6 +23,7 @@ export default function CartDrawerSettingsPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [mediaUrls, setMediaUrls] = useState<string[]>([]);
 
   useEffect(() => {
     loadSettings();
@@ -29,7 +31,7 @@ export default function CartDrawerSettingsPage() {
 
   const loadSettings = async () => {
     try {
-      const res = await fetch('/api/settings/cart');
+      const [res, mediaRes] = await Promise.all([fetch('/api/settings/cart'), fetch('/api/media')]);
       if (res.ok) {
         const data = await res.json();
         if (data.settings) {
@@ -41,6 +43,10 @@ export default function CartDrawerSettingsPage() {
             upsell_products: data.settings.upsell_products || '[]',
           });
         }
+      }
+      if (mediaRes.ok) {
+        const mediaData = await mediaRes.json();
+        setMediaUrls((mediaData.media || []).map((item: any) => String(item.url || '')).filter(Boolean));
       }
     } catch (error) {
       console.error('Failed to load settings:', error);
@@ -115,13 +121,14 @@ export default function CartDrawerSettingsPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-stone-700 mb-2">Promo Image URL</label>
-            <input
-              type="text"
+            <MediaPickerField
+              theme="light"
+              label="Promo Media"
               value={settings.promo_image}
-              onChange={(e) => setSettings({ ...settings, promo_image: e.target.value })}
-              className="w-full px-4 py-3 border border-stone-200 rounded-xl text-stone-900 focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-              placeholder="https://example.com/image.jpg"
+              onChange={(mediaUrl) => setSettings({ ...settings, promo_image: mediaUrl })}
+              mediaUrls={mediaUrls}
+              datalistId="cart-promo-media-options"
+              helperText="Upload image/video or import URL."
             />
           </div>
         </div>

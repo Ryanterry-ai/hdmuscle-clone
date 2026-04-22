@@ -11,6 +11,7 @@ import {
   TrashIcon,
   XIcon,
 } from '@heroicons/react/outline';
+import MediaPickerField from '@/components/MediaPickerField';
 
 type Collection = {
   id: string;
@@ -111,6 +112,13 @@ function slugify(value: string) {
     .replace(/-+/g, '-');
 }
 
+function parseLineList(value: string) {
+  return value
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean);
+}
+
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [collections, setCollections] = useState<Collection[]>([]);
@@ -122,6 +130,7 @@ export default function ProductsPage() {
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState<ProductFormState>(emptyForm);
+  const [galleryAttachUrl, setGalleryAttachUrl] = useState('');
 
   useEffect(() => {
     fetchAll();
@@ -175,6 +184,7 @@ export default function ProductsPage() {
     if (!product) {
       setEditingProduct(null);
       setFormData(emptyForm);
+      setGalleryAttachUrl('');
       setShowModal(true);
       return;
     }
@@ -208,6 +218,7 @@ export default function ProductsPage() {
         .map((relation) => relation.collection?.id || relation.collection_id)
         .filter(Boolean) as string[],
     });
+    setGalleryAttachUrl('');
     setShowModal(true);
   };
 
@@ -223,10 +234,7 @@ export default function ProductsPage() {
   const handleSave = async () => {
     setSaving(true);
     try {
-      const galleryUrls = formData.gallery_images
-        .split('\n')
-        .map((url) => url.trim())
-        .filter(Boolean);
+      const galleryUrls = parseLineList(formData.gallery_images);
 
       const payload = {
         title: formData.title,
@@ -270,6 +278,7 @@ export default function ProductsPage() {
       setShowModal(false);
       setEditingProduct(null);
       setFormData(emptyForm);
+      setGalleryAttachUrl('');
       await fetchAll();
     } catch (error) {
       console.error('Failed:', error);
@@ -517,15 +526,17 @@ export default function ProductsPage() {
                 />
               </label>
 
-              <label className="space-y-1 md:col-span-2">
-                <span className="text-sm text-slate-300">Featured Image URL</span>
-                <input
-                  list="product-media-options"
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-white"
+              <div className="md:col-span-2">
+                <MediaPickerField
+                  theme="dark"
+                  label="Featured Media"
                   value={formData.featured_image}
-                  onChange={(event) => setFormData((prev) => ({ ...prev, featured_image: event.target.value }))}
+                  onChange={(mediaUrl) => setFormData((prev) => ({ ...prev, featured_image: mediaUrl }))}
+                  mediaUrls={mediaUrls}
+                  datalistId="product-media-featured"
+                  helperText="Attach file, upload, or import URL. Success message appears after upload/import."
                 />
-              </label>
+              </div>
 
               <label className="space-y-1 md:col-span-2">
                 <span className="text-sm text-slate-300">Gallery Image URLs (one per line)</span>
@@ -535,8 +546,27 @@ export default function ProductsPage() {
                   value={formData.gallery_images}
                   onChange={(event) => setFormData((prev) => ({ ...prev, gallery_images: event.target.value }))}
                 />
-                <p className="text-xs text-slate-500">Tip: upload files in Media Library and paste/select their URLs here.</p>
+                <p className="text-xs text-slate-500">One URL per line. Use quick attach below to add media without manual copy/paste.</p>
               </label>
+
+              <div className="md:col-span-2">
+                <MediaPickerField
+                  theme="dark"
+                  label="Add Gallery Media"
+                  value={galleryAttachUrl}
+                  onChange={setGalleryAttachUrl}
+                  onSelect={(mediaUrl) => {
+                    setFormData((prev) => {
+                      const merged = Array.from(new Set([...parseLineList(prev.gallery_images), mediaUrl]));
+                      return { ...prev, gallery_images: merged.join('\n') };
+                    });
+                    setGalleryAttachUrl('');
+                  }}
+                  mediaUrls={mediaUrls}
+                  datalistId="product-media-gallery"
+                  helperText="Uploaded/imported media will be appended to the gallery list automatically."
+                />
+              </div>
 
               <label className="space-y-1 md:col-span-2">
                 <span className="text-sm text-slate-300">SEO Title</span>
@@ -596,12 +626,6 @@ export default function ProductsPage() {
             <datalist id="product-category-options">
               {categories.map((category) => (
                 <option key={category.name} value={category.name} />
-              ))}
-            </datalist>
-
-            <datalist id="product-media-options">
-              {mediaUrls.map((url) => (
-                <option key={url} value={url} />
               ))}
             </datalist>
 

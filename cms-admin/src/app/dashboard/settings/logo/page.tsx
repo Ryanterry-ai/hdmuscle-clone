@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { SaveIcon, PhotographIcon } from '@heroicons/react/outline';
+import { SaveIcon } from '@heroicons/react/outline';
+import MediaPickerField from '@/components/MediaPickerField';
 
 export default function LogoPage() {
   const [loading, setLoading] = useState(true);
@@ -9,8 +10,6 @@ export default function LogoPage() {
   const [logo, setLogo] = useState('');
   const [favicon, setFavicon] = useState('');
   const [mediaUrls, setMediaUrls] = useState<string[]>([]);
-  const [previewLogo, setPreviewLogo] = useState<string | null>(null);
-  const [previewFavicon, setPreviewFavicon] = useState<string | null>(null);
 
   useEffect(() => {
     fetchSettings();
@@ -26,8 +25,6 @@ export default function LogoPage() {
       const mediaData = await mediaRes.json();
       setLogo(data.logo || '');
       setFavicon(data.favicon || '');
-      setPreviewLogo(data.logo || null);
-      setPreviewFavicon(data.favicon || null);
       setMediaUrls((mediaData.media || []).map((item: any) => String(item.url || '')).filter(Boolean));
     } catch (error) {
       console.error('Failed to fetch settings:', error);
@@ -71,46 +68,30 @@ export default function LogoPage() {
         <div className="p-6 space-y-6">
           {/* Logo */}
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">Logo URL</label>
-            <input
-              type="url"
-              list="logo-media-options"
-              className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+            <MediaPickerField
+              theme="light"
+              label="Logo"
               value={logo}
-              onChange={(e) => setLogo(e.target.value)}
-              placeholder="https://example.com/logo.png"
+              onChange={setLogo}
+              mediaUrls={mediaUrls}
+              datalistId="logo-media-options"
+              helperText="Attach/upload logo or import logo URL."
             />
-            {previewLogo && (
-              <div className="mt-4 p-4 bg-slate-50 rounded-lg flex items-center justify-center">
-                <img src={previewLogo} alt="Logo preview" className="h-16 object-contain" />
-              </div>
-            )}
           </div>
 
           {/* Favicon */}
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">Favicon URL</label>
-            <input
-              type="url"
-              list="logo-media-options"
-              className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+            <MediaPickerField
+              theme="light"
+              label="Favicon"
               value={favicon}
-              onChange={(e) => setFavicon(e.target.value)}
-              placeholder="https://example.com/favicon.ico"
+              onChange={setFavicon}
+              mediaUrls={mediaUrls}
+              datalistId="favicon-media-options"
+              helperText="Attach/upload favicon (.png, .ico, .svg) or import URL."
             />
-            {previewFavicon && (
-              <div className="mt-4 p-4 bg-slate-50 rounded-lg flex items-center justify-center">
-                <img src={previewFavicon} alt="Favicon preview" className="w-8 h-8 object-contain" />
-              </div>
-            )}
           </div>
         </div>
-
-        <datalist id="logo-media-options">
-          {mediaUrls.map((url) => (
-            <option key={url} value={url} />
-          ))}
-        </datalist>
 
         <div className="p-6 border-t border-slate-200 flex justify-end">
           <button

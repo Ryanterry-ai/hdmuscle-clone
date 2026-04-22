@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { PlusIcon, SearchIcon, PencilIcon, TrashIcon, EyeIcon, XIcon } from '@heroicons/react/outline';
+import MediaPickerField from '@/components/MediaPickerField';
 
 type PageRecord = {
   id: string;
@@ -346,13 +347,14 @@ export default function PagesPage() {
               </div>
 
               <div>
-                <label className="mb-1 block text-sm font-medium text-slate-700">Featured Image URL</label>
-                <input
-                  type="text"
-                  list="page-media-options"
-                  className="w-full rounded-lg border border-slate-200 px-4 py-2.5 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+                <MediaPickerField
+                  theme="light"
+                  label="Featured Media"
                   value={formData.featured_image}
-                  onChange={(event) => setFormData((prev) => ({ ...prev, featured_image: event.target.value }))}
+                  onChange={(mediaUrl) => setFormData((prev) => ({ ...prev, featured_image: mediaUrl }))}
+                  mediaUrls={mediaUrls}
+                  datalistId="page-media-options"
+                  helperText="Upload file or import URL, then save and publish."
                 />
               </div>
 
@@ -438,11 +440,6 @@ export default function PagesPage() {
                 </button>
               </div>
             </form>
-            <datalist id="page-media-options">
-              {mediaUrls.map((url) => (
-                <option key={url} value={url} />
-              ))}
-            </datalist>
           </div>
         </div>
       ) : null}

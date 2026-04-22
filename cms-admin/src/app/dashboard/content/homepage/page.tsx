@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { SaveIcon, PhotographIcon, StarIcon, ShieldCheckIcon, UploadIcon, LinkIcon } from '@heroicons/react/outline';
+import { SaveIcon, PhotographIcon, StarIcon, ShieldCheckIcon, UploadIcon } from '@heroicons/react/outline';
 import PublishButton from '@/components/PublishButton';
+import MediaPickerField from '@/components/MediaPickerField';
 
 interface Section {
   section_key: string;
@@ -29,7 +30,6 @@ function normalizeLines(value: string) {
 export default function HomepageSectionPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [uploadMethod, setUploadMethod] = useState<'url' | 'base64'>('url');
   const [mediaUrls, setMediaUrls] = useState<string[]>([]);
 
   const [hero, setHero] = useState({
@@ -38,22 +38,20 @@ export default function HomepageSectionPage() {
     cta_text: 'FIND YOUR FORMULA',
     cta_link: '/collections/pre-workouts',
     hero_image: '',
-    hero_image_base64: '',
   });
 
   const [gallery, setGallery] = useState({
-    image_1: '', image_1_base64: '',
-    image_2: '', image_2_base64: '',
-    image_3: '', image_3_base64: '',
-    image_4: '', image_4_base64: '',
-    image_5: '', image_5_base64: '',
+    image_1: '',
+    image_2: '',
+    image_3: '',
+    image_4: '',
+    image_5: '',
   });
 
   const [about, setAbout] = useState({
     heading: 'ABOUT US',
     content: 'HD Muscle is a family-built, performance-driven supplement brand founded in Canada.',
     image: '',
-    image_base64: '',
   });
 
   const [bestSellers, setBestSellers] = useState({ heading: 'SHOP OUR BEST SELLERS' });
@@ -74,34 +72,6 @@ export default function HomepageSectionPage() {
     guarantee: 'We stand behind every formula we make.',
     secure_checkout: 'Encrypted, secure payment processing.',
   });
-
-  const handleFileSelect = async (event: React.ChangeEvent<HTMLInputElement>, section: string, field: string) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    if (uploadMethod === 'url') {
-      alert('Use URL mode for production-safe media URLs, or switch to Base64 for quick previews.');
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      const base64 = reader.result as string;
-      if (base64.length > 500000) {
-        alert('Image too large for Base64 preview mode. Use URL mode.');
-        return;
-      }
-
-      if (section === 'hero') {
-        setHero((prev) => ({ ...prev, hero_image_base64: base64, hero_image: '' }));
-      } else if (section === 'about') {
-        setAbout((prev) => ({ ...prev, image_base64: base64, image: '' }));
-      } else if (section === 'gallery') {
-        setGallery((prev) => ({ ...prev, [`${field}_base64`]: base64, [field]: '' }));
-      }
-    };
-    reader.readAsDataURL(file);
-  };
 
   const fetchSections = async () => {
     try {
@@ -174,20 +144,14 @@ export default function HomepageSectionPage() {
           key: 'hero',
           section_type: 'hero',
           title: 'Hero',
-          content: {
-            ...hero,
-            hero_image: hero.hero_image_base64 || hero.hero_image,
-          },
+          content: hero,
         },
         { key: 'hero_gallery', section_type: 'hero_gallery', title: 'Gallery', content: gallery },
         {
           key: 'about',
           section_type: 'brand_story',
           title: 'About',
-          content: {
-            ...about,
-            image: about.image_base64 || about.image,
-          },
+          content: about,
         },
         { key: 'best_sellers', section_type: 'featured_products', title: 'Best Sellers', content: bestSellers },
         {
@@ -264,62 +228,6 @@ export default function HomepageSectionPage() {
     />
   );
 
-  const ImageField = ({
-    label,
-    urlValue,
-    base64Value,
-    urlOnChange,
-    section,
-    field,
-  }: {
-    label: string;
-    urlValue: string;
-    base64Value: string;
-    urlOnChange: (value: string) => void;
-    section: string;
-    field: string;
-  }) => (
-    <div>
-      <label className="mb-1 block text-sm font-medium text-slate-700">{label}</label>
-      <div className="flex gap-2">
-        <input
-          type="text"
-          list="homepage-media-options"
-          placeholder="https://example.com/image.jpg or select from media options"
-          style={{ color: '#111827' }}
-          className="flex-1 rounded-lg border border-slate-300 bg-white px-4 py-2.5 placeholder-gray-400"
-          value={urlValue}
-          onChange={(event) => urlOnChange(event.target.value)}
-        />
-        {uploadMethod === 'base64' ? (
-          <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 hover:bg-slate-50">
-            <UploadIcon className="h-4 w-4" />
-            Upload
-            <input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={(event) => handleFileSelect(event, section, field)}
-            />
-          </label>
-        ) : null}
-      </div>
-      {urlValue ? (
-        <div className="mt-2">
-          <img
-            src={urlValue}
-            alt="Preview"
-            className="h-24 w-24 rounded-lg border object-cover"
-            onError={(event) => {
-              event.currentTarget.style.display = 'none';
-            }}
-          />
-        </div>
-      ) : null}
-      {base64Value ? <img src={base64Value} alt="Preview" className="mt-2 h-24 w-24 rounded-lg border object-cover" /> : null}
-    </div>
-  );
-
   if (loading) return <div className="h-96 animate-pulse rounded-xl bg-gray-200" />;
 
   return (
@@ -327,32 +235,9 @@ export default function HomepageSectionPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">Homepage Content</h1>
-          <p className="mt-1 text-slate-500">
-            {uploadMethod === 'url'
-              ? 'Use image URLs for permanent media.'
-              : 'Base64 mode is for quick preview content only.'}
-          </p>
+          <p className="mt-1 text-slate-500">Upload media directly or import URL, then Save and Publish.</p>
         </div>
         <div className="flex items-center gap-3">
-          <div className="flex rounded-lg bg-slate-100 p-1">
-            <button
-              onClick={() => setUploadMethod('url')}
-              className={`flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium ${
-                uploadMethod === 'url' ? 'bg-white shadow' : 'text-slate-500'
-              }`}
-            >
-              <LinkIcon className="h-4 w-4" /> URL
-            </button>
-            <button
-              onClick={() => setUploadMethod('base64')}
-              className={`flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium ${
-                uploadMethod === 'base64' ? 'bg-white shadow' : 'text-slate-500'
-              }`}
-            >
-              <UploadIcon className="h-4 w-4" /> Base64
-            </button>
-          </div>
-
           <button
             onClick={handleSave}
             disabled={saving}
@@ -364,12 +249,6 @@ export default function HomepageSectionPage() {
           <PublishButton onPublish={fetchSections} />
         </div>
       </div>
-
-      <datalist id="homepage-media-options">
-        {mediaUrls.map((url) => (
-          <option key={url} value={url} />
-        ))}
-      </datalist>
 
       <div className="rounded-xl border border-slate-200 bg-white">
         <div className="border-b border-slate-200 p-6">
@@ -397,13 +276,14 @@ export default function HomepageSectionPage() {
               <Input value={hero.cta_link} onChange={(value) => setHero({ ...hero, cta_link: value })} />
             </div>
           </div>
-          <ImageField
+          <MediaPickerField
+            theme="light"
             label="Hero Image"
-            urlValue={hero.hero_image}
-            base64Value={hero.hero_image_base64}
-            urlOnChange={(value) => setHero({ ...hero, hero_image: value, hero_image_base64: '' })}
-            section="hero"
-            field="image"
+            value={hero.hero_image}
+            onChange={(value) => setHero({ ...hero, hero_image: value })}
+            mediaUrls={mediaUrls}
+            datalistId="homepage-media-options-hero"
+            helperText="Attach/upload media or import URL."
           />
         </div>
       </div>
@@ -418,20 +298,20 @@ export default function HomepageSectionPage() {
         <div className="space-y-4 p-6">
           <div className="grid grid-cols-2 gap-4">
             {[1, 2, 3, 4, 5].map((index) => (
-              <ImageField
+              <MediaPickerField
                 key={index}
+                theme="light"
                 label={`Image ${index}`}
-                urlValue={gallery[`image_${index}` as keyof typeof gallery]}
-                base64Value={gallery[`image_${index}_base64` as keyof typeof gallery]}
-                urlOnChange={(value) =>
+                value={gallery[`image_${index}` as keyof typeof gallery]}
+                onChange={(value) =>
                   setGallery({
                     ...gallery,
                     [`image_${index}`]: value,
-                    [`image_${index}_base64`]: '',
                   })
                 }
-                section="gallery"
-                field={`image_${index}`}
+                mediaUrls={mediaUrls}
+                datalistId={`homepage-media-options-gallery-${index}`}
+                helperText="Upload/import and this slot will be updated."
               />
             ))}
           </div>
@@ -454,13 +334,14 @@ export default function HomepageSectionPage() {
             <label className="mb-1 block text-sm font-medium text-slate-700">Content</label>
             <Textarea value={about.content} rows={4} onChange={(value) => setAbout({ ...about, content: value })} />
           </div>
-          <ImageField
+          <MediaPickerField
+            theme="light"
             label="About Image"
-            urlValue={about.image}
-            base64Value={about.image_base64}
-            urlOnChange={(value) => setAbout({ ...about, image: value, image_base64: '' })}
-            section="about"
-            field="image"
+            value={about.image}
+            onChange={(value) => setAbout({ ...about, image: value })}
+            mediaUrls={mediaUrls}
+            datalistId="homepage-media-options-about"
+            helperText="Upload/import media for this block."
           />
         </div>
       </div>

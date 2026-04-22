@@ -1141,7 +1141,7 @@ main {
   font-weight: 700;
 }
 
-.product-page__afterpay {
+.product-page__snapmint-pill {
   min-height: 24px;
   border-radius: 99px;
   background: #b0f0de;
@@ -1307,7 +1307,7 @@ main {
   cursor: pointer;
 }
 
-.product-page__shop-btn {
+.product-page__snapmint-btn {
   width: 100%;
   border: 1px solid #4a3cf1;
   background: #4a3cf1;
@@ -1320,15 +1320,11 @@ main {
   text-transform: none;
 }
 
-.product-page__more-payments {
-  border: 0;
-  background: transparent;
-  color: #000;
-  min-height: 19px;
+.product-page__payment-note {
+  margin: 6px 0 2px;
   font-size: 10px;
   text-transform: uppercase;
-  text-decoration: underline;
-  cursor: pointer;
+  letter-spacing: 0.02em;
 }
 
 .product-page__section-title {
@@ -1354,40 +1350,6 @@ main {
   padding: 14px 0;
   font-size: 14px;
   line-height: 1.4;
-}
-
-.product-page__pickup {
-  border-bottom: 1px solid #000;
-  padding: 13px 0 15px;
-}
-
-.product-page__pickup-title {
-  margin: 0;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.product-page__pickup-title span {
-  color: #26a73d;
-  font-size: 10px;
-}
-
-.product-page__pickup-time {
-  margin: 5px 0 12px 18px;
-  font-size: 12px;
-}
-
-.product-page__pickup button {
-  min-height: 35px;
-  border: 1px solid #000;
-  background: #fff;
-  font-family: inherit;
-  font-size: 12px;
-  text-transform: uppercase;
-  padding: 0 24px;
-  cursor: pointer;
 }
 
 .product-page__links {
@@ -1774,7 +1736,7 @@ main {
 
   .product-page__claim-toggle,
   .product-page__cta,
-  .product-page__shop-btn {
+  .product-page__snapmint-btn {
     font-size: 16px;
   }
 
@@ -1943,12 +1905,8 @@ main {
 
   .product-page__claim-toggle,
   .product-page__cta,
-  .product-page__shop-btn {
+  .product-page__snapmint-btn {
     min-height: 38px;
     font-size: 14px;
-  }
-
-  .product-page__pickup {
-    padding: 10px 0 12px;
   }
 }
