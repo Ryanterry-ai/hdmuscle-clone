@@ -3,110 +3,262 @@ import { prisma } from '@/lib/prisma';
 import { requireSession, unauthorizedResponse } from '@/lib/api-auth';
 
 export const dynamic = 'force-dynamic';
+
 const RESET_CONFIRM_TOKEN = 'RESET IMPORT CMS';
+const DEFAULT_IMPORT_SOURCE_URL = 'https://hdmuscle.in/api/storefront/published/';
+const RUPEE_SYMBOL = String.fromCharCode(8377);
 
-// USD to INR exchange rate (can be updated)
-const USD_TO_INR = 83;
+type JsonRecord = Record<string, unknown>;
+type JsonArray = unknown[];
 
-// All collections with their handles and titles
-const COLLECTIONS = [
-  { handle: 'pre-workouts', title: 'PRE-WORKOUT', description: 'Premium pre-workout supplements' },
-  { handle: 'intra-workouts', title: 'INTRA-WORKOUT + RECOVERY', description: 'Intra-workout and recovery supplements' },
-  { handle: 'post-workout-recovery', title: 'POST-WORKOUT', description: 'Post-workout recovery products' },
-  { handle: 'health-wellness', title: 'HEALTH + WELLNESS', description: 'Health and wellness supplements' },
-  { handle: 'bundles', title: 'BUNDLE + SAVE', description: 'Save on bundled supplements' },
-  { handle: 'apparel-accessories-2', title: 'APPAREL + ACCESSORIES', description: 'HD Muscle apparel and accessories' },
-  { handle: 'best-selling-collection', title: 'BEST SELLERS', description: 'Our best selling products' },
-  { handle: 'new-25', title: 'NEW ARRIVALS', description: 'New products' },
-];
+type ImportResults = {
+  products: { imported: number; skipped: number };
+  collections: { imported: number; skipped: number };
+  pages: { imported: number; skipped: number };
+  sections: { imported: number; skipped: number };
+  navigation: { imported: number; skipped: number };
+  seo: { imported: number; skipped: number };
+  productCollections: { linked: number };
+  errors: string[];
+};
 
-// All products with USD prices - imported from live hdmuscle.in
-const PRODUCTS = [
-  // Pre-Workouts -> pre-workouts (USD prices)
-  { handle: 'prehd-essential', title: 'PreHD Essential', price_usd: 29.99, collection: 'pre-workouts' },
-  { handle: 'prehd-ultra', title: 'PreHD Ultra', price_usd: 41.99, collection: 'pre-workouts' },
-  { handle: 'prehd-elite', title: 'PreHD Elite', price_usd: 53.99, collection: 'pre-workouts' },
-  { handle: 'prehd-black', title: 'PreHD Black', price_usd: 59.99, collection: 'pre-workouts' },
-  { handle: 'pumphd', title: 'PumpHD', price_usd: 51.99, collection: 'pre-workouts' },
-  { handle: 'stimhd', title: 'StimHD', price_usd: 17.99, collection: 'pre-workouts' },
-  { handle: 'c4-extreme', title: 'C4 Extreme', price_usd: 33.99, collection: 'pre-workouts' },
-  { handle: 'bucked-up', title: 'Bucked Up', price_usd: 29.99, collection: 'pre-workouts' },
-  { handle: 'euphoria', title: 'Euphoria', price_usd: 39.99, collection: 'pre-workouts' },
-  
-  // Recovery -> intra-workouts
-  { handle: 'carbhd-new-formula', title: 'CarbHD', price_usd: 47.99, collection: 'intra-workouts' },
-  { handle: 'creahd-creapure', title: 'CreaHD (Creapure®)', price_usd: 41.99, collection: 'intra-workouts' },
-  { handle: 'eaa-hd', title: 'EaaHD', price_usd: 35.99, collection: 'intra-workouts' },
-  { handle: 'gluta-hd', title: 'GlutaHD', price_usd: 23.99, collection: 'intra-workouts' },
-  { handle: 'hydrahd', title: 'HydraHD', price_usd: 29.99, collection: 'intra-workouts' },
-  { handle: 'intra-hd', title: 'IntraHD', price_usd: 41.99, collection: 'intra-workouts' },
-  { handle: 'bcaa', title: 'BCAA', price_usd: 27.99, collection: 'intra-workouts' },
-  { handle: 'eaas', title: 'EAAs', price_usd: 33.99, collection: 'intra-workouts' },
-  { handle: 'electrolytes', title: 'Electrolytes', price_usd: 23.99, collection: 'intra-workouts' },
-  
-  // Post-Workout
-  { handle: 'whey-hd', title: 'WheyHD', price_usd: 53.99, collection: 'post-workout-recovery' },
-  { handle: 'prohd-isolate', title: 'ProHD Isolate', price_usd: 71.99, collection: 'post-workout-recovery' },
-  { handle: 'protein-pancakes', title: 'Protein Pancakes', price_usd: 35.99, collection: 'post-workout-recovery' },
-  { handle: 'casein', title: 'Casein', price_usd: 47.99, collection: 'post-workout-recovery' },
-  
-  // Health -> health-wellness
-  { handle: 'betaine-hcl', title: 'Betaine HCL', price_usd: 23.99, collection: 'health-wellness' },
-  { handle: 'burn-hd', title: 'BurnHD', price_usd: 41.99, collection: 'health-wellness' },
-  { handle: 'citrus-bergamot', title: 'Citrus Bergamot', price_usd: 27.99, collection: 'health-wellness' },
-  { handle: 'collagenhd', title: 'CollagenHD', price_usd: 39.99, collection: 'health-wellness' },
-  { handle: 'curcumin', title: 'Curcumin', price_usd: 29.99, collection: 'health-wellness' },
-  { handle: 'd3', title: 'D3', price_usd: 17.99, collection: 'health-wellness' },
-  { handle: 'greenshd', title: 'GreensHD', price_usd: 35.99, collection: 'health-wellness' },
-  { handle: 'glyco-hd', title: 'GlycoHD', price_usd: 47.99, collection: 'health-wellness' },
-  { handle: 'k2', title: 'K2', price_usd: 23.99, collection: 'health-wellness' },
-  { handle: 'kidneyhd', title: 'KidneyHD', price_usd: 33.99, collection: 'health-wellness' },
-  { handle: 'liverhd', title: 'LiverHD', price_usd: 39.99, collection: 'health-wellness' },
-  { handle: 'multihd', title: 'MultiHD', price_usd: 35.99, collection: 'health-wellness' },
-  { handle: 'magnesium', title: 'Magnesium', price_usd: 21.99, collection: 'health-wellness' },
-  { handle: 'omega-3', title: 'Omega3', price_usd: 29.99, collection: 'health-wellness' },
-  { handle: 'sleephd', title: 'SleepHD', price_usd: 39.99, collection: 'health-wellness' },
-  { handle: 'vita-hd', title: 'VitaHD', price_usd: 41.99, collection: 'health-wellness' },
-  { handle: 'zinc', title: 'Zinc', price_usd: 15.99, collection: 'health-wellness' },
-  { handle: 'fish-oil', title: 'Fish Oil', price_usd: 23.99, collection: 'health-wellness' },
-  { handle: 'ashwagandha', title: 'Ashwagandha', price_usd: 27.99, collection: 'health-wellness' },
-  { handle: 'b-complex', title: 'B-Complex', price_usd: 29.99, collection: 'health-wellness' },
-  { handle: 'turmeric', title: 'Turmeric', price_usd: 29.99, collection: 'health-wellness' },
-  
-  // Bundles
-  { handle: 'build-bundle', title: 'Build Bundle', price_usd: 119.99, collection: 'bundles' },
-  { handle: 'performance-bundle', title: 'Performance Bundle', price_usd: 179.99, collection: 'bundles' },
-  { handle: 'value-bundle', title: 'Value Bundle', price_usd: 83.99, collection: 'bundles' },
-  { handle: 'family-bundle', title: 'Family Bundle', price_usd: 215.99, collection: 'bundles' },
-  
-  // Apparel
-  { handle: 'hd-tee', title: 'HD Tee', price_usd: 23.99, collection: 'apparel-accessories-2' },
-  { handle: 'hoodie', title: 'Hoodie', price_usd: 47.99, collection: 'apparel-accessories-2' },
-  { handle: 'cap', title: 'HD Cap', price_usd: 9.99, collection: 'apparel-accessories-2' },
-  { handle: 'shorts', title: 'Training Shorts', price_usd: 29.99, collection: 'apparel-accessories-2' },
-  { handle: 'tank-top', title: 'Tank Top', price_usd: 17.99, collection: 'apparel-accessories-2' },
-  { handle: 'jacket', title: 'Training Jacket', price_usd: 71.99, collection: 'apparel-accessories-2' },
-];
+function asObject(value: unknown): JsonRecord {
+  return value && typeof value === 'object' && !Array.isArray(value) ? (value as JsonRecord) : {};
+}
 
-// Static Pages
-const PAGES = [
-  { handle: 'our-story', title: 'About Us', content: 'HD Muscle is a family-built, performance-driven supplement brand founded in Canada.' },
-  { handle: 'faq', title: 'FAQ', content: 'Frequently Asked Questions about HD Muscle products.' },
-  { handle: 'contact', title: 'Contact', content: 'Contact us at info@hdmuscle.com' },
-  { handle: 'join', title: 'Join HD Collective', content: 'Athlete and creator program - Join the HD Collective!' },
-  { handle: 'wholesale-inquiry', title: 'Wholesale Inquiry', content: 'Wholesale inquiries welcome.' },
-  { handle: 'shipping-policy', title: 'Shipping Policy', content: 'We ship from warehouses in both Canada and the USA.' },
-  { handle: 'refund-policy', title: 'Refund Policy', content: 'Unopened products can be returned within 30 days of delivery.' },
-  { handle: 'privacy-policy', title: 'Privacy Policy', content: 'Your privacy is important to us.' },
-  { handle: 'terms-of-service', title: 'Terms of Service', content: 'Terms of Service for HD Muscle.' },
-];
+function asArray(value: unknown): JsonArray {
+  return Array.isArray(value) ? value : [];
+}
 
-function convertToINR(usdPrice: number): number {
-  return Math.round(usdPrice * USD_TO_INR);
+function asString(value: unknown, fallback = ''): string {
+  if (value === null || value === undefined) return fallback;
+  const normalized = String(value).trim();
+  return normalized.length ? normalized : fallback;
+}
+
+function asOptionalString(value: unknown): string | null {
+  const normalized = asString(value);
+  return normalized.length ? normalized : null;
+}
+
+function asBoolean(value: unknown, fallback = false): boolean {
+  if (typeof value === 'boolean') return value;
+  if (typeof value === 'string') {
+    if (value.toLowerCase() === 'true') return true;
+    if (value.toLowerCase() === 'false') return false;
+  }
+  return fallback;
+}
+
+function asNumber(value: unknown, fallback = 0): number {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
+
+function asNullableNumber(value: unknown): number | null {
+  if (value === null || value === undefined || value === '') return null;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function asDate(value: unknown): Date | null {
+  if (!value) return null;
+  const parsed = new Date(String(value));
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
+}
+
+function toSlug(value: string): string {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
+}
+
+function parseJsonIfString(value: unknown): unknown {
+  if (typeof value !== 'string') return value;
+  const normalized = value.trim();
+  if (!normalized) return [];
+  try {
+    return JSON.parse(normalized);
+  } catch {
+    return [];
+  }
+}
+
+function normalizeLinkTree(raw: unknown): JsonRecord[] {
+  const parsed = parseJsonIfString(raw);
+  const links = asArray(parsed);
+
+  return links
+    .map((item) => {
+      const record = asObject(item);
+      const label = asString(record.label);
+      const url = asString(record.url, '/');
+      if (!label && !url) return null;
+
+      const children = normalizeLinkTree(record.children);
+      return {
+        label: label || url,
+        url,
+        ...(children.length > 0 ? { children } : {}),
+      } as JsonRecord;
+    })
+    .filter(Boolean) as JsonRecord[];
+}
+
+function dedupeStrings(values: string[]): string[] {
+  const unique = new Set<string>();
+  for (const value of values) {
+    const normalized = value.trim();
+    if (!normalized) continue;
+    unique.add(normalized);
+  }
+  return Array.from(unique);
+}
+
+function getImportSourceUrl(body: JsonRecord): string {
+  const fromBody = asString(body.sourceUrl);
+  if (fromBody) return fromBody;
+  const fromEnv = asString(process.env.CMS_IMPORT_SOURCE_URL);
+  if (fromEnv) return fromEnv;
+  return DEFAULT_IMPORT_SOURCE_URL;
+}
+
+async function fetchSourcePayload(sourceUrl: string) {
+  const response = await fetch(sourceUrl, {
+    method: 'GET',
+    cache: 'no-store',
+    headers: { Accept: 'application/json' },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Import source request failed (${response.status}).`);
+  }
+
+  return (await response.json()) as JsonRecord;
+}
+
+async function clearExistingContent() {
+  await prisma.productCollection.deleteMany({});
+  await prisma.productImage.deleteMany({});
+  await prisma.product.deleteMany({});
+  await prisma.collection.deleteMany({});
+  await prisma.page.deleteMany({});
+  await prisma.section.deleteMany({});
+  await prisma.navigation.deleteMany({});
+  await prisma.sEO.deleteMany({});
+  await prisma.announcementBar.deleteMany({});
+  await prisma.setting.deleteMany({});
+  await prisma.globalSettings.deleteMany({});
+}
+
+async function importSettings(payload: JsonRecord) {
+  const settings = asObject(payload.settings);
+  const site = asObject(payload.site);
+
+  const merged = {
+    store_name: asString(settings.store_name || site.name, 'HD MUSCLE'),
+    store_email: asString(settings.store_email || site.supportEmail),
+    store_phone: asString(settings.store_phone || site.supportPhone),
+    store_address: asString(settings.store_address || site.address),
+    timezone: asString(settings.timezone || site.timezone, 'Asia/Kolkata'),
+    logo: asString(settings.logo),
+    favicon: asString(settings.favicon),
+    primary_color: asString(settings.primary_color, '#f59e0b'),
+    accent_color: asString(settings.accent_color, '#ea580c'),
+    locale: asString(settings.locale, 'en-IN'),
+    symbol: asString(settings.symbol, RUPEE_SYMBOL),
+    seo_title: asString(settings.seo_title || site.seoTitle),
+    seo_description: asString(settings.seo_description || site.seoDescription),
+    announcement_text: asString(settings.announcement_text || site.announcementText, `FREE SHIPPING OVER ${RUPEE_SYMBOL}9,999`),
+    announcement_link: asString(settings.announcement_link || site.announcementLink),
+    instagram_url: asString(settings.instagram_url || site.instagramUrl),
+    facebook_url: asString(settings.facebook_url || site.facebookUrl),
+    youtube_url: asString(settings.youtube_url || site.youtubeUrl),
+    tiktok_url: asString(settings.tiktok_url || site.tiktokUrl),
+    copyright_text: asString(settings.copyright_text || site.copyrightText),
+    public_site_url: asString(settings.public_site_url || site.publicSiteUrl, 'https://hdmuscle.in'),
+  };
+
+  await prisma.globalSettings.create({
+    data: {
+      id: 'default',
+      store_name: merged.store_name,
+      store_email: merged.store_email || null,
+      store_phone: merged.store_phone || null,
+      store_address: merged.store_address || null,
+      currency: 'INR',
+      timezone: merged.timezone,
+      logo: merged.logo || null,
+      favicon: merged.favicon || null,
+      primary_color: merged.primary_color,
+      accent_color: merged.accent_color,
+    },
+  });
+
+  const settingPairs: Array<[string, string]> = [
+    ['store_name', merged.store_name],
+    ['store_email', merged.store_email],
+    ['store_phone', merged.store_phone],
+    ['store_address', merged.store_address],
+    ['currency', 'INR'],
+    ['locale', merged.locale],
+    ['symbol', merged.symbol || RUPEE_SYMBOL],
+    ['timezone', merged.timezone],
+    ['logo', merged.logo],
+    ['favicon', merged.favicon],
+    ['primary_color', merged.primary_color],
+    ['accent_color', merged.accent_color],
+    ['seo_title', merged.seo_title],
+    ['seo_description', merged.seo_description],
+    ['announcement_text', merged.announcement_text],
+    ['announcement_link', merged.announcement_link],
+    ['instagram_url', merged.instagram_url],
+    ['facebook_url', merged.facebook_url],
+    ['youtube_url', merged.youtube_url],
+    ['tiktok_url', merged.tiktok_url],
+    ['copyright_text', merged.copyright_text],
+    ['public_site_url', merged.public_site_url],
+  ];
+
+  for (const [key, value] of settingPairs) {
+    await prisma.setting.create({
+      data: {
+        key,
+        value,
+      },
+    });
+  }
+
+  await prisma.announcementBar.create({
+    data: {
+      message: merged.announcement_text,
+      link: merged.announcement_link || null,
+      is_active: true,
+    },
+  });
+
+  return merged;
+}
+
+function toSectionKey(item: JsonRecord, index: number, existing: Set<string>): string {
+  const rawKey =
+    asString(item.key) ||
+    asString(item.section_key) ||
+    asString(item.title) ||
+    `section-${index + 1}`;
+  let candidate = toSlug(rawKey) || `section-${index + 1}`;
+  while (existing.has(candidate)) {
+    candidate = `${candidate}-${index + 1}`;
+  }
+  existing.add(candidate);
+  return candidate;
 }
 
 export async function POST(request: NextRequest) {
-  const results: any = {
+  const results: ImportResults = {
     products: { imported: 0, skipped: 0 },
     collections: { imported: 0, skipped: 0 },
     pages: { imported: 0, skipped: 0 },
@@ -114,15 +266,16 @@ export async function POST(request: NextRequest) {
     navigation: { imported: 0, skipped: 0 },
     seo: { imported: 0, skipped: 0 },
     productCollections: { linked: 0 },
-    errors: [] as string[],
+    errors: [],
   };
 
   try {
     const session = await requireSession(request);
     if (!session) return unauthorizedResponse();
-    const body = await request.json().catch(() => ({}));
-    const confirmToken = String(body?.confirmToken || '').trim();
-    const acknowledgeReset = body?.acknowledgeReset === true;
+
+    const body = (await request.json().catch(() => ({}))) as JsonRecord;
+    const confirmToken = asString(body.confirmToken);
+    const acknowledgeReset = body.acknowledgeReset === true;
 
     if (!acknowledgeReset || confirmToken !== RESET_CONFIRM_TOKEN) {
       return NextResponse.json(
@@ -135,154 +288,320 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // First, clear existing data
-    await prisma.productCollection.deleteMany({});
-    await prisma.product.deleteMany({});
-    await prisma.collection.deleteMany({});
-    await prisma.page.deleteMany({});
-    await prisma.section.deleteMany({});
-    await prisma.navigation.deleteMany({});
-    await prisma.sEO.deleteMany({});
-    console.log('Cleared existing data');
+    const sourceUrl = getImportSourceUrl(body);
+    const payload = await fetchSourcePayload(sourceUrl);
 
-    // 1. Import Collections
-    for (const col of COLLECTIONS) {
-      try {
-        await prisma.collection.create({
-          data: { handle: col.handle, title: col.title, description: col.description, is_active: true },
-        });
-        results.collections.imported++;
-      } catch {
-        results.collections.skipped++;
+    await clearExistingContent();
+    const importedSettings = await importSettings(payload);
+
+    const collectionByHandle = new Map<string, string>();
+    const collectionByLegacyId = new Map<string, string>();
+    const productByHandle = new Map<string, string>();
+    const productByLegacyId = new Map<string, string>();
+    const linkedPairs = new Set<string>();
+
+    const rawCollections = asArray(payload.collections).map((item) => asObject(item));
+    for (const rawCollection of rawCollections) {
+      const handle = toSlug(asString(rawCollection.handle || rawCollection.id));
+      const title = asString(rawCollection.title, handle.toUpperCase());
+
+      if (!handle || !title) {
+        results.collections.skipped += 1;
+        continue;
       }
-    }
 
-    // 2. Import Products with USD prices (will be converted to INR)
-    for (const prod of PRODUCTS) {
       try {
-        const inrPrice = convertToINR(prod.price_usd);
-        await prisma.product.create({
-          data: { 
-            handle: prod.handle, 
-            title: prod.title, 
-            price: inrPrice,
-            compare_at_price: Math.round(prod.price_usd * 1.2 * USD_TO_INR), // 20% markup for compare price
-            is_active: true, 
-            inventory: 100 
+        const created = await prisma.collection.create({
+          data: {
+            handle,
+            title,
+            description: asOptionalString(rawCollection.description),
+            image: asOptionalString(rawCollection.image),
+            seo_title: asOptionalString(rawCollection.seo_title),
+            seo_description: asOptionalString(rawCollection.seo_description),
+            sort_order: Math.max(0, Math.floor(asNumber(rawCollection.sort_order, 0))),
+            is_active: asBoolean(rawCollection.is_active, true),
           },
         });
-        results.products.imported++;
 
-        // Link product to collection
-        const col = await prisma.collection.findUnique({ where: { handle: prod.collection } });
-        const product = await prisma.product.findUnique({ where: { handle: prod.handle } });
-        if (col && product) {
-          await prisma.productCollection.create({
-            data: { product_id: product.id, collection_id: col.id },
-          });
-          results.productCollections.linked++;
-        }
-      } catch (e: any) {
-        results.errors.push(prod.handle + ': ' + e.message);
+        collectionByHandle.set(handle, created.id);
+        const legacyId = asString(rawCollection.id);
+        if (legacyId) collectionByLegacyId.set(legacyId, created.id);
+        results.collections.imported += 1;
+      } catch (error) {
+        results.collections.skipped += 1;
+        results.errors.push(`Collection ${handle}: ${String(error)}`);
       }
     }
 
-    // 3. Import Pages
-    for (const page of PAGES) {
+    const rawProducts = asArray(payload.products).map((item) => asObject(item));
+    for (const rawProduct of rawProducts) {
+      const handle = toSlug(asString(rawProduct.handle || rawProduct.id));
+      const title = asString(rawProduct.title, handle.toUpperCase());
+      if (!handle || !title) {
+        results.products.skipped += 1;
+        continue;
+      }
+
+      const imageCandidates = dedupeStrings([
+        ...asArray(parseJsonIfString(rawProduct.images)).map((image) => asString(image)).filter(Boolean),
+        asString(rawProduct.featured_image),
+        ...asArray(parseJsonIfString(rawProduct.gallery_images)).map((image) => asString(image)).filter(Boolean),
+      ]);
+
+      try {
+        const created = await prisma.product.create({
+          data: {
+            handle,
+            title,
+            short_description: asOptionalString(rawProduct.short_description),
+            description: asOptionalString(rawProduct.description),
+            description_html: asOptionalString(rawProduct.description_html),
+            badge: asOptionalString(rawProduct.badge),
+            category: asOptionalString(rawProduct.category),
+            tags: asOptionalString(rawProduct.tags),
+            flavor_options: asOptionalString(rawProduct.flavor_options),
+            size_options: asOptionalString(rawProduct.size_options),
+            price: asNumber(rawProduct.price, 0),
+            compare_at_price: asNullableNumber(rawProduct.compare_at_price),
+            sku: asOptionalString(rawProduct.sku),
+            inventory: Math.max(0, Math.floor(asNumber(rawProduct.inventory, 0))),
+            is_active: asBoolean(rawProduct.is_active, true),
+            is_featured: asBoolean(rawProduct.is_featured, false),
+            is_taxable: true,
+            track_inventory: true,
+            seo_title: asOptionalString(rawProduct.seo_title),
+            seo_description: asOptionalString(rawProduct.seo_description),
+            images: imageCandidates.length
+              ? {
+                  create: imageCandidates.map((url, index) => ({
+                    url,
+                    sort_order: index,
+                  })),
+                }
+              : undefined,
+          },
+        });
+
+        productByHandle.set(handle, created.id);
+        const legacyId = asString(rawProduct.id);
+        if (legacyId) productByLegacyId.set(legacyId, created.id);
+        results.products.imported += 1;
+      } catch (error) {
+        results.products.skipped += 1;
+        results.errors.push(`Product ${handle}: ${String(error)}`);
+      }
+    }
+
+    for (const rawProduct of rawProducts) {
+      const productId = productByHandle.get(toSlug(asString(rawProduct.handle || rawProduct.id)));
+      if (!productId) continue;
+
+      const handlesFromPayload = asArray(parseJsonIfString(rawProduct.collection_handles))
+        .map((item) => toSlug(asString(item)))
+        .filter(Boolean);
+
+      const idsFromPayload = asArray(parseJsonIfString(rawProduct.collection_ids))
+        .map((item) => asString(item))
+        .filter(Boolean);
+
+      const targetCollectionIds = dedupeStrings([
+        ...handlesFromPayload.map((handle) => collectionByHandle.get(handle) || '').filter(Boolean),
+        ...idsFromPayload.map((id) => collectionByLegacyId.get(id) || '').filter(Boolean),
+      ]);
+
+      for (const collectionId of targetCollectionIds) {
+        const pairKey = `${productId}:${collectionId}`;
+        if (linkedPairs.has(pairKey)) continue;
+        linkedPairs.add(pairKey);
+
+        try {
+          await prisma.productCollection.create({
+            data: {
+              product_id: productId,
+              collection_id: collectionId,
+            },
+          });
+          results.productCollections.linked += 1;
+        } catch {
+          // Skip duplicate links gracefully.
+        }
+      }
+    }
+
+    for (const rawCollection of rawCollections) {
+      const collectionId =
+        collectionByHandle.get(toSlug(asString(rawCollection.handle || rawCollection.id))) || null;
+      if (!collectionId) continue;
+
+      const productIds = asArray(parseJsonIfString(rawCollection.product_ids))
+        .map((item) => asString(item))
+        .filter(Boolean);
+
+      for (const legacyProductId of productIds) {
+        const productId = productByLegacyId.get(legacyProductId);
+        if (!productId) continue;
+        const pairKey = `${productId}:${collectionId}`;
+        if (linkedPairs.has(pairKey)) continue;
+        linkedPairs.add(pairKey);
+
+        try {
+          await prisma.productCollection.create({
+            data: {
+              product_id: productId,
+              collection_id: collectionId,
+            },
+          });
+          results.productCollections.linked += 1;
+        } catch {
+          // Skip duplicate links gracefully.
+        }
+      }
+    }
+
+    const rawPages = asArray(payload.pages).map((item) => asObject(item));
+    for (const rawPage of rawPages) {
+      const handle = toSlug(asString(rawPage.handle || rawPage.title || rawPage.id));
+      const title = asString(rawPage.title, handle.toUpperCase());
+
+      if (!handle || !title) {
+        results.pages.skipped += 1;
+        continue;
+      }
+
       try {
         await prisma.page.create({
-          data: { handle: page.handle, title: page.title, content: page.content, excerpt: page.content, is_active: true },
+          data: {
+            handle,
+            title,
+            excerpt: asOptionalString(rawPage.excerpt),
+            content: asOptionalString(rawPage.content),
+            featured_image: asOptionalString(rawPage.featured_image),
+            template: asString(rawPage.template, 'default'),
+            is_active: asBoolean(rawPage.is_active, true),
+            is_featured: asBoolean(rawPage.is_featured, false),
+            meta_title: asOptionalString(rawPage.meta_title),
+            meta_description: asOptionalString(rawPage.meta_description),
+          },
         });
-        results.pages.imported++;
-      } catch {
-        results.pages.skipped++;
+        results.pages.imported += 1;
+      } catch (error) {
+        results.pages.skipped += 1;
+        results.errors.push(`Page ${handle}: ${String(error)}`);
       }
     }
 
-    // 4. Import Homepage Sections
-    const sectionTypes = ['hero', 'brand_story', 'featured_products', 'new_arrivals', 'you_re_covered', 'newsletter_signup', 'testimonials'];
-    
-    for (const sectionKey of sectionTypes) {
-      try {
-        const content: any = {};
-        if (sectionKey === 'hero') Object.assign(content, { heading: 'FIND YOUR FORMULA', subheading: 'Premium Quality Supplements for Athletes' });
-        if (sectionKey === 'you_re_covered') Object.assign(content, { 
-          easy_returns: 'If something isn\'t right, we\'ll make it right. Unopened products can be returned within 30 days of delivery.',
-          fast_shipping: 'We ship from warehouses in both Canada and the USA to ensure faster delivery and lower duties.',
-          guarantee: 'We stand behind every formula we make.',
-          secure_checkout: 'Encrypted, secure payment processing.'
-        });
-        if (sectionKey === 'newsletter_signup') Object.assign(content, { heading: 'Subscribe', subheading: 'Receive email updates.' });
+    const seenSectionKeys = new Set<string>();
+    const rawSections = asArray(payload.sections).map((item) => asObject(item));
+    for (let index = 0; index < rawSections.length; index += 1) {
+      const rawSection = rawSections[index];
+      const sectionKey = toSectionKey(rawSection, index, seenSectionKeys);
 
+      try {
         await prisma.section.create({
           data: {
             section_key: sectionKey,
-            section_type: sectionKey,
-            title: sectionKey.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
-            content: JSON.stringify(content),
-            status: 'PUBLISHED',
+            section_type: asString(rawSection.type || rawSection.section_type, 'custom'),
+            title: asOptionalString(rawSection.title),
+            content:
+              typeof rawSection.content === 'string'
+                ? rawSection.content
+                : JSON.stringify(asObject(rawSection.content)),
+            styling:
+              typeof rawSection.styling === 'string'
+                ? rawSection.styling
+                : JSON.stringify(asObject(rawSection.styling)),
+            position: Math.max(0, Math.floor(asNumber(rawSection.position, index))),
+            status: asString(rawSection.status, 'PUBLISHED').toUpperCase() === 'PUBLISHED' ? 'PUBLISHED' : 'DRAFT',
+            published_at: asDate(rawSection.published_at),
           },
         });
-        results.sections.imported++;
-      } catch (e: any) {
-        results.errors.push('Section ' + sectionKey + ': ' + e.message);
+        results.sections.imported += 1;
+      } catch (error) {
+        results.sections.skipped += 1;
+        results.errors.push(`Section ${sectionKey}: ${String(error)}`);
       }
     }
 
-    // 5. Navigation
-    try {
-      const headerLinks = [
-        { label: 'Shop All', url: '/collections/best-selling-collection', children: [] },
-        { label: 'Pre-Workout', url: '/collections/pre-workouts', children: [
-          { label: 'PreHD Essential', url: '/products/prehd-essential' },
-          { label: 'PreHD Ultra', url: '/products/prehd-ultra' },
-          { label: 'PumpHD', url: '/products/pumphd' },
-          { label: 'StimHD', url: '/products/stimhd' },
-        ]},
-        { label: 'Recovery', url: '/collections/intra-workouts', children: [
-          { label: 'IntraHD', url: '/products/intra-hd' },
-          { label: 'CreaHD', url: '/products/creahd-creapure' },
-          { label: 'GlutaHD', url: '/products/gluta-hd' },
-          { label: 'HydraHD', url: '/products/hydrahd' },
-        ]},
-        { label: 'Health', url: '/collections/health-wellness', children: [
-          { label: 'MultiHD', url: '/products/multihd' },
-          { label: 'VitaHD', url: '/products/vita-hd' },
-          { label: 'Omega3', url: '/products/omega-3' },
-        ]},
-        { label: 'Bundles', url: '/collections/bundles', children: [] },
-      ];
-      await prisma.navigation.create({
-        data: { location: 'header', title: 'Main Menu', links: JSON.stringify(headerLinks), is_active: true },
-      });
-      results.navigation.imported++;
-    } catch (e: any) {
-      results.errors.push('Navigation: ' + e.message);
-    }
-
-    // 6. SEO
-    const seoData = [
-      { page: 'home', title: 'HD Muscle | Premium Quality Supplements for Athletes', description: 'Premium quality supplements for athletes. Clinically backed ingredients, transparent labels.' },
-      { page: 'products', title: 'All Products | HD Muscle', description: 'Browse all HD Muscle supplements' },
-      { page: 'collections', title: 'Collections | HD Muscle', description: 'Shop by category' },
-      { page: 'about', title: 'About Us | HD Muscle', description: 'Learn about HD Muscle - family built, performance driven.' },
-      { page: 'faq', title: 'FAQ | HD Muscle', description: 'Frequently asked questions about HD Muscle products.' },
-      { page: 'contact', title: 'Contact | HD Muscle', description: 'Contact HD Muscle for support' },
+    const navigation = asObject(payload.navigation);
+    const navigationSources: Array<{ location: string; title: string; links: unknown }> = [
+      { location: 'header', title: 'Header Navigation', links: navigation.header_main },
+      { location: 'footer', title: 'Footer Navigation', links: navigation.footer_main },
+      { location: 'mobile', title: 'Mobile Navigation', links: navigation.mobile },
     ];
 
-    for (const seo of seoData) {
+    for (const source of navigationSources) {
+      const links = normalizeLinkTree(source.links);
       try {
-        await prisma.sEO.create({ data: seo });
-        results.seo.imported++;
-      } catch {
-        results.seo.skipped++;
+        await prisma.navigation.create({
+          data: {
+            location: source.location,
+            title: source.title,
+            links: JSON.stringify(links),
+            is_active: true,
+          },
+        });
+        results.navigation.imported += 1;
+      } catch (error) {
+        results.navigation.skipped += 1;
+        results.errors.push(`Navigation ${source.location}: ${String(error)}`);
       }
     }
 
-    return NextResponse.json({ success: true, results, exchangeRate: USD_TO_INR });
-  } catch (error: any) {
+    const seoRecords = new Map<string, { title: string; description: string }>();
+    const rawSeo = asArray(payload.seo).map((item) => asObject(item));
+    for (const record of rawSeo) {
+      const page = toSlug(asString(record.page || record.handle || record.id));
+      if (!page) continue;
+      seoRecords.set(page, {
+        title: asString(record.title || record.seo_title),
+        description: asString(record.description || record.seo_description),
+      });
+    }
+
+    if (!seoRecords.has('home')) {
+      seoRecords.set('home', {
+        title: asString(payload.settings && asObject(payload.settings).seo_title),
+        description: asString(payload.settings && asObject(payload.settings).seo_description),
+      });
+    }
+
+    for (const page of rawPages) {
+      const handle = toSlug(asString(page.handle));
+      if (!handle || seoRecords.has(handle)) continue;
+      seoRecords.set(handle, {
+        title: asString(page.meta_title),
+        description: asString(page.meta_description),
+      });
+    }
+
+    for (const [page, seo] of Array.from(seoRecords.entries())) {
+      if (!seo.title && !seo.description) continue;
+      try {
+        await prisma.sEO.create({
+          data: {
+            page,
+            title: seo.title || null,
+            description: seo.description || null,
+          },
+        });
+        results.seo.imported += 1;
+      } catch (error) {
+        results.seo.skipped += 1;
+        results.errors.push(`SEO ${page}: ${String(error)}`);
+      }
+    }
+
+    return NextResponse.json({
+      success: true,
+      sourceUrl,
+      generatedAt: asString(payload.generatedAt, new Date().toISOString()),
+      currency: importedSettings ? 'INR' : 'INR',
+      results,
+    });
+  } catch (error) {
     console.error('Import error:', error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: String(error) }, { status: 500 });
   }
 }
 
@@ -302,9 +621,11 @@ export async function GET(request: NextRequest) {
     ]);
 
     return NextResponse.json({
+      sourceUrl: process.env.CMS_IMPORT_SOURCE_URL || DEFAULT_IMPORT_SOURCE_URL,
+      requiredConfirmToken: RESET_CONFIRM_TOKEN,
       stats: { products, collections, pages, sections, navigation, seo, productCollections },
     });
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error) {
+    return NextResponse.json({ error: String(error) }, { status: 500 });
   }
 }
