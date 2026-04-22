@@ -56,8 +56,11 @@ function isInsideAlwaysKeepDirectory(relativePath) {
   return ALWAYS_KEEP_DIRECTORIES.some(dir => normalized === dir || normalized.startsWith(`${dir}/`));
 }
 
-function shouldExcludeFile(relativePath, stats) {
-  const normalized = normalizeRelative(relativePath);
+function shouldExcludeFile(file) {
+  // ✅ Claude fix: single source of truth from manifest-driven file object
+  if (file.skipTheme) return { exclude: true, reason: "skipTheme flag" };
+
+  const normalized = normalizeRelative(file.relative);
   const ext = path.extname(normalized).toLowerCase();
 
   if (isInsideAlwaysKeepDirectory(normalized)) {
@@ -72,7 +75,7 @@ function shouldExcludeFile(relativePath, stats) {
     return { exclude: false, reason: "" };
   }
 
-  if (stats.size > NON_CRITICAL_MAX_BYTES) {
+  if (file.size > NON_CRITICAL_MAX_BYTES) {
     return {
       exclude: true,
       reason: `non-critical asset > ${Math.round(NON_CRITICAL_MAX_BYTES / (1024 * 1024))} MB`
@@ -100,7 +103,8 @@ async function collectFiles(directory, rootDirectory = directory) {
     files.push({
       absolute,
       relative,
-      size: stats.size
+      size: stats.size,
+      skipTheme: false
     });
   }
 
@@ -127,7 +131,7 @@ export async function buildZip() {
   const excludedFiles = [];
 
   for (const file of allFiles) {
-    const decision = shouldExcludeFile(file.relative, { size: file.size });
+    const decision = shouldExcludeFile(file);
 
     if (decision.exclude) {
       excludedFiles.push({

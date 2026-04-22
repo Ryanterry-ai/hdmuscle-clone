@@ -1,0 +1,13 @@
+assets/media/
+*.mp4
+*.webm
+*.mov
+*.m4v
+*.avi
+*.zip
+*.rar
+*.tar
+*.gz
+.DS_Store
+Thumbs.db
+*.log

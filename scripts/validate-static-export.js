@@ -1,23 +1,13 @@
+import fs from "fs";
 import path from "path";
-
 import * as cheerio from "cheerio";
-import fs from "fs-extra";
 
 import {
   ARTIFACTS,
-  ROOT_PUBLIC_DIR,
   STATIC_PUBLIC_DIR,
   logStep,
   readJson
 } from "./pipeline-utils.js";
-
-const REQUIRED_STATIC_FILES = [
-  path.join(STATIC_PUBLIC_DIR, "index.html"),
-  path.join(STATIC_PUBLIC_DIR, ".htaccess"),
-  path.join(STATIC_PUBLIC_DIR, "404.html"),
-  path.join(STATIC_PUBLIC_DIR, "vercel.json"),
-  ARTIFACTS.staticManifest
-];
 
 const OPTIONAL_APP_ROUTES = new Set([
   "/cart/",
@@ -25,8 +15,7 @@ const OPTIONAL_APP_ROUTES = new Set([
   "/account/",
   "/account",
   "/search/",
-  "/search",
-  "/customer_authentication/redirect"
+  "/search"
 ]);
 
 function isExternalHref(value = "") {
@@ -37,46 +26,13 @@ function stripQueryAndHash(value = "") {
   return String(value || "").split("#")[0].split("?")[0];
 }
 
-function looksLikeAssetPath(value = "") {
-  const clean = stripQueryAndHash(value);
-  return /\.[a-z0-9]{1,8}$/i.test(clean);
-}
-
-function normalizeLocalReference(value = "") {
-  const clean = stripQueryAndHash(value).trim();
-
-  if (!clean) return "";
-  if (clean === "." || clean === "./") return ".";
-
-  return clean;
-}
-
-function isRootRelative(value = "") {
-  return value.startsWith("/");
-}
-
-function isIgnoredRemoteRuntime(refValue = "") {
-  return /web-pixels|shopifycloud|monorail-edge|\/web-pixels@/i.test(refValue);
-}
-
-function isOptionalStorefrontRoute(refValue = "") {
-  return (
-    OPTIONAL_APP_ROUTES.has(refValue) ||
-    /^\/products\//i.test(refValue) ||
-    /^\/collections\//i.test(refValue) ||
-    /^\/pages\//i.test(refValue) ||
-    /^\/blogs\//i.test(refValue) ||
-    /^\/policies\//i.test(refValue) ||
-    /^\/customer_authentication\//i.test(refValue) ||
-    /^\/account\//i.test(refValue) ||
-    /^\/search\//i.test(refValue) ||
-    /^\/cart\//i.test(refValue)
-  );
+function isRootRelative(ref = "") {
+  return ref.startsWith("/");
 }
 
 function resolveRef(pageFile, refValue) {
-  const clean = normalizeLocalReference(refValue);
-  if (!clean || clean === ".") return "";
+  const clean = stripQueryAndHash(refValue).trim();
+  if (!clean) return "";
 
   if (isRootRelative(clean)) {
     return path.join(STATIC_PUBLIC_DIR, clean);
@@ -85,8 +41,17 @@ function resolveRef(pageFile, refValue) {
   return path.resolve(path.dirname(pageFile), clean);
 }
 
+function looksLikeAssetPath(value = "") {
+  const clean = stripQueryAndHash(value);
+  return /\.[a-z0-9]{1,8}$/i.test(clean);
+}
+
 async function validatePathExists(filePath, label = filePath) {
-  const exists = await fs.pathExists(filePath);
+  const exists = await fs.promises
+    .stat(filePath)
+    .then(() => true)
+    .catch(() => false);
+
   if (!exists) {
     throw new Error(`Missing required static export file: ${label}`);
   }
@@ -105,26 +70,23 @@ function collectLocalReferences($) {
   $("link[href]").each((_, element) => {
     const value = $(element).attr("href");
     if (value && !isExternalHref(value)) {
-      const normalized = normalizeLocalReference(value);
-      const type = looksLikeAssetPath(normalized) ? "asset" : "page";
-      refs.push({ type, value: normalized });
+      const type = looksLikeAssetPath(value) ? "asset" : "page";
+      refs.push({ type, value });
     }
   });
 
   $("a[href]").each((_, element) => {
     const value = $(element).attr("href");
     if (value && !isExternalHref(value)) {
-      const normalized = normalizeLocalReference(value);
-      const type = looksLikeAssetPath(normalized) ? "asset" : "page";
-      refs.push({ type, value: normalized });
+      const type = looksLikeAssetPath(value) ? "asset" : "page";
+      refs.push({ type, value });
     }
   });
 
   $("form[action]").each((_, element) => {
     const value = $(element).attr("action");
     if (value && !isExternalHref(value)) {
-      const normalized = normalizeLocalReference(value);
-      refs.push({ type: "page", value: normalized });
+      refs.push({ type: "page", value });
     }
   });
 
@@ -132,14 +94,8 @@ function collectLocalReferences($) {
 }
 
 async function validatePageReference(pageFile, refValue) {
-  const clean = normalizeLocalReference(refValue);
-
+  const clean = stripQueryAndHash(refValue).trim();
   if (!clean || clean === ".") return;
-
-  if (isIgnoredRemoteRuntime(clean)) {
-    logStep("static-validate", `Warning: ignored stripped remote runtime route ${clean}`);
-    return;
-  }
 
   if (OPTIONAL_APP_ROUTES.has(clean)) {
     logStep("static-validate", `Warning: optional route not validated strictly: ${clean}`);
@@ -159,42 +115,29 @@ async function validatePageReference(pageFile, refValue) {
   }
 
   for (const candidate of candidates) {
-    if (await fs.pathExists(candidate)) {
+    if (await fs.promises.stat(candidate).then(() => true).catch(() => false)) {
       return;
     }
-  }
-
-  if (isOptionalStorefrontRoute(clean)) {
-    logStep(
-      "static-validate",
-      `Warning: missing exported storefront route '${refValue}' referenced by ${pageFile}`
-    );
-    return;
   }
 
   throw new Error(`Static export is missing page route '${refValue}' referenced by ${pageFile}`);
 }
 
 async function validateAssetReference(pageFile, refValue) {
-  const clean = normalizeLocalReference(refValue);
-
+  const clean = stripQueryAndHash(refValue).trim();
   if (!clean || clean === ".") return;
-
-  if (isIgnoredRemoteRuntime(clean)) {
-    logStep("static-validate", `Warning: ignored stripped remote runtime asset ${clean}`);
-    return;
-  }
 
   const resolved = resolveRef(pageFile, clean);
   if (!resolved) return;
 
-  if (!(await fs.pathExists(resolved))) {
+  const exists = await fs.promises.stat(resolved).then(() => true).catch(() => false);
+  if (!exists) {
     throw new Error(`Static export is missing local asset '${refValue}' referenced by ${pageFile}`);
   }
 }
 
 async function validatePageFile(pageFile) {
-  const html = await fs.readFile(pageFile, "utf8");
+  const html = await fs.promises.readFile(pageFile, "utf8");
   const $ = cheerio.load(html, { decodeEntities: false });
   const refs = collectLocalReferences($);
 
@@ -212,7 +155,7 @@ async function validateVercelConfig() {
   const vercelPath = path.join(STATIC_PUBLIC_DIR, "vercel.json");
   await validatePathExists(vercelPath, vercelPath);
 
-  const raw = await fs.readFile(vercelPath, "utf8");
+  const raw = await fs.promises.readFile(vercelPath, "utf8");
   const parsed = JSON.parse(raw);
 
   if (!Array.isArray(parsed.rewrites) || !parsed.rewrites.length) {
@@ -221,12 +164,11 @@ async function validateVercelConfig() {
 }
 
 export async function validateStaticExport() {
-  for (const filePath of REQUIRED_STATIC_FILES) {
-    await validatePathExists(filePath);
-  }
-
-  await validatePathExists(path.join(ROOT_PUBLIC_DIR, "index.html"), "root public index");
+  await validatePathExists(path.join(STATIC_PUBLIC_DIR, "index.html"));
+  await validatePathExists(path.join(STATIC_PUBLIC_DIR, ".htaccess"));
+  await validatePathExists(path.join(STATIC_PUBLIC_DIR, "404.html"));
   await validateVercelConfig();
+  await validatePathExists(ARTIFACTS.staticManifest);
 
   const manifest = await readJson(ARTIFACTS.staticManifest, "static export manifest");
 
@@ -238,8 +180,7 @@ export async function validateStaticExport() {
   logStep("static-validate", `Static export validation passed for ${manifest.totalPages} pages`);
   return {
     valid: true,
-    totalPages: manifest.totalPages,
-    copiedAssets: manifest.copiedAssets
+    totalPages: manifest.totalPages
   };
 }
 

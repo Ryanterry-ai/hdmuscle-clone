@@ -1,5 +1,5 @@
 import fs from "fs";
-
+import path from "path";
 import archiver from "archiver";
 
 import {
@@ -8,55 +8,50 @@ import {
   logStep
 } from "./pipeline-utils.js";
 
-async function countFiles(directory) {
+async function collectFiles(directory, root = directory) {
   const entries = await fs.promises.readdir(directory, { withFileTypes: true });
-  let total = 0;
+  const files = [];
 
   for (const entry of entries) {
-    const absolute = `${directory}\\${entry.name}`;
+    const absolute = path.join(directory, entry.name);
+    const relative = path.relative(root, absolute);
+
     if (entry.isDirectory()) {
-      total += await countFiles(absolute);
-    } else {
-      total += 1;
+      const nested = await collectFiles(absolute, root);
+      files.push(...nested);
+      continue;
     }
+
+    files.push({
+      absolute,
+      relative
+    });
   }
 
-  return total;
+  return files;
 }
 
 export async function buildStaticZip() {
-  const exists = await fs.promises
-    .stat(STATIC_PUBLIC_DIR)
-    .then(stats => stats.isDirectory())
-    .catch(() => false);
-
-  if (!exists) {
-    throw new Error(`Static export directory does not exist: ${STATIC_PUBLIC_DIR}`);
-  }
-
-  const fileCount = await countFiles(STATIC_PUBLIC_DIR);
-  if (!fileCount) {
-    throw new Error(`Static export directory is empty: ${STATIC_PUBLIC_DIR}`);
-  }
-
-  const output = fs.createWriteStream(ARTIFACTS.staticZip);
+  const output = fs.createWriteStream(ARTIFACTS.publicZip);
   const archive = archiver("zip", { zlib: { level: 9 } });
+
+  const files = await collectFiles(STATIC_PUBLIC_DIR);
 
   return new Promise((resolve, reject) => {
     output.on("close", () => {
-      logStep("static-zip", `Created ${ARTIFACTS.staticZip} with ${fileCount} files`);
-      resolve({
-        zipPath: ARTIFACTS.staticZip,
-        bytes: archive.pointer(),
-        fileCount
-      });
+      logStep("static-zip", `Created ${ARTIFACTS.publicZip} with ${files.length} files`);
+      resolve();
     });
 
-    output.on("error", reject);
     archive.on("error", reject);
+    output.on("error", reject);
 
     archive.pipe(output);
-    archive.directory(STATIC_PUBLIC_DIR, false);
+
+    for (const file of files) {
+      archive.file(file.absolute, { name: file.relative.replace(/\\/g, "/") });
+    }
+
     archive.finalize();
   });
 }

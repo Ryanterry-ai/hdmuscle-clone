@@ -1,28 +1,15 @@
-# Dependencies
 node_modules/
-
-# Build output
 .next/
-out/
-
-# Lock files
-package-lock.json
-
-# TypeScript
-*.tsbuildinfo
-next-env.d.ts
-
-# IDE
-.idea/
-.vscode/
-
-# OS
+dist/
+build/
+*.log
+.env.local
 .DS_Store
-Thumbs.db
-
-# Excluded folders (contain sensitive data)
+*.zip
+公共/
+.vercel
 Website2-Shopify-Theme-Generate/
-morphogen-theme/
-check-files.js
-create-zip.js
-create-zip.ps1
+Universal CMS.zip
+
+.vercel
+.env*.local
