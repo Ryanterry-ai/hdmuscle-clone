@@ -9,6 +9,7 @@ import {
   apparelHandles,
   bestSellerHandles,
   formatINR,
+  getCollection,
   getProductsByHandles,
   heroCategoryTiles,
   newNoteworthyHandles,
@@ -87,39 +88,71 @@ function parseOptions(value: unknown) {
     .filter(Boolean)
 }
 
+function parseImageValue(value: unknown) {
+  if (!value) return ''
+  if (typeof value === 'string') return value.trim()
+  if (typeof value === 'object') {
+    const source = value as Record<string, unknown>
+    const candidate = source.url || source.src || source.path || source.value
+    return typeof candidate === 'string' ? candidate.trim() : ''
+  }
+  return ''
+}
+
+function parseImageArray(value: unknown) {
+  if (!Array.isArray(value)) return [] as string[]
+  return value.map((item) => parseImageValue(item)).filter(Boolean)
+}
+
 function normalizeProducts(raw: any[]): DisplayProduct[] {
   if (!Array.isArray(raw)) return []
 
+  const fallbackByHandle = new Map(fallbackProducts.map((product) => [product.handle, product]))
+
   return raw
     .map((product: any) => {
-      const images = Array.isArray(product?.images)
-        ? product.images.map((value: any) => String(value)).filter(Boolean)
-        : []
-
+      const handle = String(product?.handle || '')
+      const fallback = fallbackByHandle.get(handle)
+      const images = [...parseImageArray(product?.images), ...parseImageArray(product?.gallery_images)]
       const featuredImage =
-        product?.featured_image || product?.featuredImage || images[0] || product?.image || product?.featuredImageUrl || ''
+        parseImageValue(product?.featured_image) ||
+        parseImageValue(product?.featuredImage) ||
+        images[0] ||
+        parseImageValue(product?.image) ||
+        parseImageValue(product?.featuredImageUrl) ||
+        fallback?.image ||
+        ''
 
-      if (!featuredImage || !product?.handle || !product?.title) {
+      if (!featuredImage || !product?.handle || !(product?.title || fallback?.title)) {
         return null
       }
 
       const flavorOptions = parseOptions(product?.flavor_options || product?.flavorOptions)
       const sizeOptions = parseOptions(product?.size_options || product?.sizeOptions)
+      const fallbackVariants = fallback?.variantOptions || (fallback?.variantLabel ? [fallback.variantLabel] : [])
 
       return {
         id: String(product.id || product.handle),
-        handle: String(product.handle),
-        title: String(product.title),
+        handle,
+        title: String(product.title || fallback?.title || ''),
         image: String(featuredImage),
-        secondaryImage: images[1] || product?.secondary_image || product?.secondaryImage || undefined,
-        price: Number(product.price || 0),
-        compareAtPrice: product.compare_at_price !== null && product.compare_at_price !== undefined ? Number(product.compare_at_price) : null,
-        variantOptions: flavorOptions,
-        variantLabel: flavorOptions[0] || undefined,
-        sizeOptions,
-        reviewCount: Number(product.review_count || 0) || undefined,
+        secondaryImage:
+          images.find((image) => image !== featuredImage) ||
+          parseImageValue(product?.secondary_image) ||
+          parseImageValue(product?.secondaryImage) ||
+          fallback?.secondaryImage ||
+          undefined,
+        price: Number(product.price || fallback?.price || 0),
+        compareAtPrice:
+          product.compare_at_price !== null && product.compare_at_price !== undefined
+            ? Number(product.compare_at_price)
+            : fallback?.compareAtPrice || null,
+        variantOptions: flavorOptions.length > 0 ? flavorOptions : fallbackVariants,
+        variantLabel: (flavorOptions[0] || fallback?.variantLabel || undefined) as string | undefined,
+        sizeOptions: sizeOptions.length > 0 ? sizeOptions : fallback?.sizeOptions || [],
+        reviewCount: Number(product.review_count || fallback?.reviewCount || 0) || undefined,
         isFeatured: Boolean(product.is_featured),
-        category: product.category || null,
+        category: product.category || fallback?.category || null,
       } as DisplayProduct
     })
     .filter(Boolean) as DisplayProduct[]
@@ -287,7 +320,7 @@ export default function HomePage() {
 
   const products = useMemo<DisplayProduct[]>(() => {
     const normalized = normalizeProducts(storefront?.products || [])
-    return normalized.length ? normalized : fallbackProducts
+    return normalized.length >= 8 ? normalized : fallbackProducts
   }, [storefront])
 
   const sections = Array.isArray(storefront?.sections) ? storefront.sections : []
@@ -321,7 +354,7 @@ export default function HomePage() {
     return collections.slice(0, 4).map((collection: any) => ({
       title: String(collection?.title || '').toUpperCase() || 'COLLECTION',
       href: `/collections/${collection?.handle || ''}`,
-      image: collection?.image || '/assets/hero-bg.jpg',
+      image: collection?.image || getCollection(String(collection?.handle || ''))?.image || '/assets/hero-bg.jpg',
     }))
   }, [collections])
 

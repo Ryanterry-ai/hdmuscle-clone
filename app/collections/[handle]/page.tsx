@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import Header from '../../header'
 import Footer from '../../components/Footer'
-import { formatINR, getCollection, getProductsByCollection } from '../../lib/catalog'
+import { formatINR, getCollection, getProduct, getProductsByCollection } from '../../lib/catalog'
 import { useCart } from '../../cart-context'
 import { useStore } from '../../store-context'
 
@@ -26,6 +26,22 @@ function parseOptions(value: unknown) {
     .split(',')
     .map((option) => option.trim())
     .filter(Boolean)
+}
+
+function parseImageValue(value: unknown) {
+  if (!value) return ''
+  if (typeof value === 'string') return value.trim()
+  if (typeof value === 'object') {
+    const source = value as Record<string, unknown>
+    const candidate = source.url || source.src || source.path || source.value
+    return typeof candidate === 'string' ? candidate.trim() : ''
+  }
+  return ''
+}
+
+function parseImageArray(value: unknown) {
+  if (!Array.isArray(value)) return [] as string[]
+  return value.map((item) => parseImageValue(item)).filter(Boolean)
 }
 
 function CollectionProductCard({
@@ -107,7 +123,7 @@ export default function CollectionPage() {
         handle: String(cmsCollection.handle),
         title: String(cmsCollection.title || handle),
         description: String(cmsCollection.description || ''),
-        image: String(cmsCollection.image || '/assets/hero-bg.jpg'),
+        image: String(cmsCollection.image || fallbackCollection?.image || '/assets/hero-bg.jpg'),
         product_ids: Array.isArray(cmsCollection.product_ids) ? cmsCollection.product_ids.map((id: any) => String(id)) : [],
       }
     : fallbackCollection
@@ -127,21 +143,41 @@ export default function CollectionPage() {
           return productCollectionHandles.includes(collection.handle)
         })
         .map((product: any) => {
-          const images = Array.isArray(product?.images) ? product.images : []
+          const fallback = getProduct(String(product?.handle || ''))
+          const images = [...parseImageArray(product?.images), ...parseImageArray(product?.gallery_images)]
+          const primaryImage =
+            parseImageValue(product?.featured_image) || parseImageValue(product?.image) || images[0] || fallback?.image || ''
+          const secondaryImage = images.find((image) => image !== primaryImage) || fallback?.secondaryImage || null
+          const flavorOptions = parseOptions(product?.flavor_options || product?.flavorOptions)
+          const fallbackOptions = fallback?.variantOptions || (fallback?.variantLabel ? [fallback.variantLabel] : [])
+
+          if (!primaryImage || !product?.handle || !product?.title) return null
+
           return {
             id: String(product?.id || product?.handle),
             handle: String(product?.handle || ''),
-            title: String(product?.title || ''),
-            image: String(product?.featured_image || images[0] || '/assets/hero-bg.jpg'),
-            secondaryImage: images[1] || null,
-            price: Number(product?.price || 0),
-            variantOptions: parseOptions(product?.flavor_options),
-            variantLabel: parseOptions(product?.flavor_options)[0] || 'Default',
+            title: String(product?.title || fallback?.title || ''),
+            image: primaryImage,
+            secondaryImage,
+            price: Number(product?.price || fallback?.price || 0),
+            variantOptions: flavorOptions.length ? flavorOptions : fallbackOptions,
+            variantLabel: (flavorOptions.length ? flavorOptions[0] : fallback?.variantLabel) || 'Default',
           }
         })
+        .filter(Boolean) as CollectionItem[]
     : []
 
-  const fallbackItems = handle ? getProductsByCollection(handle) : []
+  const fallbackItems: CollectionItem[] = (handle ? getProductsByCollection(handle) : []).map((product) => ({
+    id: product.id,
+    handle: product.handle,
+    title: product.title,
+    image: product.image,
+    secondaryImage: product.secondaryImage || null,
+    price: product.price,
+    variantOptions: product.variantOptions || [],
+    variantLabel: product.variantLabel || 'Default',
+  }))
+
   const items = cmsItems.length ? cmsItems : fallbackItems
 
   function onAdd(item: CollectionItem) {
