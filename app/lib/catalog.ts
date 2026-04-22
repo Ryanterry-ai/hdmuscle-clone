@@ -73,7 +73,7 @@ export const products: Product[] = [
     title: 'PROHD',
     price: 4999,
     compareAtPrice: 5499,
-    image: '/chocolate-6fe084500cd7.png',
+    image: '/prohd_chocolate_front-1cca5974cf27.png',
     secondaryImage: '/chocolate_4.4-bbdf4d506093.jpg',
     collection: 'protein',
     variantLabel: 'Chocolate / 2.2LB',

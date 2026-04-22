@@ -374,14 +374,13 @@ export default function HomePage() {
   }, [products])
 
   const newNoteworthy = useMemo(() => {
-    return products.slice(0, 8)
+    const mapped = getProductsByOrderedHandles(products, newNoteworthyHandles, fallbackProducts)
+    return mapped.length > 0 ? mapped : products.slice(0, 8)
   }, [products])
 
   const apparel = useMemo(() => {
-    const apparelProducts = products.filter((product) =>
-      String(product.category || '').toLowerCase().includes('apparel')
-    )
-    return (apparelProducts.length ? apparelProducts : products).slice(0, 8)
+    const mapped = getProductsByOrderedHandles(products, apparelHandles, fallbackProducts)
+    return mapped.length > 0 ? mapped : products.slice(0, 8)
   }, [products])
 
   const categoryTiles = useMemo(() => heroCategoryTiles, [])
