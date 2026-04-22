@@ -9,7 +9,6 @@ import {
   apparelHandles,
   bestSellerHandles,
   formatINR,
-  getCollection,
   getProduct,
   getProductsByHandles,
   heroCategoryTiles,
@@ -110,6 +109,20 @@ function parseImageValue(value: unknown) {
 function parseImageArray(value: unknown) {
   if (!Array.isArray(value)) return [] as string[]
   return value.map((item) => parseImageValue(item)).filter(Boolean)
+}
+
+function normalizeHandle(value: string) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '')
+}
+
+function getProductsByOrderedHandles(source: DisplayProduct[], handles: string[], fallbackSource: DisplayProduct[] = []) {
+  const map = new Map(source.map((product) => [normalizeHandle(product.handle), product]))
+  const fallbackMap = new Map(fallbackSource.map((product) => [normalizeHandle(product.handle), product]))
+  return handles
+    .map((handle) => map.get(normalizeHandle(handle)) || fallbackMap.get(normalizeHandle(handle)))
+    .filter(Boolean) as DisplayProduct[]
 }
 
 function normalizeProducts(raw: any[]): DisplayProduct[] {
@@ -348,7 +361,6 @@ export default function HomePage() {
   }, [storefront])
 
   const sections = Array.isArray(storefront?.sections) ? storefront.sections : []
-  const collections = Array.isArray(storefront?.collections) ? storefront.collections : []
 
   const heroSection = getSectionContent(sections, 'hero', 'hero') || {}
   const aboutSection = getSectionContent(sections, 'about', 'brand_story') || {}
@@ -357,8 +369,8 @@ export default function HomePage() {
   const coveredSection = getSectionContent(sections, 'you_re_covered', 'guarantee') || {}
 
   const bestSellers = useMemo(() => {
-    const featured = products.filter((product) => product.isFeatured)
-    return (featured.length ? featured : products).slice(0, 8)
+    const mapped = getProductsByOrderedHandles(products, bestSellerHandles, fallbackProducts)
+    return mapped.length > 0 ? mapped : products.slice(0, 8)
   }, [products])
 
   const newNoteworthy = useMemo(() => {
@@ -372,15 +384,7 @@ export default function HomePage() {
     return (apparelProducts.length ? apparelProducts : products).slice(0, 8)
   }, [products])
 
-  const categoryTiles = useMemo(() => {
-    if (!Array.isArray(collections) || collections.length === 0) return heroCategoryTiles
-
-    return collections.slice(0, 4).map((collection: any) => ({
-      title: String(collection?.title || '').toUpperCase() || 'COLLECTION',
-      href: `/collections/${collection?.handle || ''}`,
-      image: collection?.image || getCollection(String(collection?.handle || ''))?.image || '/assets/hero-bg.jpg',
-    }))
-  }, [collections])
+  const categoryTiles = useMemo(() => heroCategoryTiles, [])
 
   const reviews: Array<{ image: string; quote: string }> = Array.isArray(reviewsSection?.items) && reviewsSection.items.length > 0
     ? reviewsSection.items.map((item: any) => ({
@@ -419,7 +423,7 @@ export default function HomePage() {
 
         <section className="category-section" aria-label="Shop by category">
           <div className="section-label-row section-label-row--simple">
-            <h2>SHOP BY CATEGORY</h2>
+            <h2>SHOP BY GOAL</h2>
           </div>
 
           <div className="category-grid">

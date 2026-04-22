@@ -323,6 +323,20 @@ export default function CollectionsPage() {
                 />
               </label>
 
+              {editingCollection ? (
+                <div className="space-y-2 rounded-xl border border-white/10 bg-white/[0.03] p-3 md:col-span-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-400">Current Cover Media</p>
+                  {formData.image ? (
+                    <div className="flex items-center gap-3">
+                      <img src={formData.image} alt={formData.title || 'Current media'} className="h-16 w-16 rounded object-cover border border-white/10" />
+                      <p className="text-xs text-slate-400 break-all">{formData.image}</p>
+                    </div>
+                  ) : (
+                    <p className="text-xs text-slate-500">No cover media currently assigned.</p>
+                  )}
+                </div>
+              ) : null}
+
               <div className="md:col-span-2">
                 <MediaPickerField
                   theme="dark"
