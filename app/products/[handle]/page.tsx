@@ -22,11 +22,18 @@ type RenderProduct = {
   collection_handle: string | null
   collection_title: string
   flavor_options: string[]
+  flavor_images: Record<string, string>
   size_options: string[]
   review_count: number
 }
 
 function normalizeHandleKey(value: string) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '')
+}
+
+function normalizeFlavorKey(value: string) {
   return String(value || '')
     .toLowerCase()
     .replace(/[^a-z0-9]/g, '')
@@ -82,6 +89,36 @@ function parseImageArray(value: unknown) {
   return value.map((item) => parseImageValue(item)).filter(Boolean)
 }
 
+function parseFlavorImageMap(value: unknown) {
+  const map: Record<string, string> = {}
+
+  if (!value) return map
+
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      if (!item || typeof item !== 'object') continue
+      const source = item as Record<string, unknown>
+      const flavor = String(source.flavor || source.name || source.option || '').trim()
+      const image = parseImageValue(source.image || source.url || source.src)
+      if (flavor && image) {
+        map[flavor] = image
+      }
+    }
+    return map
+  }
+
+  if (typeof value === 'object') {
+    for (const [key, raw] of Object.entries(value as Record<string, unknown>)) {
+      const image = parseImageValue(raw)
+      if (key.trim() && image) {
+        map[key.trim()] = image
+      }
+    }
+  }
+
+  return map
+}
+
 export default function ProductPage() {
   const params = useParams()
   const handle = String(params?.handle || '')
@@ -108,6 +145,27 @@ export default function ProductPage() {
 
     const flavorOptions = parseOptions(cmsProduct?.flavor_options || cmsProduct?.flavorOptions)
     const sizeOptions = parseOptions(cmsProduct?.size_options || cmsProduct?.sizeOptions)
+    const fallbackFlavorImages = fallbackProduct?.flavorImages || {}
+
+    const cmsFlavorImageMap = {
+      ...parseFlavorImageMap(cmsProduct?.flavor_image_map),
+      ...parseFlavorImageMap(cmsProduct?.flavor_images),
+    }
+
+    const indexedFlavorImageMap: Record<string, string> = {}
+    if (flavorOptions.length > 0 && cmsImages.length >= flavorOptions.length) {
+      for (let index = 0; index < flavorOptions.length; index += 1) {
+        const option = flavorOptions[index]
+        const mapped = cmsImages[index]
+        if (option && mapped) indexedFlavorImageMap[option] = mapped
+      }
+    }
+
+    const flavorImages = {
+      ...fallbackFlavorImages,
+      ...indexedFlavorImageMap,
+      ...cmsFlavorImageMap,
+    }
 
     const collectionHandle =
       (Array.isArray(cmsProduct?.collection_handles) && cmsProduct.collection_handles.length > 0
@@ -140,6 +198,7 @@ export default function ProductPage() {
         flavorOptions.length > 0
           ? flavorOptions
           : fallbackProduct?.variantOptions || (fallbackProduct?.variantLabel ? [fallbackProduct.variantLabel] : []),
+      flavor_images: flavorImages,
       size_options: sizeOptions.length > 0 ? sizeOptions : fallbackProduct?.sizeOptions || [],
       review_count: Number(cmsProduct?.review_count || cmsProduct?.reviewCount || fallbackProduct?.reviewCount || 38),
     }
@@ -147,15 +206,19 @@ export default function ProductPage() {
 
   const [selectedFlavor, setSelectedFlavor] = useState('Default')
   const [selectedSize, setSelectedSize] = useState('')
-  const [mainImageSrc, setMainImageSrc] = useState('')
+  const [mainImageOverride, setMainImageOverride] = useState('')
   const fallbackMainImage = fallbackProduct?.image || '/assets/hero-bg.jpg'
 
   useEffect(() => {
     if (!product) return
     setSelectedFlavor(product.flavor_options[0] || 'Default')
     setSelectedSize(product.size_options[0] || '')
-    setMainImageSrc(product.image || fallbackMainImage)
+    setMainImageOverride('')
   }, [product?.id, product?.flavor_options?.join('|'), product?.size_options?.join('|')])
+
+  useEffect(() => {
+    setMainImageOverride('')
+  }, [selectedFlavor, product?.id])
 
   if (!product) {
     if (loading) {
@@ -191,6 +254,12 @@ export default function ProductPage() {
   const sizeOptions = product.size_options
   const flavorValue = flavorOptions.includes(selectedFlavor) ? selectedFlavor : flavorOptions[0]
   const sizeValue = sizeOptions.includes(selectedSize) ? selectedSize : sizeOptions[0] || ''
+  const normalizedFlavorValue = normalizeFlavorKey(flavorValue)
+  const flavorImageEntry =
+    Object.entries(product.flavor_images || {}).find(([flavor]) => normalizeFlavorKey(flavor) === normalizedFlavorValue) ||
+    null
+  const flavorImage = flavorImageEntry?.[1] || product.image || fallbackMainImage
+  const currentImage = mainImageOverride || flavorImage || '/assets/hero-bg.jpg'
   const installmentAmount = Math.max(1, Math.round(product.price / 4))
   const freeItemImage = '/greenshd-citrus-us_92d08dad-4bb8-407d-924a-25b91d9b49d0-2aee1aa60f8c.jpg'
   const rupeeSymbol = String.fromCharCode(8377)
@@ -211,14 +280,14 @@ export default function ProductPage() {
         <section className="product-page">
           <div className="product-page__gallery">
             <img
-              src={mainImageSrc || fallbackMainImage}
+              src={currentImage}
               alt={product.title}
               className="product-page__main-image"
               onError={() => {
-                if (mainImageSrc !== fallbackMainImage) {
-                  setMainImageSrc(fallbackMainImage)
-                } else if (mainImageSrc !== '/assets/hero-bg.jpg') {
-                  setMainImageSrc('/assets/hero-bg.jpg')
+                if (currentImage !== fallbackMainImage) {
+                  setMainImageOverride(fallbackMainImage)
+                } else if (currentImage !== '/assets/hero-bg.jpg') {
+                  setMainImageOverride('/assets/hero-bg.jpg')
                 }
               }}
             />
@@ -313,7 +382,7 @@ export default function ProductPage() {
                   id: product.id,
                   title: `${product.title}${flavorValue ? ` - ${flavorValue}` : ''}${sizeValue ? ` / ${sizeValue}` : ''}`,
                   price: product.price,
-                  image: mainImageSrc || product.image || fallbackMainImage,
+                  image: currentImage,
                 })
               }
             >

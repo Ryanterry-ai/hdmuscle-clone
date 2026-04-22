@@ -10,6 +10,7 @@ export type Product = {
   badge?: string
   variantLabel?: string
   variantOptions?: string[]
+  flavorImages?: Record<string, string>
   sizeOptions?: string[]
   reviewCount?: number
 }
@@ -91,6 +92,11 @@ export const products: Product[] = [
     collection: 'pre-workouts',
     variantLabel: 'Blue Raspberry',
     variantOptions: ['Blue Raspberry', 'Pineapple', 'Watermelon'],
+    flavorImages: {
+      'Blue Raspberry': '/prehd-essential-blue-rasberry-eb39ae9ce7f5.png',
+      Pineapple: '/prehd-essential-pineapple-ce3eb9ae2843.png',
+      Watermelon: '/prehd-essential-watermelon-b54e0c0f747e.png',
+    },
     reviewCount: 96,
   },
   {
@@ -346,6 +352,10 @@ export const products: Product[] = [
     collection: 'pre-workouts',
     variantLabel: 'Rainbow Strips',
     variantOptions: ['Rainbow Strips', 'Cherry Slushie'],
+    flavorImages: {
+      'Rainbow Strips': '/pumphd-rainbow-strips-ead9f7c7e482.png',
+      'Cherry Slushie': '/pumphd-cherry-slushie_0b45d9d0-083f-4ea9-813b-744bd3aab3af-9eb3ff1a0f3f.png',
+    },
     reviewCount: 12,
   },
   {
@@ -358,6 +368,10 @@ export const products: Product[] = [
     collection: 'pre-workouts',
     variantLabel: 'Sour Gummies',
     variantOptions: ['Sour Gummies', 'Peach Rings'],
+    flavorImages: {
+      'Sour Gummies': '/ultra_sourgummies-f20633a13a95.png',
+      'Peach Rings': '/ultra_peachrings_whitelid_1-dc1621a4b36f.png',
+    },
     reviewCount: 73,
   },
   {
@@ -370,6 +384,11 @@ export const products: Product[] = [
     collection: 'pre-workouts',
     variantLabel: 'Strawberry Mango',
     variantOptions: ['Strawberry Mango', 'Sour Grape', 'Lychee'],
+    flavorImages: {
+      'Strawberry Mango': '/black_strawmango-db4d1e80b173.jpg',
+      'Sour Grape': '/black_sourgrape-1c3f3fabbce4.jpg',
+      Lychee: '/black_strawmango-db4d1e80b173.jpg',
+    },
     reviewCount: 118,
   },
   {
@@ -382,6 +401,11 @@ export const products: Product[] = [
     collection: 'pre-workouts',
     variantLabel: 'Tangerine',
     variantOptions: ['Tangerine', 'Pink Lemonade', 'Berry Blast'],
+    flavorImages: {
+      Tangerine: '/prehd-elite_tangerine-can-v2-15e1790f303a.jpg',
+      'Pink Lemonade': '/elite_pinklemon-b475a5ed9e0f.jpg',
+      'Berry Blast': '/elite_berryblast-cd0facf4f769.jpg',
+    },
     reviewCount: 82,
   },
   {
