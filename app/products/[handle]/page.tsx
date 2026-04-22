@@ -60,6 +60,7 @@ export default function ProductPage() {
             : 'Collection',
         flavor_options: parseOptions(cmsProduct.flavor_options),
         size_options: parseOptions(cmsProduct.size_options),
+        review_count: Number(cmsProduct.review_count || cmsProduct.reviewCount || 38),
       }
     : fallbackProduct
       ? {
@@ -75,9 +76,10 @@ export default function ProductPage() {
           secondary_image: fallbackProduct.secondaryImage || null,
           collection_handle: fallbackProduct.collection,
           collection_title: fallbackCollection?.title || 'Collection',
-          flavor_options: fallbackProduct.variantOptions || [fallbackProduct.variantLabel || 'Default'],
-          size_options: fallbackProduct.sizeOptions || [],
-        }
+        flavor_options: fallbackProduct.variantOptions || [fallbackProduct.variantLabel || 'Default'],
+        size_options: fallbackProduct.sizeOptions || [],
+        review_count: Number(fallbackProduct.reviewCount || 38),
+      }
       : null
 
   if (!product) {
@@ -97,6 +99,8 @@ export default function ProductPage() {
 
   const [selectedFlavor, setSelectedFlavor] = useState(product.flavor_options[0] || 'Default')
   const [selectedSize, setSelectedSize] = useState(product.size_options[0] || '')
+  const installmentAmount = Math.max(1, Math.round(product.price / 4))
+  const freeItemImage = '/greenshd-citrus-us_92d08dad-4bb8-407d-924a-25b91d9b49d0-2aee1aa60f8c.jpg'
 
   return (
     <>
@@ -114,14 +118,11 @@ export default function ProductPage() {
         <section className="product-page">
           <div className="product-page__gallery">
             <img src={product.image} alt={product.title} className="product-page__main-image" />
-            {product.secondary_image ? (
-              <img src={product.secondary_image} alt={product.title} className="product-page__secondary-image" />
-            ) : null}
           </div>
 
           <div className="product-page__content">
             <p className="product-page__brand">HD MUSCLE</p>
-            <h1>{product.title}</h1>
+            <h1 className="product-page__title">{product.title}</h1>
 
             <div className="product-page__price-row">
               <span>{formatINR(product.price)}</span>
@@ -129,10 +130,14 @@ export default function ProductPage() {
             </div>
 
             <p className="product-page__shipping">Shipping calculated at checkout.</p>
+            <p className="product-page__installment">
+              or 4 interest-free payments of <strong>{formatINR(installmentAmount)}</strong> with{' '}
+              <span className="product-page__afterpay">afterpay</span> <span aria-hidden>ⓘ</span>
+            </p>
 
             <div className="product-page__reviews" aria-label="Product reviews">
-              <span className="stars">*****</span>
-              <span>12 Reviews</span>
+              <span className="stars">★★★★★</span>
+              <span>{product.review_count} Reviews</span>
             </div>
 
             {product.flavor_options.length > 0 ? (
@@ -167,6 +172,35 @@ export default function ProductPage() {
               </div>
             ) : null}
 
+            <section className="product-page__claim-panel" aria-label="Free gift promotion">
+              <p className="product-page__claim-header">Spend ₹9,999 Get ONE FREE GreensHD!</p>
+              <div className="product-page__claim-item">
+                <div className="product-page__claim-copy">
+                  <img src={freeItemImage} alt="GreensHD Citrus" />
+                  <div>
+                    <p>GreensHD - Citrus</p>
+                    <small>Free gift ready to claim</small>
+                  </div>
+                </div>
+                <button type="button">Claim</button>
+              </div>
+              <div className="product-page__claim-item">
+                <div className="product-page__claim-copy">
+                  <img src={freeItemImage} alt="GreensHD Pineapple Mango" />
+                  <div>
+                    <p>GreensHD - Pineapple Mango</p>
+                    <small>Free gift ready to claim</small>
+                  </div>
+                </div>
+                <button type="button">Claim</button>
+              </div>
+            </section>
+
+            <button type="button" className="product-page__claim-toggle">
+              <span>Claim your FREE GreensHD!</span>
+              <span aria-hidden>⌄</span>
+            </button>
+
             <button
               type="button"
               className="product-page__cta"
@@ -185,18 +219,22 @@ export default function ProductPage() {
             <button type="button" className="product-page__shop-btn">
               Buy with shop
             </button>
+            <button type="button" className="product-page__more-payments">
+              More payment options
+            </button>
 
-            <details className="product-page__accordion" open>
-              <summary>Description</summary>
+            <div className="product-page__section-title">Description</div>
+            <div className="product-page__section-body">
               <p>{product.description || product.short_description || 'No product description available yet.'}</p>
-            </details>
+            </div>
 
-            <details className="product-page__accordion">
-              <summary>Behind The Formula</summary>
-              <p>
-                Each formula is developed for practical training outcomes with clean profiles and performance-focused ingredient choices.
+            <div className="product-page__pickup">
+              <p className="product-page__pickup-title">
+                <span aria-hidden>●</span> Pick up available
               </p>
-            </details>
+              <p className="product-page__pickup-time">Usually ready in 24 hours</p>
+              <button type="button">View store info</button>
+            </div>
 
             <div className="product-page__links">
               <Link href={`/collections/${product.collection_handle || 'all'}`}>View collection</Link>
