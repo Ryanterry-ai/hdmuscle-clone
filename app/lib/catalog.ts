@@ -11,6 +11,7 @@ export type Product = {
   variantLabel?: string
   variantOptions?: string[]
   flavorImages?: Record<string, string>
+  sizePriceMap?: Record<string, { price: number; compareAtPrice?: number }>
   sizeOptions?: string[]
   reviewCount?: number
 }
@@ -79,6 +80,20 @@ export const products: Product[] = [
     collection: 'protein',
     variantLabel: 'Chocolate / 2.2LB',
     variantOptions: ['Chocolate', 'Vanilla', 'Sweet Cream Cold Brew', 'Chocolate Peanut Butter'],
+    flavorImages: {
+      Chocolate: '/prohd_chocolate_front-1cca5974cf27.png',
+      Vanilla: '/prohd_vanilla_front-47363c6667f1.png',
+      'Sweet Cream Cold Brew': '/prohd_coldbrew_front_349a99db-9bd2-4c02-b0c8-bb43df6740a9-7a5ce5ed6e59.png',
+      'Chocolate Peanut Butter': '/prohd_chocopb_front-5adbb704bdcf.png',
+      'Chocolate|4.4LB': '/chocolate_4.4-bbdf4d506093.jpg',
+      'Vanilla|4.4LB': '/vanilla_4.4-efddb176ed01.jpg',
+      'Sweet Cream Cold Brew|4.4LB': '/prohd_coldbrew-0e95c3e0e486.jpg',
+      'Chocolate Peanut Butter|4.4LB': '/prohd_chocolatepb_4lb-119d1bca02aa.jpg',
+    },
+    sizePriceMap: {
+      '2.2LB': { price: 4999, compareAtPrice: 5499 },
+      '4.4LB': { price: 8999, compareAtPrice: 9999 },
+    },
     sizeOptions: ['2.2LB', '4.4LB'],
     reviewCount: 284,
   },
@@ -487,27 +502,28 @@ export const heroCategoryTiles = [
   {
     title: 'HEALTH + WELLNESS',
     href: '/collections/health-wellness',
-    image: '/greenshd-citrus-us-b1d785092f3e.jpg',
+    image: '/img_4801-62368a701296.jpg',
   },
   {
     title: 'PRE-WORKOUT',
     href: '/collections/pre-workouts',
-    image: '/dsc06090_copy-cdcd1a0effec.jpg',
+    image: '/untitled_design_32-a97760a5a7fa.png',
   },
   {
     title: 'INTRA-WORKOUT',
     href: '/collections/intra-workouts',
-    image: '/dsc06020_copy-5e5fd46d791b.jpg',
+    image: '/max09367-79d461f0e988.jpg',
   },
   {
     title: 'POST-WORKOUT',
     href: '/collections/post-workout-recovery',
-    image: '/screen_shot_2025-11-21_at_2.17.41_am-c5e145d97cc2.png',
+    image: '/untitled_design_28-aaf3dbf0accf.png',
   },
 ]
 
 export const trustIcons = [
   { label: 'TESTED FOR HEAVY METALS', image: '/heavymetals-6d70a25b79b6.jpg' },
+  { label: 'NON-PROPRIETARY FORMULAS', image: '/formulas_95b0297a-d75a-411b-aa37-3f79d3f7c711-537672fe4644.jpg' },
   { label: 'NO ARTIFICIAL COLORS OR DYES', image: '/nodyes-c2baabd41f37.jpg' },
   { label: '3RD PARTY TESTED', image: '/3rdparty-c55028aede9a.jpg' },
   { label: 'PROPERLY DOSED INGREDIENTS', image: '/properlydosed-6a27d6ff87b9.jpg' },

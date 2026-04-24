@@ -15,6 +15,7 @@ type RenderProduct = {
   title: string
   price: number
   compare_at_price: number | null
+  size_price_map: Record<string, { price: number; compare_at_price: number | null }>
   description: string
   short_description: string
   image: string
@@ -119,6 +120,53 @@ function parseFlavorImageMap(value: unknown) {
   return map
 }
 
+function parseNumberValue(value: unknown) {
+  if (value === null || value === undefined || value === '') return null
+  const numeric = Number(value)
+  return Number.isFinite(numeric) ? numeric : null
+}
+
+function parseSizePriceMap(value: unknown) {
+  const map: Record<string, { price: number; compare_at_price: number | null }> = {}
+  if (!value) return map
+
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      if (!item || typeof item !== 'object') continue
+      const source = item as Record<string, unknown>
+      const size = String(source.size || source.option || source.name || source.label || '').trim()
+      const price = parseNumberValue(source.price)
+      const compare = parseNumberValue(source.compare_at_price ?? source.compareAtPrice)
+      if (size && price !== null) {
+        map[size] = { price, compare_at_price: compare }
+      }
+    }
+    return map
+  }
+
+  if (typeof value === 'object') {
+    for (const [key, raw] of Object.entries(value as Record<string, unknown>)) {
+      if (!key.trim()) continue
+      if (raw && typeof raw === 'object') {
+        const source = raw as Record<string, unknown>
+        const price = parseNumberValue(source.price)
+        const compare = parseNumberValue(source.compare_at_price ?? source.compareAtPrice)
+        if (price !== null) {
+          map[key.trim()] = { price, compare_at_price: compare }
+        }
+        continue
+      }
+
+      const numeric = parseNumberValue(raw)
+      if (numeric !== null) {
+        map[key.trim()] = { price: numeric, compare_at_price: null }
+      }
+    }
+  }
+
+  return map
+}
+
 export default function ProductPage() {
   const params = useParams()
   const handle = String(params?.handle || '')
@@ -146,10 +194,30 @@ export default function ProductPage() {
     const flavorOptions = parseOptions(cmsProduct?.flavor_options || cmsProduct?.flavorOptions)
     const sizeOptions = parseOptions(cmsProduct?.size_options || cmsProduct?.sizeOptions)
     const fallbackFlavorImages = fallbackProduct?.flavorImages || {}
+    const fallbackSizePriceMap: Record<string, { price: number; compare_at_price: number | null }> = Object.fromEntries(
+      Object.entries(fallbackProduct?.sizePriceMap || {}).map(([key, value]) => [
+        key,
+        {
+          price: Number(value.price),
+          compare_at_price:
+            value.compareAtPrice !== null && value.compareAtPrice !== undefined ? Number(value.compareAtPrice) : null,
+        },
+      ]),
+    )
 
     const cmsFlavorImageMap = {
       ...parseFlavorImageMap(cmsProduct?.flavor_image_map),
       ...parseFlavorImageMap(cmsProduct?.flavor_images),
+    }
+
+    const cmsSizePriceMap = {
+      ...parseSizePriceMap(cmsProduct?.size_price_map),
+      ...parseSizePriceMap(cmsProduct?.sizePriceMap),
+      ...parseSizePriceMap(cmsProduct?.size_prices),
+      ...parseSizePriceMap(cmsProduct?.sizePrices),
+      ...parseSizePriceMap(cmsProduct?.variant_prices),
+      ...parseSizePriceMap(cmsProduct?.variantPrices),
+      ...parseSizePriceMap(cmsProduct?.variants),
     }
 
     const indexedFlavorImageMap: Record<string, string> = {}
@@ -199,6 +267,10 @@ export default function ProductPage() {
           ? flavorOptions
           : fallbackProduct?.variantOptions || (fallbackProduct?.variantLabel ? [fallbackProduct.variantLabel] : []),
       flavor_images: flavorImages,
+      size_price_map: {
+        ...fallbackSizePriceMap,
+        ...cmsSizePriceMap,
+      },
       size_options: sizeOptions.length > 0 ? sizeOptions : fallbackProduct?.sizeOptions || [],
       review_count: Number(cmsProduct?.review_count || cmsProduct?.reviewCount || fallbackProduct?.reviewCount || 38),
     }
@@ -218,7 +290,7 @@ export default function ProductPage() {
 
   useEffect(() => {
     setMainImageOverride('')
-  }, [selectedFlavor, product?.id])
+  }, [selectedFlavor, selectedSize, product?.id])
 
   if (!product) {
     if (loading) {
@@ -255,12 +327,30 @@ export default function ProductPage() {
   const flavorValue = flavorOptions.includes(selectedFlavor) ? selectedFlavor : flavorOptions[0]
   const sizeValue = sizeOptions.includes(selectedSize) ? selectedSize : sizeOptions[0] || ''
   const normalizedFlavorValue = normalizeFlavorKey(flavorValue)
-  const flavorImageEntry =
-    Object.entries(product.flavor_images || {}).find(([flavor]) => normalizeFlavorKey(flavor) === normalizedFlavorValue) ||
+  const normalizedSizeValue = normalizeFlavorKey(sizeValue)
+  const flavorImageEntries = Object.entries(product.flavor_images || {})
+  const combinedFlavorImageEntry =
+    flavorImageEntries.find(([option]) => {
+      const [first = '', second = ''] = option.split('|').map((part) => normalizeFlavorKey(part))
+      return (
+        Boolean(first && second) &&
+        ((first === normalizedFlavorValue && second === normalizedSizeValue) ||
+          (first === normalizedSizeValue && second === normalizedFlavorValue))
+      )
+    }) || null
+  const flavorOnlyImageEntry =
+    flavorImageEntries.find(([flavor]) => normalizeFlavorKey(flavor) === normalizedFlavorValue) || null
+  const flavorImage = combinedFlavorImageEntry?.[1] || flavorOnlyImageEntry?.[1] || product.image || fallbackMainImage
+  const sizePriceEntry =
+    Object.entries(product.size_price_map || {}).find(([size]) => normalizeFlavorKey(size) === normalizedSizeValue) ||
     null
-  const flavorImage = flavorImageEntry?.[1] || product.image || fallbackMainImage
+  const activePrice = sizePriceEntry?.[1]?.price ?? product.price
+  const activeCompareAtPrice =
+    sizePriceEntry?.[1]?.compare_at_price !== null && sizePriceEntry?.[1]?.compare_at_price !== undefined
+      ? sizePriceEntry?.[1]?.compare_at_price
+      : product.compare_at_price
   const currentImage = mainImageOverride || flavorImage || '/assets/hero-bg.jpg'
-  const installmentAmount = Math.max(1, Math.round(product.price / 4))
+  const installmentAmount = Math.max(1, Math.round(activePrice / 4))
   const freeItemImage = '/greenshd-citrus-us_92d08dad-4bb8-407d-924a-25b91d9b49d0-2aee1aa60f8c.jpg'
   const rupeeSymbol = String.fromCharCode(8377)
 
@@ -298,8 +388,8 @@ export default function ProductPage() {
             <h1 className="product-page__title">{product.title}</h1>
 
             <div className="product-page__price-row">
-              <span>{formatINR(product.price)}</span>
-              {product.compare_at_price ? <s>{formatINR(product.compare_at_price)}</s> : null}
+              <span>{formatINR(activePrice)}</span>
+              {activeCompareAtPrice ? <s>{formatINR(activeCompareAtPrice)}</s> : null}
             </div>
 
             <p className="product-page__shipping">Shipping calculated at checkout.</p>
@@ -381,7 +471,7 @@ export default function ProductPage() {
                 addItem({
                   id: product.id,
                   title: `${product.title}${flavorValue ? ` - ${flavorValue}` : ''}${sizeValue ? ` / ${sizeValue}` : ''}`,
-                  price: product.price,
+                  price: activePrice,
                   image: currentImage,
                 })
               }
