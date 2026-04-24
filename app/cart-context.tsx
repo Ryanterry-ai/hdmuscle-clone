@@ -25,6 +25,8 @@ const CartContext = createContext<CartContextType | null>(null);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [cartToast, setCartToast] = useState('');
+  const [cartToastVisible, setCartToastVisible] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem('cart');
@@ -43,6 +45,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       }
       return [...prev, { ...item, quantity: 1 }];
     });
+    setCartToast('Product added to cart successfully.');
+    setCartToastVisible(true);
   };
 
   const removeItem = (id: string) => setItems(prev => prev.filter(i => i.id !== id));
@@ -58,9 +62,18 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const subtotal = total;
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
+  useEffect(() => {
+    if (!cartToastVisible) return;
+    const timer = window.setTimeout(() => setCartToastVisible(false), 2200);
+    return () => window.clearTimeout(timer);
+  }, [cartToastVisible]);
+
   return (
     <CartContext.Provider value={{ items, addItem, removeItem, updateQuantity, clearCart, total, subtotal, itemCount }}>
       {children}
+      <div className={`cart-toast${cartToastVisible ? ' is-visible' : ''}`} role="status" aria-live="polite">
+        {cartToast}
+      </div>
     </CartContext.Provider>
   );
 }

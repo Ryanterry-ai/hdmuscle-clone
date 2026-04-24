@@ -375,6 +375,28 @@ main {
   opacity: 0.9;
 }
 
+.cart-toast {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 260;
+  background: #111;
+  color: #fff;
+  border: 1px solid #111;
+  padding: 10px 14px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.cart-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .quality-strip {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -1469,6 +1491,20 @@ main {
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+.cart-summary button:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+.cart-summary__notice {
+  margin: 8px 0 0;
+  font-size: 11px;
+  line-height: 1.45;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  color: #222;
 }
 
 .cart-summary__clear {

@@ -134,12 +134,12 @@ function normalizeProducts(raw: any[]): DisplayProduct[] {
       const fallback = getProduct(handle)
       const images = [...parseImageArray(product?.images), ...parseImageArray(product?.gallery_images)]
       const featuredImage =
+        fallback?.image ||
         parseImageValue(product?.featured_image) ||
         parseImageValue(product?.featuredImage) ||
         images[0] ||
         parseImageValue(product?.image) ||
         parseImageValue(product?.featuredImageUrl) ||
-        fallback?.image ||
         '/assets/hero-bg.jpg'
 
       if (!product?.handle || !(product?.title || fallback?.title)) {
@@ -231,6 +231,8 @@ function ProductCard({
         <select
           defaultValue={(item.variantOptions && item.variantOptions[0]) || item.variantLabel || 'Default'}
           aria-label={`${item.title} variant`}
+          onClick={(event) => event.stopPropagation()}
+          onMouseDown={(event) => event.stopPropagation()}
         >
           {(item.variantOptions && item.variantOptions.length > 0
             ? item.variantOptions
@@ -240,7 +242,14 @@ function ProductCard({
           ))}
         </select>
 
-        <button type="button" onClick={onAdd}>
+        <button
+          type="button"
+          onClick={(event) => {
+            event.preventDefault()
+            event.stopPropagation()
+            onAdd()
+          }}
+        >
           <span>{formatINR(item.price)}</span>
           <span>ADD TO CART</span>
         </button>

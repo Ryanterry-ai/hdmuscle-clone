@@ -97,6 +97,8 @@ function CollectionProductCard({
         <select
           defaultValue={(item.variantOptions && item.variantOptions[0]) || item.variantLabel || 'Default'}
           aria-label={`${item.title} option`}
+          onClick={(event) => event.stopPropagation()}
+          onMouseDown={(event) => event.stopPropagation()}
         >
           {(item.variantOptions && item.variantOptions.length > 0
             ? item.variantOptions
@@ -105,7 +107,14 @@ function CollectionProductCard({
             <option key={option}>{option}</option>
           ))}
         </select>
-        <button type="button" onClick={onAdd}>
+        <button
+          type="button"
+          onClick={(event) => {
+            event.preventDefault()
+            event.stopPropagation()
+            onAdd()
+          }}
+        >
           <span>{formatINR(item.price)}</span>
           <span>ADD TO CART</span>
         </button>
@@ -172,10 +181,10 @@ export default function CollectionPage() {
           const fallback = getProduct(String(product?.handle || ''))
           const images = [...parseImageArray(product?.images), ...parseImageArray(product?.gallery_images)]
           const primaryImage =
+            fallback?.image ||
             parseImageValue(product?.featured_image) ||
             parseImageValue(product?.image) ||
             images[0] ||
-            fallback?.image ||
             '/assets/hero-bg.jpg'
           const secondaryImage = images.find((image) => image !== primaryImage) || fallback?.secondaryImage || null
           const flavorOptions = parseOptions(product?.flavor_options || product?.flavorOptions)

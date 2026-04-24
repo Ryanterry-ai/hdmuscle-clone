@@ -189,7 +189,7 @@ export default function ProductPage() {
 
     const cmsImages = [...parseImageArray(cmsProduct?.images), ...parseImageArray(cmsProduct?.gallery_images)]
     const cmsFeatured = parseImageValue(cmsProduct?.featured_image) || parseImageValue(cmsProduct?.image)
-    const image = cmsFeatured || cmsImages[0] || fallbackProduct?.image || '/assets/hero-bg.jpg'
+    const image = fallbackProduct?.image || cmsFeatured || cmsImages[0] || '/assets/hero-bg.jpg'
 
     const flavorOptions = parseOptions(cmsProduct?.flavor_options || cmsProduct?.flavorOptions)
     const sizeOptions = parseOptions(cmsProduct?.size_options || cmsProduct?.sizeOptions)
@@ -230,9 +230,9 @@ export default function ProductPage() {
     }
 
     const flavorImages = {
-      ...fallbackFlavorImages,
       ...indexedFlavorImageMap,
       ...cmsFlavorImageMap,
+      ...fallbackFlavorImages,
     }
 
     const collectionHandle =
@@ -350,7 +350,6 @@ export default function ProductPage() {
       ? sizePriceEntry?.[1]?.compare_at_price
       : product.compare_at_price
   const currentImage = mainImageOverride || flavorImage || '/assets/hero-bg.jpg'
-  const installmentAmount = Math.max(1, Math.round(activePrice / 4))
   const freeItemImage = '/greenshd-citrus-us_92d08dad-4bb8-407d-924a-25b91d9b49d0-2aee1aa60f8c.jpg'
   const rupeeSymbol = String.fromCharCode(8377)
 
@@ -393,10 +392,7 @@ export default function ProductPage() {
             </div>
 
             <p className="product-page__shipping">Shipping calculated at checkout.</p>
-            <p className="product-page__installment">
-              or 4 interest-free payments of <strong>{formatINR(installmentAmount)}</strong> with{' '}
-              <span className="product-page__snapmint-pill">snapmint</span> <span aria-hidden>(i)</span>
-            </p>
+            <p className="product-page__installment">Secure checkout powered by Razorpay.</p>
 
             <div className="product-page__reviews" aria-label="Product reviews">
               <span className="stars">*****</span>
@@ -478,11 +474,7 @@ export default function ProductPage() {
             >
               ADD TO CART
             </button>
-
-            <button type="button" className="product-page__snapmint-btn">
-              Buy with Snapmint
-            </button>
-            <p className="product-page__payment-note">Secure checkout via Razorpay or choose Snapmint EMI.</p>
+            <p className="product-page__payment-note">Proceed to cart and pay securely via Razorpay.</p>
 
             <div className="product-page__section-title">Description</div>
             <div className="product-page__section-body">
