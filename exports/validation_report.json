@@ -1,0 +1,1415 @@
+{
+  "total_products": 39,
+  "total_issues": 156,
+  "errors": 0,
+  "warnings": 156,
+  "unique_skus": 39,
+  "duplicate_skus": 0,
+  "report": [
+    {
+      "row_number": 2,
+      "product_title": "Turmeric",
+      "variant_sku": "HD-MUSCLE-TURMERIC",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 2,
+      "product_title": "Turmeric",
+      "variant_sku": "HD-MUSCLE-TURMERIC",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 2,
+      "product_title": "Turmeric",
+      "variant_sku": "HD-MUSCLE-TURMERIC",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 2,
+      "product_title": "Turmeric",
+      "variant_sku": "HD-MUSCLE-TURMERIC",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 3,
+      "product_title": "B-Complex",
+      "variant_sku": "HD-MUSCLE-B-COMPLEX",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 3,
+      "product_title": "B-Complex",
+      "variant_sku": "HD-MUSCLE-B-COMPLEX",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 3,
+      "product_title": "B-Complex",
+      "variant_sku": "HD-MUSCLE-B-COMPLEX",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 3,
+      "product_title": "B-Complex",
+      "variant_sku": "HD-MUSCLE-B-COMPLEX",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 4,
+      "product_title": "Ashwagandha",
+      "variant_sku": "HD-MUSCLE-ASHWAGANDHA",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 4,
+      "product_title": "Ashwagandha",
+      "variant_sku": "HD-MUSCLE-ASHWAGANDHA",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 4,
+      "product_title": "Ashwagandha",
+      "variant_sku": "HD-MUSCLE-ASHWAGANDHA",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 4,
+      "product_title": "Ashwagandha",
+      "variant_sku": "HD-MUSCLE-ASHWAGANDHA",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 5,
+      "product_title": "Fish Oil",
+      "variant_sku": "HD-MUSCLE-FISH-OIL",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 5,
+      "product_title": "Fish Oil",
+      "variant_sku": "HD-MUSCLE-FISH-OIL",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 5,
+      "product_title": "Fish Oil",
+      "variant_sku": "HD-MUSCLE-FISH-OIL",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 5,
+      "product_title": "Fish Oil",
+      "variant_sku": "HD-MUSCLE-FISH-OIL",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 6,
+      "product_title": "Zinc",
+      "variant_sku": "HD-MUSCLE-ZINC",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 6,
+      "product_title": "Zinc",
+      "variant_sku": "HD-MUSCLE-ZINC",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 6,
+      "product_title": "Zinc",
+      "variant_sku": "HD-MUSCLE-ZINC",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 6,
+      "product_title": "Zinc",
+      "variant_sku": "HD-MUSCLE-ZINC",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 7,
+      "product_title": "VitaHD",
+      "variant_sku": "HD-MUSCLE-VITAHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 7,
+      "product_title": "VitaHD",
+      "variant_sku": "HD-MUSCLE-VITAHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 7,
+      "product_title": "VitaHD",
+      "variant_sku": "HD-MUSCLE-VITAHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 7,
+      "product_title": "VitaHD",
+      "variant_sku": "HD-MUSCLE-VITAHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 8,
+      "product_title": "SleepHD",
+      "variant_sku": "HD-MUSCLE-SLEEPHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 8,
+      "product_title": "SleepHD",
+      "variant_sku": "HD-MUSCLE-SLEEPHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 8,
+      "product_title": "SleepHD",
+      "variant_sku": "HD-MUSCLE-SLEEPHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 8,
+      "product_title": "SleepHD",
+      "variant_sku": "HD-MUSCLE-SLEEPHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 9,
+      "product_title": "Omega3",
+      "variant_sku": "HD-MUSCLE-OMEGA3",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 9,
+      "product_title": "Omega3",
+      "variant_sku": "HD-MUSCLE-OMEGA3",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 9,
+      "product_title": "Omega3",
+      "variant_sku": "HD-MUSCLE-OMEGA3",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 9,
+      "product_title": "Omega3",
+      "variant_sku": "HD-MUSCLE-OMEGA3",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 10,
+      "product_title": "Magnesium",
+      "variant_sku": "HD-MUSCLE-MAGNESIUM",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 10,
+      "product_title": "Magnesium",
+      "variant_sku": "HD-MUSCLE-MAGNESIUM",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 10,
+      "product_title": "Magnesium",
+      "variant_sku": "HD-MUSCLE-MAGNESIUM",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 10,
+      "product_title": "Magnesium",
+      "variant_sku": "HD-MUSCLE-MAGNESIUM",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 11,
+      "product_title": "MultiHD",
+      "variant_sku": "HD-MUSCLE-MULTIHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 11,
+      "product_title": "MultiHD",
+      "variant_sku": "HD-MUSCLE-MULTIHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 11,
+      "product_title": "MultiHD",
+      "variant_sku": "HD-MUSCLE-MULTIHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 11,
+      "product_title": "MultiHD",
+      "variant_sku": "HD-MUSCLE-MULTIHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 12,
+      "product_title": "LiverHD",
+      "variant_sku": "HD-MUSCLE-LIVERHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 12,
+      "product_title": "LiverHD",
+      "variant_sku": "HD-MUSCLE-LIVERHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 12,
+      "product_title": "LiverHD",
+      "variant_sku": "HD-MUSCLE-LIVERHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 12,
+      "product_title": "LiverHD",
+      "variant_sku": "HD-MUSCLE-LIVERHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 13,
+      "product_title": "KidneyHD",
+      "variant_sku": "HD-MUSCLE-KIDNEYHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 13,
+      "product_title": "KidneyHD",
+      "variant_sku": "HD-MUSCLE-KIDNEYHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 13,
+      "product_title": "KidneyHD",
+      "variant_sku": "HD-MUSCLE-KIDNEYHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 13,
+      "product_title": "KidneyHD",
+      "variant_sku": "HD-MUSCLE-KIDNEYHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 14,
+      "product_title": "K2",
+      "variant_sku": "HD-MUSCLE-K2",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 14,
+      "product_title": "K2",
+      "variant_sku": "HD-MUSCLE-K2",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 14,
+      "product_title": "K2",
+      "variant_sku": "HD-MUSCLE-K2",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 14,
+      "product_title": "K2",
+      "variant_sku": "HD-MUSCLE-K2",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 15,
+      "product_title": "GlycoHD",
+      "variant_sku": "HD-MUSCLE-GLYCOHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 15,
+      "product_title": "GlycoHD",
+      "variant_sku": "HD-MUSCLE-GLYCOHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 15,
+      "product_title": "GlycoHD",
+      "variant_sku": "HD-MUSCLE-GLYCOHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 15,
+      "product_title": "GlycoHD",
+      "variant_sku": "HD-MUSCLE-GLYCOHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 16,
+      "product_title": "GreensHD",
+      "variant_sku": "HD-MUSCLE-GREENSHD-CITRUS",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 16,
+      "product_title": "GreensHD",
+      "variant_sku": "HD-MUSCLE-GREENSHD-CITRUS",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 16,
+      "product_title": "GreensHD",
+      "variant_sku": "HD-MUSCLE-GREENSHD-CITRUS",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 16,
+      "product_title": "GreensHD",
+      "variant_sku": "HD-MUSCLE-GREENSHD-CITRUS",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 17,
+      "product_title": "D3",
+      "variant_sku": "HD-MUSCLE-D3",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 17,
+      "product_title": "D3",
+      "variant_sku": "HD-MUSCLE-D3",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 17,
+      "product_title": "D3",
+      "variant_sku": "HD-MUSCLE-D3",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 17,
+      "product_title": "D3",
+      "variant_sku": "HD-MUSCLE-D3",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 18,
+      "product_title": "Curcumin",
+      "variant_sku": "HD-MUSCLE-CURCUMIN",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 18,
+      "product_title": "Curcumin",
+      "variant_sku": "HD-MUSCLE-CURCUMIN",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 18,
+      "product_title": "Curcumin",
+      "variant_sku": "HD-MUSCLE-CURCUMIN",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 18,
+      "product_title": "Curcumin",
+      "variant_sku": "HD-MUSCLE-CURCUMIN",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 19,
+      "product_title": "CollagenHD",
+      "variant_sku": "HD-MUSCLE-COLLAGENHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 19,
+      "product_title": "CollagenHD",
+      "variant_sku": "HD-MUSCLE-COLLAGENHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 19,
+      "product_title": "CollagenHD",
+      "variant_sku": "HD-MUSCLE-COLLAGENHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 19,
+      "product_title": "CollagenHD",
+      "variant_sku": "HD-MUSCLE-COLLAGENHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 20,
+      "product_title": "Citrus Bergamot",
+      "variant_sku": "HD-MUSCLE-CITRUS-BERGAMOT",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 20,
+      "product_title": "Citrus Bergamot",
+      "variant_sku": "HD-MUSCLE-CITRUS-BERGAMOT",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 20,
+      "product_title": "Citrus Bergamot",
+      "variant_sku": "HD-MUSCLE-CITRUS-BERGAMOT",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 20,
+      "product_title": "Citrus Bergamot",
+      "variant_sku": "HD-MUSCLE-CITRUS-BERGAMOT",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 21,
+      "product_title": "BurnHD",
+      "variant_sku": "HD-MUSCLE-BURNHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 21,
+      "product_title": "BurnHD",
+      "variant_sku": "HD-MUSCLE-BURNHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 21,
+      "product_title": "BurnHD",
+      "variant_sku": "HD-MUSCLE-BURNHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 21,
+      "product_title": "BurnHD",
+      "variant_sku": "HD-MUSCLE-BURNHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 22,
+      "product_title": "Betaine HCL",
+      "variant_sku": "HD-MUSCLE-BETAINE-HCL",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 22,
+      "product_title": "Betaine HCL",
+      "variant_sku": "HD-MUSCLE-BETAINE-HCL",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 22,
+      "product_title": "Betaine HCL",
+      "variant_sku": "HD-MUSCLE-BETAINE-HCL",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 22,
+      "product_title": "Betaine HCL",
+      "variant_sku": "HD-MUSCLE-BETAINE-HCL",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 23,
+      "product_title": "PreHD Essential",
+      "variant_sku": "HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 23,
+      "product_title": "PreHD Essential",
+      "variant_sku": "HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 23,
+      "product_title": "PreHD Essential",
+      "variant_sku": "HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 23,
+      "product_title": "PreHD Essential",
+      "variant_sku": "HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 24,
+      "product_title": "Euphoria",
+      "variant_sku": "HD-MUSCLE-EUPHORIA",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 24,
+      "product_title": "Euphoria",
+      "variant_sku": "HD-MUSCLE-EUPHORIA",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 24,
+      "product_title": "Euphoria",
+      "variant_sku": "HD-MUSCLE-EUPHORIA",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 24,
+      "product_title": "Euphoria",
+      "variant_sku": "HD-MUSCLE-EUPHORIA",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 25,
+      "product_title": "StimHD",
+      "variant_sku": "HD-MUSCLE-STIMHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 25,
+      "product_title": "StimHD",
+      "variant_sku": "HD-MUSCLE-STIMHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 25,
+      "product_title": "StimHD",
+      "variant_sku": "HD-MUSCLE-STIMHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 25,
+      "product_title": "StimHD",
+      "variant_sku": "HD-MUSCLE-STIMHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 26,
+      "product_title": "PumpHD",
+      "variant_sku": "HD-MUSCLE-PUMPHD-RAINBOW-STRIPS",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 26,
+      "product_title": "PumpHD",
+      "variant_sku": "HD-MUSCLE-PUMPHD-RAINBOW-STRIPS",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 26,
+      "product_title": "PumpHD",
+      "variant_sku": "HD-MUSCLE-PUMPHD-RAINBOW-STRIPS",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 26,
+      "product_title": "PumpHD",
+      "variant_sku": "HD-MUSCLE-PUMPHD-RAINBOW-STRIPS",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 27,
+      "product_title": "PreHD Black",
+      "variant_sku": "HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 27,
+      "product_title": "PreHD Black",
+      "variant_sku": "HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 27,
+      "product_title": "PreHD Black",
+      "variant_sku": "HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 27,
+      "product_title": "PreHD Black",
+      "variant_sku": "HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 28,
+      "product_title": "PreHD Elite",
+      "variant_sku": "HD-MUSCLE-PREHD-ELITE-TANGERINE",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 28,
+      "product_title": "PreHD Elite",
+      "variant_sku": "HD-MUSCLE-PREHD-ELITE-TANGERINE",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 28,
+      "product_title": "PreHD Elite",
+      "variant_sku": "HD-MUSCLE-PREHD-ELITE-TANGERINE",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 28,
+      "product_title": "PreHD Elite",
+      "variant_sku": "HD-MUSCLE-PREHD-ELITE-TANGERINE",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 29,
+      "product_title": "PreHD Ultra",
+      "variant_sku": "HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 29,
+      "product_title": "PreHD Ultra",
+      "variant_sku": "HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 29,
+      "product_title": "PreHD Ultra",
+      "variant_sku": "HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 29,
+      "product_title": "PreHD Ultra",
+      "variant_sku": "HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 30,
+      "product_title": "EAAs",
+      "variant_sku": "HD-MUSCLE-EAAS-UNFLAVORED",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 30,
+      "product_title": "EAAs",
+      "variant_sku": "HD-MUSCLE-EAAS-UNFLAVORED",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 30,
+      "product_title": "EAAs",
+      "variant_sku": "HD-MUSCLE-EAAS-UNFLAVORED",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 30,
+      "product_title": "EAAs",
+      "variant_sku": "HD-MUSCLE-EAAS-UNFLAVORED",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 31,
+      "product_title": "BCAA",
+      "variant_sku": "HD-MUSCLE-BCAA",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 31,
+      "product_title": "BCAA",
+      "variant_sku": "HD-MUSCLE-BCAA",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 31,
+      "product_title": "BCAA",
+      "variant_sku": "HD-MUSCLE-BCAA",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 31,
+      "product_title": "BCAA",
+      "variant_sku": "HD-MUSCLE-BCAA",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 32,
+      "product_title": "IntraHD",
+      "variant_sku": "HD-MUSCLE-INTRAHD-GRAPEFRUIT",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 32,
+      "product_title": "IntraHD",
+      "variant_sku": "HD-MUSCLE-INTRAHD-GRAPEFRUIT",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 32,
+      "product_title": "IntraHD",
+      "variant_sku": "HD-MUSCLE-INTRAHD-GRAPEFRUIT",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 32,
+      "product_title": "IntraHD",
+      "variant_sku": "HD-MUSCLE-INTRAHD-GRAPEFRUIT",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 33,
+      "product_title": "HydraHD",
+      "variant_sku": "HD-MUSCLE-HYDRAHD-TANGERINE",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 33,
+      "product_title": "HydraHD",
+      "variant_sku": "HD-MUSCLE-HYDRAHD-TANGERINE",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 33,
+      "product_title": "HydraHD",
+      "variant_sku": "HD-MUSCLE-HYDRAHD-TANGERINE",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 33,
+      "product_title": "HydraHD",
+      "variant_sku": "HD-MUSCLE-HYDRAHD-TANGERINE",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 34,
+      "product_title": "GlutaHD",
+      "variant_sku": "HD-MUSCLE-GLUTAHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 34,
+      "product_title": "GlutaHD",
+      "variant_sku": "HD-MUSCLE-GLUTAHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 34,
+      "product_title": "GlutaHD",
+      "variant_sku": "HD-MUSCLE-GLUTAHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 34,
+      "product_title": "GlutaHD",
+      "variant_sku": "HD-MUSCLE-GLUTAHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 35,
+      "product_title": "CreaHD (Creapure®)",
+      "variant_sku": "HD-MUSCLE-CREAHD-CREAPURER",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 35,
+      "product_title": "CreaHD (Creapure®)",
+      "variant_sku": "HD-MUSCLE-CREAHD-CREAPURER",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 35,
+      "product_title": "CreaHD (Creapure®)",
+      "variant_sku": "HD-MUSCLE-CREAHD-CREAPURER",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 35,
+      "product_title": "CreaHD (Creapure®)",
+      "variant_sku": "HD-MUSCLE-CREAHD-CREAPURER",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 36,
+      "product_title": "CarbHD",
+      "variant_sku": "HD-MUSCLE-CARBHD-UNFLAVORED",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 36,
+      "product_title": "CarbHD",
+      "variant_sku": "HD-MUSCLE-CARBHD-UNFLAVORED",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 36,
+      "product_title": "CarbHD",
+      "variant_sku": "HD-MUSCLE-CARBHD-UNFLAVORED",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 36,
+      "product_title": "CarbHD",
+      "variant_sku": "HD-MUSCLE-CARBHD-UNFLAVORED",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 37,
+      "product_title": "Casein",
+      "variant_sku": "HD-MUSCLE-CASEIN",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 37,
+      "product_title": "Casein",
+      "variant_sku": "HD-MUSCLE-CASEIN",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 37,
+      "product_title": "Casein",
+      "variant_sku": "HD-MUSCLE-CASEIN",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 37,
+      "product_title": "Casein",
+      "variant_sku": "HD-MUSCLE-CASEIN",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 38,
+      "product_title": "Protein Pancakes",
+      "variant_sku": "HD-MUSCLE-PROTEIN-PANCAKES",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 38,
+      "product_title": "Protein Pancakes",
+      "variant_sku": "HD-MUSCLE-PROTEIN-PANCAKES",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 38,
+      "product_title": "Protein Pancakes",
+      "variant_sku": "HD-MUSCLE-PROTEIN-PANCAKES",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 38,
+      "product_title": "Protein Pancakes",
+      "variant_sku": "HD-MUSCLE-PROTEIN-PANCAKES",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 39,
+      "product_title": "ProHD Isolate",
+      "variant_sku": "HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 39,
+      "product_title": "ProHD Isolate",
+      "variant_sku": "HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 39,
+      "product_title": "ProHD Isolate",
+      "variant_sku": "HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 39,
+      "product_title": "ProHD Isolate",
+      "variant_sku": "HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    },
+    {
+      "row_number": 40,
+      "product_title": "WheyHD",
+      "variant_sku": "HD-MUSCLE-WHEYHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: nutrition_facts",
+      "severity": "warning",
+      "recommended_fix": "Fill nutrition_facts from product label"
+    },
+    {
+      "row_number": 40,
+      "product_title": "WheyHD",
+      "variant_sku": "HD-MUSCLE-WHEYHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: serving_size",
+      "severity": "warning",
+      "recommended_fix": "Fill serving_size from product label"
+    },
+    {
+      "row_number": 40,
+      "product_title": "WheyHD",
+      "variant_sku": "HD-MUSCLE-WHEYHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: servings_per_container",
+      "severity": "warning",
+      "recommended_fix": "Fill servings_per_container from product label"
+    },
+    {
+      "row_number": 40,
+      "product_title": "WheyHD",
+      "variant_sku": "HD-MUSCLE-WHEYHD",
+      "issue_type": "missing_compliance",
+      "issue_description": "Missing required compliance field: manufacturer",
+      "severity": "warning",
+      "recommended_fix": "Fill manufacturer from product label"
+    }
+  ],
+  "timestamp": "2026-05-01T18:46:41.084Z"
+}

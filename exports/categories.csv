@@ -1,0 +1,5 @@
+name,subcategory,slug,goal,menu_group,is_active
+HEALTH + WELLNESS,,health-wellness,,HEALTH + WELLNESS,1
+PRE-WORKOUT,,pre-workout,,PRE-WORKOUT,1
+INTRA-WORKOUT,,intra-workout,,INTRA-WORKOUT,1
+POST-WORKOUT,,post-workout,,POST-WORKOUT,1

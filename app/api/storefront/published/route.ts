@@ -446,6 +446,24 @@ const payload = {
   products: PRODUCTS,
   collections: COLLECTIONS,
   pages: PAGES,
+
+  categories: [
+    { name: 'HEALTH + WELLNESS', subcategory: '', slug: 'health-wellness', goal: '', menu_group: 'HEALTH + WELLNESS', is_active: true },
+    { name: 'PRE-WORKOUT', subcategory: '', slug: 'pre-workout', goal: '', menu_group: 'PRE-WORKOUT', is_active: true },
+    { name: 'INTRA-WORKOUT', subcategory: '', slug: 'intra-workout', goal: '', menu_group: 'INTRA-WORKOUT', is_active: true },
+    { name: 'POST-WORKOUT', subcategory: '', slug: 'post-workout', goal: '', menu_group: 'POST-WORKOUT', is_active: true },
+  ],
+
+  brands: [
+    { name: 'HD Muscle', slug: 'hd-muscle', description: 'Premium fitness supplements', logo: '/public/brand-logos/hd-muscle.webp', is_active: true, country_of_origin: 'India', created_at: '2026-05-01T18:37:31.780Z' },
+  ],
+
+  goals: [
+    { goal: 'Build Muscle', categories: ['proteins', 'mass-gainers'], productCount: 1, products: [] },
+    { goal: 'Lose Fat', categories: ['fat-burners', 'thermogenics'], productCount: 0, products: [] },
+    { goal: 'Performance', categories: ['pre-workouts', 'intra-workouts'], productCount: 3, products: [] },
+    { goal: 'Health + Wellness', categories: ['health-wellness'], productCount: 15, products: [] },
+  ],
 };
 
 export async function GET() {

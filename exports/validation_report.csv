@@ -1,0 +1,157 @@
+row_number,product_title,variant_sku,issue_type,issue_description,severity,recommended_fix
+2,Turmeric,HD-MUSCLE-TURMERIC,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+2,Turmeric,HD-MUSCLE-TURMERIC,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+2,Turmeric,HD-MUSCLE-TURMERIC,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+2,Turmeric,HD-MUSCLE-TURMERIC,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+3,B-Complex,HD-MUSCLE-B-COMPLEX,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+3,B-Complex,HD-MUSCLE-B-COMPLEX,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+3,B-Complex,HD-MUSCLE-B-COMPLEX,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+3,B-Complex,HD-MUSCLE-B-COMPLEX,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+4,Ashwagandha,HD-MUSCLE-ASHWAGANDHA,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+4,Ashwagandha,HD-MUSCLE-ASHWAGANDHA,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+4,Ashwagandha,HD-MUSCLE-ASHWAGANDHA,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+4,Ashwagandha,HD-MUSCLE-ASHWAGANDHA,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+5,Fish Oil,HD-MUSCLE-FISH-OIL,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+5,Fish Oil,HD-MUSCLE-FISH-OIL,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+5,Fish Oil,HD-MUSCLE-FISH-OIL,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+5,Fish Oil,HD-MUSCLE-FISH-OIL,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+6,Zinc,HD-MUSCLE-ZINC,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+6,Zinc,HD-MUSCLE-ZINC,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+6,Zinc,HD-MUSCLE-ZINC,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+6,Zinc,HD-MUSCLE-ZINC,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+7,VitaHD,HD-MUSCLE-VITAHD,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+7,VitaHD,HD-MUSCLE-VITAHD,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+7,VitaHD,HD-MUSCLE-VITAHD,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+7,VitaHD,HD-MUSCLE-VITAHD,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+8,SleepHD,HD-MUSCLE-SLEEPHD,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+8,SleepHD,HD-MUSCLE-SLEEPHD,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+8,SleepHD,HD-MUSCLE-SLEEPHD,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+8,SleepHD,HD-MUSCLE-SLEEPHD,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+9,Omega3,HD-MUSCLE-OMEGA3,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+9,Omega3,HD-MUSCLE-OMEGA3,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+9,Omega3,HD-MUSCLE-OMEGA3,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+9,Omega3,HD-MUSCLE-OMEGA3,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+10,Magnesium,HD-MUSCLE-MAGNESIUM,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+10,Magnesium,HD-MUSCLE-MAGNESIUM,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+10,Magnesium,HD-MUSCLE-MAGNESIUM,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+10,Magnesium,HD-MUSCLE-MAGNESIUM,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+11,MultiHD,HD-MUSCLE-MULTIHD,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+11,MultiHD,HD-MUSCLE-MULTIHD,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+11,MultiHD,HD-MUSCLE-MULTIHD,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+11,MultiHD,HD-MUSCLE-MULTIHD,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+12,LiverHD,HD-MUSCLE-LIVERHD,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+12,LiverHD,HD-MUSCLE-LIVERHD,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+12,LiverHD,HD-MUSCLE-LIVERHD,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+12,LiverHD,HD-MUSCLE-LIVERHD,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+13,KidneyHD,HD-MUSCLE-KIDNEYHD,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+13,KidneyHD,HD-MUSCLE-KIDNEYHD,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+13,KidneyHD,HD-MUSCLE-KIDNEYHD,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+13,KidneyHD,HD-MUSCLE-KIDNEYHD,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+14,K2,HD-MUSCLE-K2,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+14,K2,HD-MUSCLE-K2,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+14,K2,HD-MUSCLE-K2,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+14,K2,HD-MUSCLE-K2,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+15,GlycoHD,HD-MUSCLE-GLYCOHD,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+15,GlycoHD,HD-MUSCLE-GLYCOHD,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+15,GlycoHD,HD-MUSCLE-GLYCOHD,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+15,GlycoHD,HD-MUSCLE-GLYCOHD,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+16,GreensHD,HD-MUSCLE-GREENSHD-CITRUS,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+16,GreensHD,HD-MUSCLE-GREENSHD-CITRUS,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+16,GreensHD,HD-MUSCLE-GREENSHD-CITRUS,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+16,GreensHD,HD-MUSCLE-GREENSHD-CITRUS,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+17,D3,HD-MUSCLE-D3,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+17,D3,HD-MUSCLE-D3,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+17,D3,HD-MUSCLE-D3,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+17,D3,HD-MUSCLE-D3,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+18,Curcumin,HD-MUSCLE-CURCUMIN,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+18,Curcumin,HD-MUSCLE-CURCUMIN,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+18,Curcumin,HD-MUSCLE-CURCUMIN,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+18,Curcumin,HD-MUSCLE-CURCUMIN,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+19,CollagenHD,HD-MUSCLE-COLLAGENHD,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+19,CollagenHD,HD-MUSCLE-COLLAGENHD,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+19,CollagenHD,HD-MUSCLE-COLLAGENHD,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+19,CollagenHD,HD-MUSCLE-COLLAGENHD,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+20,Citrus Bergamot,HD-MUSCLE-CITRUS-BERGAMOT,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+20,Citrus Bergamot,HD-MUSCLE-CITRUS-BERGAMOT,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+20,Citrus Bergamot,HD-MUSCLE-CITRUS-BERGAMOT,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+20,Citrus Bergamot,HD-MUSCLE-CITRUS-BERGAMOT,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+21,BurnHD,HD-MUSCLE-BURNHD,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+21,BurnHD,HD-MUSCLE-BURNHD,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+21,BurnHD,HD-MUSCLE-BURNHD,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+21,BurnHD,HD-MUSCLE-BURNHD,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+22,Betaine HCL,HD-MUSCLE-BETAINE-HCL,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+22,Betaine HCL,HD-MUSCLE-BETAINE-HCL,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+22,Betaine HCL,HD-MUSCLE-BETAINE-HCL,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+22,Betaine HCL,HD-MUSCLE-BETAINE-HCL,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+23,PreHD Essential,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+23,PreHD Essential,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+23,PreHD Essential,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+23,PreHD Essential,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+24,Euphoria,HD-MUSCLE-EUPHORIA,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+24,Euphoria,HD-MUSCLE-EUPHORIA,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+24,Euphoria,HD-MUSCLE-EUPHORIA,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+24,Euphoria,HD-MUSCLE-EUPHORIA,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+25,StimHD,HD-MUSCLE-STIMHD,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+25,StimHD,HD-MUSCLE-STIMHD,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+25,StimHD,HD-MUSCLE-STIMHD,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+25,StimHD,HD-MUSCLE-STIMHD,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+26,PumpHD,HD-MUSCLE-PUMPHD-RAINBOW-STRIPS,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+26,PumpHD,HD-MUSCLE-PUMPHD-RAINBOW-STRIPS,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+26,PumpHD,HD-MUSCLE-PUMPHD-RAINBOW-STRIPS,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+26,PumpHD,HD-MUSCLE-PUMPHD-RAINBOW-STRIPS,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+27,PreHD Black,HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+27,PreHD Black,HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+27,PreHD Black,HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+27,PreHD Black,HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+28,PreHD Elite,HD-MUSCLE-PREHD-ELITE-TANGERINE,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+28,PreHD Elite,HD-MUSCLE-PREHD-ELITE-TANGERINE,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+28,PreHD Elite,HD-MUSCLE-PREHD-ELITE-TANGERINE,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+28,PreHD Elite,HD-MUSCLE-PREHD-ELITE-TANGERINE,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+29,PreHD Ultra,HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+29,PreHD Ultra,HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+29,PreHD Ultra,HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+29,PreHD Ultra,HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+30,EAAs,HD-MUSCLE-EAAS-UNFLAVORED,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+30,EAAs,HD-MUSCLE-EAAS-UNFLAVORED,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+30,EAAs,HD-MUSCLE-EAAS-UNFLAVORED,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+30,EAAs,HD-MUSCLE-EAAS-UNFLAVORED,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+31,BCAA,HD-MUSCLE-BCAA,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+31,BCAA,HD-MUSCLE-BCAA,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+31,BCAA,HD-MUSCLE-BCAA,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+31,BCAA,HD-MUSCLE-BCAA,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+32,IntraHD,HD-MUSCLE-INTRAHD-GRAPEFRUIT,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+32,IntraHD,HD-MUSCLE-INTRAHD-GRAPEFRUIT,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+32,IntraHD,HD-MUSCLE-INTRAHD-GRAPEFRUIT,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+32,IntraHD,HD-MUSCLE-INTRAHD-GRAPEFRUIT,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+33,HydraHD,HD-MUSCLE-HYDRAHD-TANGERINE,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+33,HydraHD,HD-MUSCLE-HYDRAHD-TANGERINE,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+33,HydraHD,HD-MUSCLE-HYDRAHD-TANGERINE,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+33,HydraHD,HD-MUSCLE-HYDRAHD-TANGERINE,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+34,GlutaHD,HD-MUSCLE-GLUTAHD,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+34,GlutaHD,HD-MUSCLE-GLUTAHD,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+34,GlutaHD,HD-MUSCLE-GLUTAHD,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+34,GlutaHD,HD-MUSCLE-GLUTAHD,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+35,CreaHD (Creapure®),HD-MUSCLE-CREAHD-CREAPURER,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+35,CreaHD (Creapure®),HD-MUSCLE-CREAHD-CREAPURER,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+35,CreaHD (Creapure®),HD-MUSCLE-CREAHD-CREAPURER,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+35,CreaHD (Creapure®),HD-MUSCLE-CREAHD-CREAPURER,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+36,CarbHD,HD-MUSCLE-CARBHD-UNFLAVORED,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+36,CarbHD,HD-MUSCLE-CARBHD-UNFLAVORED,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+36,CarbHD,HD-MUSCLE-CARBHD-UNFLAVORED,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+36,CarbHD,HD-MUSCLE-CARBHD-UNFLAVORED,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+37,Casein,HD-MUSCLE-CASEIN,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+37,Casein,HD-MUSCLE-CASEIN,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+37,Casein,HD-MUSCLE-CASEIN,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+37,Casein,HD-MUSCLE-CASEIN,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+38,Protein Pancakes,HD-MUSCLE-PROTEIN-PANCAKES,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+38,Protein Pancakes,HD-MUSCLE-PROTEIN-PANCAKES,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+38,Protein Pancakes,HD-MUSCLE-PROTEIN-PANCAKES,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+38,Protein Pancakes,HD-MUSCLE-PROTEIN-PANCAKES,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+39,ProHD Isolate,HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+39,ProHD Isolate,HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+39,ProHD Isolate,HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+39,ProHD Isolate,HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label
+40,WheyHD,HD-MUSCLE-WHEYHD,missing_compliance,Missing required compliance field: nutrition_facts,warning,Fill nutrition_facts from product label
+40,WheyHD,HD-MUSCLE-WHEYHD,missing_compliance,Missing required compliance field: serving_size,warning,Fill serving_size from product label
+40,WheyHD,HD-MUSCLE-WHEYHD,missing_compliance,Missing required compliance field: servings_per_container,warning,Fill servings_per_container from product label
+40,WheyHD,HD-MUSCLE-WHEYHD,missing_compliance,Missing required compliance field: manufacturer,warning,Fill manufacturer from product label

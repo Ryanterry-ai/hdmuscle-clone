@@ -1,0 +1,1170 @@
+{
+  "total_products": 39,
+  "total_images_referenced": 145,
+  "found": 0,
+  "missing": 145,
+  "skipped_empty": 11,
+  "issues": [
+    {
+      "row": 2,
+      "product_handle": "turmeric",
+      "variant_sku": "HD-MUSCLE-TURMERIC",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/turmeric/main.webp",
+      "exists": false
+    },
+    {
+      "row": 2,
+      "product_handle": "turmeric",
+      "variant_sku": "HD-MUSCLE-TURMERIC",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/turmeric/label.webp",
+      "exists": false
+    },
+    {
+      "row": 2,
+      "product_handle": "turmeric",
+      "variant_sku": "HD-MUSCLE-TURMERIC",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/turmeric/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 3,
+      "product_handle": "b-complex",
+      "variant_sku": "HD-MUSCLE-B-COMPLEX",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/b-complex/main.webp",
+      "exists": false
+    },
+    {
+      "row": 3,
+      "product_handle": "b-complex",
+      "variant_sku": "HD-MUSCLE-B-COMPLEX",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/b-complex/label.webp",
+      "exists": false
+    },
+    {
+      "row": 3,
+      "product_handle": "b-complex",
+      "variant_sku": "HD-MUSCLE-B-COMPLEX",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/b-complex/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 4,
+      "product_handle": "ashwagandha",
+      "variant_sku": "HD-MUSCLE-ASHWAGANDHA",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/ashwagandha/main.webp",
+      "exists": false
+    },
+    {
+      "row": 4,
+      "product_handle": "ashwagandha",
+      "variant_sku": "HD-MUSCLE-ASHWAGANDHA",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/ashwagandha/label.webp",
+      "exists": false
+    },
+    {
+      "row": 4,
+      "product_handle": "ashwagandha",
+      "variant_sku": "HD-MUSCLE-ASHWAGANDHA",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/ashwagandha/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 5,
+      "product_handle": "fish-oil",
+      "variant_sku": "HD-MUSCLE-FISH-OIL",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/fish-oil/main.webp",
+      "exists": false
+    },
+    {
+      "row": 5,
+      "product_handle": "fish-oil",
+      "variant_sku": "HD-MUSCLE-FISH-OIL",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/fish-oil/label.webp",
+      "exists": false
+    },
+    {
+      "row": 5,
+      "product_handle": "fish-oil",
+      "variant_sku": "HD-MUSCLE-FISH-OIL",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/fish-oil/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 6,
+      "product_handle": "zinc",
+      "variant_sku": "HD-MUSCLE-ZINC",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/zinc/main.webp",
+      "exists": false
+    },
+    {
+      "row": 6,
+      "product_handle": "zinc",
+      "variant_sku": "HD-MUSCLE-ZINC",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/zinc/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 6,
+      "product_handle": "zinc",
+      "variant_sku": "HD-MUSCLE-ZINC",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/zinc/label.webp",
+      "exists": false
+    },
+    {
+      "row": 6,
+      "product_handle": "zinc",
+      "variant_sku": "HD-MUSCLE-ZINC",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/zinc/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 7,
+      "product_handle": "vitahd",
+      "variant_sku": "HD-MUSCLE-VITAHD",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/vitahd/main.webp",
+      "exists": false
+    },
+    {
+      "row": 7,
+      "product_handle": "vitahd",
+      "variant_sku": "HD-MUSCLE-VITAHD",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/vitahd/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 7,
+      "product_handle": "vitahd",
+      "variant_sku": "HD-MUSCLE-VITAHD",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/vitahd/label.webp",
+      "exists": false
+    },
+    {
+      "row": 7,
+      "product_handle": "vitahd",
+      "variant_sku": "HD-MUSCLE-VITAHD",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/vitahd/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 8,
+      "product_handle": "sleephd",
+      "variant_sku": "HD-MUSCLE-SLEEPHD",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/sleephd/main.webp",
+      "exists": false
+    },
+    {
+      "row": 8,
+      "product_handle": "sleephd",
+      "variant_sku": "HD-MUSCLE-SLEEPHD",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/sleephd/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 8,
+      "product_handle": "sleephd",
+      "variant_sku": "HD-MUSCLE-SLEEPHD",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/sleephd/label.webp",
+      "exists": false
+    },
+    {
+      "row": 8,
+      "product_handle": "sleephd",
+      "variant_sku": "HD-MUSCLE-SLEEPHD",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/sleephd/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 9,
+      "product_handle": "omega3",
+      "variant_sku": "HD-MUSCLE-OMEGA3",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/omega3/main.webp",
+      "exists": false
+    },
+    {
+      "row": 9,
+      "product_handle": "omega3",
+      "variant_sku": "HD-MUSCLE-OMEGA3",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/omega3/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 9,
+      "product_handle": "omega3",
+      "variant_sku": "HD-MUSCLE-OMEGA3",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/omega3/label.webp",
+      "exists": false
+    },
+    {
+      "row": 9,
+      "product_handle": "omega3",
+      "variant_sku": "HD-MUSCLE-OMEGA3",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/omega3/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 10,
+      "product_handle": "magnesium",
+      "variant_sku": "HD-MUSCLE-MAGNESIUM",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/magnesium/main.webp",
+      "exists": false
+    },
+    {
+      "row": 10,
+      "product_handle": "magnesium",
+      "variant_sku": "HD-MUSCLE-MAGNESIUM",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/magnesium/label.webp",
+      "exists": false
+    },
+    {
+      "row": 10,
+      "product_handle": "magnesium",
+      "variant_sku": "HD-MUSCLE-MAGNESIUM",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/magnesium/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 11,
+      "product_handle": "multihd",
+      "variant_sku": "HD-MUSCLE-MULTIHD",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/multihd/main.webp",
+      "exists": false
+    },
+    {
+      "row": 11,
+      "product_handle": "multihd",
+      "variant_sku": "HD-MUSCLE-MULTIHD",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/multihd/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 11,
+      "product_handle": "multihd",
+      "variant_sku": "HD-MUSCLE-MULTIHD",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/multihd/label.webp",
+      "exists": false
+    },
+    {
+      "row": 11,
+      "product_handle": "multihd",
+      "variant_sku": "HD-MUSCLE-MULTIHD",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/multihd/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 12,
+      "product_handle": "liverhd",
+      "variant_sku": "HD-MUSCLE-LIVERHD",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/liverhd/main.webp",
+      "exists": false
+    },
+    {
+      "row": 12,
+      "product_handle": "liverhd",
+      "variant_sku": "HD-MUSCLE-LIVERHD",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/liverhd/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 12,
+      "product_handle": "liverhd",
+      "variant_sku": "HD-MUSCLE-LIVERHD",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/liverhd/label.webp",
+      "exists": false
+    },
+    {
+      "row": 12,
+      "product_handle": "liverhd",
+      "variant_sku": "HD-MUSCLE-LIVERHD",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/liverhd/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 13,
+      "product_handle": "kidneyhd",
+      "variant_sku": "HD-MUSCLE-KIDNEYHD",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/kidneyhd/main.webp",
+      "exists": false
+    },
+    {
+      "row": 13,
+      "product_handle": "kidneyhd",
+      "variant_sku": "HD-MUSCLE-KIDNEYHD",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/kidneyhd/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 13,
+      "product_handle": "kidneyhd",
+      "variant_sku": "HD-MUSCLE-KIDNEYHD",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/kidneyhd/label.webp",
+      "exists": false
+    },
+    {
+      "row": 13,
+      "product_handle": "kidneyhd",
+      "variant_sku": "HD-MUSCLE-KIDNEYHD",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/kidneyhd/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 14,
+      "product_handle": "k2",
+      "variant_sku": "HD-MUSCLE-K2",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/k2/main.webp",
+      "exists": false
+    },
+    {
+      "row": 14,
+      "product_handle": "k2",
+      "variant_sku": "HD-MUSCLE-K2",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/k2/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 14,
+      "product_handle": "k2",
+      "variant_sku": "HD-MUSCLE-K2",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/k2/label.webp",
+      "exists": false
+    },
+    {
+      "row": 14,
+      "product_handle": "k2",
+      "variant_sku": "HD-MUSCLE-K2",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/k2/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 15,
+      "product_handle": "glycohd",
+      "variant_sku": "HD-MUSCLE-GLYCOHD",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/glycohd/main.webp",
+      "exists": false
+    },
+    {
+      "row": 15,
+      "product_handle": "glycohd",
+      "variant_sku": "HD-MUSCLE-GLYCOHD",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/glycohd/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 15,
+      "product_handle": "glycohd",
+      "variant_sku": "HD-MUSCLE-GLYCOHD",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/glycohd/label.webp",
+      "exists": false
+    },
+    {
+      "row": 15,
+      "product_handle": "glycohd",
+      "variant_sku": "HD-MUSCLE-GLYCOHD",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/glycohd/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 16,
+      "product_handle": "greenshd",
+      "variant_sku": "HD-MUSCLE-GREENSHD-CITRUS",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/greenshd/main.webp",
+      "exists": false
+    },
+    {
+      "row": 16,
+      "product_handle": "greenshd",
+      "variant_sku": "HD-MUSCLE-GREENSHD-CITRUS",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/greenshd/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 16,
+      "product_handle": "greenshd",
+      "variant_sku": "HD-MUSCLE-GREENSHD-CITRUS",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/greenshd/label.webp",
+      "exists": false
+    },
+    {
+      "row": 16,
+      "product_handle": "greenshd",
+      "variant_sku": "HD-MUSCLE-GREENSHD-CITRUS",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/greenshd/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 17,
+      "product_handle": "d3",
+      "variant_sku": "HD-MUSCLE-D3",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/d3/main.webp",
+      "exists": false
+    },
+    {
+      "row": 17,
+      "product_handle": "d3",
+      "variant_sku": "HD-MUSCLE-D3",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/d3/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 17,
+      "product_handle": "d3",
+      "variant_sku": "HD-MUSCLE-D3",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/d3/label.webp",
+      "exists": false
+    },
+    {
+      "row": 17,
+      "product_handle": "d3",
+      "variant_sku": "HD-MUSCLE-D3",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/d3/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 18,
+      "product_handle": "curcumin",
+      "variant_sku": "HD-MUSCLE-CURCUMIN",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/curcumin/main.webp",
+      "exists": false
+    },
+    {
+      "row": 18,
+      "product_handle": "curcumin",
+      "variant_sku": "HD-MUSCLE-CURCUMIN",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/curcumin/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 18,
+      "product_handle": "curcumin",
+      "variant_sku": "HD-MUSCLE-CURCUMIN",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/curcumin/label.webp",
+      "exists": false
+    },
+    {
+      "row": 18,
+      "product_handle": "curcumin",
+      "variant_sku": "HD-MUSCLE-CURCUMIN",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/curcumin/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 19,
+      "product_handle": "collagenhd",
+      "variant_sku": "HD-MUSCLE-COLLAGENHD",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/collagenhd/main.webp",
+      "exists": false
+    },
+    {
+      "row": 19,
+      "product_handle": "collagenhd",
+      "variant_sku": "HD-MUSCLE-COLLAGENHD",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/collagenhd/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 19,
+      "product_handle": "collagenhd",
+      "variant_sku": "HD-MUSCLE-COLLAGENHD",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/collagenhd/label.webp",
+      "exists": false
+    },
+    {
+      "row": 19,
+      "product_handle": "collagenhd",
+      "variant_sku": "HD-MUSCLE-COLLAGENHD",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/collagenhd/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 20,
+      "product_handle": "citrus-bergamot",
+      "variant_sku": "HD-MUSCLE-CITRUS-BERGAMOT",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/citrus-bergamot/main.webp",
+      "exists": false
+    },
+    {
+      "row": 20,
+      "product_handle": "citrus-bergamot",
+      "variant_sku": "HD-MUSCLE-CITRUS-BERGAMOT",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/citrus-bergamot/label.webp",
+      "exists": false
+    },
+    {
+      "row": 20,
+      "product_handle": "citrus-bergamot",
+      "variant_sku": "HD-MUSCLE-CITRUS-BERGAMOT",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/citrus-bergamot/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 21,
+      "product_handle": "burnhd",
+      "variant_sku": "HD-MUSCLE-BURNHD",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/burnhd/main.webp",
+      "exists": false
+    },
+    {
+      "row": 21,
+      "product_handle": "burnhd",
+      "variant_sku": "HD-MUSCLE-BURNHD",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/burnhd/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 21,
+      "product_handle": "burnhd",
+      "variant_sku": "HD-MUSCLE-BURNHD",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/burnhd/label.webp",
+      "exists": false
+    },
+    {
+      "row": 21,
+      "product_handle": "burnhd",
+      "variant_sku": "HD-MUSCLE-BURNHD",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/burnhd/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 22,
+      "product_handle": "betaine-hcl",
+      "variant_sku": "HD-MUSCLE-BETAINE-HCL",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/betaine-hcl/main.webp",
+      "exists": false
+    },
+    {
+      "row": 22,
+      "product_handle": "betaine-hcl",
+      "variant_sku": "HD-MUSCLE-BETAINE-HCL",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/betaine-hcl/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 22,
+      "product_handle": "betaine-hcl",
+      "variant_sku": "HD-MUSCLE-BETAINE-HCL",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/betaine-hcl/label.webp",
+      "exists": false
+    },
+    {
+      "row": 22,
+      "product_handle": "betaine-hcl",
+      "variant_sku": "HD-MUSCLE-BETAINE-HCL",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/betaine-hcl/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 23,
+      "product_handle": "prehd-essential",
+      "variant_sku": "HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/prehd-essential/main.webp",
+      "exists": false
+    },
+    {
+      "row": 23,
+      "product_handle": "prehd-essential",
+      "variant_sku": "HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/prehd-essential/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 23,
+      "product_handle": "prehd-essential",
+      "variant_sku": "HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/prehd-essential/label.webp",
+      "exists": false
+    },
+    {
+      "row": 23,
+      "product_handle": "prehd-essential",
+      "variant_sku": "HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/prehd-essential/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 24,
+      "product_handle": "euphoria",
+      "variant_sku": "HD-MUSCLE-EUPHORIA",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/euphoria/main.webp",
+      "exists": false
+    },
+    {
+      "row": 24,
+      "product_handle": "euphoria",
+      "variant_sku": "HD-MUSCLE-EUPHORIA",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/euphoria/label.webp",
+      "exists": false
+    },
+    {
+      "row": 24,
+      "product_handle": "euphoria",
+      "variant_sku": "HD-MUSCLE-EUPHORIA",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/euphoria/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 25,
+      "product_handle": "stimhd",
+      "variant_sku": "HD-MUSCLE-STIMHD",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/stimhd/main.webp",
+      "exists": false
+    },
+    {
+      "row": 25,
+      "product_handle": "stimhd",
+      "variant_sku": "HD-MUSCLE-STIMHD",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/stimhd/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 25,
+      "product_handle": "stimhd",
+      "variant_sku": "HD-MUSCLE-STIMHD",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/stimhd/label.webp",
+      "exists": false
+    },
+    {
+      "row": 25,
+      "product_handle": "stimhd",
+      "variant_sku": "HD-MUSCLE-STIMHD",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/stimhd/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 26,
+      "product_handle": "pumphd",
+      "variant_sku": "HD-MUSCLE-PUMPHD-RAINBOW-STRIPS",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/pumphd/main.webp",
+      "exists": false
+    },
+    {
+      "row": 26,
+      "product_handle": "pumphd",
+      "variant_sku": "HD-MUSCLE-PUMPHD-RAINBOW-STRIPS",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/pumphd/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 26,
+      "product_handle": "pumphd",
+      "variant_sku": "HD-MUSCLE-PUMPHD-RAINBOW-STRIPS",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/pumphd/label.webp",
+      "exists": false
+    },
+    {
+      "row": 26,
+      "product_handle": "pumphd",
+      "variant_sku": "HD-MUSCLE-PUMPHD-RAINBOW-STRIPS",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/pumphd/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 27,
+      "product_handle": "prehd-black",
+      "variant_sku": "HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/prehd-black/main.webp",
+      "exists": false
+    },
+    {
+      "row": 27,
+      "product_handle": "prehd-black",
+      "variant_sku": "HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/prehd-black/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 27,
+      "product_handle": "prehd-black",
+      "variant_sku": "HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/prehd-black/label.webp",
+      "exists": false
+    },
+    {
+      "row": 27,
+      "product_handle": "prehd-black",
+      "variant_sku": "HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/prehd-black/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 28,
+      "product_handle": "prehd-elite",
+      "variant_sku": "HD-MUSCLE-PREHD-ELITE-TANGERINE",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/prehd-elite/main.webp",
+      "exists": false
+    },
+    {
+      "row": 28,
+      "product_handle": "prehd-elite",
+      "variant_sku": "HD-MUSCLE-PREHD-ELITE-TANGERINE",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/prehd-elite/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 28,
+      "product_handle": "prehd-elite",
+      "variant_sku": "HD-MUSCLE-PREHD-ELITE-TANGERINE",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/prehd-elite/label.webp",
+      "exists": false
+    },
+    {
+      "row": 28,
+      "product_handle": "prehd-elite",
+      "variant_sku": "HD-MUSCLE-PREHD-ELITE-TANGERINE",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/prehd-elite/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 29,
+      "product_handle": "prehd-ultra",
+      "variant_sku": "HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/prehd-ultra/main.webp",
+      "exists": false
+    },
+    {
+      "row": 29,
+      "product_handle": "prehd-ultra",
+      "variant_sku": "HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/prehd-ultra/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 29,
+      "product_handle": "prehd-ultra",
+      "variant_sku": "HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/prehd-ultra/label.webp",
+      "exists": false
+    },
+    {
+      "row": 29,
+      "product_handle": "prehd-ultra",
+      "variant_sku": "HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/prehd-ultra/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 30,
+      "product_handle": "eaas",
+      "variant_sku": "HD-MUSCLE-EAAS-UNFLAVORED",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/eaas/main.webp",
+      "exists": false
+    },
+    {
+      "row": 30,
+      "product_handle": "eaas",
+      "variant_sku": "HD-MUSCLE-EAAS-UNFLAVORED",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/eaas/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 30,
+      "product_handle": "eaas",
+      "variant_sku": "HD-MUSCLE-EAAS-UNFLAVORED",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/eaas/label.webp",
+      "exists": false
+    },
+    {
+      "row": 30,
+      "product_handle": "eaas",
+      "variant_sku": "HD-MUSCLE-EAAS-UNFLAVORED",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/eaas/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 31,
+      "product_handle": "bcaa",
+      "variant_sku": "HD-MUSCLE-BCAA",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/bcaa/main.webp",
+      "exists": false
+    },
+    {
+      "row": 31,
+      "product_handle": "bcaa",
+      "variant_sku": "HD-MUSCLE-BCAA",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/bcaa/label.webp",
+      "exists": false
+    },
+    {
+      "row": 31,
+      "product_handle": "bcaa",
+      "variant_sku": "HD-MUSCLE-BCAA",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/bcaa/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 32,
+      "product_handle": "intrahd",
+      "variant_sku": "HD-MUSCLE-INTRAHD-GRAPEFRUIT",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/intrahd/main.webp",
+      "exists": false
+    },
+    {
+      "row": 32,
+      "product_handle": "intrahd",
+      "variant_sku": "HD-MUSCLE-INTRAHD-GRAPEFRUIT",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/intrahd/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 32,
+      "product_handle": "intrahd",
+      "variant_sku": "HD-MUSCLE-INTRAHD-GRAPEFRUIT",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/intrahd/label.webp",
+      "exists": false
+    },
+    {
+      "row": 32,
+      "product_handle": "intrahd",
+      "variant_sku": "HD-MUSCLE-INTRAHD-GRAPEFRUIT",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/intrahd/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 33,
+      "product_handle": "hydrahd",
+      "variant_sku": "HD-MUSCLE-HYDRAHD-TANGERINE",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/hydrahd/main.webp",
+      "exists": false
+    },
+    {
+      "row": 33,
+      "product_handle": "hydrahd",
+      "variant_sku": "HD-MUSCLE-HYDRAHD-TANGERINE",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/hydrahd/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 33,
+      "product_handle": "hydrahd",
+      "variant_sku": "HD-MUSCLE-HYDRAHD-TANGERINE",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/hydrahd/label.webp",
+      "exists": false
+    },
+    {
+      "row": 33,
+      "product_handle": "hydrahd",
+      "variant_sku": "HD-MUSCLE-HYDRAHD-TANGERINE",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/hydrahd/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 34,
+      "product_handle": "glutahd",
+      "variant_sku": "HD-MUSCLE-GLUTAHD",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/glutahd/main.webp",
+      "exists": false
+    },
+    {
+      "row": 34,
+      "product_handle": "glutahd",
+      "variant_sku": "HD-MUSCLE-GLUTAHD",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/glutahd/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 34,
+      "product_handle": "glutahd",
+      "variant_sku": "HD-MUSCLE-GLUTAHD",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/glutahd/label.webp",
+      "exists": false
+    },
+    {
+      "row": 34,
+      "product_handle": "glutahd",
+      "variant_sku": "HD-MUSCLE-GLUTAHD",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/glutahd/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 35,
+      "product_handle": "creahd-creapurer",
+      "variant_sku": "HD-MUSCLE-CREAHD-CREAPURER",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/creahd-creapurer/main.webp",
+      "exists": false
+    },
+    {
+      "row": 35,
+      "product_handle": "creahd-creapurer",
+      "variant_sku": "HD-MUSCLE-CREAHD-CREAPURER",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/creahd-creapurer/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 35,
+      "product_handle": "creahd-creapurer",
+      "variant_sku": "HD-MUSCLE-CREAHD-CREAPURER",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/creahd-creapurer/label.webp",
+      "exists": false
+    },
+    {
+      "row": 35,
+      "product_handle": "creahd-creapurer",
+      "variant_sku": "HD-MUSCLE-CREAHD-CREAPURER",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/creahd-creapurer/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 36,
+      "product_handle": "carbhd",
+      "variant_sku": "HD-MUSCLE-CARBHD-UNFLAVORED",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/carbhd/main.webp",
+      "exists": false
+    },
+    {
+      "row": 36,
+      "product_handle": "carbhd",
+      "variant_sku": "HD-MUSCLE-CARBHD-UNFLAVORED",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/carbhd/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 36,
+      "product_handle": "carbhd",
+      "variant_sku": "HD-MUSCLE-CARBHD-UNFLAVORED",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/carbhd/label.webp",
+      "exists": false
+    },
+    {
+      "row": 36,
+      "product_handle": "carbhd",
+      "variant_sku": "HD-MUSCLE-CARBHD-UNFLAVORED",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/carbhd/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 37,
+      "product_handle": "casein",
+      "variant_sku": "HD-MUSCLE-CASEIN",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/casein/main.webp",
+      "exists": false
+    },
+    {
+      "row": 37,
+      "product_handle": "casein",
+      "variant_sku": "HD-MUSCLE-CASEIN",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/casein/label.webp",
+      "exists": false
+    },
+    {
+      "row": 37,
+      "product_handle": "casein",
+      "variant_sku": "HD-MUSCLE-CASEIN",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/casein/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 38,
+      "product_handle": "protein-pancakes",
+      "variant_sku": "HD-MUSCLE-PROTEIN-PANCAKES",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/protein-pancakes/main.webp",
+      "exists": false
+    },
+    {
+      "row": 38,
+      "product_handle": "protein-pancakes",
+      "variant_sku": "HD-MUSCLE-PROTEIN-PANCAKES",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/protein-pancakes/label.webp",
+      "exists": false
+    },
+    {
+      "row": 38,
+      "product_handle": "protein-pancakes",
+      "variant_sku": "HD-MUSCLE-PROTEIN-PANCAKES",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/protein-pancakes/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 39,
+      "product_handle": "prohd-isolate",
+      "variant_sku": "HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/prohd-isolate/main.webp",
+      "exists": false
+    },
+    {
+      "row": 39,
+      "product_handle": "prohd-isolate",
+      "variant_sku": "HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE",
+      "field": "gallery_images",
+      "expected_path": "/public/product-images/hd-muscle/prohd-isolate/gallery-01.webp",
+      "exists": false
+    },
+    {
+      "row": 39,
+      "product_handle": "prohd-isolate",
+      "variant_sku": "HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/prohd-isolate/label.webp",
+      "exists": false
+    },
+    {
+      "row": 39,
+      "product_handle": "prohd-isolate",
+      "variant_sku": "HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/prohd-isolate/nutrition.webp",
+      "exists": false
+    },
+    {
+      "row": 40,
+      "product_handle": "wheyhd",
+      "variant_sku": "HD-MUSCLE-WHEYHD",
+      "field": "main_image",
+      "expected_path": "/public/product-images/hd-muscle/wheyhd/main.webp",
+      "exists": false
+    },
+    {
+      "row": 40,
+      "product_handle": "wheyhd",
+      "variant_sku": "HD-MUSCLE-WHEYHD",
+      "field": "label_image",
+      "expected_path": "/public/product-images/hd-muscle/wheyhd/label.webp",
+      "exists": false
+    },
+    {
+      "row": 40,
+      "product_handle": "wheyhd",
+      "variant_sku": "HD-MUSCLE-WHEYHD",
+      "field": "nutrition_image",
+      "expected_path": "/public/product-images/hd-muscle/wheyhd/nutrition.webp",
+      "exists": false
+    }
+  ],
+  "timestamp": "2026-05-01T18:39:22.324Z"
+}

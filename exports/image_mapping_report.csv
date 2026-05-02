@@ -1,0 +1,6 @@
+original_file,mapped_product_title,mapped_product_handle,mapped_brand_slug,mapped_variant_sku,detected_image_type,final_path,mapping_confidence,mapping_method,status,notes
+HD-MUSCLE-STIMHD__main.png,StimHD,stimhd,hd-muscle,HD-MUSCLE-STIMHD,main,/public/product-images/hd-muscle/stimhd/main.webp,1,exact_sku_match,mapped,
+hd-muscle__prehd-essential__gallery-01.png,PreHD Essential,prehd-essential,hd-muscle,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,gallery,/public/product-images/hd-muscle/prehd-essential/gallery-01.webp,1,exact_brand_handle_match,mapped,
+hd-muscle__prehd-essential__label.png,PreHD Essential,prehd-essential,hd-muscle,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,label,/public/product-images/hd-muscle/prehd-essential/label.webp,1,exact_brand_handle_match,mapped,
+hd-muscle__prehd-essential__main.png,PreHD Essential,prehd-essential,hd-muscle,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,main,/public/product-images/hd-muscle/prehd-essential/main.webp,1,exact_brand_handle_match,mapped,
+pumphd__main.png,PumpHD,pumphd,hd-muscle,HD-MUSCLE-PUMPHD-RAINBOW-STRIPS,main,/public/product-images/hd-muscle/pumphd/main.webp,0.95,exact_handle_match,mapped,

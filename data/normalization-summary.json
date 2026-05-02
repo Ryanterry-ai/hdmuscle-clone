@@ -1,0 +1,15 @@
+{
+  "total": 3,
+  "brands": [
+    "upgraded-demo-nutrition",
+    "demo-performance-labs",
+    "sample-wellness-co"
+  ],
+  "categories": [
+    "Protein",
+    "Pre-Workout",
+    "Creatine"
+  ],
+  "needs_review": 3,
+  "timestamp": "2026-05-01T18:04:03.714Z"
+}

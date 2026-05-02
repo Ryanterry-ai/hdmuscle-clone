@@ -1,450 +1,343 @@
-'use client';
+export const dynamic = 'force-dynamic';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Header from './header';
-import { useCart } from './cart-context';
+import { CatalogData } from '@/lib/data/json-repository';
+import ProductCard from './components/ProductCard';
+import BrandCard from './components/BrandCard';
+import CategoryTile from './components/CategoryTile';
+import TrustBadges from './components/TrustBadges';
 
-interface CMSData {
-  settings: any;
-  homepage: any;
-  products: any[];
-  navigation: any;
+const catalog = CatalogData.getInstance();
+catalog.loadAll();
+
+function getBrandName(slug: string): string {
+  return catalog.brands.find(b => b.slug === slug)?.name || slug;
 }
 
-interface Product {
-  id: string;
-  handle: string;
-  title: string;
-  price: string;
-  images: { url: string }[];
-  badge?: string;
-  is_active: boolean;
+function getMainImage(handle: string): string {
+  return catalog.images.find(i => i.product_handle === handle && i.image_type === 'main')?.image_path || '';
 }
 
-function AnnouncementBar({ text, link, linkText }: { text?: string; link?: string; linkText?: string }) {
-  return (
-    <div className="announcement-bar">
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8">
-        <p className="text-[10px] md:text-xs font-semibold uppercase tracking-[1px] md:tracking-[2px] text-center">
-          {text || 'FREE SHIPPING ON ORDERS OVER $99 GÇó 30-DAY MONEY BACK GUARANTEE GÇó'}
-          {link && linkText && (
-            <>
-              {' '}
-              <Link href={link} className="underline hover:text-gray-300">
-                {linkText}
-              </Link>
-            </>
-          )}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function QualityBadges({ badges }: { badges?: { icon: string; text: string }[] }) {
-  const defaultBadges = [
-    { icon: '=ƒº¬', text: 'Heavy Metals Tested' },
-    { icon: '=ƒÄ¿', text: 'No Artificial Dyes' },
-    { icon: 'G£à', text: '3rd Party Tested' },
-    { icon: '=ƒÆè', text: 'Properly Dosed' },
-    { icon: '=ƒÅ¡', text: 'FDA Registered Facility' },
-  ];
-
-  return (
-    <section className="py-6 md:py-8 bg-gray-50 border-b border-gray-200">
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8">
-        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
-          {(badges || defaultBadges).map((badge, i) => (
-            <div key={i} className="flex items-center gap-2 text-xs md:text-sm text-gray-600 whitespace-nowrap">
-              <span className="text-base md:text-lg">{badge.icon}</span>
-              <span className="font-medium">{badge.text}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CategoryTiles({ categories }: { categories?: { title: string; image: string; link: string }[] }) {
-  const defaultCategories = [
-    { title: 'Health + Wellness', image: '/greenshd-citrus-us-b1d785092f3e.jpg', link: '/collections/health-wellness' },
-    { title: 'Pre-Workout', image: '/pumphd-rainbow-strips-ead9f7c7e482.png', link: '/collections/pre-workouts' },
-    { title: 'Intra-Workout', image: '/intrahd_watermelon_f38c042d-708c-472a-a828-b329ac7baf6b-ca4066edb12c.png', link: '/collections/intra-workouts' },
-    { title: 'Post-Workout', image: '/creahd-53c587c6f495.jpg', link: '/collections/post-workout' },
-  ];
-
-  return (
-    <section className="py-12 md:py-16 bg-white">
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-4 gap-1">
-          {(categories || defaultCategories).map((cat, i) => (
-            <Link key={i} href={cat.link} className="group relative aspect-square overflow-hidden">
-              <img 
-                src={cat.image} 
-                alt={cat.title} 
-                className="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <h3 className="text-white font-bold text-xs md:text-sm uppercase tracking-[2px] md:tracking-[3px]">{cat.title}</h3>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: (p: Product) => void }) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <div 
-      className="bg-white border border-gray-200 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <Link href={`/products/${product.handle}`}>
-        <div className="relative aspect-square bg-gray-100 overflow-hidden">
-          <img 
-            src={product.images?.[0]?.url} 
-            alt={product.title} 
-            className={`w-full h-full object-cover transition duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'}`}
-          />
-          {product.images?.[1]?.url && (
-            <img 
-              src={product.images[1].url} 
-              alt={product.title} 
-              className={`absolute inset-0 w-full h-full object-cover transition duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
-            />
-          )}
-          {product.badge && (
-            <span className="absolute top-3 left-3 bg-black text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider">
-              {product.badge}
-            </span>
-          )}
-        </div>
-        <div className="p-4">
-          <h3 className="font-semibold text-sm uppercase tracking-wide mb-2 line-clamp-2">{product.title}</h3>
-          <p className="text-base font-bold">?{Number(product.price).toLocaleString(" en-IN\)}</p>
-        </div>
-      </Link>
-      <div className="px-4 pb-4">
-        <button 
-          onClick={() => onAddToCart(product)}
-          className="w-full py-3 bg-black text-white text-xs font-bold uppercase tracking-[1.5px] hover:bg-gray-800 transition"
-        >
-          Add to Cart
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function ProductSection({ title, products, onAddToCart, viewAllLink }: { title: string; products: Product[]; onAddToCart: (p: Product) => void; viewAllLink: string }) {
-  if (!products || products.length === 0) return null;
-
-  return (
-    <section className="py-12 md:py-16 bg-gray-50">
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8">
-        <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
-          <h2 className="text-xl md:text-2xl font-bold uppercase tracking-[2px] md:tracking-[3px]">{title}</h2>
-          <Link href={viewAllLink} className="text-xs font-bold uppercase tracking-[1px] text-gray-500 flex items-center gap-2 hover:text-black">
-            View All <span>GåÆ</span>
-          </Link>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-1">
-          {products.slice(0, 10).map((product) => (
-            <ProductCard key={product.id} product={product} onAddToCart={onAddToCart} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function BrandStory({ data }: { data?: { label?: string; heading?: string; content?: string; quote?: string; image?: string } }) {
-  return (
-    <section className="grid md:grid-cols-2 min-h-[400px] md:min-h-[500px]">
-      <div className="bg-gray-900 relative overflow-hidden min-h-[250px] md:min-h-full">
-        <img 
-          src={data?.image || "/hdmusclebrand2-1775078638960-180ba2bc3e7b.webp"} 
-          alt="HD Muscle Story" 
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      </div>
-      <div className="bg-black text-white flex flex-col justify-center px-8 md:px-12 py-12 md:py-16">
-        <span className="text-white text-xs font-bold uppercase tracking-[3px] mb-4">{data?.label || 'Our Mission'}</span>
-        <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-4 md:mb-6">{data?.heading || 'Built By Athletes, For Athletes'}</h2>
-        <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-4">
-          {data?.content || 'At HD Muscle, we believe in the power of integrity. Every product we create is designed with one goal in mind: to help you reach your full potential.'}
-        </p>
-        <span className="text-gray-500 text-lg md:text-2xl italic">{data?.quote || 'GÇö The HD Muscle Team'}</span>
-      </div>
-    </section>
-  );
-}
-
-function Reviews({ title, subtitle, reviews }: { title?: string; subtitle?: string; reviews?: { text: string; author: string; stars: number }[] }) {
-  return (
-    <section className="py-12 md:py-16 bg-white">
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8">
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-2 md:mb-3">{title || 'Real People, Real Reviews'}</h2>
-          <p className="text-gray-500 text-sm md:text-base">{subtitle || 'See what our customers are saying'}</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
-          {(reviews || []).map((review, i) => (
-            <div key={i} className="bg-gray-50 p-6 md:p-8 border border-gray-200">
-              <div className="text-black text-sm md:text-base mb-3 md:4">
-                {[...Array(review.stars)].map((_, j) => <span key={j} className="mr-0.5">Gÿà</span>)}
-              </div>
-              <p className="text-gray-800 text-sm md:text-base leading-relaxed mb-4 md:mb-5">"{review.text}"</p>
-              <p className="font-bold text-sm uppercase tracking-wide">GÇö {review.author}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function FAQSection({ title, questions }: { title?: string; questions?: { question: string; answer: string }[] }) {
-  return (
-    <section className="py-12 md:py-16 bg-gray-50">
-      <div className="max-w-[800px] mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-10 uppercase tracking-[2px] md:tracking-[3px]">{title || 'Frequently Asked Questions'}</h2>
-        <div className="space-y-0">
-          {(questions || []).map((faq, i) => (
-            <details key={i} className="group bg-white border border-black">
-              <summary className="flex items-center justify-between p-4 cursor-pointer font-semibold list-none text-sm md:text-base">
-                {faq.question}
-                <span className="text-lg transition group-open:rotate-45">+</span>
-              </summary>
-              <p className="px-4 pb-4 text-gray-600 text-sm md:text-base">{faq.answer}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Newsletter({ heading, text, placeholder, button }: { heading?: string; text?: string; placeholder?: string; button?: string }) {
-  return (
-    <section className="py-12 md:py-16 bg-black text-white">
-      <div className="max-w-[600px] mx-auto px-4 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-3 md:mb-4">{heading || 'Stay Updated'}</h2>
-        <p className="text-gray-400 mb-5 md:mb-6 text-sm md:text-base">{text || 'Subscribe for exclusive offers and new product launches'}</p>
-        <form className="flex">
-          <input 
-            type="email" 
-            placeholder={placeholder || 'Enter your email'} 
-            className="flex-1 px-4 py-3 bg-black text-white border border-gray-700 focus:outline-none focus:border-white"
-          />
-          <button className="px-6 md:px-8 py-3 bg-white text-black text-xs font-bold uppercase tracking-[1px] hover:bg-gray-200 transition">
-            {button || 'Subscribe'}
-          </button>
-        </form>
-      </div>
-    </section>
-  );
-}
-
-function Footer({ settings, navigation }: { settings?: any; navigation?: any }) {
-  return (
-    <footer className="bg-black text-white py-12 md:py-16">
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8 grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8">
-        <div className="col-span-2 md:col-span-1">
-          <h3 className="text-lg md:text-xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-4 md:mb-5">{settings?.store_name || 'HD MUSCLE'}</h3>
-          <p className="text-gray-400 text-sm leading-relaxed mb-5 md:mb-6">
-            Premium sports nutrition supplements designed for athletes who demand more.
-          </p>
-          <div className="flex gap-3">
-            <a href={settings?.social_links?.instagram || '#'} className="w-9 h-9 border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition text-sm">
-              IG
-            </a>
-            <a href={settings?.social_links?.facebook || '#'} className="w-9 h-9 border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition text-sm">
-              FB
-            </a>
-            <a href={settings?.social_links?.youtube || '#'} className="w-9 h-9 border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition text-sm">
-              YT
-            </a>
-            <a href={settings?.social_links?.tiktok || '#'} className="w-9 h-9 border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition text-sm">
-              TT
-            </a>
-          </div>
-        </div>
-        {(navigation?.footer_main || []).map((section: any, idx: number) => (
-          <div key={idx}>
-            <h4 className="text-xs font-bold uppercase tracking-[2px] mb-4 md:mb-5">{section.title}</h4>
-            <ul className="space-y-2 md:space-y-3">
-              {section.links?.map((link: any, linkIdx: number) => (
-                <li key={linkIdx}><Link href={link.link} className="text-gray-400 text-sm hover:text-white transition">{link.title}</Link></li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8 mt-10 md:mt-12 pt-8 border-t border-gray-900 text-center">
-        <p className="text-gray-500 text-sm">{settings?.footer?.copyright_text || '-¬ 2024 HD MUSCLE. All rights reserved. Integrity is everything.'}</p>
-      </div>
-    </footer>
-  );
-}
-
-function getProductsByHandles(products: any[], handles: string[]): Product[] {
-  return handles
-    .map(handle => products.find(p => p.handle === handle))
-    .filter((p): p is Product => p !== undefined && p.is_active)
-    .map(p => ({
-      id: p.id,
-      handle: p.handle,
-      title: p.title,
-      price: p.price,
-      images: p.images,
-      badge: p.badge,
-      is_active: p.is_active
-    }));
+function getFirstVariant(handle: string) {
+  return catalog.variants.find(v => v.product_handle === handle);
 }
 
 export default function HomePage() {
-  const { addItem } = useCart();
-  const [cmsData, setCmsData] = useState<CMSData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const categories = [...new Set(catalog.categories.map(c => c.name))].map(name => {
+    const cat = catalog.categories.find(c => c.name === name);
+    return {
+      name,
+      slug: cat?.slug || '',
+      productCount: catalog.products.filter(p => p.category === name).length,
+    };
+  });
 
-  useEffect(() => {
-    fetch('/api/storefront/published')
-      .then(res => res.json())
-      .then(data => {
-        setCmsData(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, []);
+  const brands = catalog.brands.map(brand => ({
+    name: brand.name,
+    slug: brand.slug,
+    description: brand.description,
+    logo: brand.logo,
+    productCount: catalog.products.filter(p => p.brand_slug === brand.slug).length,
+  }));
 
-  const handleAddToCart = (product: Product) => {
-    addItem({ id: product.id, title: product.title, price: Number(product.price), image: product.images?.[0]?.url });
-  };
+  const featuredProducts = catalog.products.slice(0, 8).map(p => {
+    const variant = getFirstVariant(p.handle);
+    const discount = variant && variant.sale_price < variant.mrp
+      ? Math.round(((variant.mrp - variant.sale_price) / variant.mrp) * 100)
+      : 0;
+    return {
+      handle: p.handle,
+      title: p.title,
+      brandName: getBrandName(p.brand_slug),
+      mrp: variant?.mrp || 0,
+      salePrice: variant?.sale_price || variant?.mrp || 0,
+      mainImage: getMainImage(p.handle),
+      discountPercent: discount,
+    };
+  });
 
-  if (loading) {
-    return <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-xl">Loading...</div></div>;
-  }
+  const deals = (() => {
+    const seen = new Set<string>();
+    const result: any[] = [];
+    catalog.products.forEach(p => {
+      if (seen.has(p.handle)) return;
+      const variant = getFirstVariant(p.handle);
+      if (variant && variant.sale_price < variant.mrp) {
+        result.push({
+          handle: p.handle,
+          title: p.title,
+          brandName: getBrandName(p.brand_slug),
+          mrp: variant.mrp,
+          salePrice: variant.sale_price,
+          discountPercent: Math.round(((variant.mrp - variant.sale_price) / variant.mrp) * 100),
+          mainImage: getMainImage(p.handle),
+        });
+        seen.add(p.handle);
+      }
+    });
+    return result.slice(0, 4);
+  })();
 
-  const homepage = cmsData?.homepage;
-  const settings = cmsData?.settings;
-  const products = cmsData?.products || [];
-  const navigation = cmsData?.navigation;
+  const goalMap: Record<string, string> = {};
+  catalog.products.forEach(p => {
+    const cat = catalog.categories.find(c => c.name === p.category);
+    goalMap[p.handle] = cat?.goal || 'uncategorized';
+  });
 
-  const bestSellers = getProductsByHandles(products, homepage?.best_sellers?.product_handles || []);
-  const newProducts = getProductsByHandles(products, homepage?.new_products?.product_handles || []);
-  const apparelProducts = getProductsByHandles(products, homepage?.apparel?.product_handles || []);
-
-  const hero = homepage?.hero || {};
-  const qualityBadges = homepage?.quality_badges || {};
-  const categoryTiles = homepage?.category_tiles || {};
-  const brandStory = homepage?.brand_story || {};
-  const testimonials = homepage?.testimonials || {};
-  const faq = homepage?.faq || {};
-  const guarantee = homepage?.guarantee || {};
-  const newsletter = homepage?.newsletter || {};
+  const goals = [...new Set(Object.values(goalMap))].map(goal => ({
+    goal,
+    productCount: catalog.products.filter(p => goalMap[p.handle] === goal).length,
+  }));
 
   return (
-    <div className="min-h-screen bg-white">
-      <AnnouncementBar 
-        text={settings?.announcement_bar?.text} 
-        link={settings?.announcement_bar?.link}
-        linkText={settings?.announcement_bar?.link_text}
-      />
-      <Header />
+    <div className="min-h-screen">
+      <section className="relative h-[70vh] md:h-[600px] bg-[#0a0a0f] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0f] via-[#111118] to-[#0a0a0f] opacity-90" />
+        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-[4px] md:tracking-[6px] mb-4 md:mb-6">
+            All Your Favorite{' '}
+            <span className="text-[#00ff88]">Supplement Brands</span>.
+            <br />
+            One Trusted Store.
+          </h1>
+          <p className="text-base md:text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+            Premium supplements, lab-tested quality, and authentic products from the world's top fitness brands.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/products"
+              className="px-10 py-4 bg-[#00ff88] text-black text-sm font-bold uppercase tracking-[2px] hover:bg-[#00ff88]/90 transition"
+            >
+              Shop Now
+            </Link>
+            <Link
+              href="/deals"
+              className="px-10 py-4 border-2 border-[#00ff88] text-[#00ff88] text-sm font-bold uppercase tracking-[2px] hover:bg-[#00ff88] hover:text-black transition"
+            >
+              View Deals
+            </Link>
+          </div>
+        </div>
+      </section>
 
-      <section className="relative h-[70vh] md:h-[600px] bg-gray-900 overflow-hidden">
-        <img 
-          src={hero.background_image || '/hdmuscle72-1775078686011-5c8049f904ea.webp'} 
-          alt="Hero" 
-          className="absolute inset-0 w-full h-full object-cover opacity-60"
-        />
-        <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
-          <div className="max-w-[800px]">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-[4px] md:tracking-[6px] mb-4 md:mb-6">
-              {hero.heading || 'Find Your Formula'}
-            </h1>
-            <p className="text-base md:text-lg text-gray-200 mb-6 md:mb-10 max-w-[450px] md:max-w-[500px] mx-auto">
-              {hero.subheading || 'Premium supplements designed for athletes who demand more. Scientifically formulated to help you reach your peak performance.'}
+      <TrustBadges />
+
+      <section className="py-16 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[3px] text-gray-900 mb-4">
+              Shop by Category
+            </h2>
+            <p className="text-text-muted max-w-2xl mx-auto">
+              Find exactly what you need from our wide range of supplement categories.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
-              <Link href={hero.cta_primary?.link || '#products'} className="px-8 md:px-10 py-3 md:py-4 bg-white text-black text-xs md:text-sm font-bold uppercase tracking-[2px] hover:bg-gray-200 transition">
-                {hero.cta_primary?.text || 'Shop Now'}
-              </Link>
-              <Link href={hero.cta_secondary?.link || '#about'} className="px-8 md:px-10 py-3 md:py-4 border-2 border-white text-white text-xs md:text-sm font-bold uppercase tracking-[2px] hover:bg-white hover:text-black transition">
-                {hero.cta_secondary?.text || 'Learn More'}
-              </Link>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {categories.map(cat => (
+              <CategoryTile key={cat.slug} name={cat.name} slug={cat.slug} productCount={cat.productCount} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 bg-[#f8f8fa]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-12">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[3px] text-gray-900 mb-2">
+                Featured Products
+              </h2>
+              <p className="text-text-muted">Handpicked favorites from top brands</p>
+            </div>
+            <Link href="/products" className="text-sm font-semibold text-[#00ff88] uppercase tracking-[1px] hover:underline">
+              View All â†’
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {featuredProducts.map(product => (
+              <ProductCard key={product.handle} {...product} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[3px] text-gray-900 mb-4">
+              Shop by Brand
+            </h2>
+            <p className="text-text-muted max-w-2xl mx-auto">
+              Choose from the world's most trusted supplement brands.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {brands.map(brand => (
+              <BrandCard key={brand.slug} {...brand} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 bg-[#0a0a0f] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="text-[#00ff88] text-sm font-bold uppercase tracking-[3px]">Authenticity Guarantee</span>
+              <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[3px] mt-4 mb-6">
+                Batch-Level Verification
+              </h2>
+              <p className="text-gray-300 mb-4 leading-relaxed">
+                Every product on Upgraded.co.in undergoes rigorous authentication. We verify at the batch level â€” not just the brand level â€” ensuring that every tub, bottle, and packet you receive is 100% authentic.
+              </p>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start gap-3">
+                  <span className="text-[#00ff88] mt-1">âœ“</span>
+                  <span>Direct-from-brand or authorized distributor sourcing</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-[#00ff88] mt-1">âœ“</span>
+                  <span>Batch-level invoice matching</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-[#00ff88] mt-1">âœ“</span>
+                  <span>Lab testing certificates available on request</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-[#00ff88] mt-1">âœ“</span>
+                  <span>FSSAI-compliant storage and handling</span>
+                </li>
+              </ul>
+            </div>
+            <div className="bg-[#111118] rounded-2xl p-8 border border-gray-800">
+              <div className="text-center">
+                <div className="w-20 h-20 bg-[#00ff88]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-10 h-10 text-[#00ff88]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold uppercase tracking-[2px] mb-2">100% Authenticity</h3>
+                <p className="text-gray-400 text-sm">Or your money back. No questions asked.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <QualityBadges badges={qualityBadges.badges} />
-
-      <CategoryTiles categories={categoryTiles.categories} />
-
-      <div id="products">
-        <ProductSection 
-          title={homepage?.best_sellers?.title || "Shop Our Best Sellers"} 
-          products={bestSellers} 
-          onAddToCart={handleAddToCart}
-          viewAllLink={homepage?.best_sellers?.link || '/collections/best-selling-collection'}
-        />
-      </div>
-
-      <ProductSection 
-        title={homepage?.new_products?.title || "New + Noteworthy"} 
-        products={newProducts} 
-        onAddToCart={handleAddToCart}
-        viewAllLink={homepage?.new_products?.link || '/collections/new-featured'}
-      />
-
-      <div id="about">
-        <BrandStory data={brandStory} />
-      </div>
-
-      <Reviews 
-        title={testimonials.title} 
-        subtitle={testimonials.subtitle} 
-        reviews={testimonials.reviews} 
-      />
-
-      <ProductSection 
-        title={homepage?.apparel?.title || "New Arrivals GÇö Apparel + Accessories"} 
-        products={apparelProducts} 
-        onAddToCart={handleAddToCart}
-        viewAllLink={homepage?.apparel?.link || '/collections/apparel'}
-      />
-
-      <FAQSection title={faq.title} questions={faq.questions} />
-
-      <section className="py-14 md:py-16 bg-black text-white text-center">
-        <div className="max-w-2xl mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[2px] md:tracking-[3px] mb-4">{guarantee.heading || "You're Covered"}</h2>
-          <p className="text-gray-300 mb-6 md:mb-8">{guarantee.text || '30-Day Money Back Guarantee on all orders'}</p>
-          <Link href={guarantee.link || '/pages/shipping-policy'} className="text-white font-semibold hover:underline">
-            Learn More GåÆ
-          </Link>
+      <section className="py-16 md:py-20 bg-[#f8f8fa]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[3px] text-gray-900 mb-4">
+              Shop by Goal
+            </h2>
+            <p className="text-text-muted max-w-2xl mx-auto">
+              Find products tailored to your fitness goals.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {goals.map(g => (
+              <Link
+                key={g.goal}
+                href={`/goal/${g.goal.toLowerCase().replace(/\s+/g, '-')}`}
+                className="group bg-white rounded-xl border border-border-light p-6 text-center transition-all duration-300 hover:border-[#00ff88] hover:shadow-glow-green-sm"
+              >
+                <h3 className="text-sm sm:text-base font-bold text-gray-900 group-hover:text-[#00ff88] transition-colors uppercase tracking-wide mb-2">
+                  {g.goal}
+                </h3>
+                <p className="text-xs sm:text-sm text-text-muted">
+                  {g.productCount} {g.productCount === 1 ? 'product' : 'products'}
+                </p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
-      <Newsletter 
-        heading={newsletter.heading}
-        text={newsletter.text}
-        placeholder={newsletter.placeholder}
-        button={newsletter.button}
-      />
-      <Footer settings={settings} navigation={navigation} />
+      {deals.length > 0 && (
+        <section className="py-16 md:py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between mb-12">
+              <div>
+                <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[3px] text-gray-900 mb-2">
+                  Deals & Offers
+                </h2>
+                <p className="text-text-muted">Limited-time discounts on top products</p>
+              </div>
+              <Link href="/deals" className="text-sm font-semibold text-[#00ff88] uppercase tracking-[1px] hover:underline">
+                All Deals â†’
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {deals.map(product => (
+                <ProductCard key={product.handle} {...product} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section className="py-16 md:py-20 bg-[#111118] text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[3px] mb-4">
+            Wholesale & Distribution
+          </h2>
+          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+            Are you a gym owner, retailer, or distributor looking for authentic supplements at competitive prices? Partner with Upgraded.co.in today.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/wholesale"
+              className="px-10 py-4 bg-[#00ff88] text-black text-sm font-bold uppercase tracking-[2px] hover:bg-[#00ff88]/90 transition"
+            >
+              Wholesale Inquiry
+            </Link>
+            <Link
+              href="/distributor"
+              className="px-10 py-4 border-2 border-[#00ff88] text-[#00ff88] text-sm font-bold uppercase tracking-[2px] hover:bg-[#00ff88] hover:text-black transition"
+            >
+              Become a Distributor
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 bg-[#f8f8fa]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-[3px] text-gray-900 mb-4">
+              Fitness Content Hub
+            </h2>
+            <p className="text-text-muted max-w-2xl mx-auto">
+              Expert tips, workout plans, and nutrition advice to help you reach your goals.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { title: 'Pre-Workout Nutrition: What to Eat Before Training', date: 'Coming Soon' },
+              { title: 'Protein Timing: Maximize Muscle Growth', date: 'Coming Soon' },
+              { title: 'Supplement Guide for Beginners', date: 'Coming Soon' },
+            ].map((post, i) => (
+              <div key={i} className="bg-white rounded-xl border border-border-light p-6 transition-all duration-300 hover:shadow-lg">
+                <div className="w-full h-40 bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
+                  <span className="text-text-muted text-sm">Blog Image</span>
+                </div>
+                <p className="text-xs text-[#00ff88] font-semibold uppercase tracking-wide mb-2">{post.date}</p>
+                <h3 className="text-base font-bold text-gray-900 mb-2 line-clamp-2">{post.title}</h3>
+                <Link href="/blog" className="text-sm font-semibold text-[#00ff88] uppercase tracking-[1px] hover:underline">
+                  Read More â†’
+                </Link>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/blog" className="text-sm font-semibold text-[#00ff88] uppercase tracking-[1px] hover:underline">
+              Visit Content Hub â†’
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
+
 

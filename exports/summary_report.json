@@ -1,0 +1,31 @@
+{
+  "total_products": 39,
+  "unique_brands": 1,
+  "brands": [
+    "hd-muscle"
+  ],
+  "unique_categories": 4,
+  "categories": [
+    "HEALTH + WELLNESS",
+    "PRE-WORKOUT",
+    "INTRA-WORKOUT",
+    "POST-WORKOUT"
+  ],
+  "data_completeness": {
+    "total_required_fields": 663,
+    "missing_required": 312,
+    "missing_compliance": 117,
+    "missing_marketing": 0,
+    "completeness_percentage": "52.9"
+  },
+  "review_status": {
+    "needs_review": 39,
+    "approved": 0
+  },
+  "source_audit": {
+    "with_source_url": 39,
+    "with_source_images": 39,
+    "competitor_risk": 0
+  },
+  "timestamp": "2026-05-01T18:45:08.078Z"
+}

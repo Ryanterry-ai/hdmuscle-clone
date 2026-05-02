@@ -1,0 +1,146 @@
+id,product_handle,image_path,image_type,alt_text,sort_order
+img-0-main,turmeric,/public/product-images/hd-muscle/turmeric/main.webp,main,Turmeric - Turmeric,0
+img-0-label,turmeric,/public/product-images/hd-muscle/turmeric/label.webp,label,Turmeric - Label,1
+img-0-nutrition,turmeric,/public/product-images/hd-muscle/turmeric/nutrition.webp,nutrition,Turmeric - Nutrition,2
+img-1-main,b-complex,/public/product-images/hd-muscle/b-complex/main.webp,main,B-Complex - B-Complex,0
+img-1-label,b-complex,/public/product-images/hd-muscle/b-complex/label.webp,label,B-Complex - Label,1
+img-1-nutrition,b-complex,/public/product-images/hd-muscle/b-complex/nutrition.webp,nutrition,B-Complex - Nutrition,2
+img-2-main,ashwagandha,/public/product-images/hd-muscle/ashwagandha/main.webp,main,Ashwagandha - Ashwagandha,0
+img-2-label,ashwagandha,/public/product-images/hd-muscle/ashwagandha/label.webp,label,Ashwagandha - Label,1
+img-2-nutrition,ashwagandha,/public/product-images/hd-muscle/ashwagandha/nutrition.webp,nutrition,Ashwagandha - Nutrition,2
+img-3-main,fish-oil,/public/product-images/hd-muscle/fish-oil/main.webp,main,Fish Oil - Fish Oil,0
+img-3-label,fish-oil,/public/product-images/hd-muscle/fish-oil/label.webp,label,Fish Oil - Label,1
+img-3-nutrition,fish-oil,/public/product-images/hd-muscle/fish-oil/nutrition.webp,nutrition,Fish Oil - Nutrition,2
+img-4-main,zinc,/public/product-images/hd-muscle/zinc/main.webp,main,Zinc - Zinc,0
+img-4-gallery-0,zinc,/public/product-images/hd-muscle/zinc/gallery-01.webp,gallery,Zinc - Gallery 1,1
+img-4-label,zinc,/public/product-images/hd-muscle/zinc/label.webp,label,Zinc - Label,2
+img-4-nutrition,zinc,/public/product-images/hd-muscle/zinc/nutrition.webp,nutrition,Zinc - Nutrition,3
+img-5-main,vitahd,/public/product-images/hd-muscle/vitahd/main.webp,main,VitaHD - VitaHD,0
+img-5-gallery-0,vitahd,/public/product-images/hd-muscle/vitahd/gallery-01.webp,gallery,VitaHD - Gallery 1,1
+img-5-label,vitahd,/public/product-images/hd-muscle/vitahd/label.webp,label,VitaHD - Label,2
+img-5-nutrition,vitahd,/public/product-images/hd-muscle/vitahd/nutrition.webp,nutrition,VitaHD - Nutrition,3
+img-6-main,sleephd,/public/product-images/hd-muscle/sleephd/main.webp,main,SleepHD - SleepHD,0
+img-6-gallery-0,sleephd,/public/product-images/hd-muscle/sleephd/gallery-01.webp,gallery,SleepHD - Gallery 1,1
+img-6-label,sleephd,/public/product-images/hd-muscle/sleephd/label.webp,label,SleepHD - Label,2
+img-6-nutrition,sleephd,/public/product-images/hd-muscle/sleephd/nutrition.webp,nutrition,SleepHD - Nutrition,3
+img-7-main,omega3,/public/product-images/hd-muscle/omega3/main.webp,main,Omega3 - Omega3,0
+img-7-gallery-0,omega3,/public/product-images/hd-muscle/omega3/gallery-01.webp,gallery,Omega3 - Gallery 1,1
+img-7-label,omega3,/public/product-images/hd-muscle/omega3/label.webp,label,Omega3 - Label,2
+img-7-nutrition,omega3,/public/product-images/hd-muscle/omega3/nutrition.webp,nutrition,Omega3 - Nutrition,3
+img-8-main,magnesium,/public/product-images/hd-muscle/magnesium/main.webp,main,Magnesium - Magnesium,0
+img-8-label,magnesium,/public/product-images/hd-muscle/magnesium/label.webp,label,Magnesium - Label,1
+img-8-nutrition,magnesium,/public/product-images/hd-muscle/magnesium/nutrition.webp,nutrition,Magnesium - Nutrition,2
+img-9-main,multihd,/public/product-images/hd-muscle/multihd/main.webp,main,MultiHD - MultiHD,0
+img-9-gallery-0,multihd,/public/product-images/hd-muscle/multihd/gallery-01.webp,gallery,MultiHD - Gallery 1,1
+img-9-label,multihd,/public/product-images/hd-muscle/multihd/label.webp,label,MultiHD - Label,2
+img-9-nutrition,multihd,/public/product-images/hd-muscle/multihd/nutrition.webp,nutrition,MultiHD - Nutrition,3
+img-10-main,liverhd,/public/product-images/hd-muscle/liverhd/main.webp,main,LiverHD - LiverHD,0
+img-10-gallery-0,liverhd,/public/product-images/hd-muscle/liverhd/gallery-01.webp,gallery,LiverHD - Gallery 1,1
+img-10-label,liverhd,/public/product-images/hd-muscle/liverhd/label.webp,label,LiverHD - Label,2
+img-10-nutrition,liverhd,/public/product-images/hd-muscle/liverhd/nutrition.webp,nutrition,LiverHD - Nutrition,3
+img-11-main,kidneyhd,/public/product-images/hd-muscle/kidneyhd/main.webp,main,KidneyHD - KidneyHD,0
+img-11-gallery-0,kidneyhd,/public/product-images/hd-muscle/kidneyhd/gallery-01.webp,gallery,KidneyHD - Gallery 1,1
+img-11-label,kidneyhd,/public/product-images/hd-muscle/kidneyhd/label.webp,label,KidneyHD - Label,2
+img-11-nutrition,kidneyhd,/public/product-images/hd-muscle/kidneyhd/nutrition.webp,nutrition,KidneyHD - Nutrition,3
+img-12-main,k2,/public/product-images/hd-muscle/k2/main.webp,main,K2 - K2,0
+img-12-gallery-0,k2,/public/product-images/hd-muscle/k2/gallery-01.webp,gallery,K2 - Gallery 1,1
+img-12-label,k2,/public/product-images/hd-muscle/k2/label.webp,label,K2 - Label,2
+img-12-nutrition,k2,/public/product-images/hd-muscle/k2/nutrition.webp,nutrition,K2 - Nutrition,3
+img-13-main,glycohd,/public/product-images/hd-muscle/glycohd/main.webp,main,GlycoHD - GlycoHD,0
+img-13-gallery-0,glycohd,/public/product-images/hd-muscle/glycohd/gallery-01.webp,gallery,GlycoHD - Gallery 1,1
+img-13-label,glycohd,/public/product-images/hd-muscle/glycohd/label.webp,label,GlycoHD - Label,2
+img-13-nutrition,glycohd,/public/product-images/hd-muscle/glycohd/nutrition.webp,nutrition,GlycoHD - Nutrition,3
+img-14-main,greenshd,/public/product-images/hd-muscle/greenshd/main.webp,main,GreensHD - Citrus,0
+img-14-gallery-0,greenshd,/public/product-images/hd-muscle/greenshd/gallery-01.webp,gallery,GreensHD - Gallery 1,1
+img-14-label,greenshd,/public/product-images/hd-muscle/greenshd/label.webp,label,GreensHD - Label,2
+img-14-nutrition,greenshd,/public/product-images/hd-muscle/greenshd/nutrition.webp,nutrition,GreensHD - Nutrition,3
+img-15-main,d3,/public/product-images/hd-muscle/d3/main.webp,main,D3 - D3,0
+img-15-gallery-0,d3,/public/product-images/hd-muscle/d3/gallery-01.webp,gallery,D3 - Gallery 1,1
+img-15-label,d3,/public/product-images/hd-muscle/d3/label.webp,label,D3 - Label,2
+img-15-nutrition,d3,/public/product-images/hd-muscle/d3/nutrition.webp,nutrition,D3 - Nutrition,3
+img-16-main,curcumin,/public/product-images/hd-muscle/curcumin/main.webp,main,Curcumin - Curcumin,0
+img-16-gallery-0,curcumin,/public/product-images/hd-muscle/curcumin/gallery-01.webp,gallery,Curcumin - Gallery 1,1
+img-16-label,curcumin,/public/product-images/hd-muscle/curcumin/label.webp,label,Curcumin - Label,2
+img-16-nutrition,curcumin,/public/product-images/hd-muscle/curcumin/nutrition.webp,nutrition,Curcumin - Nutrition,3
+img-17-main,collagenhd,/public/product-images/hd-muscle/collagenhd/main.webp,main,CollagenHD - CollagenHD,0
+img-17-gallery-0,collagenhd,/public/product-images/hd-muscle/collagenhd/gallery-01.webp,gallery,CollagenHD - Gallery 1,1
+img-17-label,collagenhd,/public/product-images/hd-muscle/collagenhd/label.webp,label,CollagenHD - Label,2
+img-17-nutrition,collagenhd,/public/product-images/hd-muscle/collagenhd/nutrition.webp,nutrition,CollagenHD - Nutrition,3
+img-18-main,citrus-bergamot,/public/product-images/hd-muscle/citrus-bergamot/main.webp,main,Citrus Bergamot - Citrus Bergamot,0
+img-18-label,citrus-bergamot,/public/product-images/hd-muscle/citrus-bergamot/label.webp,label,Citrus Bergamot - Label,1
+img-18-nutrition,citrus-bergamot,/public/product-images/hd-muscle/citrus-bergamot/nutrition.webp,nutrition,Citrus Bergamot - Nutrition,2
+img-19-main,burnhd,/public/product-images/hd-muscle/burnhd/main.webp,main,BurnHD - BurnHD,0
+img-19-gallery-0,burnhd,/public/product-images/hd-muscle/burnhd/gallery-01.webp,gallery,BurnHD - Gallery 1,1
+img-19-label,burnhd,/public/product-images/hd-muscle/burnhd/label.webp,label,BurnHD - Label,2
+img-19-nutrition,burnhd,/public/product-images/hd-muscle/burnhd/nutrition.webp,nutrition,BurnHD - Nutrition,3
+img-20-main,betaine-hcl,/public/product-images/hd-muscle/betaine-hcl/main.webp,main,Betaine HCL - Betaine HCL,0
+img-20-gallery-0,betaine-hcl,/public/product-images/hd-muscle/betaine-hcl/gallery-01.webp,gallery,Betaine HCL - Gallery 1,1
+img-20-label,betaine-hcl,/public/product-images/hd-muscle/betaine-hcl/label.webp,label,Betaine HCL - Label,2
+img-20-nutrition,betaine-hcl,/public/product-images/hd-muscle/betaine-hcl/nutrition.webp,nutrition,Betaine HCL - Nutrition,3
+img-21-main,prehd-essential,/public/product-images/hd-muscle/prehd-essential/main.webp,main,PreHD Essential - Blue Raspberry,0
+img-21-gallery-0,prehd-essential,/public/product-images/hd-muscle/prehd-essential/gallery-01.webp,gallery,PreHD Essential - Gallery 1,1
+img-21-label,prehd-essential,/public/product-images/hd-muscle/prehd-essential/label.webp,label,PreHD Essential - Label,2
+img-21-nutrition,prehd-essential,/public/product-images/hd-muscle/prehd-essential/nutrition.webp,nutrition,PreHD Essential - Nutrition,3
+img-22-main,euphoria,/public/product-images/hd-muscle/euphoria/main.webp,main,Euphoria - Euphoria,0
+img-22-label,euphoria,/public/product-images/hd-muscle/euphoria/label.webp,label,Euphoria - Label,1
+img-22-nutrition,euphoria,/public/product-images/hd-muscle/euphoria/nutrition.webp,nutrition,Euphoria - Nutrition,2
+img-23-main,stimhd,/public/product-images/hd-muscle/stimhd/main.webp,main,StimHD - StimHD,0
+img-23-gallery-0,stimhd,/public/product-images/hd-muscle/stimhd/gallery-01.webp,gallery,StimHD - Gallery 1,1
+img-23-label,stimhd,/public/product-images/hd-muscle/stimhd/label.webp,label,StimHD - Label,2
+img-23-nutrition,stimhd,/public/product-images/hd-muscle/stimhd/nutrition.webp,nutrition,StimHD - Nutrition,3
+img-24-main,pumphd,/public/product-images/hd-muscle/pumphd/main.webp,main,PumpHD - Rainbow Strips,0
+img-24-gallery-0,pumphd,/public/product-images/hd-muscle/pumphd/gallery-01.webp,gallery,PumpHD - Gallery 1,1
+img-24-label,pumphd,/public/product-images/hd-muscle/pumphd/label.webp,label,PumpHD - Label,2
+img-24-nutrition,pumphd,/public/product-images/hd-muscle/pumphd/nutrition.webp,nutrition,PumpHD - Nutrition,3
+img-25-main,prehd-black,/public/product-images/hd-muscle/prehd-black/main.webp,main,PreHD Black - Strawberry Mango,0
+img-25-gallery-0,prehd-black,/public/product-images/hd-muscle/prehd-black/gallery-01.webp,gallery,PreHD Black - Gallery 1,1
+img-25-label,prehd-black,/public/product-images/hd-muscle/prehd-black/label.webp,label,PreHD Black - Label,2
+img-25-nutrition,prehd-black,/public/product-images/hd-muscle/prehd-black/nutrition.webp,nutrition,PreHD Black - Nutrition,3
+img-26-main,prehd-elite,/public/product-images/hd-muscle/prehd-elite/main.webp,main,PreHD Elite - Tangerine,0
+img-26-gallery-0,prehd-elite,/public/product-images/hd-muscle/prehd-elite/gallery-01.webp,gallery,PreHD Elite - Gallery 1,1
+img-26-label,prehd-elite,/public/product-images/hd-muscle/prehd-elite/label.webp,label,PreHD Elite - Label,2
+img-26-nutrition,prehd-elite,/public/product-images/hd-muscle/prehd-elite/nutrition.webp,nutrition,PreHD Elite - Nutrition,3
+img-27-main,prehd-ultra,/public/product-images/hd-muscle/prehd-ultra/main.webp,main,PreHD Ultra - Sour Gummies,0
+img-27-gallery-0,prehd-ultra,/public/product-images/hd-muscle/prehd-ultra/gallery-01.webp,gallery,PreHD Ultra - Gallery 1,1
+img-27-label,prehd-ultra,/public/product-images/hd-muscle/prehd-ultra/label.webp,label,PreHD Ultra - Label,2
+img-27-nutrition,prehd-ultra,/public/product-images/hd-muscle/prehd-ultra/nutrition.webp,nutrition,PreHD Ultra - Nutrition,3
+img-28-main,eaas,/public/product-images/hd-muscle/eaas/main.webp,main,EAAs - Unflavored,0
+img-28-gallery-0,eaas,/public/product-images/hd-muscle/eaas/gallery-01.webp,gallery,EAAs - Gallery 1,1
+img-28-label,eaas,/public/product-images/hd-muscle/eaas/label.webp,label,EAAs - Label,2
+img-28-nutrition,eaas,/public/product-images/hd-muscle/eaas/nutrition.webp,nutrition,EAAs - Nutrition,3
+img-29-main,bcaa,/public/product-images/hd-muscle/bcaa/main.webp,main,BCAA - BCAA,0
+img-29-label,bcaa,/public/product-images/hd-muscle/bcaa/label.webp,label,BCAA - Label,1
+img-29-nutrition,bcaa,/public/product-images/hd-muscle/bcaa/nutrition.webp,nutrition,BCAA - Nutrition,2
+img-30-main,intrahd,/public/product-images/hd-muscle/intrahd/main.webp,main,IntraHD - Grapefruit,0
+img-30-gallery-0,intrahd,/public/product-images/hd-muscle/intrahd/gallery-01.webp,gallery,IntraHD - Gallery 1,1
+img-30-label,intrahd,/public/product-images/hd-muscle/intrahd/label.webp,label,IntraHD - Label,2
+img-30-nutrition,intrahd,/public/product-images/hd-muscle/intrahd/nutrition.webp,nutrition,IntraHD - Nutrition,3
+img-31-main,hydrahd,/public/product-images/hd-muscle/hydrahd/main.webp,main,HydraHD - Tangerine,0
+img-31-gallery-0,hydrahd,/public/product-images/hd-muscle/hydrahd/gallery-01.webp,gallery,HydraHD - Gallery 1,1
+img-31-label,hydrahd,/public/product-images/hd-muscle/hydrahd/label.webp,label,HydraHD - Label,2
+img-31-nutrition,hydrahd,/public/product-images/hd-muscle/hydrahd/nutrition.webp,nutrition,HydraHD - Nutrition,3
+img-32-main,glutahd,/public/product-images/hd-muscle/glutahd/main.webp,main,GlutaHD - GlutaHD,0
+img-32-gallery-0,glutahd,/public/product-images/hd-muscle/glutahd/gallery-01.webp,gallery,GlutaHD - Gallery 1,1
+img-32-label,glutahd,/public/product-images/hd-muscle/glutahd/label.webp,label,GlutaHD - Label,2
+img-32-nutrition,glutahd,/public/product-images/hd-muscle/glutahd/nutrition.webp,nutrition,GlutaHD - Nutrition,3
+img-33-main,creahd-creapurer,/public/product-images/hd-muscle/creahd-creapurer/main.webp,main,CreaHD (Creapure®) - CreaHD (Creapure®),0
+img-33-gallery-0,creahd-creapurer,/public/product-images/hd-muscle/creahd-creapurer/gallery-01.webp,gallery,CreaHD (Creapure®) - Gallery 1,1
+img-33-label,creahd-creapurer,/public/product-images/hd-muscle/creahd-creapurer/label.webp,label,CreaHD (Creapure®) - Label,2
+img-33-nutrition,creahd-creapurer,/public/product-images/hd-muscle/creahd-creapurer/nutrition.webp,nutrition,CreaHD (Creapure®) - Nutrition,3
+img-34-main,carbhd,/public/product-images/hd-muscle/carbhd/main.webp,main,CarbHD - Unflavored,0
+img-34-gallery-0,carbhd,/public/product-images/hd-muscle/carbhd/gallery-01.webp,gallery,CarbHD - Gallery 1,1
+img-34-label,carbhd,/public/product-images/hd-muscle/carbhd/label.webp,label,CarbHD - Label,2
+img-34-nutrition,carbhd,/public/product-images/hd-muscle/carbhd/nutrition.webp,nutrition,CarbHD - Nutrition,3
+img-35-main,casein,/public/product-images/hd-muscle/casein/main.webp,main,Casein - Casein,0
+img-35-label,casein,/public/product-images/hd-muscle/casein/label.webp,label,Casein - Label,1
+img-35-nutrition,casein,/public/product-images/hd-muscle/casein/nutrition.webp,nutrition,Casein - Nutrition,2
+img-36-main,protein-pancakes,/public/product-images/hd-muscle/protein-pancakes/main.webp,main,Protein Pancakes - Protein Pancakes,0
+img-36-label,protein-pancakes,/public/product-images/hd-muscle/protein-pancakes/label.webp,label,Protein Pancakes - Label,1
+img-36-nutrition,protein-pancakes,/public/product-images/hd-muscle/protein-pancakes/nutrition.webp,nutrition,Protein Pancakes - Nutrition,2
+img-37-main,prohd-isolate,/public/product-images/hd-muscle/prohd-isolate/main.webp,main,ProHD Isolate - Chocolate,0
+img-37-gallery-0,prohd-isolate,/public/product-images/hd-muscle/prohd-isolate/gallery-01.webp,gallery,ProHD Isolate - Gallery 1,1
+img-37-label,prohd-isolate,/public/product-images/hd-muscle/prohd-isolate/label.webp,label,ProHD Isolate - Label,2
+img-37-nutrition,prohd-isolate,/public/product-images/hd-muscle/prohd-isolate/nutrition.webp,nutrition,ProHD Isolate - Nutrition,3
+img-38-main,wheyhd,/public/product-images/hd-muscle/wheyhd/main.webp,main,WheyHD - WheyHD,0
+img-38-label,wheyhd,/public/product-images/hd-muscle/wheyhd/label.webp,label,WheyHD - Label,1
+img-38-nutrition,wheyhd,/public/product-images/hd-muscle/wheyhd/nutrition.webp,nutrition,WheyHD - Nutrition,2

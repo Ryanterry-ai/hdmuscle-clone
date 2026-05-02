@@ -1,0 +1,15 @@
+{
+  "total": 39,
+  "brands": [
+    "hd-muscle"
+  ],
+  "categories": [
+    "HEALTH + WELLNESS",
+    "PRE-WORKOUT",
+    "INTRA-WORKOUT",
+    "POST-WORKOUT"
+  ],
+  "needs_review": 39,
+  "source": "C:\\Users\\viren\\Downloads\\ai-website-cloner-template-master\\ai-website-cloner-template-master\\data\\raw\\hdmuscle-products-full.json",
+  "timestamp": "2026-05-01T18:37:31.788Z"
+}

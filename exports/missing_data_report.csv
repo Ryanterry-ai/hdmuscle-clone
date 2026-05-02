@@ -1,0 +1,430 @@
+row_number,product_title,variant_sku,missing_field,field_category,severity,recommended_action
+2,Turmeric,HD-MUSCLE-TURMERIC,nutrition_facts,required,error,Fill nutrition_facts before import
+2,Turmeric,HD-MUSCLE-TURMERIC,serving_size,required,error,Fill serving_size before import
+2,Turmeric,HD-MUSCLE-TURMERIC,servings_per_container,required,error,Fill servings_per_container before import
+2,Turmeric,HD-MUSCLE-TURMERIC,manufacturer,required,error,Fill manufacturer before import
+2,Turmeric,HD-MUSCLE-TURMERIC,nutrition_facts,required,error,Fill nutrition_facts before import
+2,Turmeric,HD-MUSCLE-TURMERIC,serving_size,required,error,Fill serving_size before import
+2,Turmeric,HD-MUSCLE-TURMERIC,servings_per_container,required,error,Fill servings_per_container before import
+2,Turmeric,HD-MUSCLE-TURMERIC,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+2,Turmeric,HD-MUSCLE-TURMERIC,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+2,Turmeric,HD-MUSCLE-TURMERIC,manufacturer,required,error,Fill manufacturer before import
+2,Turmeric,HD-MUSCLE-TURMERIC,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+3,B-Complex,HD-MUSCLE-B-COMPLEX,nutrition_facts,required,error,Fill nutrition_facts before import
+3,B-Complex,HD-MUSCLE-B-COMPLEX,serving_size,required,error,Fill serving_size before import
+3,B-Complex,HD-MUSCLE-B-COMPLEX,servings_per_container,required,error,Fill servings_per_container before import
+3,B-Complex,HD-MUSCLE-B-COMPLEX,manufacturer,required,error,Fill manufacturer before import
+3,B-Complex,HD-MUSCLE-B-COMPLEX,nutrition_facts,required,error,Fill nutrition_facts before import
+3,B-Complex,HD-MUSCLE-B-COMPLEX,serving_size,required,error,Fill serving_size before import
+3,B-Complex,HD-MUSCLE-B-COMPLEX,servings_per_container,required,error,Fill servings_per_container before import
+3,B-Complex,HD-MUSCLE-B-COMPLEX,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+3,B-Complex,HD-MUSCLE-B-COMPLEX,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+3,B-Complex,HD-MUSCLE-B-COMPLEX,manufacturer,required,error,Fill manufacturer before import
+3,B-Complex,HD-MUSCLE-B-COMPLEX,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+4,Ashwagandha,HD-MUSCLE-ASHWAGANDHA,nutrition_facts,required,error,Fill nutrition_facts before import
+4,Ashwagandha,HD-MUSCLE-ASHWAGANDHA,serving_size,required,error,Fill serving_size before import
+4,Ashwagandha,HD-MUSCLE-ASHWAGANDHA,servings_per_container,required,error,Fill servings_per_container before import
+4,Ashwagandha,HD-MUSCLE-ASHWAGANDHA,manufacturer,required,error,Fill manufacturer before import
+4,Ashwagandha,HD-MUSCLE-ASHWAGANDHA,nutrition_facts,required,error,Fill nutrition_facts before import
+4,Ashwagandha,HD-MUSCLE-ASHWAGANDHA,serving_size,required,error,Fill serving_size before import
+4,Ashwagandha,HD-MUSCLE-ASHWAGANDHA,servings_per_container,required,error,Fill servings_per_container before import
+4,Ashwagandha,HD-MUSCLE-ASHWAGANDHA,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+4,Ashwagandha,HD-MUSCLE-ASHWAGANDHA,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+4,Ashwagandha,HD-MUSCLE-ASHWAGANDHA,manufacturer,required,error,Fill manufacturer before import
+4,Ashwagandha,HD-MUSCLE-ASHWAGANDHA,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+5,Fish Oil,HD-MUSCLE-FISH-OIL,nutrition_facts,required,error,Fill nutrition_facts before import
+5,Fish Oil,HD-MUSCLE-FISH-OIL,serving_size,required,error,Fill serving_size before import
+5,Fish Oil,HD-MUSCLE-FISH-OIL,servings_per_container,required,error,Fill servings_per_container before import
+5,Fish Oil,HD-MUSCLE-FISH-OIL,manufacturer,required,error,Fill manufacturer before import
+5,Fish Oil,HD-MUSCLE-FISH-OIL,nutrition_facts,required,error,Fill nutrition_facts before import
+5,Fish Oil,HD-MUSCLE-FISH-OIL,serving_size,required,error,Fill serving_size before import
+5,Fish Oil,HD-MUSCLE-FISH-OIL,servings_per_container,required,error,Fill servings_per_container before import
+5,Fish Oil,HD-MUSCLE-FISH-OIL,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+5,Fish Oil,HD-MUSCLE-FISH-OIL,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+5,Fish Oil,HD-MUSCLE-FISH-OIL,manufacturer,required,error,Fill manufacturer before import
+5,Fish Oil,HD-MUSCLE-FISH-OIL,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+6,Zinc,HD-MUSCLE-ZINC,nutrition_facts,required,error,Fill nutrition_facts before import
+6,Zinc,HD-MUSCLE-ZINC,serving_size,required,error,Fill serving_size before import
+6,Zinc,HD-MUSCLE-ZINC,servings_per_container,required,error,Fill servings_per_container before import
+6,Zinc,HD-MUSCLE-ZINC,manufacturer,required,error,Fill manufacturer before import
+6,Zinc,HD-MUSCLE-ZINC,nutrition_facts,required,error,Fill nutrition_facts before import
+6,Zinc,HD-MUSCLE-ZINC,serving_size,required,error,Fill serving_size before import
+6,Zinc,HD-MUSCLE-ZINC,servings_per_container,required,error,Fill servings_per_container before import
+6,Zinc,HD-MUSCLE-ZINC,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+6,Zinc,HD-MUSCLE-ZINC,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+6,Zinc,HD-MUSCLE-ZINC,manufacturer,required,error,Fill manufacturer before import
+6,Zinc,HD-MUSCLE-ZINC,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+7,VitaHD,HD-MUSCLE-VITAHD,nutrition_facts,required,error,Fill nutrition_facts before import
+7,VitaHD,HD-MUSCLE-VITAHD,serving_size,required,error,Fill serving_size before import
+7,VitaHD,HD-MUSCLE-VITAHD,servings_per_container,required,error,Fill servings_per_container before import
+7,VitaHD,HD-MUSCLE-VITAHD,manufacturer,required,error,Fill manufacturer before import
+7,VitaHD,HD-MUSCLE-VITAHD,nutrition_facts,required,error,Fill nutrition_facts before import
+7,VitaHD,HD-MUSCLE-VITAHD,serving_size,required,error,Fill serving_size before import
+7,VitaHD,HD-MUSCLE-VITAHD,servings_per_container,required,error,Fill servings_per_container before import
+7,VitaHD,HD-MUSCLE-VITAHD,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+7,VitaHD,HD-MUSCLE-VITAHD,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+7,VitaHD,HD-MUSCLE-VITAHD,manufacturer,required,error,Fill manufacturer before import
+7,VitaHD,HD-MUSCLE-VITAHD,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+8,SleepHD,HD-MUSCLE-SLEEPHD,nutrition_facts,required,error,Fill nutrition_facts before import
+8,SleepHD,HD-MUSCLE-SLEEPHD,serving_size,required,error,Fill serving_size before import
+8,SleepHD,HD-MUSCLE-SLEEPHD,servings_per_container,required,error,Fill servings_per_container before import
+8,SleepHD,HD-MUSCLE-SLEEPHD,manufacturer,required,error,Fill manufacturer before import
+8,SleepHD,HD-MUSCLE-SLEEPHD,nutrition_facts,required,error,Fill nutrition_facts before import
+8,SleepHD,HD-MUSCLE-SLEEPHD,serving_size,required,error,Fill serving_size before import
+8,SleepHD,HD-MUSCLE-SLEEPHD,servings_per_container,required,error,Fill servings_per_container before import
+8,SleepHD,HD-MUSCLE-SLEEPHD,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+8,SleepHD,HD-MUSCLE-SLEEPHD,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+8,SleepHD,HD-MUSCLE-SLEEPHD,manufacturer,required,error,Fill manufacturer before import
+8,SleepHD,HD-MUSCLE-SLEEPHD,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+9,Omega3,HD-MUSCLE-OMEGA3,nutrition_facts,required,error,Fill nutrition_facts before import
+9,Omega3,HD-MUSCLE-OMEGA3,serving_size,required,error,Fill serving_size before import
+9,Omega3,HD-MUSCLE-OMEGA3,servings_per_container,required,error,Fill servings_per_container before import
+9,Omega3,HD-MUSCLE-OMEGA3,manufacturer,required,error,Fill manufacturer before import
+9,Omega3,HD-MUSCLE-OMEGA3,nutrition_facts,required,error,Fill nutrition_facts before import
+9,Omega3,HD-MUSCLE-OMEGA3,serving_size,required,error,Fill serving_size before import
+9,Omega3,HD-MUSCLE-OMEGA3,servings_per_container,required,error,Fill servings_per_container before import
+9,Omega3,HD-MUSCLE-OMEGA3,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+9,Omega3,HD-MUSCLE-OMEGA3,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+9,Omega3,HD-MUSCLE-OMEGA3,manufacturer,required,error,Fill manufacturer before import
+9,Omega3,HD-MUSCLE-OMEGA3,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+10,Magnesium,HD-MUSCLE-MAGNESIUM,nutrition_facts,required,error,Fill nutrition_facts before import
+10,Magnesium,HD-MUSCLE-MAGNESIUM,serving_size,required,error,Fill serving_size before import
+10,Magnesium,HD-MUSCLE-MAGNESIUM,servings_per_container,required,error,Fill servings_per_container before import
+10,Magnesium,HD-MUSCLE-MAGNESIUM,manufacturer,required,error,Fill manufacturer before import
+10,Magnesium,HD-MUSCLE-MAGNESIUM,nutrition_facts,required,error,Fill nutrition_facts before import
+10,Magnesium,HD-MUSCLE-MAGNESIUM,serving_size,required,error,Fill serving_size before import
+10,Magnesium,HD-MUSCLE-MAGNESIUM,servings_per_container,required,error,Fill servings_per_container before import
+10,Magnesium,HD-MUSCLE-MAGNESIUM,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+10,Magnesium,HD-MUSCLE-MAGNESIUM,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+10,Magnesium,HD-MUSCLE-MAGNESIUM,manufacturer,required,error,Fill manufacturer before import
+10,Magnesium,HD-MUSCLE-MAGNESIUM,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+11,MultiHD,HD-MUSCLE-MULTIHD,nutrition_facts,required,error,Fill nutrition_facts before import
+11,MultiHD,HD-MUSCLE-MULTIHD,serving_size,required,error,Fill serving_size before import
+11,MultiHD,HD-MUSCLE-MULTIHD,servings_per_container,required,error,Fill servings_per_container before import
+11,MultiHD,HD-MUSCLE-MULTIHD,manufacturer,required,error,Fill manufacturer before import
+11,MultiHD,HD-MUSCLE-MULTIHD,nutrition_facts,required,error,Fill nutrition_facts before import
+11,MultiHD,HD-MUSCLE-MULTIHD,serving_size,required,error,Fill serving_size before import
+11,MultiHD,HD-MUSCLE-MULTIHD,servings_per_container,required,error,Fill servings_per_container before import
+11,MultiHD,HD-MUSCLE-MULTIHD,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+11,MultiHD,HD-MUSCLE-MULTIHD,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+11,MultiHD,HD-MUSCLE-MULTIHD,manufacturer,required,error,Fill manufacturer before import
+11,MultiHD,HD-MUSCLE-MULTIHD,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+12,LiverHD,HD-MUSCLE-LIVERHD,nutrition_facts,required,error,Fill nutrition_facts before import
+12,LiverHD,HD-MUSCLE-LIVERHD,serving_size,required,error,Fill serving_size before import
+12,LiverHD,HD-MUSCLE-LIVERHD,servings_per_container,required,error,Fill servings_per_container before import
+12,LiverHD,HD-MUSCLE-LIVERHD,manufacturer,required,error,Fill manufacturer before import
+12,LiverHD,HD-MUSCLE-LIVERHD,nutrition_facts,required,error,Fill nutrition_facts before import
+12,LiverHD,HD-MUSCLE-LIVERHD,serving_size,required,error,Fill serving_size before import
+12,LiverHD,HD-MUSCLE-LIVERHD,servings_per_container,required,error,Fill servings_per_container before import
+12,LiverHD,HD-MUSCLE-LIVERHD,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+12,LiverHD,HD-MUSCLE-LIVERHD,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+12,LiverHD,HD-MUSCLE-LIVERHD,manufacturer,required,error,Fill manufacturer before import
+12,LiverHD,HD-MUSCLE-LIVERHD,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+13,KidneyHD,HD-MUSCLE-KIDNEYHD,nutrition_facts,required,error,Fill nutrition_facts before import
+13,KidneyHD,HD-MUSCLE-KIDNEYHD,serving_size,required,error,Fill serving_size before import
+13,KidneyHD,HD-MUSCLE-KIDNEYHD,servings_per_container,required,error,Fill servings_per_container before import
+13,KidneyHD,HD-MUSCLE-KIDNEYHD,manufacturer,required,error,Fill manufacturer before import
+13,KidneyHD,HD-MUSCLE-KIDNEYHD,nutrition_facts,required,error,Fill nutrition_facts before import
+13,KidneyHD,HD-MUSCLE-KIDNEYHD,serving_size,required,error,Fill serving_size before import
+13,KidneyHD,HD-MUSCLE-KIDNEYHD,servings_per_container,required,error,Fill servings_per_container before import
+13,KidneyHD,HD-MUSCLE-KIDNEYHD,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+13,KidneyHD,HD-MUSCLE-KIDNEYHD,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+13,KidneyHD,HD-MUSCLE-KIDNEYHD,manufacturer,required,error,Fill manufacturer before import
+13,KidneyHD,HD-MUSCLE-KIDNEYHD,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+14,K2,HD-MUSCLE-K2,nutrition_facts,required,error,Fill nutrition_facts before import
+14,K2,HD-MUSCLE-K2,serving_size,required,error,Fill serving_size before import
+14,K2,HD-MUSCLE-K2,servings_per_container,required,error,Fill servings_per_container before import
+14,K2,HD-MUSCLE-K2,manufacturer,required,error,Fill manufacturer before import
+14,K2,HD-MUSCLE-K2,nutrition_facts,required,error,Fill nutrition_facts before import
+14,K2,HD-MUSCLE-K2,serving_size,required,error,Fill serving_size before import
+14,K2,HD-MUSCLE-K2,servings_per_container,required,error,Fill servings_per_container before import
+14,K2,HD-MUSCLE-K2,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+14,K2,HD-MUSCLE-K2,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+14,K2,HD-MUSCLE-K2,manufacturer,required,error,Fill manufacturer before import
+14,K2,HD-MUSCLE-K2,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+15,GlycoHD,HD-MUSCLE-GLYCOHD,nutrition_facts,required,error,Fill nutrition_facts before import
+15,GlycoHD,HD-MUSCLE-GLYCOHD,serving_size,required,error,Fill serving_size before import
+15,GlycoHD,HD-MUSCLE-GLYCOHD,servings_per_container,required,error,Fill servings_per_container before import
+15,GlycoHD,HD-MUSCLE-GLYCOHD,manufacturer,required,error,Fill manufacturer before import
+15,GlycoHD,HD-MUSCLE-GLYCOHD,nutrition_facts,required,error,Fill nutrition_facts before import
+15,GlycoHD,HD-MUSCLE-GLYCOHD,serving_size,required,error,Fill serving_size before import
+15,GlycoHD,HD-MUSCLE-GLYCOHD,servings_per_container,required,error,Fill servings_per_container before import
+15,GlycoHD,HD-MUSCLE-GLYCOHD,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+15,GlycoHD,HD-MUSCLE-GLYCOHD,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+15,GlycoHD,HD-MUSCLE-GLYCOHD,manufacturer,required,error,Fill manufacturer before import
+15,GlycoHD,HD-MUSCLE-GLYCOHD,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+16,GreensHD,HD-MUSCLE-GREENSHD-CITRUS,nutrition_facts,required,error,Fill nutrition_facts before import
+16,GreensHD,HD-MUSCLE-GREENSHD-CITRUS,serving_size,required,error,Fill serving_size before import
+16,GreensHD,HD-MUSCLE-GREENSHD-CITRUS,servings_per_container,required,error,Fill servings_per_container before import
+16,GreensHD,HD-MUSCLE-GREENSHD-CITRUS,manufacturer,required,error,Fill manufacturer before import
+16,GreensHD,HD-MUSCLE-GREENSHD-CITRUS,nutrition_facts,required,error,Fill nutrition_facts before import
+16,GreensHD,HD-MUSCLE-GREENSHD-CITRUS,serving_size,required,error,Fill serving_size before import
+16,GreensHD,HD-MUSCLE-GREENSHD-CITRUS,servings_per_container,required,error,Fill servings_per_container before import
+16,GreensHD,HD-MUSCLE-GREENSHD-CITRUS,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+16,GreensHD,HD-MUSCLE-GREENSHD-CITRUS,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+16,GreensHD,HD-MUSCLE-GREENSHD-CITRUS,manufacturer,required,error,Fill manufacturer before import
+16,GreensHD,HD-MUSCLE-GREENSHD-CITRUS,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+17,D3,HD-MUSCLE-D3,nutrition_facts,required,error,Fill nutrition_facts before import
+17,D3,HD-MUSCLE-D3,serving_size,required,error,Fill serving_size before import
+17,D3,HD-MUSCLE-D3,servings_per_container,required,error,Fill servings_per_container before import
+17,D3,HD-MUSCLE-D3,manufacturer,required,error,Fill manufacturer before import
+17,D3,HD-MUSCLE-D3,nutrition_facts,required,error,Fill nutrition_facts before import
+17,D3,HD-MUSCLE-D3,serving_size,required,error,Fill serving_size before import
+17,D3,HD-MUSCLE-D3,servings_per_container,required,error,Fill servings_per_container before import
+17,D3,HD-MUSCLE-D3,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+17,D3,HD-MUSCLE-D3,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+17,D3,HD-MUSCLE-D3,manufacturer,required,error,Fill manufacturer before import
+17,D3,HD-MUSCLE-D3,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+18,Curcumin,HD-MUSCLE-CURCUMIN,nutrition_facts,required,error,Fill nutrition_facts before import
+18,Curcumin,HD-MUSCLE-CURCUMIN,serving_size,required,error,Fill serving_size before import
+18,Curcumin,HD-MUSCLE-CURCUMIN,servings_per_container,required,error,Fill servings_per_container before import
+18,Curcumin,HD-MUSCLE-CURCUMIN,manufacturer,required,error,Fill manufacturer before import
+18,Curcumin,HD-MUSCLE-CURCUMIN,nutrition_facts,required,error,Fill nutrition_facts before import
+18,Curcumin,HD-MUSCLE-CURCUMIN,serving_size,required,error,Fill serving_size before import
+18,Curcumin,HD-MUSCLE-CURCUMIN,servings_per_container,required,error,Fill servings_per_container before import
+18,Curcumin,HD-MUSCLE-CURCUMIN,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+18,Curcumin,HD-MUSCLE-CURCUMIN,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+18,Curcumin,HD-MUSCLE-CURCUMIN,manufacturer,required,error,Fill manufacturer before import
+18,Curcumin,HD-MUSCLE-CURCUMIN,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+19,CollagenHD,HD-MUSCLE-COLLAGENHD,nutrition_facts,required,error,Fill nutrition_facts before import
+19,CollagenHD,HD-MUSCLE-COLLAGENHD,serving_size,required,error,Fill serving_size before import
+19,CollagenHD,HD-MUSCLE-COLLAGENHD,servings_per_container,required,error,Fill servings_per_container before import
+19,CollagenHD,HD-MUSCLE-COLLAGENHD,manufacturer,required,error,Fill manufacturer before import
+19,CollagenHD,HD-MUSCLE-COLLAGENHD,nutrition_facts,required,error,Fill nutrition_facts before import
+19,CollagenHD,HD-MUSCLE-COLLAGENHD,serving_size,required,error,Fill serving_size before import
+19,CollagenHD,HD-MUSCLE-COLLAGENHD,servings_per_container,required,error,Fill servings_per_container before import
+19,CollagenHD,HD-MUSCLE-COLLAGENHD,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+19,CollagenHD,HD-MUSCLE-COLLAGENHD,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+19,CollagenHD,HD-MUSCLE-COLLAGENHD,manufacturer,required,error,Fill manufacturer before import
+19,CollagenHD,HD-MUSCLE-COLLAGENHD,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+20,Citrus Bergamot,HD-MUSCLE-CITRUS-BERGAMOT,nutrition_facts,required,error,Fill nutrition_facts before import
+20,Citrus Bergamot,HD-MUSCLE-CITRUS-BERGAMOT,serving_size,required,error,Fill serving_size before import
+20,Citrus Bergamot,HD-MUSCLE-CITRUS-BERGAMOT,servings_per_container,required,error,Fill servings_per_container before import
+20,Citrus Bergamot,HD-MUSCLE-CITRUS-BERGAMOT,manufacturer,required,error,Fill manufacturer before import
+20,Citrus Bergamot,HD-MUSCLE-CITRUS-BERGAMOT,nutrition_facts,required,error,Fill nutrition_facts before import
+20,Citrus Bergamot,HD-MUSCLE-CITRUS-BERGAMOT,serving_size,required,error,Fill serving_size before import
+20,Citrus Bergamot,HD-MUSCLE-CITRUS-BERGAMOT,servings_per_container,required,error,Fill servings_per_container before import
+20,Citrus Bergamot,HD-MUSCLE-CITRUS-BERGAMOT,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+20,Citrus Bergamot,HD-MUSCLE-CITRUS-BERGAMOT,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+20,Citrus Bergamot,HD-MUSCLE-CITRUS-BERGAMOT,manufacturer,required,error,Fill manufacturer before import
+20,Citrus Bergamot,HD-MUSCLE-CITRUS-BERGAMOT,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+21,BurnHD,HD-MUSCLE-BURNHD,nutrition_facts,required,error,Fill nutrition_facts before import
+21,BurnHD,HD-MUSCLE-BURNHD,serving_size,required,error,Fill serving_size before import
+21,BurnHD,HD-MUSCLE-BURNHD,servings_per_container,required,error,Fill servings_per_container before import
+21,BurnHD,HD-MUSCLE-BURNHD,manufacturer,required,error,Fill manufacturer before import
+21,BurnHD,HD-MUSCLE-BURNHD,nutrition_facts,required,error,Fill nutrition_facts before import
+21,BurnHD,HD-MUSCLE-BURNHD,serving_size,required,error,Fill serving_size before import
+21,BurnHD,HD-MUSCLE-BURNHD,servings_per_container,required,error,Fill servings_per_container before import
+21,BurnHD,HD-MUSCLE-BURNHD,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+21,BurnHD,HD-MUSCLE-BURNHD,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+21,BurnHD,HD-MUSCLE-BURNHD,manufacturer,required,error,Fill manufacturer before import
+21,BurnHD,HD-MUSCLE-BURNHD,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+22,Betaine HCL,HD-MUSCLE-BETAINE-HCL,nutrition_facts,required,error,Fill nutrition_facts before import
+22,Betaine HCL,HD-MUSCLE-BETAINE-HCL,serving_size,required,error,Fill serving_size before import
+22,Betaine HCL,HD-MUSCLE-BETAINE-HCL,servings_per_container,required,error,Fill servings_per_container before import
+22,Betaine HCL,HD-MUSCLE-BETAINE-HCL,manufacturer,required,error,Fill manufacturer before import
+22,Betaine HCL,HD-MUSCLE-BETAINE-HCL,nutrition_facts,required,error,Fill nutrition_facts before import
+22,Betaine HCL,HD-MUSCLE-BETAINE-HCL,serving_size,required,error,Fill serving_size before import
+22,Betaine HCL,HD-MUSCLE-BETAINE-HCL,servings_per_container,required,error,Fill servings_per_container before import
+22,Betaine HCL,HD-MUSCLE-BETAINE-HCL,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+22,Betaine HCL,HD-MUSCLE-BETAINE-HCL,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+22,Betaine HCL,HD-MUSCLE-BETAINE-HCL,manufacturer,required,error,Fill manufacturer before import
+22,Betaine HCL,HD-MUSCLE-BETAINE-HCL,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+23,PreHD Essential,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,nutrition_facts,required,error,Fill nutrition_facts before import
+23,PreHD Essential,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,serving_size,required,error,Fill serving_size before import
+23,PreHD Essential,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,servings_per_container,required,error,Fill servings_per_container before import
+23,PreHD Essential,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,manufacturer,required,error,Fill manufacturer before import
+23,PreHD Essential,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,nutrition_facts,required,error,Fill nutrition_facts before import
+23,PreHD Essential,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,serving_size,required,error,Fill serving_size before import
+23,PreHD Essential,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,servings_per_container,required,error,Fill servings_per_container before import
+23,PreHD Essential,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+23,PreHD Essential,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+23,PreHD Essential,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,manufacturer,required,error,Fill manufacturer before import
+23,PreHD Essential,HD-MUSCLE-PREHD-ESSENTIAL-BLUE-RASPBERRY,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+24,Euphoria,HD-MUSCLE-EUPHORIA,nutrition_facts,required,error,Fill nutrition_facts before import
+24,Euphoria,HD-MUSCLE-EUPHORIA,serving_size,required,error,Fill serving_size before import
+24,Euphoria,HD-MUSCLE-EUPHORIA,servings_per_container,required,error,Fill servings_per_container before import
+24,Euphoria,HD-MUSCLE-EUPHORIA,manufacturer,required,error,Fill manufacturer before import
+24,Euphoria,HD-MUSCLE-EUPHORIA,nutrition_facts,required,error,Fill nutrition_facts before import
+24,Euphoria,HD-MUSCLE-EUPHORIA,serving_size,required,error,Fill serving_size before import
+24,Euphoria,HD-MUSCLE-EUPHORIA,servings_per_container,required,error,Fill servings_per_container before import
+24,Euphoria,HD-MUSCLE-EUPHORIA,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+24,Euphoria,HD-MUSCLE-EUPHORIA,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+24,Euphoria,HD-MUSCLE-EUPHORIA,manufacturer,required,error,Fill manufacturer before import
+24,Euphoria,HD-MUSCLE-EUPHORIA,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+25,StimHD,HD-MUSCLE-STIMHD,nutrition_facts,required,error,Fill nutrition_facts before import
+25,StimHD,HD-MUSCLE-STIMHD,serving_size,required,error,Fill serving_size before import
+25,StimHD,HD-MUSCLE-STIMHD,servings_per_container,required,error,Fill servings_per_container before import
+25,StimHD,HD-MUSCLE-STIMHD,manufacturer,required,error,Fill manufacturer before import
+25,StimHD,HD-MUSCLE-STIMHD,nutrition_facts,required,error,Fill nutrition_facts before import
+25,StimHD,HD-MUSCLE-STIMHD,serving_size,required,error,Fill serving_size before import
+25,StimHD,HD-MUSCLE-STIMHD,servings_per_container,required,error,Fill servings_per_container before import
+25,StimHD,HD-MUSCLE-STIMHD,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+25,StimHD,HD-MUSCLE-STIMHD,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+25,StimHD,HD-MUSCLE-STIMHD,manufacturer,required,error,Fill manufacturer before import
+25,StimHD,HD-MUSCLE-STIMHD,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+26,PumpHD,HD-MUSCLE-PUMPHD-RAINBOW-STRIPS,nutrition_facts,required,error,Fill nutrition_facts before import
+26,PumpHD,HD-MUSCLE-PUMPHD-RAINBOW-STRIPS,serving_size,required,error,Fill serving_size before import
+26,PumpHD,HD-MUSCLE-PUMPHD-RAINBOW-STRIPS,servings_per_container,required,error,Fill servings_per_container before import
+26,PumpHD,HD-MUSCLE-PUMPHD-RAINBOW-STRIPS,manufacturer,required,error,Fill manufacturer before import
+26,PumpHD,HD-MUSCLE-PUMPHD-RAINBOW-STRIPS,nutrition_facts,required,error,Fill nutrition_facts before import
+26,PumpHD,HD-MUSCLE-PUMPHD-RAINBOW-STRIPS,serving_size,required,error,Fill serving_size before import
+26,PumpHD,HD-MUSCLE-PUMPHD-RAINBOW-STRIPS,servings_per_container,required,error,Fill servings_per_container before import
+26,PumpHD,HD-MUSCLE-PUMPHD-RAINBOW-STRIPS,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+26,PumpHD,HD-MUSCLE-PUMPHD-RAINBOW-STRIPS,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+26,PumpHD,HD-MUSCLE-PUMPHD-RAINBOW-STRIPS,manufacturer,required,error,Fill manufacturer before import
+26,PumpHD,HD-MUSCLE-PUMPHD-RAINBOW-STRIPS,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+27,PreHD Black,HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO,nutrition_facts,required,error,Fill nutrition_facts before import
+27,PreHD Black,HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO,serving_size,required,error,Fill serving_size before import
+27,PreHD Black,HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO,servings_per_container,required,error,Fill servings_per_container before import
+27,PreHD Black,HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO,manufacturer,required,error,Fill manufacturer before import
+27,PreHD Black,HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO,nutrition_facts,required,error,Fill nutrition_facts before import
+27,PreHD Black,HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO,serving_size,required,error,Fill serving_size before import
+27,PreHD Black,HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO,servings_per_container,required,error,Fill servings_per_container before import
+27,PreHD Black,HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+27,PreHD Black,HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+27,PreHD Black,HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO,manufacturer,required,error,Fill manufacturer before import
+27,PreHD Black,HD-MUSCLE-PREHD-BLACK-STRAWBERRY-MANGO,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+28,PreHD Elite,HD-MUSCLE-PREHD-ELITE-TANGERINE,nutrition_facts,required,error,Fill nutrition_facts before import
+28,PreHD Elite,HD-MUSCLE-PREHD-ELITE-TANGERINE,serving_size,required,error,Fill serving_size before import
+28,PreHD Elite,HD-MUSCLE-PREHD-ELITE-TANGERINE,servings_per_container,required,error,Fill servings_per_container before import
+28,PreHD Elite,HD-MUSCLE-PREHD-ELITE-TANGERINE,manufacturer,required,error,Fill manufacturer before import
+28,PreHD Elite,HD-MUSCLE-PREHD-ELITE-TANGERINE,nutrition_facts,required,error,Fill nutrition_facts before import
+28,PreHD Elite,HD-MUSCLE-PREHD-ELITE-TANGERINE,serving_size,required,error,Fill serving_size before import
+28,PreHD Elite,HD-MUSCLE-PREHD-ELITE-TANGERINE,servings_per_container,required,error,Fill servings_per_container before import
+28,PreHD Elite,HD-MUSCLE-PREHD-ELITE-TANGERINE,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+28,PreHD Elite,HD-MUSCLE-PREHD-ELITE-TANGERINE,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+28,PreHD Elite,HD-MUSCLE-PREHD-ELITE-TANGERINE,manufacturer,required,error,Fill manufacturer before import
+28,PreHD Elite,HD-MUSCLE-PREHD-ELITE-TANGERINE,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+29,PreHD Ultra,HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES,nutrition_facts,required,error,Fill nutrition_facts before import
+29,PreHD Ultra,HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES,serving_size,required,error,Fill serving_size before import
+29,PreHD Ultra,HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES,servings_per_container,required,error,Fill servings_per_container before import
+29,PreHD Ultra,HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES,manufacturer,required,error,Fill manufacturer before import
+29,PreHD Ultra,HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES,nutrition_facts,required,error,Fill nutrition_facts before import
+29,PreHD Ultra,HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES,serving_size,required,error,Fill serving_size before import
+29,PreHD Ultra,HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES,servings_per_container,required,error,Fill servings_per_container before import
+29,PreHD Ultra,HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+29,PreHD Ultra,HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+29,PreHD Ultra,HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES,manufacturer,required,error,Fill manufacturer before import
+29,PreHD Ultra,HD-MUSCLE-PREHD-ULTRA-SOUR-GUMMIES,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+30,EAAs,HD-MUSCLE-EAAS-UNFLAVORED,nutrition_facts,required,error,Fill nutrition_facts before import
+30,EAAs,HD-MUSCLE-EAAS-UNFLAVORED,serving_size,required,error,Fill serving_size before import
+30,EAAs,HD-MUSCLE-EAAS-UNFLAVORED,servings_per_container,required,error,Fill servings_per_container before import
+30,EAAs,HD-MUSCLE-EAAS-UNFLAVORED,manufacturer,required,error,Fill manufacturer before import
+30,EAAs,HD-MUSCLE-EAAS-UNFLAVORED,nutrition_facts,required,error,Fill nutrition_facts before import
+30,EAAs,HD-MUSCLE-EAAS-UNFLAVORED,serving_size,required,error,Fill serving_size before import
+30,EAAs,HD-MUSCLE-EAAS-UNFLAVORED,servings_per_container,required,error,Fill servings_per_container before import
+30,EAAs,HD-MUSCLE-EAAS-UNFLAVORED,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+30,EAAs,HD-MUSCLE-EAAS-UNFLAVORED,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+30,EAAs,HD-MUSCLE-EAAS-UNFLAVORED,manufacturer,required,error,Fill manufacturer before import
+30,EAAs,HD-MUSCLE-EAAS-UNFLAVORED,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+31,BCAA,HD-MUSCLE-BCAA,nutrition_facts,required,error,Fill nutrition_facts before import
+31,BCAA,HD-MUSCLE-BCAA,serving_size,required,error,Fill serving_size before import
+31,BCAA,HD-MUSCLE-BCAA,servings_per_container,required,error,Fill servings_per_container before import
+31,BCAA,HD-MUSCLE-BCAA,manufacturer,required,error,Fill manufacturer before import
+31,BCAA,HD-MUSCLE-BCAA,nutrition_facts,required,error,Fill nutrition_facts before import
+31,BCAA,HD-MUSCLE-BCAA,serving_size,required,error,Fill serving_size before import
+31,BCAA,HD-MUSCLE-BCAA,servings_per_container,required,error,Fill servings_per_container before import
+31,BCAA,HD-MUSCLE-BCAA,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+31,BCAA,HD-MUSCLE-BCAA,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+31,BCAA,HD-MUSCLE-BCAA,manufacturer,required,error,Fill manufacturer before import
+31,BCAA,HD-MUSCLE-BCAA,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+32,IntraHD,HD-MUSCLE-INTRAHD-GRAPEFRUIT,nutrition_facts,required,error,Fill nutrition_facts before import
+32,IntraHD,HD-MUSCLE-INTRAHD-GRAPEFRUIT,serving_size,required,error,Fill serving_size before import
+32,IntraHD,HD-MUSCLE-INTRAHD-GRAPEFRUIT,servings_per_container,required,error,Fill servings_per_container before import
+32,IntraHD,HD-MUSCLE-INTRAHD-GRAPEFRUIT,manufacturer,required,error,Fill manufacturer before import
+32,IntraHD,HD-MUSCLE-INTRAHD-GRAPEFRUIT,nutrition_facts,required,error,Fill nutrition_facts before import
+32,IntraHD,HD-MUSCLE-INTRAHD-GRAPEFRUIT,serving_size,required,error,Fill serving_size before import
+32,IntraHD,HD-MUSCLE-INTRAHD-GRAPEFRUIT,servings_per_container,required,error,Fill servings_per_container before import
+32,IntraHD,HD-MUSCLE-INTRAHD-GRAPEFRUIT,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+32,IntraHD,HD-MUSCLE-INTRAHD-GRAPEFRUIT,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+32,IntraHD,HD-MUSCLE-INTRAHD-GRAPEFRUIT,manufacturer,required,error,Fill manufacturer before import
+32,IntraHD,HD-MUSCLE-INTRAHD-GRAPEFRUIT,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+33,HydraHD,HD-MUSCLE-HYDRAHD-TANGERINE,nutrition_facts,required,error,Fill nutrition_facts before import
+33,HydraHD,HD-MUSCLE-HYDRAHD-TANGERINE,serving_size,required,error,Fill serving_size before import
+33,HydraHD,HD-MUSCLE-HYDRAHD-TANGERINE,servings_per_container,required,error,Fill servings_per_container before import
+33,HydraHD,HD-MUSCLE-HYDRAHD-TANGERINE,manufacturer,required,error,Fill manufacturer before import
+33,HydraHD,HD-MUSCLE-HYDRAHD-TANGERINE,nutrition_facts,required,error,Fill nutrition_facts before import
+33,HydraHD,HD-MUSCLE-HYDRAHD-TANGERINE,serving_size,required,error,Fill serving_size before import
+33,HydraHD,HD-MUSCLE-HYDRAHD-TANGERINE,servings_per_container,required,error,Fill servings_per_container before import
+33,HydraHD,HD-MUSCLE-HYDRAHD-TANGERINE,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+33,HydraHD,HD-MUSCLE-HYDRAHD-TANGERINE,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+33,HydraHD,HD-MUSCLE-HYDRAHD-TANGERINE,manufacturer,required,error,Fill manufacturer before import
+33,HydraHD,HD-MUSCLE-HYDRAHD-TANGERINE,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+34,GlutaHD,HD-MUSCLE-GLUTAHD,nutrition_facts,required,error,Fill nutrition_facts before import
+34,GlutaHD,HD-MUSCLE-GLUTAHD,serving_size,required,error,Fill serving_size before import
+34,GlutaHD,HD-MUSCLE-GLUTAHD,servings_per_container,required,error,Fill servings_per_container before import
+34,GlutaHD,HD-MUSCLE-GLUTAHD,manufacturer,required,error,Fill manufacturer before import
+34,GlutaHD,HD-MUSCLE-GLUTAHD,nutrition_facts,required,error,Fill nutrition_facts before import
+34,GlutaHD,HD-MUSCLE-GLUTAHD,serving_size,required,error,Fill serving_size before import
+34,GlutaHD,HD-MUSCLE-GLUTAHD,servings_per_container,required,error,Fill servings_per_container before import
+34,GlutaHD,HD-MUSCLE-GLUTAHD,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+34,GlutaHD,HD-MUSCLE-GLUTAHD,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+34,GlutaHD,HD-MUSCLE-GLUTAHD,manufacturer,required,error,Fill manufacturer before import
+34,GlutaHD,HD-MUSCLE-GLUTAHD,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+35,CreaHD (Creapure®),HD-MUSCLE-CREAHD-CREAPURER,nutrition_facts,required,error,Fill nutrition_facts before import
+35,CreaHD (Creapure®),HD-MUSCLE-CREAHD-CREAPURER,serving_size,required,error,Fill serving_size before import
+35,CreaHD (Creapure®),HD-MUSCLE-CREAHD-CREAPURER,servings_per_container,required,error,Fill servings_per_container before import
+35,CreaHD (Creapure®),HD-MUSCLE-CREAHD-CREAPURER,manufacturer,required,error,Fill manufacturer before import
+35,CreaHD (Creapure®),HD-MUSCLE-CREAHD-CREAPURER,nutrition_facts,required,error,Fill nutrition_facts before import
+35,CreaHD (Creapure®),HD-MUSCLE-CREAHD-CREAPURER,serving_size,required,error,Fill serving_size before import
+35,CreaHD (Creapure®),HD-MUSCLE-CREAHD-CREAPURER,servings_per_container,required,error,Fill servings_per_container before import
+35,CreaHD (Creapure®),HD-MUSCLE-CREAHD-CREAPURER,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+35,CreaHD (Creapure®),HD-MUSCLE-CREAHD-CREAPURER,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+35,CreaHD (Creapure®),HD-MUSCLE-CREAHD-CREAPURER,manufacturer,required,error,Fill manufacturer before import
+35,CreaHD (Creapure®),HD-MUSCLE-CREAHD-CREAPURER,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+36,CarbHD,HD-MUSCLE-CARBHD-UNFLAVORED,nutrition_facts,required,error,Fill nutrition_facts before import
+36,CarbHD,HD-MUSCLE-CARBHD-UNFLAVORED,serving_size,required,error,Fill serving_size before import
+36,CarbHD,HD-MUSCLE-CARBHD-UNFLAVORED,servings_per_container,required,error,Fill servings_per_container before import
+36,CarbHD,HD-MUSCLE-CARBHD-UNFLAVORED,manufacturer,required,error,Fill manufacturer before import
+36,CarbHD,HD-MUSCLE-CARBHD-UNFLAVORED,nutrition_facts,required,error,Fill nutrition_facts before import
+36,CarbHD,HD-MUSCLE-CARBHD-UNFLAVORED,serving_size,required,error,Fill serving_size before import
+36,CarbHD,HD-MUSCLE-CARBHD-UNFLAVORED,servings_per_container,required,error,Fill servings_per_container before import
+36,CarbHD,HD-MUSCLE-CARBHD-UNFLAVORED,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+36,CarbHD,HD-MUSCLE-CARBHD-UNFLAVORED,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+36,CarbHD,HD-MUSCLE-CARBHD-UNFLAVORED,manufacturer,required,error,Fill manufacturer before import
+36,CarbHD,HD-MUSCLE-CARBHD-UNFLAVORED,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+37,Casein,HD-MUSCLE-CASEIN,nutrition_facts,required,error,Fill nutrition_facts before import
+37,Casein,HD-MUSCLE-CASEIN,serving_size,required,error,Fill serving_size before import
+37,Casein,HD-MUSCLE-CASEIN,servings_per_container,required,error,Fill servings_per_container before import
+37,Casein,HD-MUSCLE-CASEIN,manufacturer,required,error,Fill manufacturer before import
+37,Casein,HD-MUSCLE-CASEIN,nutrition_facts,required,error,Fill nutrition_facts before import
+37,Casein,HD-MUSCLE-CASEIN,serving_size,required,error,Fill serving_size before import
+37,Casein,HD-MUSCLE-CASEIN,servings_per_container,required,error,Fill servings_per_container before import
+37,Casein,HD-MUSCLE-CASEIN,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+37,Casein,HD-MUSCLE-CASEIN,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+37,Casein,HD-MUSCLE-CASEIN,manufacturer,required,error,Fill manufacturer before import
+37,Casein,HD-MUSCLE-CASEIN,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+38,Protein Pancakes,HD-MUSCLE-PROTEIN-PANCAKES,nutrition_facts,required,error,Fill nutrition_facts before import
+38,Protein Pancakes,HD-MUSCLE-PROTEIN-PANCAKES,serving_size,required,error,Fill serving_size before import
+38,Protein Pancakes,HD-MUSCLE-PROTEIN-PANCAKES,servings_per_container,required,error,Fill servings_per_container before import
+38,Protein Pancakes,HD-MUSCLE-PROTEIN-PANCAKES,manufacturer,required,error,Fill manufacturer before import
+38,Protein Pancakes,HD-MUSCLE-PROTEIN-PANCAKES,nutrition_facts,required,error,Fill nutrition_facts before import
+38,Protein Pancakes,HD-MUSCLE-PROTEIN-PANCAKES,serving_size,required,error,Fill serving_size before import
+38,Protein Pancakes,HD-MUSCLE-PROTEIN-PANCAKES,servings_per_container,required,error,Fill servings_per_container before import
+38,Protein Pancakes,HD-MUSCLE-PROTEIN-PANCAKES,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+38,Protein Pancakes,HD-MUSCLE-PROTEIN-PANCAKES,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+38,Protein Pancakes,HD-MUSCLE-PROTEIN-PANCAKES,manufacturer,required,error,Fill manufacturer before import
+38,Protein Pancakes,HD-MUSCLE-PROTEIN-PANCAKES,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+39,ProHD Isolate,HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE,nutrition_facts,required,error,Fill nutrition_facts before import
+39,ProHD Isolate,HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE,serving_size,required,error,Fill serving_size before import
+39,ProHD Isolate,HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE,servings_per_container,required,error,Fill servings_per_container before import
+39,ProHD Isolate,HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE,manufacturer,required,error,Fill manufacturer before import
+39,ProHD Isolate,HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE,nutrition_facts,required,error,Fill nutrition_facts before import
+39,ProHD Isolate,HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE,serving_size,required,error,Fill serving_size before import
+39,ProHD Isolate,HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE,servings_per_container,required,error,Fill servings_per_container before import
+39,ProHD Isolate,HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+39,ProHD Isolate,HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+39,ProHD Isolate,HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE,manufacturer,required,error,Fill manufacturer before import
+39,ProHD Isolate,HD-MUSCLE-PROHD-ISOLATE-CHOCOLATE,importer,compliance,warning,Fill importer from product label or mark needs_review = yes
+40,WheyHD,HD-MUSCLE-WHEYHD,nutrition_facts,required,error,Fill nutrition_facts before import
+40,WheyHD,HD-MUSCLE-WHEYHD,serving_size,required,error,Fill serving_size before import
+40,WheyHD,HD-MUSCLE-WHEYHD,servings_per_container,required,error,Fill servings_per_container before import
+40,WheyHD,HD-MUSCLE-WHEYHD,manufacturer,required,error,Fill manufacturer before import
+40,WheyHD,HD-MUSCLE-WHEYHD,nutrition_facts,required,error,Fill nutrition_facts before import
+40,WheyHD,HD-MUSCLE-WHEYHD,serving_size,required,error,Fill serving_size before import
+40,WheyHD,HD-MUSCLE-WHEYHD,servings_per_container,required,error,Fill servings_per_container before import
+40,WheyHD,HD-MUSCLE-WHEYHD,warnings,compliance,warning,Fill warnings from product label or mark needs_review = yes
+40,WheyHD,HD-MUSCLE-WHEYHD,allergen_info,compliance,warning,Fill allergen_info from product label or mark needs_review = yes
+40,WheyHD,HD-MUSCLE-WHEYHD,manufacturer,required,error,Fill manufacturer before import
+40,WheyHD,HD-MUSCLE-WHEYHD,importer,compliance,warning,Fill importer from product label or mark needs_review = yes

@@ -1,7 +1,7 @@
 'use client';
 
-import { useCart } from '../cart-context';
-import Header from '../header';
+import { useCart } from '@/cart-context';
+import Header from '@/header';
 import Link from 'next/link';
 
 export default function CartPage() {
@@ -87,3 +87,4 @@ export default function CartPage() {
     </div>
   );
 }
+
